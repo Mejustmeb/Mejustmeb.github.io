@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Contact SuperByteBrilliance for software development, games, and IT services inquiries.">
+    <title>Contact Us - SuperByteBrilliance</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="nav-container">
+                <a href="index.html" class="logo">
+                    <span class="logo-icon">💻</span>
+                    <span class="logo-text">SuperByte<span class="highlight">Brilliance</span></span>
+                </a>
+                <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+                    <span class="hamburger"></span>
+                </button>
+                <ul class="nav-menu">
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="products.html" class="nav-link">Products & Services</a></li>
+                    <li><a href="about.html" class="nav-link">About</a></li>
+                    <li><a href="contact.html" class="nav-link active">Contact</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Page Header -->
+        <section class="page-header">
+            <div class="container">
+                <h1>Contact Us</h1>
+                <p>We'd love to hear from you. Get in touch today!</p>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="contact-section">
+            <div class="container">
+                <div class="contact-grid">
+                    <div class="contact-info">
+                        <h2>Get In Touch</h2>
+                        <p>Have a question, project idea, or just want to say hello? Fill out the form and we'll get back to you as soon as possible.</p>
+                        
+                        <div class="contact-methods">
+                            <div class="contact-method">
+                                <div class="contact-icon">📧</div>
+                                <div class="contact-details">
+                                    <h3>Email</h3>
+                                    <p>Contact us through the form</p>
+                                </div>
+                            </div>
+                            <div class="contact-method">
+                                <div class="contact-icon">🌐</div>
+                                <div class="contact-details">
+                                    <h3>Website</h3>
+                                    <p>superbytebrillience.com</p>
+                                </div>
+                            </div>
+                            <div class="contact-method">
+                                <div class="contact-icon">⏰</div>
+                                <div class="contact-details">
+                                    <h3>Response Time</h3>
+                                    <p>We typically respond within 24-48 hours</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="contact-form-container">
+                        <form id="contact-form" class="contact-form">
+                            <div class="form-group">
+                                <label for="name">Name *</label>
+                                <input type="text" id="name" name="name" required placeholder="Your name">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email *</label>
+                                <input type="email" id="email" name="email" required placeholder="your.email@example.com">
+                            </div>
+                            <div class="form-group">
+                                <label for="subject">Subject *</label>
+                                <select id="subject" name="subject" required>
+                                    <option value="">Select a subject</option>
+                                    <option value="general">General Inquiry</option>
+                                    <option value="quote">Request a Quote</option>
+                                    <option value="support">Technical Support</option>
+                                    <option value="partnership">Partnership Opportunity</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="message">Message *</label>
+                                <textarea id="message" name="message" rows="5" required placeholder="Tell us about your project or inquiry..."></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-full">Send Message</button>
+                        </form>
+                        <div id="form-success" class="form-success" style="display: none;">
+                            <div class="success-icon">✅</div>
+                            <h3>Thank You!</h3>
+                            <p>Your message has been received. We'll get back to you soon!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="faq-section bg-light">
+            <div class="container">
+                <h2 class="section-title">Frequently Asked Questions</h2>
+                <div class="faq-grid">
+                    <div class="faq-item">
+                        <h3>What services do you offer?</h3>
+                        <p>We offer custom software development, game development, IT consulting, and technical support services for individuals and small businesses.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h3>How do I get a quote for my project?</h3>
+                        <p>Simply fill out the contact form above with details about your project, and we'll provide you with a customized quote within 24-48 hours.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h3>Do you work with small businesses?</h3>
+                        <p>Absolutely! We specialize in working with individuals and small businesses, providing affordable and scalable solutions.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h3>How long does a typical project take?</h3>
+                        <p>Project timelines vary depending on scope and complexity. We'll provide a detailed timeline estimate during our initial consultation.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <span class="logo-icon">💻</span>
+                    <span class="logo-text">SuperByte<span class="highlight">Brilliance</span></span>
+                    <p>Brilliant software solutions for a digital world.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="products.html">Products & Services</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>Contact</h4>
+                    <p>Visit our <a href="contact.html">contact page</a> to get in touch.</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 SuperByteBrilliance. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
