@@ -105,10 +105,4 @@ function initSmoothScroll() {
     });
 }
 
-/**
- * Utility function to validate email format
- */
-function isValidEmail(email) {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
-}
+
