@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Submit Knowledge – Superbyte Knowledge Base</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #0b0b10;
+      color: #f5f5f5;
+    }
+    .container {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 1.5rem;
+    }
+    h1 {
+      font-size: 1.6rem;
+      margin-bottom: 0.2rem;
+      text-align: center;
+    }
+    p.subtitle {
+      font-size: 0.95rem;
+      color: #cccccc;
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+    form {
+      background: #14141f;
+      padding: 1.2rem;
+      border-radius: 10px;
+      box-shadow: 0 0 12px rgba(0,0,0,0.45);
+    }
+    label {
+      display: block;
+      margin-top: 0.9rem;
+      margin-bottom: 0.25rem;
+      font-size: 0.9rem;
+    }
+    input[type="text"],
+    input[type="email"],
+    select,
+    textarea {
+      width: 100%;
+      padding: 0.55rem;
+      border-radius: 6px;
+      border: 1px solid #333444;
+      background: #0f0f18;
+      color: #f5f5f5;
+      font-size: 0.9rem;
+      box-sizing: border-box;
+    }
+    textarea {
+      min-height: 80px;
+      resize: vertical;
+    }
+    small {
+      display: block;
+      font-size: 0.75rem;
+      color: #a0a0b0;
+      margin-top: 0.1rem;
+    }
+    .row {
+      display: flex;
+      gap: 0.75rem;
+    }
+    .row > div {
+      flex: 1;
+    }
+    button {
+      margin-top: 1.2rem;
+      width: 100%;
+      padding: 0.7rem;
+      border-radius: 999px;
+      border: none;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      background: #3b82f6;
+      color: #ffffff;
+    }
+    button:hover {
+      filter: brightness(1.05);
+    }
+    .footer-note {
+      margin-top: 0.8rem;
+      font-size: 0.8rem;
+      color: #8a8aa0;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Submit Knowledge</h1>
+    <p class="subtitle">
+      Share real-world experience to help others. Keep it honest, clear, and practical.
+    </p>
+
+    <!-- Phase 1: this form sends a structured email to you.
+         Later we can swap this to talk to an API / GitHub bot. -->
+    <form action="mailto:superbyte@superbytebrillience.com" method="post" enctype="text/plain">
+      
+      <label for="title">Title</label>
+      <input id="title" name="Title" type="text" required
+             placeholder="Truck idles rough when warm – no check engine light">
+
+      <label for="category">Category</label>
+      <select id="category" name="Category" required>
+        <option value="">Select a category…</option>
+        <option>Vehicle</option>
+        <option>Mechanical</option>
+        <option>Electrical</option>
+        <option>Home Repair</option>
+        <option>Medical Education (NON-diagnostic)</option>
+        <option>Tools</option>
+        <option>General Knowledge</option>
+        <option>Other</option>
+      </select>
+
+      <label for="summary">Summary (1–3 sentences)</label>
+      <textarea id="summary" name="Summary" required
+        placeholder="Short plain-language explanation of the issue or topic."></textarea>
+
+      <label for="symptoms">Symptoms / Indicators</label>
+      <textarea id="symptoms" name="Symptoms_Indicators" required
+        placeholder="- Rough idle after warm-up&#10;- Smell of fuel&#10;- No check engine light"></textarea>
+
+      <label for="causes">Common Causes (ranked by likelihood)</label>
+      <textarea id="causes" name="Common_Causes" required
+        placeholder="1. Most likely cause&#10 2. Second most likely&#10 3. Third most likely"></textarea>
+
+      <label for="checks">Step-by-Step Checks (safe for normal people)</label>
+      <textarea id="checks" name="Step_By_Step_Checks" required
+        placeholder="- With engine off, check...&#10- With basic tools, test..."></textarea>
+
+      <label for="tools">Tools Needed (if any)</label>
+      <textarea id="tools" name="Tools_Needed"
+        placeholder="- Basic socket set&#10- OBD-II scanner (optional)"></textarea>
+
+      <label for="pro">When to Seek a Professional</label>
+      <textarea id="pro" name="When_To_Seek_Professional"
+        placeholder="- If you smell raw fuel inside the cabin&#10- If there is visible arcing, smoke, or burning smell&#10- If the problem gets worse rapidly"></textarea>
+
+      <label for="notes">Contributor Notes (optional)</label>
+      <textarea id="notes" name="Contributor_Notes"
+        placeholder="Any extra tips, gotchas, or your own experience."></textarea>
+
+      <label for="tags">Tags</label>
+      <input id="tags" name="Tags" type="text"
+             placeholder="f150, rough idle, fuel, no cel, warm idle">
+      <small>Short keywords separated by commas.</small>
+
+      <div class="row">
+        <div>
+          <label for="name">Your name / handle (optional)</label>
+          <input id="name" name="Contributor_Name" type="text"
+                 placeholder="Name or username (optional)">
+        </div>
+        <div>
+          <label for="email">Contact email (optional)</label>
+          <input id="email" name="Contributor_Email" type="email"
+                 placeholder="Only if you want to be contacted">
+        </div>
+      </div>
+
+      <button type="submit">Send Entry</button>
+
+      <div class="footer-note">
+        This will open your email app with the info filled in.  
+        You can review and send it to add your knowledge.
+      </div>
+    </form>
+  </div>
+</body>
+</html>
