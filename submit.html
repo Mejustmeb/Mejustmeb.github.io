@@ -97,13 +97,10 @@
   <div class="container">
     <h1>Submit Knowledge</h1>
     <p class="subtitle">
-      Share real-world experience to help others. Keep it honest, clear, and practical.
+      This form will open a GitHub issue with your entry. You’ll need to be logged in to GitHub to finish submitting.
     </p>
 
-    <!-- Phase 1: this form sends a structured email to you.
-         Later we can swap this to talk to an API / GitHub bot. -->
-    <form action="mailto:superbyte@superbytebrillience.com" method="post" enctype="text/plain">
-      
+    <form id="kb-form" onsubmit="createIssue(event)">
       <label for="title">Title</label>
       <input id="title" name="Title" type="text" required
              placeholder="Truck idles rough when warm – no check engine light">
@@ -127,7 +124,7 @@
 
       <label for="symptoms">Symptoms / Indicators</label>
       <textarea id="symptoms" name="Symptoms_Indicators" required
-        placeholder="- Rough idle after warm-up&#10;- Smell of fuel&#10;- No check engine light"></textarea>
+        placeholder="- Rough idle after warm-up&#10- Smell of fuel&#10- No check engine light"></textarea>
 
       <label for="causes">Common Causes (ranked by likelihood)</label>
       <textarea id="causes" name="Common_Causes" required
@@ -167,13 +164,90 @@
         </div>
       </div>
 
-      <button type="submit">Send Entry</button>
+      <button type="submit">Open GitHub Issue</button>
 
       <div class="footer-note">
-        This will open your email app with the info filled in.  
-        You can review and send it to add your knowledge.
+        After you click, a GitHub tab will open with your entry filled in.  
+        Review it there and click “Submit new issue”.
       </div>
     </form>
   </div>
+
+  <script>
+    function createIssue(event) {
+      event.preventDefault();
+
+      const title = document.getElementById('title').value.trim();
+      const category = document.getElementById('category').value.trim();
+      const summary = document.getElementById('summary').value.trim();
+      const symptoms = document.getElementById('symptoms').value.trim();
+      const causes = document.getElementById('causes').value.trim();
+      const checks = document.getElementById('checks').value.trim();
+      const tools = document.getElementById('tools').value.trim();
+      const pro = document.getElementById('pro').value.trim();
+      const notes = document.getElementById('notes').value.trim();
+      const tags = document.getElementById('tags').value.trim();
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+
+      if (!title) {
+        alert("Please enter a title.");
+        return;
+      }
+
+      // Build the issue body to match ENTRY_TEMPLATE.md
+      let body = '';
+      body += '# New Knowledge Entry\n\n';
+      body += '## 1. Title\n';
+      body += (title || '') + '\n\n';
+
+      body += '## 2. Category\n';
+      body += (category || '') + '\n\n';
+
+      body += '## 3. Summary (1–3 sentences)\n';
+      body += (summary || '') + '\n\n';
+
+      body += '## 4. Symptoms / Indicators\n';
+      body += (symptoms || '') + '\n\n';
+
+      body += '## 5. Common Causes (ranked by likelihood)\n';
+      body += (causes || '') + '\n\n';
+
+      body += '## 6. Step-by-Step Checks\n';
+      body += (checks || '') + '\n\n';
+
+      body += '## 7. Tools Needed (if any)\n';
+      body += (tools || '') + '\n\n';
+
+      body += '## 8. When to Seek a Professional\n';
+      body += (pro || '') + '\n\n';
+
+      body += '## 9. Contributor Notes (optional)\n';
+      body += (notes || '') + '\n\n';
+
+      body += '## 10. Tags\n';
+      body += (tags || '') + '\n\n';
+
+      body += '---\n';
+      body += 'Submitted via Superbyte Knowledge Base form.\n';
+      if (name) {
+        body += '\nContributor: ' + name;
+      }
+      if (email) {
+        body += '\nContact: ' + email;
+      }
+
+      const ghTitle = encodeURIComponent(title);
+      const ghBody = encodeURIComponent(body);
+
+      // Your GitHub username + repo
+      const user = 'mejustmeb';
+      const repo = 'superbyte-knowledgebase';
+
+      const url = `https://github.com/${user}/${repo}/issues/new?title=${ghTitle}&body=${ghBody}`;
+
+      window.open(url, '_blank');
+    }
+  </script>
 </body>
 </html>
