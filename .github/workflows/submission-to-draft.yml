@@ -3,17 +3,22 @@ name: Submission to Draft
 on:
   issues:
     types: [opened, labeled]
-  push:
-    paths-ignore:
-      - '**'
 
 permissions:
   contents: write
   issues: write
 
 jobs:
+  check_event:
+    if: github.event_name != 'issues'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Skip non-issue events
+        run: echo "Skipping workflow for non-issue events"
+  
   build_draft:
     if: |
+      github.event_name == 'issues' &&
       github.event.issue != null &&
       (
         contains(join(github.event.issue.labels.*.name, ','), 'submission') &&
