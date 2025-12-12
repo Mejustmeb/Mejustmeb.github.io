@@ -98,5 +98,5 @@ jobs:
               owner: context.repo.owner,
               repo: context.repo.repo,
               issue_number: context.payload.issue.number,
-              body: `✅ Draft created automatically: \`${draftPath}\`\n\nNext step will turn this draft into a published entry page.`
+              body: `Draft created automatically: \`${draftPath}\`\n\nNext step will turn this draft into a published entry page.`
             });
