@@ -146,6 +146,15 @@
       <input type="checkbox" id="hideDuplicates" />
       Hide duplicates
     </label>
+
+    <select id="sortBy" title="Sort">
+      <option value="newest">Newest</option>
+      <option value="oldest">Oldest</option>
+      <option value="title_asc">Title A→Z</option>
+      <option value="title_desc">Title Z→A</option>
+      <option value="conf_desc">Confidence High→Low</option>
+      <option value="conf_asc">Confidence Low→High</option>
+    </select>
   </div>
 
   <div id="grid" class="grid"></div>
@@ -161,6 +170,28 @@ function normalizeConfidence(value) {
   if (v === "medium" || v === "med" || v === "m") return "medium";
   if (v === "low" || v === "l") return "low";
   return "";
+}
+
+function confidenceRank(conf) {
+  // higher number = higher confidence
+  if (conf === "high") return 3;
+  if (conf === "medium") return 2;
+  if (conf === "low") return 1;
+  return 0;
+}
+
+function parseDateMaybe(entry) {
+  // try common fields; fallback to 0
+  const d =
+    entry?.created_at ??
+    entry?.created ??
+    entry?.date ??
+    entry?.timestamp ??
+    entry?.published_at ??
+    entry?.submitted_at;
+  if (!d) return 0;
+  const t = Date.parse(d);
+  return Number.isFinite(t) ? t : 0;
 }
 
 function isDuplicate(entry) {
@@ -201,6 +232,38 @@ function matchesSearch(entry, q) {
 
 let ALL_ENTRIES = [];
 
+/* ---------------- sorting ---------------- */
+
+function sortEntries(entries, mode) {
+  const arr = entries.slice();
+
+  arr.sort((a, b) => {
+    const ta = (a?.title ?? "").toString().toLowerCase();
+    const tb = (b?.title ?? "").toString().toLowerCase();
+
+    const da = parseDateMaybe(a);
+    const db = parseDateMaybe(b);
+
+    const ca = confidenceRank(normalizeConfidence(a?.confidence));
+    const cb = confidenceRank(normalizeConfidence(b?.confidence));
+
+    switch (mode) {
+      case "oldest":    return da - db;
+      case "newest":    return db - da;
+
+      case "title_desc": return tb.localeCompare(ta);
+      case "title_asc":  return ta.localeCompare(tb);
+
+      case "conf_asc":  return ca - cb;
+      case "conf_desc": return cb - ca;
+
+      default: return 0;
+    }
+  });
+
+  return arr;
+}
+
 /* ---------------- rendering ---------------- */
 
 function renderGrid() {
@@ -210,11 +273,12 @@ function renderGrid() {
   const confFilter = document.getElementById("confidenceFilter").value;
   const hideDupes = document.getElementById("hideDuplicates").checked;
   const q = (document.getElementById("searchBox").value || "").trim().toLowerCase();
+  const sortMode = document.getElementById("sortBy").value;
 
   grid.innerHTML = "";
 
-  let shown = 0;
-
+  // filter first
+  let filtered = [];
   for (const entry of ALL_ENTRIES) {
     const conf = normalizeConfidence(entry.confidence);
 
@@ -222,6 +286,15 @@ function renderGrid() {
     if (hideDupes && isDuplicate(entry)) continue;
     if (!matchesSearch(entry, q)) continue;
 
+    filtered.push(entry);
+  }
+
+  // then sort
+  filtered = sortEntries(filtered, sortMode);
+
+  // render
+  let shown = 0;
+  for (const entry of filtered) {
     const card = document.createElement("div");
     card.className = "card";
 
@@ -259,19 +332,16 @@ async function loadEntries() {
 
 /* ---------------- events ---------------- */
 
-document.getElementById("confidenceFilter")
-  .addEventListener("change", renderGrid);
-
-document.getElementById("hideDuplicates")
-  .addEventListener("change", renderGrid);
+document.getElementById("confidenceFilter").addEventListener("change", renderGrid);
+document.getElementById("hideDuplicates").addEventListener("change", renderGrid);
+document.getElementById("sortBy").addEventListener("change", renderGrid);
 
 // live search (debounced lightly)
 let t = null;
-document.getElementById("searchBox")
-  .addEventListener("input", () => {
-    clearTimeout(t);
-    t = setTimeout(renderGrid, 80);
-  });
+document.getElementById("searchBox").addEventListener("input", () => {
+  clearTimeout(t);
+  t = setTimeout(renderGrid, 80);
+});
 
 loadEntries();
 </script>
