@@ -26,6 +26,29 @@
 
   main { max-width: 1200px; margin: auto; padding: 20px; }
 
+  <div class="cta">
+  <div class="cta-left">
+    <h2>Get notified when there’s an answer</h2>
+    <p>Drop your email and we’ll let you know when solutions get posted.</p>
+
+    <!-- Buttondown static endpoint (replace USERNAME) -->
+    <form class="notify" action="https://buttondown.email/api/emails/embed-subscribe/YOUR_USERNAME" method="post" target="popupwindow"
+          onsubmit="window.open('https://buttondown.email/YOUR_USERNAME', 'popupwindow');return true;">
+      <input type="email" name="email" placeholder="you@email.com" required />
+      <input type="hidden" name="tag" value="superbyte-notify" />
+      <button type="submit">Notify me</button>
+    </form>
+
+    <small class="fineprint">No spam. Unsubscribe anytime.</small>
+  </div>
+
+  <div class="cta-right">
+    <a class="tip" href="https://buymeacoffee.com/YOUR_HANDLE" target="_blank" rel="noopener">
+      ☕ Tip helpers / Buy me a coffee
+    </a>
+  </div>
+</div>
+  
   /* --- filter bar --- */
   .filters {
     display: flex;
