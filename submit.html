@@ -1,253 +1,117 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Submit Knowledge – Superbyte Knowledge Base</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Submit • SuperByte</title>
   <style>
-    body {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      margin: 0;
-      padding: 0;
-      background: #0b0b10;
-      color: #f5f5f5;
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; margin:0; background:#0b0f14; color:#e6edf3; }
+    .wrap { max-width: 860px; margin:0 auto; padding:24px; }
+    a { color:#7aa2ff; text-decoration:none; }
+    .pill { display:inline-block; padding:8px 12px; border-radius:999px; background:#0e1522; border:1px solid #223; font-size:13px; }
+    .card { margin-top:14px; background:#121826; border:1px solid #223; border-radius:18px; padding:18px; box-shadow:0 8px 30px rgba(0,0,0,.35); }
+    label { display:block; font-weight:800; margin-top:12px; margin-bottom:6px; }
+    input, textarea, select {
+      width:100%;
+      box-sizing:border-box;
+      padding:10px 12px;
+      border-radius:14px;
+      border:1px solid #223;
+      background:#0e1522;
+      color:#e6edf3;
+      outline:none;
     }
-    .container {
-      max-width: 700px;
-      margin: 0 auto;
-      padding: 1.5rem;
+    textarea { min-height:120px; resize:vertical; }
+    .row { display:flex; gap:10px; flex-wrap:wrap; }
+    .btn {
+      margin-top:14px;
+      display:inline-block;
+      padding:10px 14px;
+      border-radius:14px;
+      border:1px solid #223;
+      background:#0e1522;
+      color:#e6edf3;
+      cursor:pointer;
+      font-weight:800;
     }
-    h1 {
-      font-size: 1.6rem;
-      margin-bottom: 0.2rem;
-      text-align: center;
-    }
-    p.subtitle {
-      font-size: 0.95rem;
-      color: #cccccc;
-      text-align: center;
-      margin-bottom: 1.5rem;
-    }
-    form {
-      background: #14141f;
-      padding: 1.2rem;
-      border-radius: 10px;
-      box-shadow: 0 0 12px rgba(0,0,0,0.45);
-    }
-    label {
-      display: block;
-      margin-top: 0.9rem;
-      margin-bottom: 0.25rem;
-      font-size: 0.9rem;
-    }
-    input[type="text"],
-    input[type="email"],
-    select,
-    textarea {
-      width: 100%;
-      padding: 0.55rem;
-      border-radius: 6px;
-      border: 1px solid #333444;
-      background: #0f0f18;
-      color: #f5f5f5;
-      font-size: 0.9rem;
-      box-sizing: border-box;
-    }
-    textarea {
-      min-height: 80px;
-      resize: vertical;
-    }
-    small {
-      display: block;
-      font-size: 0.75rem;
-      color: #a0a0b0;
-      margin-top: 0.1rem;
-    }
-    .row {
-      display: flex;
-      gap: 0.75rem;
-    }
-    .row > div {
-      flex: 1;
-    }
-    button {
-      margin-top: 1.2rem;
-      width: 100%;
-      padding: 0.7rem;
-      border-radius: 999px;
-      border: none;
-      font-size: 1rem;
-      font-weight: 600;
-      cursor: pointer;
-      background: #3b82f6;
-      color: #ffffff;
-    }
-    button:hover {
-      filter: brightness(1.05);
-    }
-    .footer-note {
-      margin-top: 0.8rem;
-      font-size: 0.8rem;
-      color: #8a8aa0;
-      text-align: center;
-    }
+    .btn:hover { filter:brightness(1.1); }
+    .muted { opacity:.78; font-size:13px; margin-top:10px; }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>Submit Knowledge</h1>
-    <p class="subtitle">
-      This form will open a GitHub issue with your entry. You’ll need to be logged in to GitHub to finish submitting.
-    </p>
+  <div class="wrap">
+    <div class="row" style="justify-content:space-between; align-items:center;">
+      <div class="row">
+        <a class="pill" href="/">Home</a>
+        <a class="pill" href="/entries/">Entries</a>
+      </div>
+      <span class="pill">Submit</span>
+    </div>
 
-    <form id="kb-form" onsubmit="createIssue(event)">
+    <div class="card">
+      <h1 style="margin:0 0 6px 0;">Submit Knowledge</h1>
+      <div class="muted">This will open GitHub and create a submission issue (your automation will publish it).</div>
+
       <label for="title">Title</label>
-      <input id="title" name="Title" type="text" required
-             placeholder="Truck idles rough when warm – no check engine light">
+      <input id="title" placeholder="e.g., F-150 rough idle after warm-up" />
+
+      <label for="summary">Summary (1–3 sentences)</label>
+      <textarea id="summary" placeholder="What is this about? What should a reader learn fast?"></textarea>
+
+      <label for="details">Details (bullets preferred)</label>
+      <textarea id="details" placeholder="- Symptoms:\n- Causes:\n- Fix steps:\n- Notes:"></textarea>
+
+      <label for="sources">Sources / Links (optional)</label>
+      <textarea id="sources" placeholder="Paste image links here if you want a hero image.\nExample:\nhttps://...jpg"></textarea>
 
       <label for="category">Category</label>
-      <select id="category" name="Category" required>
-        <option value="">Select a category…</option>
-        <option>Vehicle</option>
-        <option>Mechanical</option>
-        <option>Electrical</option>
+      <select id="category">
+        <option>Automotive</option>
         <option>Home Repair</option>
-        <option>Medical Education (NON-diagnostic)</option>
         <option>Tools</option>
-        <option>General Knowledge</option>
+        <option>Tech</option>
         <option>Other</option>
       </select>
 
-      <label for="summary">Summary (1–3 sentences)</label>
-      <textarea id="summary" name="Summary" required
-        placeholder="Short plain-language explanation of the issue or topic."></textarea>
+      <button class="btn" id="go">Create Submission</button>
 
-      <label for="symptoms">Symptoms / Indicators</label>
-      <textarea id="symptoms" name="Symptoms_Indicators" required
-        placeholder="- Rough idle after warm-up&#10- Smell of fuel&#10- No check engine light"></textarea>
-
-      <label for="causes">Common Causes (ranked by likelihood)</label>
-      <textarea id="causes" name="Common_Causes" required
-        placeholder="1. Most likely cause&#10 2. Second most likely&#10 3. Third most likely"></textarea>
-
-      <label for="checks">Step-by-Step Checks (safe for normal people)</label>
-      <textarea id="checks" name="Step_By_Step_Checks" required
-        placeholder="- With engine off, check...&#10- With basic tools, test..."></textarea>
-
-      <label for="tools">Tools Needed (if any)</label>
-      <textarea id="tools" name="Tools_Needed"
-        placeholder="- Basic socket set&#10- OBD-II scanner (optional)"></textarea>
-
-      <label for="pro">When to Seek a Professional</label>
-      <textarea id="pro" name="When_To_Seek_Professional"
-        placeholder="- If you smell raw fuel inside the cabin&#10- If there is visible arcing, smoke, or burning smell&#10- If the problem gets worse rapidly"></textarea>
-
-      <label for="notes">Contributor Notes (optional)</label>
-      <textarea id="notes" name="Contributor_Notes"
-        placeholder="Any extra tips, gotchas, or your own experience."></textarea>
-
-      <label for="tags">Tags</label>
-      <input id="tags" name="Tags" type="text"
-             placeholder="f150, rough idle, fuel, no cel, warm idle">
-      <small>Short keywords separated by commas.</small>
-
-      <div class="row">
-        <div>
-          <label for="name">Your name / handle (optional)</label>
-          <input id="name" name="Contributor_Name" type="text"
-                 placeholder="Name or username (optional)">
-        </div>
-        <div>
-          <label for="email">Contact email (optional)</label>
-          <input id="email" name="Contributor_Email" type="email"
-                 placeholder="Only if you want to be contacted">
-        </div>
+      <div class="muted">
+        Note: You must be logged into GitHub for the final “Submit new issue” click.
       </div>
-
-      <button type="submit">Open GitHub Issue</button>
-
-      <div class="footer-note">
-        After you click, a GitHub tab will open with your entry filled in.  
-        Review it there and click “Submit new issue”.
-      </div>
-    </form>
+    </div>
   </div>
 
-  <script>
-    function createIssue(event) {
-      event.preventDefault();
+<script>
+/**
+ * GitHub Issue Form prefill uses URL params:
+ *   ?template=knowledge_submission.yml&title=...&summary=...&details=...&sources=...&category=...
+ *
+ * This relies on your issue form field IDs matching:
+ *   title, summary, details, sources, category
+ */
+const OWNER = "Mejustmeb";
+const REPO  = "superbyte-knowledgebase";
 
-      const title = document.getElementById('title').value.trim();
-      const category = document.getElementById('category').value.trim();
-      const summary = document.getElementById('summary').value.trim();
-      const symptoms = document.getElementById('symptoms').value.trim();
-      const causes = document.getElementById('causes').value.trim();
-      const checks = document.getElementById('checks').value.trim();
-      const tools = document.getElementById('tools').value.trim();
-      const pro = document.getElementById('pro').value.trim();
-      const notes = document.getElementById('notes').value.trim();
-      const tags = document.getElementById('tags').value.trim();
-      const name = document.getElementById('name').value.trim();
-      const email = document.getElementById('email').value.trim();
+document.getElementById("go").addEventListener("click", () => {
+  const title = document.getElementById("title").value.trim();
+  const summary = document.getElementById("summary").value.trim();
+  const details = document.getElementById("details").value.trim();
+  const sources = document.getElementById("sources").value.trim();
+  const category = document.getElementById("category").value;
 
-      if (!title) {
-        alert("Please enter a title.");
-        return;
-      }
+  const url = new URL(`https://github.com/${OWNER}/${REPO}/issues/new`);
+  url.searchParams.set("template", "knowledge_submission.yml");
+  url.searchParams.set("title", `Submission: ${title || ""}`);
 
-      // Build the issue body to match ENTRY_TEMPLATE.md
-      let body = '';
-      body += '# New Knowledge Entry\n\n';
-      body += '## 1. Title\n';
-      body += (title || '') + '\n\n';
+  // These names must match the YAML issue form IDs
+  url.searchParams.set("title", title);
+  url.searchParams.set("summary", summary);
+  url.searchParams.set("details", details);
+  url.searchParams.set("sources", sources);
+  url.searchParams.set("category", category);
 
-      body += '## 2. Category\n';
-      body += (category || '') + '\n\n';
-
-      body += '## 3. Summary (1–3 sentences)\n';
-      body += (summary || '') + '\n\n';
-
-      body += '## 4. Symptoms / Indicators\n';
-      body += (symptoms || '') + '\n\n';
-
-      body += '## 5. Common Causes (ranked by likelihood)\n';
-      body += (causes || '') + '\n\n';
-
-      body += '## 6. Step-by-Step Checks\n';
-      body += (checks || '') + '\n\n';
-
-      body += '## 7. Tools Needed (if any)\n';
-      body += (tools || '') + '\n\n';
-
-      body += '## 8. When to Seek a Professional\n';
-      body += (pro || '') + '\n\n';
-
-      body += '## 9. Contributor Notes (optional)\n';
-      body += (notes || '') + '\n\n';
-
-      body += '## 10. Tags\n';
-      body += (tags || '') + '\n\n';
-
-      body += '---\n';
-      body += 'Submitted via Superbyte Knowledge Base form.\n';
-      if (name) {
-        body += '\nContributor: ' + name;
-      }
-      if (email) {
-        body += '\nContact: ' + email;
-      }
-
-      const ghTitle = encodeURIComponent(title);
-      const ghBody = encodeURIComponent(body);
-
-      // Your GitHub username + repo
-      const user = 'mejustmeb';
-      const repo = 'superbyte-knowledgebase';
-
-      const url = `https://github.com/${user}/${repo}/issues/new?title=${ghTitle}&body=${ghBody}`;
-
-      window.open(url, '_blank');
-    }
-  </script>
+  window.open(url.toString(), "_blank", "noopener,noreferrer");
+});
+</script>
 </body>
 </html>
