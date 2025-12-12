@@ -27,7 +27,6 @@ jobs:
           script: |
             const fs = require('fs');
             const path = require('path');
-            const yaml = require('js-yaml');
 
             const issue = context.payload.issue;
             const issueNumber = issue.number;
@@ -83,17 +82,16 @@ jobs:
 
             fs.writeFileSync(filePath, content, 'utf8');
 
-            // Validate YAML frontmatter only
-            const fm = content.match(/^---\n([\s\S]*?)\n---/);
-            try {
-              yaml.load(fm[1]);
-            } catch (e) {
-              core.setFailed(`Invalid YAML frontmatter: ${e.message}`);
-              return;
-            }
-
             core.setOutput('draft_path', `drafts/${filename}`);
             core.setOutput('draft_name', filename);
+
+      - name: Validate YAML frontmatter
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y python3-pip
+          pip install yamllint
+          # Extract only the YAML block between --- markers
+          awk '/^---$/ {c++} c==1 {print}' drafts/${{ steps.make_draft.outputs.draft_name }} | yamllint -
 
       - name: Commit draft file
         run: |
