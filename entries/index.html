@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Entries</title>
+  <style>
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; margin: 0; background: #0b0f14; color: #e6edf3; }
+    .wrap { max-width: 980px; margin: 0 auto; padding: 24px; }
+    a { color: #7aa2ff; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .card { background: #121826; border: 1px solid #223; border-radius: 16px; padding: 18px; box-shadow: 0 8px 30px rgba(0,0,0,.35); }
+    .row { display:flex; justify-content: space-between; gap: 14px; padding: 10px 0; border-bottom: 1px solid #223; }
+    .row:last-child { border-bottom: none; }
+    .pill { display:inline-block; padding:6px 10px; border-radius: 999px; background:#0e1522; border:1px solid #223; font-size: 13px; opacity:.95; }
+    .topnav { display:flex; gap:12px; align-items:center; margin-bottom: 18px; }
+    .muted { opacity:.8; font-size: 13px; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="topnav">
+      <a href="/"><span class="pill">Home</span></a>
+      <span class="pill">Entries</span>
+    </div>
+
+    <div class="card">
+      <h1 style="margin:0 0 12px 0;">Entries</h1>
+      <div id="list" class="muted">Loading…</div>
+    </div>
+  </div>
+
+<script>
+fetch('./entries.json')
+  .then(r => r.json())
+  .then(items => {
+    const el = document.getElementById('list');
+    if (!items.length) { el.textContent = 'No entries yet.'; return; }
+    el.className = '';
+    el.innerHTML = items.map(it => `
+      <div class="row">
+        <div>
+          <div><a href="${it.path}"><b>${it.title}</b></a></div>
+          <div class="muted">${it.category} • Issue #${it.issue}</div>
+        </div>
+        <div class="muted">→</div>
+      </div>
+    `).join('');
+  })
+  .catch(() => {
+    document.getElementById('list').textContent = 'Failed to load entries.';
+  });
+</script>
+</body>
+</html>
