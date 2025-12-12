@@ -1,4 +1,13 @@
-import os, re, glob, json
+import os
+import re
+import glob
+import json
+from datetime import datetime
+
+DRAFTS_DIR = "drafts"
+ENTRIES_DIR = "entries"
+
+
 def pick_hero_image(sources_text: str) -> str:
   if not sources_text:
     return ""
@@ -15,10 +24,28 @@ def pick_hero_image(sources_text: str) -> str:
 
   return ""
 
-from datetime import datetime
 
-DRAFTS_DIR = "drafts"
-ENTRIES_DIR = "entries"
+def norm(s: str) -> str:
+  s = (s or "").lower()
+  s = re.sub(r"[^a-z0-9]+", " ", s)
+  s = re.sub(r"\s+", " ", s).strip()
+  return s
+
+
+def is_probable_duplicate(a_title: str, b_title: str) -> bool:
+  a = set(norm(a_title).split())
+  b = set(norm(b_title).split())
+  if not a or not b:
+    return False
+  overlap = len(a & b) / max(1, min(len(a), len(b)))
+  return overlap >= 0.75
+
+
+def safe_filename(s: str) -> str:
+  s = (s or "").lower()
+  s = re.sub(r"[^a-z0-9]+", "-", s).strip("-")
+  return (s[:60] if s else "entry")
+
 
 ENTRY_TEMPLATE = """<!doctype html>
 <html lang="en">
@@ -142,18 +169,9 @@ ENTRY_TEMPLATE = """<!doctype html>
 const CATEGORY = "{category_js}";
 const CURRENT_PATH = "{current_path}";
 
-function bgFor(cat){
-  const c = (cat||"").toLowerCase();
-  if (c.includes("auto")) return "linear-gradient(135deg, #2b4cff, #111827)";
-  if (c.includes("home")) return "linear-gradient(135deg, #ff8a3d, #1f2937)";
-  if (c.includes("tech")) return "linear-gradient(135deg, #00d4ff, #0f172a)";
-  if (c.includes("tools")) return "linear-gradient(135deg, #a855f7, #111827)";
-  return "linear-gradient(135deg, #1b2a55, #1a3a2a)";
-}
-
 fetch("/entries/entries.json")
   .then(r => r.json())
-  .then(items => {
+  .then(items => {{
     const rel = items
       .filter(it => (it.category || "") === CATEGORY && it.path !== CURRENT_PATH)
       .slice(-6)
@@ -166,13 +184,13 @@ fetch("/entries/entries.json")
     }}
 
     el.innerHTML = rel.map(it => `
-      <a class="tile" href="${it.path}" style="display:block;">
-        <div class="tag">${it.category} • #${it.issue}</div>
-        <div class="t">${it.title}</div>
+      <a class="tile" href="${{it.path}}" style="display:block;">
+        <div class="tag">${{it.category}} • #${{it.issue}}</div>
+        <div class="t">${{it.title}}</div>
         <div class="tag" style="margin-top:8px;">Open →</div>
       </a>
     `).join("");
-  })
+  }})
   .catch(() => {{
     document.getElementById("related").innerHTML = '<div class="meta">Failed to load related.</div>';
   }});
@@ -184,7 +202,7 @@ fetch("/entries/entries.json")
 
 def read_draft(path: str) -> dict:
   text = open(path, "r", encoding="utf-8").read()
-  # crude frontmatter split
+
   fm = {}
   if text.startswith("---"):
     parts = text.split("---", 2)
@@ -200,65 +218,27 @@ def read_draft(path: str) -> dict:
   else:
     body = text
 
-  # sections
   def section(name: str) -> str:
     m = re.search(rf"^##\s+{re.escape(name)}\s*$([\s\S]*?)(?=^##\s+|\Z)", body, re.M)
     return (m.group(1).strip() if m else "").strip()
 
-  title = fm.get("title") or re.search(r"^#\s+(.*)$", body, re.M).group(1).strip()
+  m_title = re.search(r"^#\s+(.*)$", body, re.M)
+  title = fm.get("title") or (m_title.group(1).strip() if m_title else "Untitled")
+
   return {
     "title": title,
     "category": fm.get("category", "Other"),
     "issue": fm.get("issue", "").replace("#", "") or "0",
     "created": fm.get("created", ""),
+    "confidence": fm.get("confidence", "medium"),
     "summary": section("Summary") or "- (none provided)",
     "details": section("Details") or "- (none provided)",
     "sources": section("Sources") or "- (none provided)",
   }
 
-def safe_filename(s: str) -> str:
-  s = s.lower()
-  s = re.sub(r"[^a-z0-9]+", "-", s).strip("-")
-  return (s[:60] if s else "entry")
 
-def main():
-  os.makedirs(ENTRIES_DIR, exist_ok=True)
-
-  drafts = sorted(glob.glob(os.path.join(DRAFTS_DIR, "draft-*.md")))
-  entries_index = []
-
-  for d in drafts:
-    data = read_draft(d)
-    issue = data["issue"]
-    slug = safe_filename(data["title"])
-    out_name = f"entry-{str(issue).zfill(4)}-{slug}.html"
-    out_path = os.path.join(ENTRIES_DIR, out_name)
-
-    published = datetime.utcnow().strftime("%Y-%m-%d %H:%M UTC")
-    html = ENTRY_TEMPLATE.format(
-      title=data["title"],
-      category=data["category"],
-      issue=issue,
-      published=published,
-      summary=data["summary"],
-      details=data["details"],
-      sources=data["sources"],
-    )
-    open(out_path, "w", encoding="utf-8").write(html)
-
-    entries_index.append({
-      "title": data["title"],
-      "category": data["category"],
-      "issue": issue,
-      "path": f"/entries/{out_name}",
-    })
-
-  # Write entries listing page + JSON
-  open(os.path.join(ENTRIES_DIR, "entries.json"), "w", encoding="utf-8").write(
-    json.dumps(entries_index, indent=2)
-  )
-
-  listing = """<!doctype html>
+def build_entries_listing() -> str:
+  return """<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
@@ -300,8 +280,8 @@ fetch('./entries.json')
     el.innerHTML = items.map(it => `
       <div class="row">
         <div>
-          <div><a href="${it.path}"><b>${it.title}</b></a></div>
-          <div class="muted">${it.category} • Issue #${it.issue}</div>
+          <div><a href="${it.dupe_of || it.path}"><b>${it.title}</b></a></div>
+          <div class="muted">${it.category} • Issue #${it.issue} • ${it.dupe_of ? "♻️ Duplicate" : (it.confidence || "medium")}</div>
         </div>
         <div class="muted">→</div>
       </div>
@@ -314,7 +294,68 @@ fetch('./entries.json')
 </body>
 </html>
 """
-  open(os.path.join(ENTRIES_DIR, "index.html"), "w", encoding="utf-8").write(listing)
+
+
+def main():
+  os.makedirs(ENTRIES_DIR, exist_ok=True)
+
+  drafts = sorted(glob.glob(os.path.join(DRAFTS_DIR, "draft-*.md")))
+  entries_index = []
+  seen = []  # list of (title, path, issue)
+
+  for d in drafts:
+    data = read_draft(d)
+    issue = data["issue"]
+    slug = safe_filename(data["title"])
+    out_name = f"entry-{str(issue).zfill(4)}-{slug}.html"
+    out_path = os.path.join(ENTRIES_DIR, out_name)
+
+    dupe_of = ""
+    for (t, p, iss) in seen:
+      if is_probable_duplicate(data["title"], t):
+        dupe_of = p
+        break
+
+    published = datetime.utcnow().strftime("%Y-%m-%d %H:%M UTC")
+
+    hero_img = pick_hero_image(data.get("sources", ""))
+
+    html = ENTRY_TEMPLATE.format(
+      title=data["title"],
+      category=data["category"],
+      issue=issue,
+      published=published,
+      summary=data["summary"],
+      details=data["details"],
+      sources=data["sources"],
+      hero_img=hero_img,
+      hero_img_display=("none" if not hero_img else "block"),
+      hero_bg=("linear-gradient(135deg, #1b2a55, #1a3a2a)" if not hero_img else "#000"),
+      category_js=data["category"].replace('"', '\\"'),
+      current_path=f"/entries/{out_name}",
+    )
+
+    open(out_path, "w", encoding="utf-8").write(html)
+
+    entries_index.append({
+      "title": data["title"],
+      "category": data["category"],
+      "issue": issue,
+      "path": f"/entries/{out_name}",
+      "confidence": data.get("confidence", "medium"),
+      "dupe_of": dupe_of,
+    })
+
+    seen.append((data["title"], f"/entries/{out_name}", issue))
+
+  open(os.path.join(ENTRIES_DIR, "entries.json"), "w", encoding="utf-8").write(
+    json.dumps(entries_index, indent=2)
+  )
+
+  open(os.path.join(ENTRIES_DIR, "index.html"), "w", encoding="utf-8").write(
+    build_entries_listing()
+  )
+
 
 if __name__ == "__main__":
   main()
