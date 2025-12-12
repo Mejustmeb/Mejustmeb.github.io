@@ -1,4 +1,20 @@
 import os, re, glob, json
+def pick_hero_image(sources_text: str) -> str:
+  if not sources_text:
+    return ""
+
+  # 1) Markdown image: ![alt](url)
+  m = re.search(r"!\[[^\]]*\]\((https?://[^\s)]+)\)", sources_text, re.I)
+  if m:
+    return m.group(1).strip()
+
+  # 2) Plain URL ending in an image extension
+  m = re.search(r"(https?://[^\s]+?\.(?:png|jpg|jpeg|webp|gif))(?:\?[^\s]*)?", sources_text, re.I)
+  if m:
+    return m.group(1).strip()
+
+  return ""
+
 from datetime import datetime
 
 DRAFTS_DIR = "drafts"
