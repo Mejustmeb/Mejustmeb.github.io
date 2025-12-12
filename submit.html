@@ -104,7 +104,7 @@ document.getElementById("go").addEventListener("click", () => {
   url.searchParams.set("title", `Submission: ${title || ""}`);
 
   // These names must match the YAML issue form IDs
-  url.searchParams.set("title", title);
+  url.searchParams.set("entry_title", title);
   url.searchParams.set("summary", summary);
   url.searchParams.set("details", details);
   url.searchParams.set("sources", sources);
