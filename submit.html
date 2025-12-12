@@ -82,36 +82,50 @@
   </div>
 
 <script>
-/**
- * GitHub Issue Form prefill uses URL params:
- *   ?template=knowledge_submission.yml&title=...&summary=...&details=...&sources=...&category=...
- *
- * This relies on your issue form field IDs matching:
- *   title, summary, details, sources, category
- */
 const OWNER = "Mejustmeb";
 const REPO  = "superbyte-knowledgebase";
 
-document.getElementById("go").addEventListener("click", () => {
+function buildPayload(){
   const title = document.getElementById("title").value.trim();
   const summary = document.getElementById("summary").value.trim();
   const details = document.getElementById("details").value.trim();
   const sources = document.getElementById("sources").value.trim();
   const category = document.getElementById("category").value;
 
+  return `
+### Entry Title
+${title}
+
+### Summary
+${summary}
+
+### Details
+${details}
+
+### Sources
+${sources}
+
+### Category
+${category}
+`.trim();
+}
+
+document.getElementById("go").addEventListener("click", async () => {
+  const title = document.getElementById("title").value.trim();
+
+  const payload = buildPayload();
+
+  try {
+    await navigator.clipboard.writeText(payload);
+    alert("Submission content copied. Paste it into the GitHub form, then submit.");
+  } catch {
+    alert("Could not auto-copy. Please manually copy the text below.");
+  }
+
   const url = new URL(`https://github.com/${OWNER}/${REPO}/issues/new`);
   url.searchParams.set("template", "knowledge_submission.yml");
   url.searchParams.set("title", `Submission: ${title || ""}`);
 
-  // These names must match the YAML issue form IDs
-  url.searchParams.set("entry_title", title);
-  url.searchParams.set("summary", summary);
-  url.searchParams.set("details", details);
-  url.searchParams.set("sources", sources);
-  url.searchParams.set("category", category);
-
   window.open(url.toString(), "_blank", "noopener,noreferrer");
 });
 </script>
-</body>
-</html>
