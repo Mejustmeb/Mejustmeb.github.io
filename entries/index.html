@@ -40,8 +40,8 @@ fetch('./entries.json')
     el.innerHTML = items.map(it => `
       <div class="row">
         <div>
-          <div><a href="${it.path}"><b>${it.title}</b></a></div>
-          <div class="muted">${it.category} • Issue #${it.issue}</div>
+          <div><a href="${it.dupe_of || it.path}"><b>${it.title}</b></a></div>
+          <div class="muted">${it.category} • Issue #${it.issue} • ${it.dupe_of ? "♻️ Duplicate" : (it.confidence || "medium")}</div>
         </div>
         <div class="muted">→</div>
       </div>
