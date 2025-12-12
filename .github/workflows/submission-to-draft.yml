@@ -58,17 +58,16 @@ jobs:
 
             const now = new Date().toISOString();
 
-            // Escape single quotes for YAML safety
-            const safeTitle = issueTitle.replace(/'/g, "''");
-
-            const content =
+              // Escape single quotes for YAML safety
+              const safeTitle = issueTitle.replace(/'/g, "''");
+              const content =
               '---\n' +
               'type: draft\n' +
               'source: github-issue\n' +
               `issue: ${issueNumber}\n` +
               `created: ${now}\n` +
               `category: ${category}\n` +
-              `title: '${safeTitle}'\n` +
+              `title: '${safeTitle}'\n` +   // <-- single quotes, doubled inside
               'status: raw\n' +
               'confidence: medium\n' +
               '---\n\n' +
