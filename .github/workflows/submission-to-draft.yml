@@ -57,6 +57,10 @@ jobs:
             const sources = extract('Sources') || '';
 
             const now = new Date().toISOString();
+
+            // Escape single quotes for YAML safety
+            const safeTitle = issueTitle.replace(/'/g, "''");
+
             const content =
               '---\n' +
               'type: draft\n' +
@@ -64,7 +68,7 @@ jobs:
               `issue: ${issueNumber}\n` +
               `created: ${now}\n` +
               `category: ${category}\n` +
-              `title: "${issueTitle.replace(/"/g,'\\"')}"\n` +
+              `title: '${safeTitle}'\n` +
               'status: raw\n' +
               'confidence: medium\n' +
               '---\n\n' +
@@ -81,6 +85,13 @@ jobs:
             core.setOutput('draft_path', `drafts/${filename}`);
             core.setOutput('draft_name', filename);
 
+      - name: Validate YAML frontmatter
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y python3-pip
+          pip install yamllint
+          head -n 20 drafts/${{ steps.make_draft.outputs.draft_name }} | yamllint -
+
       - name: Commit draft file
         run: |
           git config user.name "superbyte-bot"
@@ -88,6 +99,12 @@ jobs:
           git add drafts/
           git commit -m "Add draft from submission issue #${{ github.event.issue.number }}" || exit 0
           git push
+
+      - name: Upload draft artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: draft-file
+          path: drafts/${{ steps.make_draft.outputs.draft_name }}
 
       - name: Comment back on the issue
         uses: actions/github-script@v7
