@@ -69,4 +69,54 @@ jobs:
               `issue: ${issueNumber}\n` +
               `created: ${now}\n` +
               `category: ${category}\n` +
+              `title: '${safeTitle}'\n` +
+              'status: raw\n' +
+              'confidence: medium\n' +
+              '---\n\n' +
+              `# ${issueTitle}\n\n` +
+              '## Summary\n' +
+              `${summary || '- (none provided)'}\n\n` +
+              '## Details\n' +
+              `${details || '- (none provided)'}\n\n` +
+              '## Sources\n' +
+              `${sources || '- (none provided)'}\n`;
 
+            fs.writeFileSync(filePath, content, 'utf8');
+
+            // Validate YAML frontmatter only
+            const fm = content.match(/^---\n([\s\S]*?)\n---/);
+            try {
+              yaml.load(fm[1]);
+            } catch (e) {
+              core.setFailed(`Invalid YAML frontmatter: ${e.message}`);
+              return;
+            }
+
+            core.setOutput('draft_path', `drafts/${filename}`);
+            core.setOutput('draft_name', filename);
+
+      - name: Commit draft file
+        run: |
+          git config user.name "superbyte-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add drafts/
+          git commit -m "Add draft from submission issue #${{ github.event.issue.number }}" || exit 0
+          git push
+
+      - name: Upload draft artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: draft-file
+          path: drafts/${{ steps.make_draft.outputs.draft_name }}
+
+      - name: Comment back on the issue
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const draftPath = '${{ steps.make_draft.outputs.draft_path }}';
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.payload.issue.number,
+              body: `✅ Draft created automatically: \`${draftPath}\`\n\nNext step will turn this draft into a published entry page.`
+            });
