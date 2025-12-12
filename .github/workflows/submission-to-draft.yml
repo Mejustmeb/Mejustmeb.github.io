@@ -3,6 +3,7 @@ name: Submission to Draft
 on:
   issues:
     types: [opened, labeled]
+  push:
 
 permissions:
   contents: write
