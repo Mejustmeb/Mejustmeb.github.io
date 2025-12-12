@@ -15,13 +15,69 @@ ENTRY_TEMPLATE = """<!doctype html>
     .wrap {{ max-width: 980px; margin: 0 auto; padding: 24px; }}
     a {{ color: #7aa2ff; text-decoration: none; }}
     a:hover {{ text-decoration: underline; }}
-    .card {{ background: #121826; border: 1px solid #223; border-radius: 16px; padding: 18px; box-shadow: 0 8px 30px rgba(0,0,0,.35); }}
-    .meta {{ opacity: .8; font-size: 14px; margin-top: 8px; }}
-    h1 {{ margin: 0 0 10px 0; font-size: 30px; }}
-    h2 {{ margin-top: 22px; font-size: 18px; opacity: .95; }}
-    pre {{ white-space: pre-wrap; word-wrap: break-word; background: #0e1522; padding: 12px; border-radius: 12px; border: 1px solid #223; }}
-    .topnav {{ display:flex; gap:12px; align-items:center; margin-bottom: 18px; }}
+
+    .topnav {{ display:flex; gap:12px; align-items:center; margin-bottom: 18px; flex-wrap: wrap; }}
     .pill {{ display:inline-block; padding:6px 10px; border-radius: 999px; background:#0e1522; border:1px solid #223; font-size: 13px; opacity:.95; }}
+
+    .card {{ background: #121826; border: 1px solid #223; border-radius: 18px; padding: 18px; box-shadow: 0 8px 30px rgba(0,0,0,.35); }}
+    h1 {{ margin: 0 0 10px 0; font-size: 30px; }}
+    .meta {{ opacity: .8; font-size: 14px; margin-top: 6px; }}
+
+    .hero {{
+      margin-top: 14px;
+      height: 220px;
+      border-radius: 16px;
+      border: 1px solid #223;
+      background: {hero_bg};
+      overflow: hidden;
+      position: relative;
+    }}
+    .hero img {{
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: {hero_img_display};
+    }}
+    .hero .badge {{
+      position: absolute;
+      left: 12px;
+      bottom: 12px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(0,0,0,.35);
+      border: 1px solid rgba(255,255,255,.10);
+      font-size: 12px;
+      opacity: .95;
+    }}
+
+    details {{
+      margin-top: 14px;
+      background: #0e1522;
+      border: 1px solid #223;
+      border-radius: 14px;
+      padding: 10px 12px;
+    }}
+    summary {{
+      cursor: pointer;
+      font-weight: 800;
+      list-style: none;
+    }}
+    summary::-webkit-details-marker {{ display:none; }}
+    .pre {{
+      white-space: pre-wrap;
+      word-wrap: break-word;
+      margin-top: 10px;
+      padding: 10px;
+      border-radius: 12px;
+      border: 1px solid #223;
+      background: #0b0f14;
+    }}
+
+    .related-wrap {{ margin-top: 18px; }}
+    .grid {{ display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin-top: 10px; }}
+    .tile {{ background:#0e1522; border:1px solid #223; border-radius: 16px; padding: 12px; }}
+    .tile .tag {{ font-size: 12px; opacity: .8; }}
+    .tile .t {{ font-weight: 900; margin-top: 6px; line-height: 1.2; }}
   </style>
 </head>
 <body>
@@ -29,27 +85,86 @@ ENTRY_TEMPLATE = """<!doctype html>
     <div class="topnav">
       <a href="/"><span class="pill">Home</span></a>
       <a href="/entries/"><span class="pill">Entries</span></a>
+      <span class="pill">{category}</span>
+      <span class="pill">Issue #{issue}</span>
     </div>
 
     <div class="card">
       <h1>{title}</h1>
-      <div class="meta">
-        Category: <b>{category}</b> • Issue: <b>#{issue}</b> • Published: <b>{published}</b>
+      <div class="meta">Published: <b>{published}</b></div>
+
+      <div class="hero">
+        <img src="{hero_img}" alt="" />
+        <div class="badge">Visual slot • auto-ready</div>
       </div>
 
-      <h2>Summary</h2>
-      <pre>{summary}</pre>
+      <details open>
+        <summary>Summary (skim fast)</summary>
+        <div class="pre">{summary}</div>
+      </details>
 
-      <h2>Details</h2>
-      <pre>{details}</pre>
+      <details>
+        <summary>Details (expand)</summary>
+        <div class="pre">{details}</div>
+      </details>
 
-      <h2>Sources</h2>
-      <pre>{sources}</pre>
+      <details>
+        <summary>Sources (expand)</summary>
+        <div class="pre">{sources}</div>
+      </details>
+
+      <div class="related-wrap">
+        <div class="meta" style="margin-top:6px;"><b>Related tiles</b></div>
+        <div id="related" class="grid">
+          <div class="meta">Loading…</div>
+        </div>
+      </div>
     </div>
   </div>
+
+<script>
+const CATEGORY = "{category_js}";
+const CURRENT_PATH = "{current_path}";
+
+function bgFor(cat){
+  const c = (cat||"").toLowerCase();
+  if (c.includes("auto")) return "linear-gradient(135deg, #2b4cff, #111827)";
+  if (c.includes("home")) return "linear-gradient(135deg, #ff8a3d, #1f2937)";
+  if (c.includes("tech")) return "linear-gradient(135deg, #00d4ff, #0f172a)";
+  if (c.includes("tools")) return "linear-gradient(135deg, #a855f7, #111827)";
+  return "linear-gradient(135deg, #1b2a55, #1a3a2a)";
+}
+
+fetch("/entries/entries.json")
+  .then(r => r.json())
+  .then(items => {
+    const rel = items
+      .filter(it => (it.category || "") === CATEGORY && it.path !== CURRENT_PATH)
+      .slice(-6)
+      .reverse();
+
+    const el = document.getElementById("related");
+    if (!rel.length) {{
+      el.innerHTML = '<div class="meta">No related entries yet.</div>';
+      return;
+    }}
+
+    el.innerHTML = rel.map(it => `
+      <a class="tile" href="${it.path}" style="display:block;">
+        <div class="tag">${it.category} • #${it.issue}</div>
+        <div class="t">${it.title}</div>
+        <div class="tag" style="margin-top:8px;">Open →</div>
+      </a>
+    `).join("");
+  })
+  .catch(() => {{
+    document.getElementById("related").innerHTML = '<div class="meta">Failed to load related.</div>';
+  }});
+</script>
 </body>
 </html>
 """
+
 
 def read_draft(path: str) -> dict:
   text = open(path, "r", encoding="utf-8").read()
