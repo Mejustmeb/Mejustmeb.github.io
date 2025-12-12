@@ -10,12 +10,10 @@ permissions:
 
 jobs:
   build_draft:
-    if: |
+    if: >
       github.event.issue != null &&
-      (
-        contains(join(github.event.issue.labels.*.name, ','), 'submission') &&
-        contains(join(github.event.issue.labels.*.name, ','), 'raw')
-      )
+      contains(join(github.event.issue.labels.*.name, ','), 'submission') &&
+      contains(join(github.event.issue.labels.*.name, ','), 'raw')
     runs-on: ubuntu-latest
 
     steps:
@@ -35,7 +33,6 @@ jobs:
             const issueTitle = issue.title?.replace(/^Submission:\s*/i, '').trim() || `Issue ${issueNumber}`;
             const body = issue.body || '';
 
-            // Make a safe filename
             const slug = issueTitle
               .toLowerCase()
               .replace(/[^a-z0-9]+/g, '-')
@@ -48,7 +45,6 @@ jobs:
             const filename = `draft-${String(issueNumber).padStart(4,'0')}-${slug}.md`;
             const filePath = path.join(draftsDir, filename);
 
-            // Simple parser for GitHub issue forms (best-effort)
             function extract(label) {
               const re = new RegExp(`###\\s+${label}\\s*\\n([\\s\\S]*?)(?=\\n###\\s+|$)`, 'i');
               const m = body.match(re);
@@ -62,23 +58,23 @@ jobs:
 
             const now = new Date().toISOString();
             const content =
-'---\n' +
-'type: draft\n' +
-'source: github-issue\n' +
-`issue: ${issueNumber}\n` +
-`created: ${now}\n` +
-`category: ${category}\n` +
-`title: "${issueTitle.replace(/"/g,'\\"')}"\n` +
-'status: raw\n' +
-'confidence: medium\n' +
-'---\n\n' +
-`# ${issueTitle}\n\n` +
-'## Summary\n' +
-`${summary || '- (none provided)'}\n\n` +
-'## Details\n' +
-`${details || '- (none provided)'}\n\n` +
-'## Sources\n' +
-`${sources || '- (none provided)'}\n';
+              '---\n' +
+              'type: draft\n' +
+              'source: github-issue\n' +
+              `issue: ${issueNumber}\n` +
+              `created: ${now}\n` +
+              `category: ${category}\n` +
+              `title: "${issueTitle.replace(/"/g,'\\"')}"\n` +
+              'status: raw\n' +
+              'confidence: medium\n' +
+              '---\n\n' +
+              `# ${issueTitle}\n\n` +
+              '## Summary\n' +
+              `${summary || '- (none provided)'}\n\n` +
+              '## Details\n' +
+              `${details || '- (none provided)'}\n\n` +
+              '## Sources\n' +
+              `${sources || '- (none provided)'}\n`;
 
             fs.writeFileSync(filePath, content, 'utf8');
 
