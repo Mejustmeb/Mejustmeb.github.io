@@ -9,16 +9,13 @@ permissions:
   issues: write
 
 jobs:
-  check_event:
-    if: github.event_name != 'issues'
+  passthrough:
     runs-on: ubuntu-latest
     steps:
-      - name: Skip non-issue events
-        run: echo "Skipping workflow for non-issue events"
+      - run: echo "Workflow passthrough"
   
   build_draft:
     if: |
-      github.event_name == 'issues' &&
       github.event.issue != null &&
       (
         contains(join(github.event.issue.labels.*.name, ','), 'submission') &&
@@ -70,7 +67,7 @@ jobs:
 
             const now = new Date().toISOString();
             const content =
- `---
+`---
 type: draft
 source: github-issue
 issue: ${issueNumber}
@@ -91,7 +88,7 @@ ${details || '- (none provided)'}
 
 ## Sources
 ${sources || '- (none provided)'}
- `;
+`;
 
             fs.writeFileSync(filePath, content, 'utf8');
 
