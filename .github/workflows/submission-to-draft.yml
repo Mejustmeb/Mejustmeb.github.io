@@ -3,6 +3,9 @@ name: Submission to Draft
 on:
   issues:
     types: [opened, labeled]
+  push:
+    paths-ignore:
+      - '**'
 
 permissions:
   contents: write
