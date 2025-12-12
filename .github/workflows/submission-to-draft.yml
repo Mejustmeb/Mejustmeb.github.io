@@ -70,7 +70,7 @@ jobs:
 
             const now = new Date().toISOString();
             const content =
-`---
+ `---
 type: draft
 source: github-issue
 issue: ${issueNumber}
@@ -91,7 +91,7 @@ ${details || '- (none provided)'}
 
 ## Sources
 ${sources || '- (none provided)'}
-`;
+ `;
 
             fs.writeFileSync(filePath, content, 'utf8');
 
