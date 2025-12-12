@@ -25,20 +25,36 @@
     text-align: center;
   }
 
-  header h1 {
-    margin: 0;
-    font-size: 1.6rem;
-  }
-
-  header p {
-    margin: 8px 0 0;
-    color: var(--muted);
-  }
+  header h1 { margin: 0; font-size: 1.6rem; }
+  header p { margin: 8px 0 0; color: var(--muted); }
 
   main {
     max-width: 1200px;
     margin: auto;
     padding: 20px;
+  }
+
+  /* --- filter bar --- */
+  .filters {
+    display: flex;
+    gap: 14px;
+    align-items: center;
+    margin-bottom: 18px;
+    flex-wrap: wrap;
+  }
+
+  .filters select,
+  .filters label {
+    background: rgba(255,255,255,.06);
+    border: 1px solid rgba(255,255,255,.15);
+    color: var(--text);
+    border-radius: 10px;
+    padding: 6px 10px;
+    font-size: 14px;
+  }
+
+  .filters input[type="checkbox"] {
+    margin-right: 6px;
   }
 
   .grid {
@@ -63,17 +79,8 @@
     box-shadow: 0 12px 30px rgba(0,0,0,.35);
   }
 
-  .card h3 {
-    margin: 0;
-    font-size: 1.05rem;
-  }
-
-  .card p {
-    margin: 0;
-    font-size: .9rem;
-    color: var(--muted);
-    line-height: 1.4;
-  }
+  .card h3 { margin: 0; font-size: 1.05rem; }
+  .card p { margin: 0; font-size: .9rem; color: var(--muted); }
 
   .card a {
     margin-top: auto;
@@ -129,6 +136,20 @@
 </header>
 
 <main>
+  <div class="filters">
+    <select id="confidenceFilter">
+      <option value="all">All confidence</option>
+      <option value="high">High</option>
+      <option value="medium">Medium</option>
+      <option value="low">Low</option>
+    </select>
+
+    <label>
+      <input type="checkbox" id="hideDuplicates" />
+      Hide duplicates
+    </label>
+  </div>
+
   <div id="grid" class="grid"></div>
 </main>
 
@@ -150,9 +171,7 @@ function isDuplicate(entry) {
     entry?.isDuplicate ??
     entry?.dup;
   if (typeof v === "boolean") return v;
-  return ["true", "yes", "1"].includes(
-    (v ?? "").toString().toLowerCase()
-  );
+  return ["true", "yes", "1"].includes((v ?? "").toString().toLowerCase());
 }
 
 function badgeHTML(entry) {
@@ -173,21 +192,31 @@ function badgeHTML(entry) {
   return `<div class="badges">${confBadge}${dupBadge}</div>`;
 }
 
-/* ---------------- load entries ---------------- */
+/* ---------------- state ---------------- */
 
-async function loadEntries() {
+let ALL_ENTRIES = [];
+
+/* ---------------- rendering ---------------- */
+
+function renderGrid() {
   const grid = document.getElementById("grid");
+  const confFilter = document.getElementById("confidenceFilter").value;
+  const hideDupes = document.getElementById("hideDuplicates").checked;
 
-  // GitHub Pages directory listing is static → list is injected by build
-  const index = await fetch("entries/index.json").then(r => r.json());
+  grid.innerHTML = "";
 
-  for (const file of index) {
-    const entry = await fetch(`entries/${file}`).then(r => r.json());
+  for (const entry of ALL_ENTRIES) {
+    const conf = normalizeConfidence(entry.confidence);
+
+    if (confFilter !== "all" && conf !== confFilter) continue;
+    if (hideDupes && isDuplicate(entry)) continue;
 
     const card = document.createElement("div");
     card.className = "card";
 
-    const url = entry.url || `entries/${file.replace(".json", ".html")}`;
+    const url =
+      entry.url ||
+      `entries/${entry.__file.replace(".json", ".html")}`;
 
     card.innerHTML = `
       <h3>${entry.title || "Untitled Entry"}</h3>
@@ -200,7 +229,30 @@ async function loadEntries() {
   }
 }
 
+/* ---------------- load entries ---------------- */
+
+async function loadEntries() {
+  const index = await fetch("entries/index.json").then(r => r.json());
+
+  for (const file of index) {
+    const entry = await fetch(`entries/${file}`).then(r => r.json());
+    entry.__file = file; // internal reference only
+    ALL_ENTRIES.push(entry);
+  }
+
+  renderGrid();
+}
+
+/* ---------------- events ---------------- */
+
+document.getElementById("confidenceFilter")
+  .addEventListener("change", renderGrid);
+
+document.getElementById("hideDuplicates")
+  .addEventListener("change", renderGrid);
+
 loadEntries();
 </script>
 </body>
 </html>
+✅ What this ste
