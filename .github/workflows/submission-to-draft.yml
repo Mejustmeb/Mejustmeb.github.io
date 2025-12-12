@@ -2,7 +2,7 @@ name: Submission to Draft
 
 on:
   issues:
-    types: [opened, labeled]
+    types: [opened, labeled, unlabeled, edited]
 
 permissions:
   contents: write
