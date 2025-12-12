@@ -1,0 +1,55 @@
+name: Knowledge Submission
+description: Submit a knowledge entry for review + publishing
+title: "Submission: "
+labels: ["submission", "raw"]
+body:
+  - type: input
+    id: title
+    attributes:
+      label: Title
+      placeholder: "e.g., F-150 rough idle after warm-up"
+    validations:
+      required: true
+
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary (1–3 sentences)
+      placeholder: "What is this about? What should a reader learn fast?"
+    validations:
+      required: true
+
+  - type: textarea
+    id: details
+    attributes:
+      label: Details (bullets preferred)
+      placeholder: |
+        - Symptoms:
+        - Causes:
+        - Fix steps:
+        - Notes:
+    validations:
+      required: true
+
+  - type: textarea
+    id: sources
+    attributes:
+      label: Sources / Links (optional)
+      placeholder: |
+        - https://...
+        - https://...
+    validations:
+      required: false
+
+  - type: dropdown
+    id: category
+    attributes:
+      label: Category
+      options:
+        - Automotive
+        - Home Repair
+        - Tools
+        - Tech
+        - Other
+    validations:
+      required: true
