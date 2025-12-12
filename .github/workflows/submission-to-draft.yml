@@ -62,28 +62,23 @@ jobs:
 
             const now = new Date().toISOString();
             const content =
-`---
-type: draft
-source: github-issue
-issue: ${issueNumber}
-created: ${now}
-category: ${category}
-title: "${issueTitle.replace(/"/g,'\\"')}"
-status: raw
-confidence: medium
----
-
-# ${issueTitle}
-
-## Summary
-${summary || '- (none provided)'}
-
-## Details
-${details || '- (none provided)'}
-
-## Sources
-${sources || '- (none provided)'}
-`;
+'---\n' +
+'type: draft\n' +
+'source: github-issue\n' +
+`issue: ${issueNumber}\n` +
+`created: ${now}\n` +
+`category: ${category}\n` +
+`title: "${issueTitle.replace(/"/g,'\\"')}"\n` +
+'status: raw\n' +
+'confidence: medium\n' +
+'---\n\n' +
+`# ${issueTitle}\n\n` +
+'## Summary\n' +
+`${summary || '- (none provided)'}\n\n` +
+'## Details\n' +
+`${details || '- (none provided)'}\n\n` +
+'## Sources\n' +
+`${sources || '- (none provided)'}\n';
 
             fs.writeFileSync(filePath, content, 'utf8');
 
