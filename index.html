@@ -1,62 +1,206 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>SuperByte Knowledge</title>
-  <style>
-    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; margin:0; background:#0b0f14; color:#e6edf3; }
-    .wrap { max-width:1100px; margin:0 auto; padding:24px; }
-    a { color:#7aa2ff; text-decoration:none; }
-    a:hover { text-decoration:underline; }
-    .top { display:flex; justify-content:space-between; align-items:center; gap:12px; margin-bottom:18px; }
-    .brand { font-size:22px; font-weight:800; letter-spacing:.2px; }
-    .pill { display:inline-block; padding:8px 12px; border-radius:999px; background:#0e1522; border:1px solid #223; font-size:13px; }
-    .hero { background:#121826; border:1px solid #223; border-radius:18px; padding:18px; box-shadow:0 8px 30px rgba(0,0,0,.35); }
-    .hero h1 { margin:0 0 6px 0; font-size:28px; }
-    .hero p { margin:0; opacity:.85; }
-    .grid { margin-top:18px; display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); gap:14px; }
-    .card { background:#121826; border:1px solid #223; border-radius:18px; padding:14px; box-shadow:0 8px 30px rgba(0,0,0,.25); }
-    .thumb { height:110px; border-radius:14px; background:linear-gradient(135deg, #1b2a55, #1a3a2a); border:1px solid #223; display:flex; align-items:flex-end; padding:10px; }
-    .tag { font-size:12px; opacity:.9; padding:5px 9px; border-radius:999px; background:rgba(0,0,0,.35); border:1px solid rgba(255,255,255,.08); }
-    .title { margin:10px 0 4px 0; font-size:16px; font-weight:800; line-height:1.2; }
-    .meta { opacity:.75; font-size:12px; }
-    .row { display:flex; gap:10px; align-items:center; margin-top:12px; }
-    .search { flex:1; padding:10px 12px; border-radius:14px; border:1px solid #223; background:#0e1522; color:#e6edf3; outline:none; }
-    .btn { padding:10px 12px; border-radius:14px; border:1px solid #223; background:#0e1522; color:#e6edf3; cursor:pointer; }
-    .btn:hover { filter:brightness(1.08); }
-    .muted { opacity:.75; }
-  </style>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>SuperByte Knowledgebase</title>
+
+<style>
+  :root {
+    --bg: #0b0e14;
+    --card: #141925;
+    --text: #e6e9f0;
+    --muted: #9aa4bf;
+  }
+
+  body {
+    margin: 0;
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+    background: radial-gradient(1200px 600px at 20% -10%, #1a1f2e, var(--bg));
+    color: var(--text);
+  }
+
+  header {
+    padding: 28px 22px;
+    text-align: center;
+  }
+
+  header h1 {
+    margin: 0;
+    font-size: 1.6rem;
+  }
+
+  header p {
+    margin: 8px 0 0;
+    color: var(--muted);
+  }
+
+  main {
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 18px;
+  }
+
+  .card {
+    background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.01));
+    border: 1px solid rgba(255,255,255,.08);
+    border-radius: 16px;
+    padding: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    transition: transform .15s ease, box-shadow .15s ease;
+  }
+
+  .card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 30px rgba(0,0,0,.35);
+  }
+
+  .card h3 {
+    margin: 0;
+    font-size: 1.05rem;
+  }
+
+  .card p {
+    margin: 0;
+    font-size: .9rem;
+    color: var(--muted);
+    line-height: 1.4;
+  }
+
+  .card a {
+    margin-top: auto;
+    text-decoration: none;
+    color: #4ea1ff;
+    font-size: .9rem;
+  }
+
+  /* --- badges --- */
+  .badges {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 8px;
+  }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-size: 12px;
+    border: 1px solid rgba(255,255,255,.15);
+    background: rgba(255,255,255,.06);
+    backdrop-filter: blur(6px);
+    user-select: none;
+  }
+
+  .badge .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: currentColor;
+  }
+
+  .badge.conf-low    { color: #ffb020; }
+  .badge.conf-medium { color: #4ea1ff; }
+  .badge.conf-high   { color: #41d37b; }
+
+  .badge.dup {
+    color: #ff5b5b;
+    border-color: rgba(255,91,91,.35);
+    background: rgba(255,91,91,.12);
+  }
+</style>
 </head>
+
 <body>
-  <div class="wrap">
-    <div class="top">
-      <div class="brand">SuperByte Knowledge</div>
-      <div style="display:flex; gap:10px; align-items:center;">
-        <a class="pill" href="/entries/">Browse Entries</a>
-        <a class="pill" href="/submit.html">Submit</a>
-      </div>
-    </div>
+<header>
+  <h1>SuperByte Knowledgebase</h1>
+  <p>Verified, structured, community-powered knowledge</p>
+</header>
 
-    <div class="hero">
-      <h1>Visual-first knowledge, built by automation.</h1>
-      <p class="muted">Skim fast. Click tiles. No walls of text unless you want them.</p>
-      <div class="row">
-        <input id="q" class="search" placeholder="Search titles / categories…" />
-        <button id="clear" class="btn">Clear</button>
-      </div>
-      <div id="status" class="muted" style="margin-top:10px;">Loading entries…</div>
-    </div>
-
-    <div id="grid" class="grid"></div>
-  </div>
+<main>
+  <div id="grid" class="grid"></div>
+</main>
 
 <script>
-let all = [];
+/* ---------------- helpers ---------------- */
 
-function iconBg(category){
-  const c = (category || '').toLowerCase();
-  if (c.includes('auto')) return 'linear-gradient(135deg, #2b4cff, #111827)';
-  if (c.includes('home')) return 'linear-gradient(135deg, #ff8a3d, #1f2937)';
-  if (c.includes('tech')) return 'linear-g
+function normalizeConfidence(value) {
+  const v = (value ?? "").toString().trim().toLowerCase();
+  if (v === "high" || v === "h") return "high";
+  if (v === "medium" || v === "med" || v === "m") return "medium";
+  if (v === "low" || v === "l") return "low";
+  return "";
+}
 
+function isDuplicate(entry) {
+  const v =
+    entry?.is_duplicate ??
+    entry?.duplicate ??
+    entry?.isDuplicate ??
+    entry?.dup;
+  if (typeof v === "boolean") return v;
+  return ["true", "yes", "1"].includes(
+    (v ?? "").toString().toLowerCase()
+  );
+}
+
+function badgeHTML(entry) {
+  const conf = normalizeConfidence(entry?.confidence);
+  const label = conf ? conf.toUpperCase() : "UNKNOWN";
+  const cls = conf ? `conf-${conf}` : "conf-low";
+
+  const confBadge = `
+    <span class="badge ${cls}">
+      <span class="dot"></span>
+      Confidence: ${label}
+    </span>`;
+
+  const dupBadge = isDuplicate(entry)
+    ? `<span class="badge dup">DUPLICATE</span>`
+    : "";
+
+  return `<div class="badges">${confBadge}${dupBadge}</div>`;
+}
+
+/* ---------------- load entries ---------------- */
+
+async function loadEntries() {
+  const grid = document.getElementById("grid");
+
+  // GitHub Pages directory listing is static → list is injected by build
+  const index = await fetch("entries/index.json").then(r => r.json());
+
+  for (const file of index) {
+    const entry = await fetch(`entries/${file}`).then(r => r.json());
+
+    const card = document.createElement("div");
+    card.className = "card";
+
+    const url = entry.url || `entries/${file.replace(".json", ".html")}`;
+
+    card.innerHTML = `
+      <h3>${entry.title || "Untitled Entry"}</h3>
+      <p>${entry.summary || ""}</p>
+      ${badgeHTML(entry)}
+      <a href="${url}">Open →</a>
+    `;
+
+    grid.appendChild(card);
+  }
+}
+
+loadEntries();
+</script>
+</body>
+</html>
