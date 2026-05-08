@@ -4,7 +4,7 @@ window.SB_CONFIG = {
   reportEmail: 'testers@superbytebrillience.com',
   githubRepo: 'mejustmeb/superbyte-knowledgebase',
   ownerEmails: ['testers@superbytebrillience.com'],
-  staffInviteCode: 'superbyteemployee',
+  staffInviteCode: 'SET_PRIVATE_STAFF_INVITE_CODE',
   stripePaymentLink: 'SET_STRIPE_PAYMENT_LINK',
   seatPriceUsd: 50,
 };

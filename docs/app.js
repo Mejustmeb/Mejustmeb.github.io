@@ -109,7 +109,7 @@ function updatePaywallState() {
   }
 
   if (!currentUserEmail) {
-    statusText.textContent = 'Waiting for login. Workers use code superbyteemployee. App owners must pay before app submission.';
+    statusText.textContent = 'Waiting for login. Workers use private employee code. App owners must pay before app submission.';
   } else if (currentAccountType === 'staff' || currentAccountType === 'owner') {
     statusText.textContent = 'Worker access active. Internal testing tabs are unlocked. No payment required.';
   } else if (currentAccountType === 'client') {
@@ -155,7 +155,7 @@ function setupTabs() {
         if (tabName === 'merchant') {
           alert('App submission is for paid clients only. Complete Stripe payment first.');
         } else {
-          alert('Worker testing tabs require employee code: superbyteemployee.');
+          alert('Worker testing tabs require the private employee code.');
         }
         return;
       }
@@ -335,7 +335,7 @@ function setupAuth() {
     const testerSeats = Number(formData.get('testerSeats') || 1);
     const stripeSessionId = String(formData.get('stripeSessionId') || '').trim();
     const isOwner = hasOwnerBypass(String(formData.get('email')).toLowerCase());
-    const requiredCode = inviteCodeValue() || 'superbyteemployee';
+    const requiredCode = inviteCodeValue();
     const inviteValid = inviteCode === requiredCode;
 
     if (!Number.isFinite(testerSeats) || testerSeats < 1) {
@@ -343,8 +343,13 @@ function setupAuth() {
       return;
     }
 
+    if (accountType === 'staff' && !isOwner && !requiredCode) {
+      alert('Employee code is not configured yet. Contact admin.');
+      return;
+    }
+
     if (accountType === 'staff' && !isOwner && !inviteValid) {
-      alert('Workers must use employee code: superbyteemployee');
+      alert('Workers must use the private employee code.');
       return;
     }
 
