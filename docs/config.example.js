@@ -5,6 +5,7 @@ window.SB_CONFIG = {
   githubRepo: 'YOUR_GITHUB_USERNAME/YOUR_REPO_NAME',
   ownerEmails: ['testers@superbytebrillience.com'],
   staffInviteCode: 'SET_STAFF_INVITE_CODE',
+  stripePublishableKey: 'pk_live_or_test_FROM_STRIPE',
   stripePaymentLink: 'https://buy.stripe.com/YOUR_PAYMENT_LINK',
   seatPriceUsd: 50,
 };
