@@ -586,7 +586,12 @@ async function renderLeaderboard() {
 
 function setupAmbient() {
   const musicBtn = document.getElementById('musicToggle');
-  const audio = new Audio('assets/audio/ambient.mp3');
+  const audio = new Audio();
+  const sources = [
+    'assets/audio/ambient.mp3',
+    'https://raw.githubusercontent.com/Mejustmeb/superbyte-knowledgebase/main/assets/audio/ambient.mp3',
+    'https://raw.githubusercontent.com/Mejustmeb/Mejustmeb.github.io/main/assets/audio/ambient.mp3',
+  ];
   audio.loop = true;
   audio.preload = 'auto';
   audio.volume = 0.35;
@@ -594,12 +599,24 @@ function setupAmbient() {
 
   musicBtn.addEventListener('click', async () => {
     if (!on) {
-      try {
-        await audio.play();
-      } catch {
+      let started = false;
+      for (const src of sources) {
+        try {
+          audio.src = src;
+          await audio.play();
+          started = true;
+          break;
+        } catch {
+          audio.pause();
+          audio.currentTime = 0;
+        }
+      }
+
+      if (!started) {
         alert('Unable to play ambient track. Check file path or browser autoplay settings.');
         return;
       }
+
       musicBtn.textContent = 'Stop Ambient';
       on = true;
     } else {
