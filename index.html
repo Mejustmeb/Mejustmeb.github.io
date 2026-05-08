@@ -1,382 +1,240 @@
 <!doctype html>
 <html lang="en">
-<head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>SuperByte Knowledgebase</title>
-  <a href="./ask.html">Ask a Question</a>
-
-
-<style>
-  :root {
-    --bg: #0b0e14;
-    --card: #141925;
-    --text: #e6e9f0;
-    --muted: #9aa4bf;
-  }
-
-  body {
-    margin: 0;
-    font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
-    background: radial-gradient(1200px 600px at 20% -10%, #1a1f2e, var(--bg));
-    color: var(--text);
-  }
-
-  header { padding: 28px 22px; text-align: center; }
-  header h1 { margin: 0; font-size: 1.6rem; }
-  header p { margin: 8px 0 0; color: var(--muted); }
-
-  main { max-width: 1200px; margin: auto; padding: 20px; }
-
-  <div class="cta">
-  <div class="cta-left">
-    <h2>Get notified when there’s an answer</h2>
-    <p>Drop your email and we’ll let you know when solutions get posted.</p>
-
-    <!-- Buttondown static endpoint (replace USERNAME) -->
-    <form class="notify" action="https://buttondown.email/api/emails/embed-subscribe/YOUR_USERNAME" method="post" target="popupwindow"
-          onsubmit="window.open('https://buttondown.email/YOUR_USERNAME', 'popupwindow');return true;">
-      <input type="email" name="email" placeholder="superbytebrillience" required />
-      <input type="hidden" name="tag" value="superbyte-notify" />
-      <button type="submit">Notify me</button>
-    </form>
-
-    <small class="fineprint">No spam. Unsubscribe anytime.</small>
-  </div>
-
-  <div class="cta-right">
-    <a class="tip" href="https://buymeacoffee.com/superbytebrillience" target="_blank" rel="noopener">
-      ☕ Tip helpers / Buy me a coffee
-    </a>
-  </div>
-</div>
-  
-  /* --- filter bar --- */
-  .filters {
-    display: flex;
-    gap: 14px;
-    align-items: center;
-    margin-bottom: 18px;
-    flex-wrap: wrap;
-  }
-
-  .filters select,
-  .filters label,
-  .filters input[type="search"]{
-    background: rgba(255,255,255,.06);
-    border: 1px solid rgba(255,255,255,.15);
-    color: var(--text);
-    border-radius: 10px;
-    padding: 8px 10px;
-    font-size: 14px;
-  }
-
-  .filters input[type="search"]{
-    min-width: 240px;
-    outline: none;
-  }
-
-  .filters input[type="checkbox"] { margin-right: 6px; }
-
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-    gap: 18px;
-  }
-
-  .card {
-    background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.01));
-    border: 1px solid rgba(255,255,255,.08);
-    border-radius: 16px;
-    padding: 18px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    transition: transform .15s ease, box-shadow .15s ease;
-  }
-
-  .card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 12px 30px rgba(0,0,0,.35);
-  }
-
-  .card h3 { margin: 0; font-size: 1.05rem; }
-  .card p { margin: 0; font-size: .9rem; color: var(--muted); line-height: 1.4; }
-
-  .card a {
-    margin-top: auto;
-    text-decoration: none;
-    color: #4ea1ff;
-    font-size: .9rem;
-  }
-
-  /* --- badges --- */
-  .badges { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 8px; }
-
-  .badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    padding: 4px 10px;
-    border-radius: 999px;
-    font-size: 12px;
-    border: 1px solid rgba(255,255,255,.15);
-    background: rgba(255,255,255,.06);
-    backdrop-filter: blur(6px);
-    user-select: none;
-  }
-
-  .badge .dot { width: 8px; height: 8px; border-radius: 50%; background: currentColor; }
-
-  .badge.conf-low    { color: #ffb020; }
-  .badge.conf-medium { color: #4ea1ff; }
-  .badge.conf-high   { color: #41d37b; }
-
-  .badge.dup {
-    color: #ff5b5b;
-    border-color: rgba(255,91,91,.35);
-    background: rgba(255,91,91,.12);
-  }
-
-  /* empty state */
-  .empty {
-    color: var(--muted);
-    text-align: center;
-    padding: 28px 10px;
-    border: 1px dashed rgba(255,255,255,.12);
-    border-radius: 16px;
-    background: rgba(255,255,255,.02);
-  }
-</style>
-</head>
-
-<body>
-<header>
-  <h1>SuperByte Knowledgebase</h1>
-  <p>Verified, structured, community-powered knowledge</p>
-<nav>
-  <a href="/index.html">Home</a> |
-  <a href="/niches.html">Niches</a> |
-  <a href="/entries/auto/">Auto</a> |
-  <a href="/entries/ai/">AI</a> |
-  <a href="/entries/construction/">Construction</a>
-</nav>
-
-</header>
-
-<main>
-  <div class="filters">
-    <input id="searchBox" type="search" placeholder="Search title or summary…" autocomplete="off" />
-
-    <select id="confidenceFilter">
-      <option value="all">All confidence</option>
-      <option value="high">High</option>
-      <option value="medium">Medium</option>
-      <option value="low">Low</option>
-    </select>
-
-    <label>
-      <input type="checkbox" id="hideDuplicates" />
-      Hide duplicates
-    </label>
-
-    <select id="sortBy" title="Sort">
-      <option value="newest">Newest</option>
-      <option value="oldest">Oldest</option>
-      <option value="title_asc">Title A→Z</option>
-      <option value="title_desc">Title Z→A</option>
-      <option value="conf_desc">Confidence High→Low</option>
-      <option value="conf_asc">Confidence Low→High</option>
-    </select>
-  </div>
-
-  <div id="grid" class="grid"></div>
-  <div id="empty" class="empty" style="display:none;">No entries match your filters.</div>
-</main>
-
-<script>
-/* ---------------- helpers ---------------- */
-
-function normalizeConfidence(value) {
-  const v = (value ?? "").toString().trim().toLowerCase();
-  if (v === "high" || v === "h") return "high";
-  if (v === "medium" || v === "med" || v === "m") return "medium";
-  if (v === "low" || v === "l") return "low";
-  return "";
-}
-
-function confidenceRank(conf) {
-  // higher number = higher confidence
-  if (conf === "high") return 3;
-  if (conf === "medium") return 2;
-  if (conf === "low") return 1;
-  return 0;
-}
-
-function parseDateMaybe(entry) {
-  // try common fields; fallback to 0
-  const d =
-    entry?.created_at ??
-    entry?.created ??
-    entry?.date ??
-    entry?.timestamp ??
-    entry?.published_at ??
-    entry?.submitted_at;
-  if (!d) return 0;
-  const t = Date.parse(d);
-  return Number.isFinite(t) ? t : 0;
-}
-
-function isDuplicate(entry) {
-  const v =
-    entry?.is_duplicate ??
-    entry?.duplicate ??
-    entry?.isDuplicate ??
-    entry?.dup;
-  if (typeof v === "boolean") return v;
-  return ["true", "yes", "1"].includes((v ?? "").toString().toLowerCase());
-}
-
-function badgeHTML(entry) {
-  const conf = normalizeConfidence(entry?.confidence);
-  const label = conf ? conf.toUpperCase() : "UNKNOWN";
-  const cls = conf ? `conf-${conf}` : "conf-low";
-
-  const confBadge = `
-    <span class="badge ${cls}">
-      <span class="dot"></span>
-      Confidence: ${label}
-    </span>`;
-
-  const dupBadge = isDuplicate(entry)
-    ? `<span class="badge dup">DUPLICATE</span>`
-    : "";
-
-  return `<div class="badges">${confBadge}${dupBadge}</div>`;
-}
-
-function matchesSearch(entry, q) {
-  if (!q) return true;
-  const hay = `${entry?.title ?? ""} ${entry?.summary ?? ""}`.toLowerCase();
-  return hay.includes(q);
-}
-
-/* ---------------- state ---------------- */
-
-let ALL_ENTRIES = [];
-
-/* ---------------- sorting ---------------- */
-
-function sortEntries(entries, mode) {
-  const arr = entries.slice();
-
-  arr.sort((a, b) => {
-    const ta = (a?.title ?? "").toString().toLowerCase();
-    const tb = (b?.title ?? "").toString().toLowerCase();
-
-    const da = parseDateMaybe(a);
-    const db = parseDateMaybe(b);
-
-    const ca = confidenceRank(normalizeConfidence(a?.confidence));
-    const cb = confidenceRank(normalizeConfidence(b?.confidence));
-
-    switch (mode) {
-      case "oldest":    return da - db;
-      case "newest":    return db - da;
-
-      case "title_desc": return tb.localeCompare(ta);
-      case "title_asc":  return ta.localeCompare(tb);
-
-      case "conf_asc":  return ca - cb;
-      case "conf_desc": return cb - ca;
-
-      default: return 0;
-    }
-  });
-
-  return arr;
-}
-
-/* ---------------- rendering ---------------- */
-
-function renderGrid() {
-  const grid = document.getElementById("grid");
-  const empty = document.getElementById("empty");
-
-  const confFilter = document.getElementById("confidenceFilter").value;
-  const hideDupes = document.getElementById("hideDuplicates").checked;
-  const q = (document.getElementById("searchBox").value || "").trim().toLowerCase();
-  const sortMode = document.getElementById("sortBy").value;
-
-  grid.innerHTML = "";
-
-  // filter first
-  let filtered = [];
-  for (const entry of ALL_ENTRIES) {
-    const conf = normalizeConfidence(entry.confidence);
-
-    if (confFilter !== "all" && conf !== confFilter) continue;
-    if (hideDupes && isDuplicate(entry)) continue;
-    if (!matchesSearch(entry, q)) continue;
-
-    filtered.push(entry);
-  }
-
-  // then sort
-  filtered = sortEntries(filtered, sortMode);
-
-  // render
-  let shown = 0;
-  for (const entry of filtered) {
-    const card = document.createElement("div");
-    card.className = "card";
-
-    const url =
-      entry.url ||
-      `entries/${entry.__file.replace(".json", ".html")}`;
-
-    card.innerHTML = `
-      <h3>${entry.title || "Untitled Entry"}</h3>
-      <p>${entry.summary || ""}</p>
-      ${badgeHTML(entry)}
-      <a href="${url}">Open →</a>
-    `;
-
-    grid.appendChild(card);
-    shown++;
-  }
-
-  empty.style.display = shown === 0 ? "block" : "none";
-}
-
-/* ---------------- load entries ---------------- */
-
-async function loadEntries() {
-  const index = await fetch("entries/index.json").then(r => r.json());
-
-  for (const file of index) {
-    const entry = await fetch(`entries/${file}`).then(r => r.json());
-    entry.__file = file; // internal reference only
-    ALL_ENTRIES.push(entry);
-  }
-
-  renderGrid();
-}
-
-/* ---------------- events ---------------- */
-
-document.getElementById("confidenceFilter").addEventListener("change", renderGrid);
-document.getElementById("hideDuplicates").addEventListener("change", renderGrid);
-document.getElementById("sortBy").addEventListener("change", renderGrid);
-
-// live search (debounced lightly)
-let t = null;
-document.getElementById("searchBox").addEventListener("input", () => {
-  clearTimeout(t);
-  t = setTimeout(renderGrid, 80);
-});
-
-loadEntries();
-</script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Superbyte Brillence Tester Portal</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="aurora"></div>
+    <header class="topbar container">
+      <div>
+        <p class="eyebrow">Superbyte Brillence</p>
+        <h1>QA Tester Storefront</h1>
+      </div>
+      <div class="topbar-actions">
+        <button id="musicToggle" class="ghost-btn" type="button">Play Ambient</button>
+        <button id="logoutBtn" class="ghost-btn hidden" type="button">Log Out</button>
+      </div>
+    </header>
+
+    <main class="container app-layout">
+      <aside class="sidebar">
+        <button class="tab-btn active" data-tab="store" type="button">App Store</button>
+        <button class="tab-btn" data-tab="portal" type="button">Tester Portal</button>
+        <button class="tab-btn" data-tab="reports" type="button">Bug + Ideas Log</button>
+        <button class="tab-btn" data-tab="leaderboard" type="button">Spotlight + Badges</button>
+        <button class="tab-btn" data-tab="platforms" type="button">Platform Zones</button>
+      </aside>
+
+      <section class="content">
+        <section id="tab-store" class="tab-panel active">
+          <article class="hero card">
+            <p class="eyebrow">Tester Access</p>
+            <h2>Download Builds And Test Fast</h2>
+            <p>
+              Install current builds for Android, iOS, Windows, and Mac. Track release notes,
+              verify fixes, and submit production-quality feedback.
+            </p>
+          </article>
+          <h3>Available Apps</h3>
+          <div id="apps" class="grid"></div>
+        </section>
+
+        <section id="tab-portal" class="tab-panel">
+          <div id="authGate" class="auth-grid">
+            <article class="card">
+              <h3>Create Tester Account</h3>
+              <form id="signupForm" class="form-grid">
+                <label>Full name<input name="name" required /></label>
+                <label>Phone<input name="phone" type="tel" required /></label>
+                <label>Email<input name="email" type="email" required /></label>
+                <label>Password<input name="password" type="password" minlength="8" required /></label>
+                <button type="submit" class="primary-btn">Create account</button>
+              </form>
+            </article>
+
+            <article class="card">
+              <h3>Log In</h3>
+              <form id="loginForm" class="form-grid">
+                <label>Email<input name="email" type="email" required /></label>
+                <label>Password<input name="password" type="password" required /></label>
+                <button type="submit" class="primary-btn">Log in</button>
+              </form>
+            </article>
+          </div>
+
+          <div id="profilePortal" class="hidden">
+            <article class="card">
+              <h3>Tester Profile + Verification</h3>
+              <p class="tiny-note">
+                This frontend stores draft data locally in your browser. For production identity
+                verification, connect this form to a secure backend/storage provider.
+              </p>
+              <form id="profileForm" class="form-grid two-col">
+                <label>
+                  Role
+                  <select name="role" required>
+                    <option value="tester">Tester</option>
+                    <option value="programmer">Programmer</option>
+                    <option value="other">Other</option>
+                  </select>
+                </label>
+                <label>
+                  Display alias
+                  <input name="alias" required />
+                </label>
+                <label class="full-width autocomplete-wrap">
+                  Address
+                  <input id="addressInput" name="address" required autocomplete="off" placeholder="Start typing your address" />
+                  <div id="addressSuggestions" class="suggestions"></div>
+                </label>
+                <label>
+                  ID front image
+                  <input name="idFront" type="file" accept="image/*" required />
+                </label>
+                <label>
+                  ID back image
+                  <input name="idBack" type="file" accept="image/*" required />
+                </label>
+                <label class="full-width">
+                  Intro video (up to 5 minutes)
+                  <input name="introVideo" type="file" accept="video/*" />
+                </label>
+                <div class="full-width record-box">
+                  <p class="record-title">Or record now (max 5:00)</p>
+                  <video id="introPreview" controls muted></video>
+                  <div class="record-controls">
+                    <button id="recordBtn" type="button" class="ghost-btn">Start recording</button>
+                    <button id="stopBtn" type="button" class="ghost-btn" disabled>Stop</button>
+                    <span id="recordTimer">00:00</span>
+                  </div>
+                </div>
+                <button type="submit" class="primary-btn full-width">Save profile</button>
+              </form>
+            </article>
+          </div>
+        </section>
+
+        <section id="tab-reports" class="tab-panel">
+          <article class="card">
+            <h3>Submit Bugs, Glitches, Ideas, Comments</h3>
+            <form id="reportForm" class="form-grid two-col">
+              <label>
+                Type
+                <select name="type" required>
+                  <option value="bug">Bug</option>
+                  <option value="glitch">Glitch</option>
+                  <option value="idea">Idea</option>
+                  <option value="comment">Comment</option>
+                  <option value="security">Security concern</option>
+                </select>
+              </label>
+              <label>
+                Severity
+                <select name="severity" required>
+                  <option>Low</option>
+                  <option>Medium</option>
+                  <option>High</option>
+                  <option>Critical</option>
+                </select>
+              </label>
+              <label>
+                Platform
+                <select name="platform" required>
+                  <option>Android</option>
+                  <option>iOS</option>
+                  <option>Windows</option>
+                  <option>Mac</option>
+                  <option>Web</option>
+                </select>
+              </label>
+              <label>
+                App build
+                <input name="build" placeholder="e.g. 0.1.0(1)" required />
+              </label>
+              <label class="full-width">
+                Title
+                <input name="title" required />
+              </label>
+              <label class="full-width">
+                Description
+                <textarea name="description" rows="5" required></textarea>
+              </label>
+              <label class="full-width">
+                Repro steps
+                <textarea name="steps" rows="4"></textarea>
+              </label>
+              <label>
+                Attachment (optional)
+                <input name="attachment" type="file" />
+              </label>
+              <label>
+                Destination
+                <select name="destination">
+                  <option value="local">Store local portal history</option>
+                  <option value="github">Open GitHub Issue draft</option>
+                  <option value="email">Open email draft</option>
+                </select>
+              </label>
+              <button type="submit" class="primary-btn full-width">Submit report</button>
+            </form>
+          </article>
+          <article class="card">
+            <h3>Recent Submissions</h3>
+            <div id="reportList" class="report-list"></div>
+          </article>
+        </section>
+
+        <section id="tab-leaderboard" class="tab-panel">
+          <article class="card">
+            <h3>Tester Spotlight</h3>
+            <p>More validated reports = more badge tiers and visibility.</p>
+            <div id="leaderboard" class="leaderboard"></div>
+          </article>
+        </section>
+
+        <section id="tab-platforms" class="tab-panel">
+          <div class="grid">
+            <article class="card platform-card">
+              <h3>Android</h3>
+              <p>Primary active distribution channel.</p>
+            </article>
+            <article class="card platform-card">
+              <h3>iOS</h3>
+              <p>TestFlight distribution pipeline.</p>
+            </article>
+            <article class="card platform-card">
+              <h3>Windows</h3>
+              <p>Desktop QA builds and diagnostics.</p>
+            </article>
+            <article class="card platform-card">
+              <h3>Mac</h3>
+              <p>Desktop macOS lane in progress.</p>
+            </article>
+            <article class="card platform-card under-construction">
+              <h3>More Areas Coming</h3>
+              <p>Under construction for new products and partner programs.</p>
+            </article>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <template id="reportItemTemplate">
+      <article class="report-item">
+        <div class="report-topline">
+          <span class="pill"></span>
+          <strong class="report-title"></strong>
+        </div>
+        <p class="report-meta"></p>
+        <p class="report-body"></p>
+      </article>
+    </template>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="config.js"></script>
+    <script src="app.js"></script>
+  </body>
 </html>
