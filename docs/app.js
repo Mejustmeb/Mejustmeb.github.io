@@ -586,27 +586,25 @@ async function renderLeaderboard() {
 
 function setupAmbient() {
   const musicBtn = document.getElementById('musicToggle');
-  let context;
-  let osc;
-  let gain;
+  const audio = new Audio('assets/audio/ambient.mp3');
+  audio.loop = true;
+  audio.preload = 'auto';
+  audio.volume = 0.35;
   let on = false;
 
-  musicBtn.addEventListener('click', () => {
+  musicBtn.addEventListener('click', async () => {
     if (!on) {
-      context = new AudioContext();
-      osc = context.createOscillator();
-      gain = context.createGain();
-      osc.type = 'triangle';
-      osc.frequency.value = 146.83;
-      gain.gain.value = 0.02;
-      osc.connect(gain);
-      gain.connect(context.destination);
-      osc.start();
+      try {
+        await audio.play();
+      } catch {
+        alert('Unable to play ambient track. Check file path or browser autoplay settings.');
+        return;
+      }
       musicBtn.textContent = 'Stop Ambient';
       on = true;
     } else {
-      osc.stop();
-      context.close();
+      audio.pause();
+      audio.currentTime = 0;
       musicBtn.textContent = 'Play Ambient';
       on = false;
     }
