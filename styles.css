@@ -132,6 +132,11 @@ h3 {
   gap: 14px;
 }
 
+.paywall-note {
+  border-color: #fdba74;
+  background: #fff7ed;
+}
+
 .badge {
   display: inline-block;
   font-size: 12px;
@@ -166,6 +171,17 @@ a.button,
   cursor: pointer;
 }
 
+.tab-btn.locked {
+  opacity: 0.55;
+}
+
+.tab-btn.locked::after {
+  content: ' Locked';
+  color: #b45309;
+  font-size: 12px;
+  margin-left: 4px;
+}
+
 .form-grid {
   display: grid;
   gap: 10px;
@@ -180,6 +196,21 @@ label {
   gap: 6px;
   font-size: 14px;
   font-weight: 700;
+}
+
+.inline-check {
+  grid-template-columns: auto 1fr;
+  align-items: start;
+  gap: 10px;
+}
+
+.inline-check input {
+  margin-top: 2px;
+}
+
+.pay-actions {
+  display: grid;
+  gap: 8px;
 }
 
 input,

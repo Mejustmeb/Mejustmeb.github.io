@@ -22,15 +22,62 @@
 
     <main class="container app-layout">
       <aside class="sidebar">
-        <button class="tab-btn active" data-tab="store" type="button">App Store</button>
+        <button class="tab-btn active" data-tab="signup" type="button">Staff Signup</button>
         <button class="tab-btn" data-tab="portal" type="button">Tester Portal</button>
+        <button class="tab-btn" data-tab="store" type="button">App Store</button>
+        <button class="tab-btn" data-tab="submitapp" type="button">Submit App (Paid)</button>
         <button class="tab-btn" data-tab="reports" type="button">Bug + Ideas Log</button>
         <button class="tab-btn" data-tab="leaderboard" type="button">Spotlight + Badges</button>
         <button class="tab-btn" data-tab="platforms" type="button">Platform Zones</button>
       </aside>
 
       <section class="content">
-        <section id="tab-store" class="tab-panel active">
+        <section id="tab-signup" class="tab-panel active">
+          <article class="card hero">
+            <p class="eyebrow">Team Onboarding</p>
+            <h2>Staff Signup + Access Paywall</h2>
+            <p>
+              This portal is private for Superbyte Brillence workers and approved contractors only.
+              Each signup requires your internal invite code so you can control who gets paid access.
+            </p>
+          </article>
+          <article class="card">
+            <h3>Create Account</h3>
+            <form id="signupForm" class="form-grid two-col">
+              <label>Full name<input name="name" required /></label>
+              <label>Phone<input name="phone" type="tel" required /></label>
+              <label class="full-width">Work email<input name="email" type="email" required /></label>
+              <label>Password<input name="password" type="password" minlength="8" required /></label>
+              <label>
+                Account type
+                <select name="accountType" required>
+                  <option value="staff">Staff / Contractor</option>
+                  <option value="client">External Client (Paid)</option>
+                </select>
+              </label>
+              <label>Staff invite code<input name="inviteCode" placeholder="Required for staff" /></label>
+              <label>
+                Personal testers needed
+                <input name="testerSeats" type="number" min="1" value="1" required />
+              </label>
+              <label>
+                Stripe payment/session ID
+                <input name="stripeSessionId" placeholder="Required for external paid clients" />
+              </label>
+              <label class="full-width inline-check">
+                <input name="staffConfirm" type="checkbox" required />
+                <span>I am an approved Superbyte Brillence worker or contractor.</span>
+              </label>
+              <div class="full-width pay-actions">
+                <button id="startStripeCheckoutBtn" type="button" class="ghost-btn">Pay With Stripe ($50 per tester)</button>
+                <p class="tiny-note">Pay first if you are not internal staff. Then paste your Stripe payment/session ID.</p>
+              </div>
+              <button type="submit" class="primary-btn full-width">Create staff account</button>
+            </form>
+          </article>
+        </section>
+
+        <section id="tab-store" class="tab-panel">
           <article class="hero card">
             <p class="eyebrow">Tester Access</p>
             <h2>Download Builds And Test Fast</h2>
@@ -39,23 +86,35 @@
               verify fixes, and submit production-quality feedback.
             </p>
           </article>
+          <article id="paywallNotice" class="card paywall-note hidden">
+            <h3>Locked: Staff Paywall</h3>
+            <p>
+              Access to app distribution and app-submission lanes is private. Internal workers use
+              invite code; outside clients must pay $50 per personal tester through Stripe first.
+            </p>
+          </article>
           <h3>Available Apps</h3>
           <div id="apps" class="grid"></div>
         </section>
 
+        <section id="tab-submitapp" class="tab-panel">
+          <article class="card">
+            <h3>Submit Your App For Testing</h3>
+            <p class="tiny-note">Paid accounts can submit apps for your tester team to work on.</p>
+            <form id="submitAppForm" class="form-grid two-col">
+              <label>App name<input name="appName" required /></label>
+              <label>Platform<select name="platform" required><option>Android</option><option>iOS</option><option>Windows</option><option>Mac</option><option>Web</option></select></label>
+              <label>Version<input name="version" placeholder="e.g. 1.0.0" required /></label>
+              <label>Build link<input name="buildUrl" type="url" placeholder="https://..." required /></label>
+              <label class="full-width">Testing goals<textarea name="goals" rows="4" required></textarea></label>
+              <button type="submit" class="primary-btn full-width">Submit App Request</button>
+            </form>
+            <div id="submittedApps" class="report-list"></div>
+          </article>
+        </section>
+
         <section id="tab-portal" class="tab-panel">
           <div id="authGate" class="auth-grid">
-            <article class="card">
-              <h3>Create Tester Account</h3>
-              <form id="signupForm" class="form-grid">
-                <label>Full name<input name="name" required /></label>
-                <label>Phone<input name="phone" type="tel" required /></label>
-                <label>Email<input name="email" type="email" required /></label>
-                <label>Password<input name="password" type="password" minlength="8" required /></label>
-                <button type="submit" class="primary-btn">Create account</button>
-              </form>
-            </article>
-
             <article class="card">
               <h3>Log In</h3>
               <form id="loginForm" class="form-grid">
@@ -63,6 +122,14 @@
                 <label>Password<input name="password" type="password" required /></label>
                 <button type="submit" class="primary-btn">Log in</button>
               </form>
+              <p class="tiny-note">No account yet? Use Staff Signup tab first.</p>
+            </article>
+
+            <article class="card">
+              <h3>Access Status</h3>
+              <p id="accessStatusText" class="tiny-note">
+                Waiting for login. Staff paywall unlock is required before internal tabs open.
+              </p>
             </article>
           </div>
 

@@ -3,6 +3,7 @@ const STORAGE_KEYS = {
   currentUser: 'sb_current_user_v1',
   reports: 'sb_reports_v1',
   profiles: 'sb_profiles_v1',
+  appSubmissions: 'sb_app_submissions_v1',
 };
 
 const cfg = window.SB_CONFIG || {};
@@ -15,6 +16,9 @@ let timerInterval;
 let seconds = 0;
 let currentUserEmail = localStorage.getItem(STORAGE_KEYS.currentUser) || '';
 let currentUserId = '';
+let hasPaidAccess = false;
+
+const restrictedTabs = new Set(['store', 'submitapp', 'reports', 'leaderboard', 'platforms']);
 
 function readStore(key, fallback) {
   try {
@@ -27,6 +31,81 @@ function readStore(key, fallback) {
 
 function writeStore(key, value) {
   localStorage.setItem(key, JSON.stringify(value));
+}
+
+function normalizedOwnerEmails() {
+  const fallback = ['testers@superbytebrillience.com'];
+  const configured = Array.isArray(cfg.ownerEmails) ? cfg.ownerEmails : fallback;
+  return configured.map((item) => String(item).toLowerCase());
+}
+
+function inviteCodeValue() {
+  return String(cfg.staffInviteCode || '').trim();
+}
+
+function hasOwnerBypass(email) {
+  if (!email) {
+    return false;
+  }
+  return normalizedOwnerEmails().includes(String(email).toLowerCase());
+}
+
+function userHasPaidAccess(user) {
+  if (!user) {
+    return false;
+  }
+
+  if (hasOwnerBypass(user.email)) {
+    return true;
+  }
+
+  const meta = user.user_metadata || {};
+  return meta.paywall_tier === 'staff' || meta.paywall_unlocked === true;
+}
+
+function localUserHasPaidAccess(email) {
+  if (hasOwnerBypass(email)) {
+    return true;
+  }
+
+  const users = readStore(STORAGE_KEYS.users, []);
+  const user = users.find((item) => item.email === email);
+  return Boolean(user?.paywallUnlocked);
+}
+
+function openTab(tabName) {
+  const buttons = document.querySelectorAll('.tab-btn');
+  const panels = document.querySelectorAll('.tab-panel');
+
+  buttons.forEach((btn) => btn.classList.toggle('active', btn.dataset.tab === tabName));
+  panels.forEach((panel) => panel.classList.toggle('active', panel.id === `tab-${tabName}`));
+}
+
+function updatePaywallState() {
+  const buttons = document.querySelectorAll('.tab-btn');
+  const statusText = document.getElementById('accessStatusText');
+  const notice = document.getElementById('paywallNotice');
+
+  buttons.forEach((btn) => {
+    const locked = restrictedTabs.has(btn.dataset.tab) && !hasPaidAccess;
+    btn.classList.toggle('locked', locked);
+  });
+
+  if (notice) {
+    notice.classList.toggle('hidden', hasPaidAccess);
+  }
+
+  if (!statusText) {
+    return;
+  }
+
+  if (!currentUserEmail) {
+    statusText.textContent = 'Waiting for login. Staff paywall unlock is required before internal tabs open.';
+  } else if (!hasPaidAccess) {
+    statusText.textContent = 'Logged in, but paywall access is locked for this account. Contact admin for approval.';
+  } else {
+    statusText.textContent = 'Paid staff access active. Internal testing tabs are unlocked.';
+  }
 }
 
 function slugName(name) {
@@ -56,16 +135,100 @@ async function uploadToBucket(bucket, file, folder = 'misc') {
 
 function setupTabs() {
   const buttons = document.querySelectorAll('.tab-btn');
-  const panels = document.querySelectorAll('.tab-panel');
 
   buttons.forEach((btn) => {
     btn.addEventListener('click', () => {
-      buttons.forEach((b) => b.classList.remove('active'));
-      panels.forEach((p) => p.classList.remove('active'));
-      btn.classList.add('active');
-      document.getElementById(`tab-${btn.dataset.tab}`).classList.add('active');
+      const tabName = btn.dataset.tab;
+      if (restrictedTabs.has(tabName) && !hasPaidAccess) {
+        openTab('signup');
+        alert('This area is paywalled. Staff invite or Stripe payment is required first.');
+        return;
+      }
+      openTab(tabName);
     });
   });
+}
+
+function setupPaywallActions() {
+  const checkoutBtn = document.getElementById('startStripeCheckoutBtn');
+  if (!checkoutBtn) {
+    return;
+  }
+
+  const seatPrice = Number(cfg.seatPriceUsd || 50);
+  checkoutBtn.textContent = `Pay With Stripe ($${seatPrice} per tester)`;
+
+  checkoutBtn.addEventListener('click', () => {
+    const paymentLink = String(cfg.stripePaymentLink || '').trim();
+    if (!paymentLink) {
+      alert('Stripe payment link is not configured yet in config.js');
+      return;
+    }
+    window.open(paymentLink, '_blank');
+  });
+}
+
+function setupAppSubmission() {
+  const form = document.getElementById('submitAppForm');
+  const list = document.getElementById('submittedApps');
+  if (!form || !list) {
+    return;
+  }
+
+  const render = () => {
+    const submissions = readStore(STORAGE_KEYS.appSubmissions, []);
+    if (!submissions.length) {
+      list.innerHTML = '<p class="tiny-note">No app submissions yet.</p>';
+      return;
+    }
+
+    list.innerHTML = submissions
+      .slice(0, 20)
+      .map(
+        (item) => `
+        <article class="report-item">
+          <div class="report-topline">
+            <span class="pill">${item.platform}</span>
+            <strong class="report-title">${item.appName} (${item.version})</strong>
+          </div>
+          <p class="report-meta">Submitted by ${item.requester} • ${new Date(item.createdAt).toLocaleString()}</p>
+          <p class="report-body">${item.goals}</p>
+          <p class="report-body"><a href="${item.buildUrl}" target="_blank" rel="noopener">Open build link</a></p>
+        </article>
+      `,
+      )
+      .join('');
+  };
+
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    if (!currentUserEmail) {
+      alert('Please log in first.');
+      return;
+    }
+    if (!hasPaidAccess) {
+      alert('App submission is paywalled. Complete staff invite or Stripe payment first.');
+      return;
+    }
+
+    const data = new FormData(form);
+    const submissions = readStore(STORAGE_KEYS.appSubmissions, []);
+    submissions.unshift({
+      appName: String(data.get('appName')),
+      platform: String(data.get('platform')),
+      version: String(data.get('version')),
+      buildUrl: String(data.get('buildUrl')),
+      goals: String(data.get('goals')),
+      requester: currentUserEmail,
+      createdAt: new Date().toISOString(),
+    });
+
+    writeStore(STORAGE_KEYS.appSubmissions, submissions);
+    form.reset();
+    render();
+  });
+
+  render();
 }
 
 async function loadApps() {
@@ -97,11 +260,39 @@ function setupAuth() {
   signupForm.addEventListener('submit', async (event) => {
     event.preventDefault();
     const formData = new FormData(signupForm);
+    const accountType = String(formData.get('accountType') || 'staff');
+    const inviteCode = String(formData.get('inviteCode') || '').trim();
+    const testerSeats = Number(formData.get('testerSeats') || 1);
+    const stripeSessionId = String(formData.get('stripeSessionId') || '').trim();
+    const isOwner = hasOwnerBypass(String(formData.get('email')).toLowerCase());
+    const inviteValid = inviteCodeValue() && inviteCode === inviteCodeValue();
+
+    if (!Number.isFinite(testerSeats) || testerSeats < 1) {
+      alert('Tester seats must be at least 1.');
+      return;
+    }
+
+    if (accountType === 'staff' && !isOwner && !inviteValid) {
+      alert('Valid staff invite code is required for staff account signup.');
+      return;
+    }
+
+    if (accountType === 'client' && !isOwner && !stripeSessionId) {
+      alert('Stripe payment/session ID is required for client access.');
+      return;
+    }
+
+    const paywallUnlocked = isOwner || inviteValid || accountType === 'client';
+
     const user = {
       name: String(formData.get('name')),
       phone: String(formData.get('phone')),
       email: String(formData.get('email')).toLowerCase(),
       password: String(formData.get('password')),
+      accountType,
+      testerSeats,
+      stripeSessionId,
+      paywallUnlocked,
       createdAt: new Date().toISOString(),
     };
 
@@ -113,6 +304,11 @@ function setupAuth() {
           data: {
             full_name: user.name,
             phone: user.phone,
+            account_type: accountType,
+            tester_seats: testerSeats,
+            stripe_session_id: stripeSessionId,
+            paywall_unlocked: paywallUnlocked,
+            paywall_tier: paywallUnlocked ? 'staff' : 'locked',
           },
         },
       });
@@ -124,8 +320,11 @@ function setupAuth() {
 
       currentUserEmail = user.email;
       currentUserId = data.user?.id || '';
+      hasPaidAccess = paywallUnlocked;
       localStorage.setItem(STORAGE_KEYS.currentUser, user.email);
       updatePortalVisibility();
+      updatePaywallState();
+      openTab('portal');
       signupForm.reset();
       return;
     }
@@ -139,8 +338,11 @@ function setupAuth() {
     users.push(user);
     writeStore(STORAGE_KEYS.users, users);
     currentUserEmail = user.email;
+    hasPaidAccess = user.paywallUnlocked;
     localStorage.setItem(STORAGE_KEYS.currentUser, user.email);
     updatePortalVisibility();
+    updatePaywallState();
+    openTab('portal');
     signupForm.reset();
   });
 
@@ -159,8 +361,10 @@ function setupAuth() {
 
       currentUserEmail = email;
       currentUserId = data.user?.id || '';
+      hasPaidAccess = userHasPaidAccess(data.user);
       localStorage.setItem(STORAGE_KEYS.currentUser, email);
       updatePortalVisibility();
+      updatePaywallState();
       await renderReports();
       await renderLeaderboard();
       loginForm.reset();
@@ -175,8 +379,10 @@ function setupAuth() {
     }
 
     currentUserEmail = email;
+    hasPaidAccess = localUserHasPaidAccess(email);
     localStorage.setItem(STORAGE_KEYS.currentUser, email);
     updatePortalVisibility();
+    updatePaywallState();
     loginForm.reset();
   });
 
@@ -186,8 +392,11 @@ function setupAuth() {
     }
     currentUserEmail = '';
     currentUserId = '';
+    hasPaidAccess = false;
     localStorage.removeItem(STORAGE_KEYS.currentUser);
     updatePortalVisibility();
+    updatePaywallState();
+    openTab('signup');
   });
 }
 
@@ -205,6 +414,8 @@ function updatePortalVisibility() {
     portal.classList.add('hidden');
     logoutBtn.classList.add('hidden');
   }
+
+  updatePaywallState();
 }
 
 function setupAddressAutocomplete() {
@@ -630,11 +841,13 @@ function setupAmbient() {
 
 function bootstrap() {
   setupTabs();
+  setupPaywallActions();
   setupAuth();
   setupAddressAutocomplete();
   setupProfileForm();
   setupRecording();
   setupReportForm();
+  setupAppSubmission();
   setupAmbient();
   updatePortalVisibility();
   renderReports();
@@ -645,8 +858,10 @@ function bootstrap() {
       if (data?.user) {
         currentUserEmail = data.user.email || currentUserEmail;
         currentUserId = data.user.id || '';
+        hasPaidAccess = userHasPaidAccess(data.user);
         localStorage.setItem(STORAGE_KEYS.currentUser, currentUserEmail || '');
         updatePortalVisibility();
+        updatePaywallState();
         renderReports();
         renderLeaderboard();
       }
@@ -656,17 +871,24 @@ function bootstrap() {
       if (session?.user) {
         currentUserEmail = session.user.email || '';
         currentUserId = session.user.id || '';
+        hasPaidAccess = userHasPaidAccess(session.user);
         localStorage.setItem(STORAGE_KEYS.currentUser, currentUserEmail);
       } else {
         currentUserEmail = '';
         currentUserId = '';
+        hasPaidAccess = false;
         localStorage.removeItem(STORAGE_KEYS.currentUser);
       }
       updatePortalVisibility();
+      updatePaywallState();
       renderReports();
       renderLeaderboard();
     });
+  } else if (currentUserEmail) {
+    hasPaidAccess = localUserHasPaidAccess(currentUserEmail);
   }
+
+  updatePaywallState();
 
   loadApps().catch((err) => {
     const root = document.getElementById('apps');
