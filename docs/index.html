@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Superbyte Brillence Tester Portal</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="aurora"></div>
+    <header class="topbar container">
+      <div>
+        <p class="eyebrow">Superbyte Brillence</p>
+        <h1>QA Tester Storefront</h1>
+      </div>
+      <div class="topbar-actions">
+        <button id="musicToggle" class="ghost-btn" type="button">Play Ambient</button>
+        <button id="logoutBtn" class="ghost-btn hidden" type="button">Log Out</button>
+      </div>
+    </header>
+
+    <main class="container app-layout">
+      <aside class="sidebar">
+        <button class="tab-btn active" data-tab="store" type="button">App Store</button>
+        <button class="tab-btn" data-tab="portal" type="button">Tester Portal</button>
+        <button class="tab-btn" data-tab="reports" type="button">Bug + Ideas Log</button>
+        <button class="tab-btn" data-tab="leaderboard" type="button">Spotlight + Badges</button>
+        <button class="tab-btn" data-tab="platforms" type="button">Platform Zones</button>
+      </aside>
+
+      <section class="content">
+        <section id="tab-store" class="tab-panel active">
+          <article class="hero card">
+            <p class="eyebrow">Tester Access</p>
+            <h2>Download Builds And Test Fast</h2>
+            <p>
+              Install current builds for Android, iOS, Windows, and Mac. Track release notes,
+              verify fixes, and submit production-quality feedback.
+            </p>
+          </article>
+          <h3>Available Apps</h3>
+          <div id="apps" class="grid"></div>
+        </section>
+
+        <section id="tab-portal" class="tab-panel">
+          <div id="authGate" class="auth-grid">
+            <article class="card">
+              <h3>Create Tester Account</h3>
+              <form id="signupForm" class="form-grid">
+                <label>Full name<input name="name" required /></label>
+                <label>Phone<input name="phone" type="tel" required /></label>
+                <label>Email<input name="email" type="email" required /></label>
+                <label>Password<input name="password" type="password" minlength="8" required /></label>
+                <button type="submit" class="primary-btn">Create account</button>
+              </form>
+            </article>
+
+            <article class="card">
+              <h3>Log In</h3>
+              <form id="loginForm" class="form-grid">
+                <label>Email<input name="email" type="email" required /></label>
+                <label>Password<input name="password" type="password" required /></label>
+                <button type="submit" class="primary-btn">Log in</button>
+              </form>
+            </article>
+          </div>
+
+          <div id="profilePortal" class="hidden">
+            <article class="card">
+              <h3>Tester Profile + Verification</h3>
+              <p class="tiny-note">
+                This frontend stores draft data locally in your browser. For production identity
+                verification, connect this form to a secure backend/storage provider.
+              </p>
+              <form id="profileForm" class="form-grid two-col">
+                <label>
+                  Role
+                  <select name="role" required>
+                    <option value="tester">Tester</option>
+                    <option value="programmer">Programmer</option>
+                    <option value="other">Other</option>
+                  </select>
+                </label>
+                <label>
+                  Display alias
+                  <input name="alias" required />
+                </label>
+                <label class="full-width autocomplete-wrap">
+                  Address
+                  <input id="addressInput" name="address" required autocomplete="off" placeholder="Start typing your address" />
+                  <div id="addressSuggestions" class="suggestions"></div>
+                </label>
+                <label>
+                  ID front image
+                  <input name="idFront" type="file" accept="image/*" required />
+                </label>
+                <label>
+                  ID back image
+                  <input name="idBack" type="file" accept="image/*" required />
+                </label>
+                <label class="full-width">
+                  Intro video (up to 5 minutes)
+                  <input name="introVideo" type="file" accept="video/*" />
+                </label>
+                <div class="full-width record-box">
+                  <p class="record-title">Or record now (max 5:00)</p>
+                  <video id="introPreview" controls muted></video>
+                  <div class="record-controls">
+                    <button id="recordBtn" type="button" class="ghost-btn">Start recording</button>
+                    <button id="stopBtn" type="button" class="ghost-btn" disabled>Stop</button>
+                    <span id="recordTimer">00:00</span>
+                  </div>
+                </div>
+                <button type="submit" class="primary-btn full-width">Save profile</button>
+              </form>
+            </article>
+          </div>
+        </section>
+
+        <section id="tab-reports" class="tab-panel">
+          <article class="card">
+            <h3>Submit Bugs, Glitches, Ideas, Comments</h3>
+            <form id="reportForm" class="form-grid two-col">
+              <label>
+                Type
+                <select name="type" required>
+                  <option value="bug">Bug</option>
+                  <option value="glitch">Glitch</option>
+                  <option value="idea">Idea</option>
+                  <option value="comment">Comment</option>
+                  <option value="security">Security concern</option>
+                </select>
+              </label>
+              <label>
+                Severity
+                <select name="severity" required>
+                  <option>Low</option>
+                  <option>Medium</option>
+                  <option>High</option>
+                  <option>Critical</option>
+                </select>
+              </label>
+              <label>
+                Platform
+                <select name="platform" required>
+                  <option>Android</option>
+                  <option>iOS</option>
+                  <option>Windows</option>
+                  <option>Mac</option>
+                  <option>Web</option>
+                </select>
+              </label>
+              <label>
+                App build
+                <input name="build" placeholder="e.g. 0.1.0(1)" required />
+              </label>
+              <label class="full-width">
+                Title
+                <input name="title" required />
+              </label>
+              <label class="full-width">
+                Description
+                <textarea name="description" rows="5" required></textarea>
+              </label>
+              <label class="full-width">
+                Repro steps
+                <textarea name="steps" rows="4"></textarea>
+              </label>
+              <label>
+                Attachment (optional)
+                <input name="attachment" type="file" />
+              </label>
+              <label>
+                Destination
+                <select name="destination">
+                  <option value="local">Store local portal history</option>
+                  <option value="github">Open GitHub Issue draft</option>
+                  <option value="email">Open email draft</option>
+                </select>
+              </label>
+              <button type="submit" class="primary-btn full-width">Submit report</button>
+            </form>
+          </article>
+          <article class="card">
+            <h3>Recent Submissions</h3>
+            <div id="reportList" class="report-list"></div>
+          </article>
+        </section>
+
+        <section id="tab-leaderboard" class="tab-panel">
+          <article class="card">
+            <h3>Tester Spotlight</h3>
+            <p>More validated reports = more badge tiers and visibility.</p>
+            <div id="leaderboard" class="leaderboard"></div>
+          </article>
+        </section>
+
+        <section id="tab-platforms" class="tab-panel">
+          <div class="grid">
+            <article class="card platform-card">
+              <h3>Android</h3>
+              <p>Primary active distribution channel.</p>
+            </article>
+            <article class="card platform-card">
+              <h3>iOS</h3>
+              <p>TestFlight distribution pipeline.</p>
+            </article>
+            <article class="card platform-card">
+              <h3>Windows</h3>
+              <p>Desktop QA builds and diagnostics.</p>
+            </article>
+            <article class="card platform-card">
+              <h3>Mac</h3>
+              <p>Desktop macOS lane in progress.</p>
+            </article>
+            <article class="card platform-card under-construction">
+              <h3>More Areas Coming</h3>
+              <p>Under construction for new products and partner programs.</p>
+            </article>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <template id="reportItemTemplate">
+      <article class="report-item">
+        <div class="report-topline">
+          <span class="pill"></span>
+          <strong class="report-title"></strong>
+        </div>
+        <p class="report-meta"></p>
+        <p class="report-body"></p>
+      </article>
+    </template>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="config.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>

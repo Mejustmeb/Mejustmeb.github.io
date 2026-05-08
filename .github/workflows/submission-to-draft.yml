@@ -1,0 +1,120 @@
+name: Submission to Draft
+
+on:
+  issues:
+    types: [opened, labeled, unlabeled, edited]
+
+permissions:
+  contents: write
+  issues: write
+
+jobs:
+  build_draft:
+    if: >
+      github.event.issue != null &&
+      contains(join(github.event.issue.labels.*.name, ','), 'submission') &&
+      contains(join(github.event.issue.labels.*.name, ','), 'raw')
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Create draft from issue
+        id: make_draft
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const path = require('path');
+
+            const issue = context.payload.issue;
+            const issueNumber = issue.number;
+            const issueTitle = issue.title?.replace(/^Submission:\s*/i, '').trim() || `Issue ${issueNumber}`;
+            const body = issue.body || '';
+
+            const slug = issueTitle
+              .toLowerCase()
+              .replace(/[^a-z0-9]+/g, '-')
+              .replace(/^-+|-+$/g, '')
+              .slice(0, 60) || `issue-${issueNumber}`;
+
+            const draftsDir = path.join(process.cwd(), 'drafts');
+            if (!fs.existsSync(draftsDir)) fs.mkdirSync(draftsDir, { recursive: true });
+
+            const filename = `draft-${String(issueNumber).padStart(4,'0')}-${slug}.md`;
+            const filePath = path.join(draftsDir, filename);
+
+            function extract(label) {
+              const re = new RegExp(`###\\s+${label}\\s*\\n([\\s\\S]*?)(?=\\n###\\s+|$)`, 'i');
+              const m = body.match(re);
+              return m ? m[1].trim() : '';
+            }
+
+            const category = extract('Category') || 'Other';
+            const summary = extract('Summary') || '';
+            const details = extract('Details') || body.trim();
+            const sources = extract('Sources') || '';
+
+            const now = new Date().toISOString();
+
+            // Escape single quotes for YAML safety
+            const safeTitle = issueTitle.replace(/'/g, "''");
+
+            const content =
+              '---\n' +
+              'type: draft\n' +
+              'source: github-issue\n' +
+              `issue: ${issueNumber}\n` +
+              `created: ${now}\n` +
+              `category: ${category}\n` +
+              `title: '${safeTitle}'\n` +
+              'status: raw\n' +
+              'confidence: medium\n' +
+              '---\n\n' +
+              `# ${issueTitle}\n\n` +
+              '## Summary\n' +
+              `${summary || '- (none provided)'}\n\n` +
+              '## Details\n' +
+              `${details || '- (none provided)'}\n\n` +
+              '## Sources\n' +
+              `${sources || '- (none provided)'}\n`;
+
+            fs.writeFileSync(filePath, content, 'utf8');
+
+            core.setOutput('draft_path', `drafts/${filename}`);
+            core.setOutput('draft_name', filename);
+
+      - name: Validate YAML frontmatter
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y python3-pip
+          pip install yamllint
+          # Extract only the YAML block between --- markers
+          awk '/^---$/ {c++} c==1 {print}' drafts/${{ steps.make_draft.outputs.draft_name }} | yamllint -
+
+      - name: Commit draft file
+        run: |
+          git config user.name "superbyte-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add drafts/
+          git commit -m "Add draft from submission issue #${{ github.event.issue.number }}" || exit 0
+          git push
+
+      - name: Upload draft artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: draft-file
+          path: drafts/${{ steps.make_draft.outputs.draft_name }}
+
+      - name: Comment back on the issue
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const draftPath = '${{ steps.make_draft.outputs.draft_path }}';
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.payload.issue.number,
+              body: `✅ Draft created automatically: \`${draftPath}\`\n\nNext step will turn this draft into a published entry page.`
+            });
