@@ -20,7 +20,7 @@ let hasWorkerAccess = false;
 let hasClientSubmissionAccess = false;
 let currentAccountType = 'guest';
 
-const workerTabs = new Set(['store', 'reports', 'leaderboard', 'platforms']);
+const workerTabs = new Set(['portal', 'store', 'reports', 'leaderboard', 'platforms', 'employeepay']);
 
 function readStore(key, fallback) {
   try {
@@ -70,8 +70,11 @@ function deriveAccessFromAccount(email, source) {
 }
 
 function canAccessTab(tabName) {
-  if (tabName === 'submitapp') {
+  if (tabName === 'merchant') {
     return hasClientSubmissionAccess;
+  }
+  if (tabName === 'portal' && !currentUserEmail) {
+    return true;
   }
   if (workerTabs.has(tabName)) {
     return hasWorkerAccess;
@@ -149,7 +152,7 @@ function setupTabs() {
       const tabName = btn.dataset.tab;
       if (!canAccessTab(tabName)) {
         openTab('signup');
-        if (tabName === 'submitapp') {
+        if (tabName === 'merchant') {
           alert('App submission is for paid clients only. Complete Stripe payment first.');
         } else {
           alert('Worker testing tabs require employee code: superbyteemployee.');
@@ -243,6 +246,61 @@ function setupAppSubmission() {
   render();
 }
 
+async function renderMerchantEmployeeDirectory() {
+  const root = document.getElementById('merchantEmployeeDirectory');
+  if (!root) {
+    return;
+  }
+
+  let rows = [];
+  if (hasBackend && currentUserId) {
+    const { data, error } = await sb
+      .from('tester_profiles')
+      .select('user_email,alias,role,address,updated_at')
+      .order('updated_at', { ascending: false })
+      .limit(50);
+
+    if (!error) {
+      rows = (data || []).map((item) => ({
+        email: item.user_email,
+        alias: item.alias,
+        role: item.role,
+        address: item.address,
+        updatedAt: item.updated_at,
+      }));
+    }
+  } else {
+    const profiles = readStore(STORAGE_KEYS.profiles, {});
+    rows = Object.entries(profiles).map(([email, item]) => ({
+      email,
+      alias: item.alias || email,
+      role: item.role || 'tester',
+      address: item.address || '',
+      updatedAt: item.updatedAt || new Date().toISOString(),
+    }));
+  }
+
+  if (!rows.length) {
+    root.innerHTML = '<p class="tiny-note">No employee profiles available yet.</p>';
+    return;
+  }
+
+  root.innerHTML = rows
+    .map(
+      (row) => `
+      <article class="report-item">
+        <div class="report-topline">
+          <span class="pill">${row.role}</span>
+          <strong class="report-title">${row.alias}</strong>
+        </div>
+        <p class="report-meta">${row.email} • Updated ${new Date(row.updatedAt).toLocaleString()}</p>
+        <p class="report-body">${row.address || 'Address not provided'}</p>
+      </article>
+    `,
+    )
+    .join('');
+}
+
 async function loadApps() {
   const response = await fetch('apps.json');
   const apps = await response.json();
@@ -295,7 +353,7 @@ function setupAuth() {
       return;
     }
 
-    const workerAccess = isOwner || accountType === 'staff';
+    const workerAccess = isOwner || (accountType === 'staff' && inviteValid);
     const clientSubmissionAccess = isOwner || accountType === 'client';
 
     const user = {
@@ -341,7 +399,7 @@ function setupAuth() {
       localStorage.setItem(STORAGE_KEYS.currentUser, user.email);
       updatePortalVisibility();
       updatePaywallState();
-      openTab('portal');
+      openTab(accountType === 'client' ? 'merchant' : 'portal');
       signupForm.reset();
       return;
     }
@@ -361,7 +419,7 @@ function setupAuth() {
     localStorage.setItem(STORAGE_KEYS.currentUser, user.email);
     updatePortalVisibility();
     updatePaywallState();
-    openTab('portal');
+    openTab(user.accountType === 'client' ? 'merchant' : 'portal');
     signupForm.reset();
   });
 
@@ -387,8 +445,10 @@ function setupAuth() {
       localStorage.setItem(STORAGE_KEYS.currentUser, email);
       updatePortalVisibility();
       updatePaywallState();
+      openTab(access.accountType === 'client' ? 'merchant' : 'portal');
       await renderReports();
       await renderLeaderboard();
+      await renderMerchantEmployeeDirectory();
       loginForm.reset();
       return;
     }
@@ -408,6 +468,8 @@ function setupAuth() {
     localStorage.setItem(STORAGE_KEYS.currentUser, email);
     updatePortalVisibility();
     updatePaywallState();
+    openTab(access.accountType === 'client' ? 'merchant' : 'portal');
+    renderMerchantEmployeeDirectory();
     loginForm.reset();
   });
 
@@ -877,6 +939,7 @@ function bootstrap() {
   setupAppSubmission();
   setupAmbient();
   updatePortalVisibility();
+  renderMerchantEmployeeDirectory();
   renderReports();
   renderLeaderboard();
 
@@ -892,6 +955,7 @@ function bootstrap() {
         localStorage.setItem(STORAGE_KEYS.currentUser, currentUserEmail || '');
         updatePortalVisibility();
         updatePaywallState();
+        renderMerchantEmployeeDirectory();
         renderReports();
         renderLeaderboard();
       }
@@ -916,6 +980,7 @@ function bootstrap() {
       }
       updatePortalVisibility();
       updatePaywallState();
+      renderMerchantEmployeeDirectory();
       renderReports();
       renderLeaderboard();
     });
@@ -929,6 +994,7 @@ function bootstrap() {
   }
 
   updatePaywallState();
+  renderMerchantEmployeeDirectory();
 
   loadApps().catch((err) => {
     const root = document.getElementById('apps');

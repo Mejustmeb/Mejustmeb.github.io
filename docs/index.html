@@ -25,10 +25,11 @@
         <button class="tab-btn active" data-tab="signup" type="button">Staff Signup</button>
         <button class="tab-btn" data-tab="portal" type="button">Tester Portal</button>
         <button class="tab-btn" data-tab="store" type="button">App Store</button>
-        <button class="tab-btn" data-tab="submitapp" type="button">Submit App (Paid)</button>
+        <button class="tab-btn" data-tab="merchant" type="button">Merchant Area</button>
         <button class="tab-btn" data-tab="reports" type="button">Bug + Ideas Log</button>
         <button class="tab-btn" data-tab="leaderboard" type="button">Spotlight + Badges</button>
         <button class="tab-btn" data-tab="platforms" type="button">Platform Zones</button>
+        <button class="tab-btn" data-tab="employeepay" type="button">Employee Pay</button>
       </aside>
 
       <section class="content">
@@ -98,10 +99,13 @@
           <div id="apps" class="grid"></div>
         </section>
 
-        <section id="tab-submitapp" class="tab-panel">
+        <section id="tab-merchant" class="tab-panel">
           <article class="card">
-            <h3>Submit Your App For Testing</h3>
-            <p class="tiny-note">Paid app-owner accounts can submit apps for your tester team.</p>
+            <h3>Merchant Area</h3>
+            <p class="tiny-note">Paid app-owner accounts can submit apps and view available testers.</p>
+            <h4>Available Employees For Testing</h4>
+            <div id="merchantEmployeeDirectory" class="report-list"></div>
+            <h4>Submit Your App For Testing</h4>
             <form id="submitAppForm" class="form-grid two-col">
               <label>App name<input name="appName" required /></label>
               <label>Platform<select name="platform" required><option>Android</option><option>iOS</option><option>Windows</option><option>Mac</option><option>Web</option></select></label>
@@ -111,6 +115,13 @@
               <button type="submit" class="primary-btn full-width">Submit App Request</button>
             </form>
             <div id="submittedApps" class="report-list"></div>
+          </article>
+        </section>
+
+        <section id="tab-employeepay" class="tab-panel">
+          <article class="card under-construction">
+            <h3>Employee Pay</h3>
+            <p>Under construction. Payroll and payout tools will be added here.</p>
           </article>
         </section>
 
