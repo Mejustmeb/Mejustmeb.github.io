@@ -151,7 +151,7 @@ function setupTabs() {
     btn.addEventListener('click', () => {
       const tabName = btn.dataset.tab;
       if (!canAccessTab(tabName)) {
-        openTab('signup');
+        openTab(tabName === 'merchant' ? 'merchantsignup' : 'employeesignup');
         if (tabName === 'merchant') {
           alert('App submission is for paid clients only. Complete Stripe payment first.');
         } else {
@@ -165,21 +165,26 @@ function setupTabs() {
 }
 
 function setupPaywallActions() {
-  const checkoutBtn = document.getElementById('startStripeCheckoutBtn');
-  if (!checkoutBtn) {
+  const checkoutButtons = [
+    document.getElementById('startStripeCheckoutBtn'),
+    document.getElementById('merchantCheckoutBtn'),
+  ].filter(Boolean);
+
+  if (!checkoutButtons.length) {
     return;
   }
 
   const seatPrice = Number(cfg.seatPriceUsd || 50);
-  checkoutBtn.textContent = `Pay With Stripe ($${seatPrice} per tester)`;
-
-  checkoutBtn.addEventListener('click', () => {
-    const paymentLink = String(cfg.stripePaymentLink || '').trim();
-    if (!paymentLink) {
-      alert('Stripe payment link is not configured yet in config.js');
-      return;
-    }
-    window.open(paymentLink, '_blank');
+  checkoutButtons.forEach((btn) => {
+    btn.textContent = `Pay With Stripe ($${seatPrice} per tester)`;
+    btn.addEventListener('click', () => {
+      const paymentLink = String(cfg.stripePaymentLink || '').trim();
+      if (!paymentLink) {
+        alert('Stripe payment link is not configured yet in config.js');
+        return;
+      }
+      window.open(paymentLink, '_blank');
+    });
   });
 }
 
@@ -323,57 +328,12 @@ async function loadApps() {
 }
 
 function setupAuth() {
-  const signupForm = document.getElementById('signupForm');
+  const employeeSignupForm = document.getElementById('employeeSignupForm');
+  const merchantSignupForm = document.getElementById('merchantSignupForm');
   const loginForm = document.getElementById('loginForm');
   const logoutBtn = document.getElementById('logoutBtn');
 
-  signupForm.addEventListener('submit', async (event) => {
-    event.preventDefault();
-    const formData = new FormData(signupForm);
-    const accountType = String(formData.get('accountType') || 'staff');
-    const inviteCode = String(formData.get('inviteCode') || '').trim();
-    const testerSeats = Number(formData.get('testerSeats') || 1);
-    const stripeSessionId = String(formData.get('stripeSessionId') || '').trim();
-    const isOwner = hasOwnerBypass(String(formData.get('email')).toLowerCase());
-    const requiredCode = inviteCodeValue();
-    const inviteValid = inviteCode === requiredCode;
-
-    if (!Number.isFinite(testerSeats) || testerSeats < 1) {
-      alert('Tester seats must be at least 1.');
-      return;
-    }
-
-    if (accountType === 'staff' && !isOwner && !requiredCode) {
-      alert('Employee code is not configured yet. Contact admin.');
-      return;
-    }
-
-    if (accountType === 'staff' && !isOwner && !inviteValid) {
-      alert('Workers must use the private employee code.');
-      return;
-    }
-
-    if (accountType === 'client' && !isOwner && !stripeSessionId) {
-      alert('Stripe payment/session ID is required for client access.');
-      return;
-    }
-
-    const workerAccess = isOwner || (accountType === 'staff' && inviteValid);
-    const clientSubmissionAccess = isOwner || accountType === 'client';
-
-    const user = {
-      name: String(formData.get('name')),
-      phone: String(formData.get('phone')),
-      email: String(formData.get('email')).toLowerCase(),
-      password: String(formData.get('password')),
-      accountType,
-      testerSeats,
-      stripeSessionId,
-      workerAccess,
-      clientSubmissionAccess,
-      createdAt: new Date().toISOString(),
-    };
-
+  const completeSignup = async (user) => {
     if (hasBackend) {
       const { data, error } = await sb.auth.signUp({
         email: user.email,
@@ -382,37 +342,36 @@ function setupAuth() {
           data: {
             full_name: user.name,
             phone: user.phone,
-            account_type: accountType,
-            tester_seats: testerSeats,
-            stripe_session_id: stripeSessionId,
-            worker_access: workerAccess,
-            client_submission_access: clientSubmissionAccess,
+            account_type: user.accountType,
+            tester_seats: user.testerSeats,
+            stripe_session_id: user.stripeSessionId,
+            worker_access: user.workerAccess,
+            client_submission_access: user.clientSubmissionAccess,
           },
         },
       });
 
       if (error) {
         alert(error.message);
-        return;
+        return false;
       }
 
       currentUserEmail = user.email;
       currentUserId = data.user?.id || '';
-      hasWorkerAccess = workerAccess;
-      hasClientSubmissionAccess = clientSubmissionAccess;
-      currentAccountType = accountType;
+      hasWorkerAccess = user.workerAccess;
+      hasClientSubmissionAccess = user.clientSubmissionAccess;
+      currentAccountType = user.accountType;
       localStorage.setItem(STORAGE_KEYS.currentUser, user.email);
       updatePortalVisibility();
       updatePaywallState();
-      openTab(accountType === 'client' ? 'merchant' : 'portal');
-      signupForm.reset();
-      return;
+      openTab(user.accountType === 'client' ? 'merchant' : 'portal');
+      return true;
     }
 
     const users = readStore(STORAGE_KEYS.users, []);
     if (users.some((u) => u.email === user.email)) {
       alert('Account already exists for this email.');
-      return;
+      return false;
     }
 
     users.push(user);
@@ -425,7 +384,80 @@ function setupAuth() {
     updatePortalVisibility();
     updatePaywallState();
     openTab(user.accountType === 'client' ? 'merchant' : 'portal');
-    signupForm.reset();
+    return true;
+  };
+
+  employeeSignupForm.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    const formData = new FormData(employeeSignupForm);
+    const email = String(formData.get('email')).toLowerCase();
+    const isOwner = hasOwnerBypass(email);
+    const requiredCode = inviteCodeValue();
+    const inviteCode = String(formData.get('inviteCode') || '').trim();
+    const inviteValid = inviteCode === requiredCode;
+
+    if (!isOwner && !requiredCode) {
+      alert('Employee code is not configured yet. Contact admin.');
+      return;
+    }
+
+    if (!isOwner && !inviteValid) {
+      alert('Workers must use the private employee code.');
+      return;
+    }
+
+    const created = await completeSignup({
+      name: String(formData.get('name')),
+      phone: String(formData.get('phone')),
+      email,
+      password: String(formData.get('password')),
+      accountType: 'staff',
+      testerSeats: 0,
+      stripeSessionId: '',
+      workerAccess: true,
+      clientSubmissionAccess: isOwner,
+      createdAt: new Date().toISOString(),
+    });
+
+    if (created) {
+      employeeSignupForm.reset();
+    }
+  });
+
+  merchantSignupForm.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    const formData = new FormData(merchantSignupForm);
+    const email = String(formData.get('email')).toLowerCase();
+    const isOwner = hasOwnerBypass(email);
+    const testerSeats = Number(formData.get('testerSeats') || 1);
+    const stripeSessionId = String(formData.get('stripeSessionId') || '').trim();
+
+    if (!Number.isFinite(testerSeats) || testerSeats < 1) {
+      alert('Tester seats must be at least 1.');
+      return;
+    }
+
+    if (!isOwner && !stripeSessionId) {
+      alert('Stripe payment/session ID is required for merchant access.');
+      return;
+    }
+
+    const created = await completeSignup({
+      name: String(formData.get('name')),
+      phone: String(formData.get('phone')),
+      email,
+      password: String(formData.get('password')),
+      accountType: 'client',
+      testerSeats,
+      stripeSessionId,
+      workerAccess: isOwner,
+      clientSubmissionAccess: true,
+      createdAt: new Date().toISOString(),
+    });
+
+    if (created) {
+      merchantSignupForm.reset();
+    }
   });
 
   loginForm.addEventListener('submit', async (event) => {
@@ -490,7 +522,7 @@ function setupAuth() {
     localStorage.removeItem(STORAGE_KEYS.currentUser);
     updatePortalVisibility();
     updatePaywallState();
-    openTab('signup');
+    openTab('employeesignup');
   });
 }
 

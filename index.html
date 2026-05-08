@@ -22,7 +22,8 @@
 
     <main class="container app-layout">
       <aside class="sidebar">
-        <button class="tab-btn active" data-tab="signup" type="button">Staff Signup</button>
+        <button class="tab-btn active" data-tab="employeesignup" type="button">Employee Signup</button>
+        <button class="tab-btn" data-tab="merchantsignup" type="button">Merchant Signup</button>
         <button class="tab-btn" data-tab="portal" type="button">Tester Portal</button>
         <button class="tab-btn" data-tab="store" type="button">App Store</button>
         <button class="tab-btn" data-tab="merchant" type="button">Merchant Area</button>
@@ -33,48 +34,61 @@
       </aside>
 
       <section class="content">
-        <section id="tab-signup" class="tab-panel active">
+        <section id="tab-employeesignup" class="tab-panel active">
           <article class="card hero">
-            <p class="eyebrow">Team Onboarding</p>
-            <h2>Worker Code + Client Payment Access</h2>
+            <p class="eyebrow">Employee Onboarding</p>
+            <h2>New Employee Signup</h2>
             <p>
-              Superbyte workers never pay. Workers join with your private employee code.
-              External app owners pay first, then submit apps
-              for your workers to test.
+              Employees never pay. Use your private employee code to create an internal worker
+              account and unlock worker testing areas.
             </p>
           </article>
           <article class="card">
-            <h3>Create Account</h3>
-            <form id="signupForm" class="form-grid two-col">
+            <h3>Create Employee Account</h3>
+            <form id="employeeSignupForm" class="form-grid two-col">
               <label>Full name<input name="name" required /></label>
               <label>Phone<input name="phone" type="tel" required /></label>
               <label class="full-width">Work email<input name="email" type="email" required /></label>
               <label>Password<input name="password" type="password" minlength="8" required /></label>
-              <label>
-                Account type
-                <select name="accountType" required>
-                  <option value="staff">Staff / Contractor</option>
-                  <option value="client">External Client (Paid)</option>
-                </select>
-              </label>
               <label>Worker code<input name="inviteCode" placeholder="Required for staff only" /></label>
+              <label class="full-width inline-check">
+                <input name="staffConfirm" type="checkbox" />
+                <span>I confirm this account information is accurate.</span>
+              </label>
+              <button type="submit" class="primary-btn full-width">Create employee account</button>
+            </form>
+          </article>
+        </section>
+
+        <section id="tab-merchantsignup" class="tab-panel">
+          <article class="card hero">
+            <p class="eyebrow">Merchant Onboarding</p>
+            <h2>Merchant Signup + Paywall</h2>
+            <p>
+              App owners pay first, then submit apps for employee testing. Merchant accounts cannot
+              access employee-only testing tabs.
+            </p>
+          </article>
+          <article class="card">
+            <h3>Create Merchant Account</h3>
+            <form id="merchantSignupForm" class="form-grid two-col">
+              <label>Full name<input name="name" required /></label>
+              <label>Phone<input name="phone" type="tel" required /></label>
+              <label class="full-width">Business email<input name="email" type="email" required /></label>
+              <label>Password<input name="password" type="password" minlength="8" required /></label>
               <label>
                 Personal testers needed
                 <input name="testerSeats" type="number" min="1" value="1" required />
               </label>
               <label>
                 Stripe payment/session ID
-                <input name="stripeSessionId" placeholder="Required for external app owners" />
-              </label>
-              <label class="full-width inline-check">
-                <input name="staffConfirm" type="checkbox" />
-                <span>I confirm this account information is accurate.</span>
+                <input name="stripeSessionId" placeholder="Required for merchant access" required />
               </label>
               <div class="full-width pay-actions">
-                <button id="startStripeCheckoutBtn" type="button" class="ghost-btn">Pay With Stripe ($50 per tester)</button>
-                <p class="tiny-note">External app owners pay first. Workers skip payment and use your private code.</p>
+                <button id="merchantCheckoutBtn" type="button" class="ghost-btn">Pay With Stripe ($50 per tester)</button>
+                <p class="tiny-note">Use Stripe payment first, then enter payment/session ID to activate merchant access.</p>
               </div>
-              <button type="submit" class="primary-btn full-width">Create account</button>
+              <button type="submit" class="primary-btn full-width">Create merchant account</button>
             </form>
           </article>
         </section>
@@ -134,7 +148,7 @@
                 <label>Password<input name="password" type="password" required /></label>
                 <button type="submit" class="primary-btn">Log in</button>
               </form>
-              <p class="tiny-note">No account yet? Use Staff Signup tab first.</p>
+              <p class="tiny-note">No account yet? Use Employee Signup or Merchant Signup tab first.</p>
             </article>
 
             <article class="card">
