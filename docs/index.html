@@ -35,10 +35,11 @@
         <section id="tab-signup" class="tab-panel active">
           <article class="card hero">
             <p class="eyebrow">Team Onboarding</p>
-            <h2>Staff Signup + Access Paywall</h2>
+            <h2>Worker Code + Client Payment Access</h2>
             <p>
-              This portal is private for Superbyte Brillence workers and approved contractors only.
-              Each signup requires your internal invite code so you can control who gets paid access.
+              Superbyte workers never pay. Workers join with employee code
+              <strong>superbyteemployee</strong>. External app owners pay first, then submit apps
+              for your workers to test.
             </p>
           </article>
           <article class="card">
@@ -55,24 +56,24 @@
                   <option value="client">External Client (Paid)</option>
                 </select>
               </label>
-              <label>Staff invite code<input name="inviteCode" placeholder="Required for staff" /></label>
+              <label>Worker code<input name="inviteCode" placeholder="Required for staff only" /></label>
               <label>
                 Personal testers needed
                 <input name="testerSeats" type="number" min="1" value="1" required />
               </label>
               <label>
                 Stripe payment/session ID
-                <input name="stripeSessionId" placeholder="Required for external paid clients" />
+                <input name="stripeSessionId" placeholder="Required for external app owners" />
               </label>
               <label class="full-width inline-check">
-                <input name="staffConfirm" type="checkbox" required />
-                <span>I am an approved Superbyte Brillence worker or contractor.</span>
+                <input name="staffConfirm" type="checkbox" />
+                <span>I confirm this account information is accurate.</span>
               </label>
               <div class="full-width pay-actions">
                 <button id="startStripeCheckoutBtn" type="button" class="ghost-btn">Pay With Stripe ($50 per tester)</button>
-                <p class="tiny-note">Pay first if you are not internal staff. Then paste your Stripe payment/session ID.</p>
+                <p class="tiny-note">External app owners pay first. Workers skip payment and use code superbyteemployee.</p>
               </div>
-              <button type="submit" class="primary-btn full-width">Create staff account</button>
+              <button type="submit" class="primary-btn full-width">Create account</button>
             </form>
           </article>
         </section>
@@ -87,10 +88,10 @@
             </p>
           </article>
           <article id="paywallNotice" class="card paywall-note hidden">
-            <h3>Locked: Staff Paywall</h3>
+            <h3>Locked: Worker Access</h3>
             <p>
-              Access to app distribution and app-submission lanes is private. Internal workers use
-              invite code; outside clients must pay $50 per personal tester through Stripe first.
+              Internal testing lanes are for workers with code superbyteemployee.
+              External app owners use paid Submit App access.
             </p>
           </article>
           <h3>Available Apps</h3>
@@ -100,7 +101,7 @@
         <section id="tab-submitapp" class="tab-panel">
           <article class="card">
             <h3>Submit Your App For Testing</h3>
-            <p class="tiny-note">Paid accounts can submit apps for your tester team to work on.</p>
+            <p class="tiny-note">Paid app-owner accounts can submit apps for your tester team.</p>
             <form id="submitAppForm" class="form-grid two-col">
               <label>App name<input name="appName" required /></label>
               <label>Platform<select name="platform" required><option>Android</option><option>iOS</option><option>Windows</option><option>Mac</option><option>Web</option></select></label>

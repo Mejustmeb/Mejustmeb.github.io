@@ -16,9 +16,11 @@ let timerInterval;
 let seconds = 0;
 let currentUserEmail = localStorage.getItem(STORAGE_KEYS.currentUser) || '';
 let currentUserId = '';
-let hasPaidAccess = false;
+let hasWorkerAccess = false;
+let hasClientSubmissionAccess = false;
+let currentAccountType = 'guest';
 
-const restrictedTabs = new Set(['store', 'submitapp', 'reports', 'leaderboard', 'platforms']);
+const workerTabs = new Set(['store', 'reports', 'leaderboard', 'platforms']);
 
 function readStore(key, fallback) {
   try {
@@ -50,27 +52,31 @@ function hasOwnerBypass(email) {
   return normalizedOwnerEmails().includes(String(email).toLowerCase());
 }
 
-function userHasPaidAccess(user) {
-  if (!user) {
-    return false;
+function deriveAccessFromAccount(email, source) {
+  if (hasOwnerBypass(email)) {
+    return {
+      worker: true,
+      client: true,
+      accountType: 'owner',
+    };
   }
 
-  if (hasOwnerBypass(user.email)) {
-    return true;
-  }
-
-  const meta = user.user_metadata || {};
-  return meta.paywall_tier === 'staff' || meta.paywall_unlocked === true;
+  const accountType = String(source?.account_type || source?.accountType || 'guest');
+  return {
+    worker: Boolean(source?.worker_access || source?.workerAccess || accountType === 'staff'),
+    client: Boolean(source?.client_submission_access || source?.clientSubmissionAccess || accountType === 'client'),
+    accountType,
+  };
 }
 
-function localUserHasPaidAccess(email) {
-  if (hasOwnerBypass(email)) {
-    return true;
+function canAccessTab(tabName) {
+  if (tabName === 'submitapp') {
+    return hasClientSubmissionAccess;
   }
-
-  const users = readStore(STORAGE_KEYS.users, []);
-  const user = users.find((item) => item.email === email);
-  return Boolean(user?.paywallUnlocked);
+  if (workerTabs.has(tabName)) {
+    return hasWorkerAccess;
+  }
+  return true;
 }
 
 function openTab(tabName) {
@@ -87,12 +93,12 @@ function updatePaywallState() {
   const notice = document.getElementById('paywallNotice');
 
   buttons.forEach((btn) => {
-    const locked = restrictedTabs.has(btn.dataset.tab) && !hasPaidAccess;
+    const locked = !canAccessTab(btn.dataset.tab);
     btn.classList.toggle('locked', locked);
   });
 
   if (notice) {
-    notice.classList.toggle('hidden', hasPaidAccess);
+    notice.classList.toggle('hidden', hasWorkerAccess);
   }
 
   if (!statusText) {
@@ -100,11 +106,13 @@ function updatePaywallState() {
   }
 
   if (!currentUserEmail) {
-    statusText.textContent = 'Waiting for login. Staff paywall unlock is required before internal tabs open.';
-  } else if (!hasPaidAccess) {
-    statusText.textContent = 'Logged in, but paywall access is locked for this account. Contact admin for approval.';
+    statusText.textContent = 'Waiting for login. Workers use code superbyteemployee. App owners must pay before app submission.';
+  } else if (currentAccountType === 'staff' || currentAccountType === 'owner') {
+    statusText.textContent = 'Worker access active. Internal testing tabs are unlocked. No payment required.';
+  } else if (currentAccountType === 'client') {
+    statusText.textContent = 'Client payment access active. You can submit apps for testing.';
   } else {
-    statusText.textContent = 'Paid staff access active. Internal testing tabs are unlocked.';
+    statusText.textContent = 'Logged in with limited access. Choose worker code or paid client onboarding.';
   }
 }
 
@@ -139,9 +147,13 @@ function setupTabs() {
   buttons.forEach((btn) => {
     btn.addEventListener('click', () => {
       const tabName = btn.dataset.tab;
-      if (restrictedTabs.has(tabName) && !hasPaidAccess) {
+      if (!canAccessTab(tabName)) {
         openTab('signup');
-        alert('This area is paywalled. Staff invite or Stripe payment is required first.');
+        if (tabName === 'submitapp') {
+          alert('App submission is for paid clients only. Complete Stripe payment first.');
+        } else {
+          alert('Worker testing tabs require employee code: superbyteemployee.');
+        }
         return;
       }
       openTab(tabName);
@@ -206,8 +218,8 @@ function setupAppSubmission() {
       alert('Please log in first.');
       return;
     }
-    if (!hasPaidAccess) {
-      alert('App submission is paywalled. Complete staff invite or Stripe payment first.');
+    if (!hasClientSubmissionAccess) {
+      alert('Only paid clients can submit apps for testing.');
       return;
     }
 
@@ -265,7 +277,8 @@ function setupAuth() {
     const testerSeats = Number(formData.get('testerSeats') || 1);
     const stripeSessionId = String(formData.get('stripeSessionId') || '').trim();
     const isOwner = hasOwnerBypass(String(formData.get('email')).toLowerCase());
-    const inviteValid = inviteCodeValue() && inviteCode === inviteCodeValue();
+    const requiredCode = inviteCodeValue() || 'superbyteemployee';
+    const inviteValid = inviteCode === requiredCode;
 
     if (!Number.isFinite(testerSeats) || testerSeats < 1) {
       alert('Tester seats must be at least 1.');
@@ -273,7 +286,7 @@ function setupAuth() {
     }
 
     if (accountType === 'staff' && !isOwner && !inviteValid) {
-      alert('Valid staff invite code is required for staff account signup.');
+      alert('Workers must use employee code: superbyteemployee');
       return;
     }
 
@@ -282,7 +295,8 @@ function setupAuth() {
       return;
     }
 
-    const paywallUnlocked = isOwner || inviteValid || accountType === 'client';
+    const workerAccess = isOwner || accountType === 'staff';
+    const clientSubmissionAccess = isOwner || accountType === 'client';
 
     const user = {
       name: String(formData.get('name')),
@@ -292,7 +306,8 @@ function setupAuth() {
       accountType,
       testerSeats,
       stripeSessionId,
-      paywallUnlocked,
+      workerAccess,
+      clientSubmissionAccess,
       createdAt: new Date().toISOString(),
     };
 
@@ -307,8 +322,8 @@ function setupAuth() {
             account_type: accountType,
             tester_seats: testerSeats,
             stripe_session_id: stripeSessionId,
-            paywall_unlocked: paywallUnlocked,
-            paywall_tier: paywallUnlocked ? 'staff' : 'locked',
+            worker_access: workerAccess,
+            client_submission_access: clientSubmissionAccess,
           },
         },
       });
@@ -320,7 +335,9 @@ function setupAuth() {
 
       currentUserEmail = user.email;
       currentUserId = data.user?.id || '';
-      hasPaidAccess = paywallUnlocked;
+      hasWorkerAccess = workerAccess;
+      hasClientSubmissionAccess = clientSubmissionAccess;
+      currentAccountType = accountType;
       localStorage.setItem(STORAGE_KEYS.currentUser, user.email);
       updatePortalVisibility();
       updatePaywallState();
@@ -338,7 +355,9 @@ function setupAuth() {
     users.push(user);
     writeStore(STORAGE_KEYS.users, users);
     currentUserEmail = user.email;
-    hasPaidAccess = user.paywallUnlocked;
+    hasWorkerAccess = user.workerAccess;
+    hasClientSubmissionAccess = user.clientSubmissionAccess;
+    currentAccountType = user.accountType;
     localStorage.setItem(STORAGE_KEYS.currentUser, user.email);
     updatePortalVisibility();
     updatePaywallState();
@@ -361,7 +380,10 @@ function setupAuth() {
 
       currentUserEmail = email;
       currentUserId = data.user?.id || '';
-      hasPaidAccess = userHasPaidAccess(data.user);
+      const access = deriveAccessFromAccount(email, data.user?.user_metadata || {});
+      hasWorkerAccess = access.worker;
+      hasClientSubmissionAccess = access.client;
+      currentAccountType = access.accountType;
       localStorage.setItem(STORAGE_KEYS.currentUser, email);
       updatePortalVisibility();
       updatePaywallState();
@@ -379,7 +401,10 @@ function setupAuth() {
     }
 
     currentUserEmail = email;
-    hasPaidAccess = localUserHasPaidAccess(email);
+    const access = deriveAccessFromAccount(email, found || {});
+    hasWorkerAccess = access.worker;
+    hasClientSubmissionAccess = access.client;
+    currentAccountType = access.accountType;
     localStorage.setItem(STORAGE_KEYS.currentUser, email);
     updatePortalVisibility();
     updatePaywallState();
@@ -392,7 +417,9 @@ function setupAuth() {
     }
     currentUserEmail = '';
     currentUserId = '';
-    hasPaidAccess = false;
+    hasWorkerAccess = false;
+    hasClientSubmissionAccess = false;
+    currentAccountType = 'guest';
     localStorage.removeItem(STORAGE_KEYS.currentUser);
     updatePortalVisibility();
     updatePaywallState();
@@ -858,7 +885,10 @@ function bootstrap() {
       if (data?.user) {
         currentUserEmail = data.user.email || currentUserEmail;
         currentUserId = data.user.id || '';
-        hasPaidAccess = userHasPaidAccess(data.user);
+        const access = deriveAccessFromAccount(currentUserEmail, data.user.user_metadata || {});
+        hasWorkerAccess = access.worker;
+        hasClientSubmissionAccess = access.client;
+        currentAccountType = access.accountType;
         localStorage.setItem(STORAGE_KEYS.currentUser, currentUserEmail || '');
         updatePortalVisibility();
         updatePaywallState();
@@ -871,12 +901,17 @@ function bootstrap() {
       if (session?.user) {
         currentUserEmail = session.user.email || '';
         currentUserId = session.user.id || '';
-        hasPaidAccess = userHasPaidAccess(session.user);
+        const access = deriveAccessFromAccount(currentUserEmail, session.user.user_metadata || {});
+        hasWorkerAccess = access.worker;
+        hasClientSubmissionAccess = access.client;
+        currentAccountType = access.accountType;
         localStorage.setItem(STORAGE_KEYS.currentUser, currentUserEmail);
       } else {
         currentUserEmail = '';
         currentUserId = '';
-        hasPaidAccess = false;
+        hasWorkerAccess = false;
+        hasClientSubmissionAccess = false;
+        currentAccountType = 'guest';
         localStorage.removeItem(STORAGE_KEYS.currentUser);
       }
       updatePortalVisibility();
@@ -885,7 +920,12 @@ function bootstrap() {
       renderLeaderboard();
     });
   } else if (currentUserEmail) {
-    hasPaidAccess = localUserHasPaidAccess(currentUserEmail);
+    const users = readStore(STORAGE_KEYS.users, []);
+    const found = users.find((item) => item.email === currentUserEmail);
+    const access = deriveAccessFromAccount(currentUserEmail, found || {});
+    hasWorkerAccess = access.worker;
+    hasClientSubmissionAccess = access.client;
+    currentAccountType = access.accountType;
   }
 
   updatePaywallState();
