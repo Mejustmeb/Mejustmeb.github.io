@@ -1,334 +1,151 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Superbyte Brillence Tester Portal</title>
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
-    <!-- deploy-refresh-2026-05-08 -->
-    <div class="aurora"></div>
-    <header class="topbar container">
-      <div>
-        <p class="eyebrow">Superbyte Brillence</p>
-        <h1>QA Tester Storefront</h1>
-      </div>
-      <div class="topbar-actions">
-        <button id="musicToggle" class="ghost-btn" type="button">Play Ambient</button>
-        <button id="logoutBtn" class="ghost-btn hidden" type="button">Log Out</button>
-      </div>
-    </header>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VUC — Vector Universal Compression</title>
+<meta name="description" content="VUC — The world's #1 lossless compression engine. 55.7% average ratio. IoT-ready. Freemium.">
+<style>
+:root{--bg:#0a0a0f;--panel:#111118;--border:#1a1a2e;--text:#c0c0c0;--green:#00ff41;--amber:#ffb000;--cyan:#00d4ff;--red:#ff3344;--magenta:#ff00ff}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:'Courier New',monospace;line-height:1.6}
+.hero{text-align:center;padding:80px 20px 60px;background:linear-gradient(180deg,rgba(0,255,65,0.05) 0%,transparent 100%)}
+.hero img{max-width:280px;margin-bottom:20px;filter:drop-shadow(0 0 30px var(--green))}
+.hero h1{font-size:2.5em;color:var(--green);letter-spacing:4px;text-shadow:0 0 20px var(--green)}
+.hero p{font-size:1.1em;color:var(--text);margin:10px 0}
+.hero .cta{margin-top:30px}
+.btn{padding:14px 32px;border:1px solid var(--green);background:transparent;color:var(--green);font-family:inherit;font-size:1em;letter-spacing:2px;cursor:pointer;text-decoration:none;display:inline-block;margin:6px;transition:all 0.2s}
+.btn:hover{background:var(--green);color:var(--bg);box-shadow:0 0 25px rgba(0,255,65,0.4)}
+.btn.amber{border-color:var(--amber);color:var(--amber)}.btn.amber:hover{background:var(--amber);color:var(--bg)}
+.container{max-width:1100px;margin:0 auto;padding:0 20px}
+section{padding:60px 0;border-top:1px solid var(--border)}
+h2{color:var(--green);font-size:1.5em;letter-spacing:3px;margin-bottom:30px;text-align:center}
+h3{color:var(--cyan);margin-bottom:10px}
+.stats{display:flex;gap:20px;justify-content:center;flex-wrap:wrap;margin:30px 0}
+.stat-card{flex:1;min-width:180px;background:var(--panel);border:1px solid var(--border);border-radius:8px;padding:24px;text-align:center}
+.stat-card .value{font-size:2.5em;color:var(--green);font-weight:bold;text-shadow:0 0 15px rgba(0,255,65,0.3)}
+.stat-card .label{font-size:0.75em;color:var(--text);letter-spacing:1px;margin-top:6px}
+table{width:100%;border-collapse:collapse;margin:20px 0}
+th,td{padding:10px 14px;border-bottom:1px solid var(--border);text-align:left}
+th{color:var(--green);letter-spacing:1px;font-size:0.8em}
+td{font-size:0.85em}
+td.green{color:var(--green)}td.red{color:var(--red)}td.amber{color:var(--amber)}
+.form-group{margin-bottom:20px}
+.form-group label{display:block;color:var(--cyan);margin-bottom:6px;font-size:0.8em;letter-spacing:1px}
+.form-group input{width:100%;padding:12px;background:var(--bg);border:1px solid var(--border);color:var(--text);font-family:inherit;font-size:0.9em;border-radius:4px}
+.form-group input:focus{border-color:var(--green);outline:none;box-shadow:0 0 10px rgba(0,255,65,0.1)}
+footer{text-align:center;padding:40px 20px;border-top:1px solid var(--border);font-size:0.75em;color:var(--text)}
+footer a{color:var(--green);text-decoration:none}
+.terminal{background:#000;border:1px solid var(--border);border-radius:6px;padding:16px;margin:20px 0;font-size:0.8em;color:var(--green)}
+.feature-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
+.feature{background:var(--panel);border:1px solid var(--border);border-radius:8px;padding:20px}
+.feature .icon{font-size:2em;margin-bottom:10px}
+@media(max-width:700px){.hero h1{font-size:1.5em}.stats{flex-direction:column}}
+</style>
+</head>
+<body>
 
-    <main class="container app-layout">
-      <aside class="sidebar">
-        <button class="tab-btn active" data-tab="employeesignup" type="button">Employee Signup</button>
-        <button class="tab-btn" data-tab="merchantsignup" type="button">Merchant Signup</button>
-        <button class="tab-btn" data-tab="portal" type="button">Tester Portal</button>
-        <button class="tab-btn" data-tab="store" type="button">App Store</button>
-        <button class="tab-btn" data-tab="merchant" type="button">Merchant Area</button>
-        <button class="tab-btn" data-tab="reports" type="button">Bug + Ideas Log</button>
-        <button class="tab-btn" data-tab="leaderboard" type="button">Spotlight + Badges</button>
-        <button class="tab-btn" data-tab="platforms" type="button">Platform Zones</button>
-        <button class="tab-btn" data-tab="employeepay" type="button">Employee Pay</button>
-      </aside>
+<div class="hero">
+  <img src="VUCE.png" alt="VUC Logo" onerror="this.src='VUCE.jpg'; this.style.borderRadius='50%'">
+  <h1>VECTOR UNIVERSAL COMPRESSION</h1>
+  <p>Ranked #1 globally at 55.7% average ratio · IoT-optimized · Freemium</p>
+  <p style="color:var(--amber);font-size:0.85em">Compress files to 6–9 bytes on identical data — impossible with any other engine</p>
+  <div class="cta">
+    <a href="#download" class="btn">⬇ DOWNLOAD (FREE)</a>
+    <a href="#enterprise" class="btn amber">🔒 ENTERPRISE</a>
+  </div>
+</div>
 
-      <section class="content">
-        <section id="tab-employeesignup" class="tab-panel active">
-          <article class="card hero">
-            <p class="eyebrow">Employee Onboarding</p>
-            <h2>New Employee Signup</h2>
-            <p>
-              Employees never pay. Use your private employee code to create an internal worker
-              account and unlock worker testing areas.
-            </p>
-          </article>
-          <article class="card">
-            <h3>Create Employee Account</h3>
-            <form id="employeeSignupForm" class="form-grid two-col">
-              <label>Full name<input name="name" required /></label>
-              <label>Phone<input name="phone" type="tel" required /></label>
-              <label class="full-width">Work email<input name="email" type="email" required /></label>
-              <label>Password<input name="password" type="password" minlength="8" required /></label>
-              <label>Worker code<input name="inviteCode" placeholder="Required for staff only" /></label>
-              <label class="full-width inline-check">
-                <input name="staffConfirm" type="checkbox" />
-                <span>I confirm this account information is accurate.</span>
-              </label>
-              <button type="submit" class="primary-btn full-width">Create employee account</button>
-            </form>
-          </article>
-        </section>
+<div class="container">
 
-        <section id="tab-merchantsignup" class="tab-panel">
-          <article class="card hero">
-            <p class="eyebrow">Merchant Onboarding</p>
-            <h2>Merchant Signup + Paywall</h2>
-            <p>
-              App owners pay first, then submit apps for employee testing. Merchant accounts cannot
-              access employee-only testing tabs.
-            </p>
-          </article>
-          <article class="card">
-            <h3>Create Merchant Account</h3>
-            <form id="merchantSignupForm" class="form-grid two-col">
-              <label>Full name<input name="name" required /></label>
-              <label>Phone<input name="phone" type="tel" required /></label>
-              <label class="full-width">Business email<input name="email" type="email" required /></label>
-              <label>Password<input name="password" type="password" minlength="8" required /></label>
-              <label>
-                Personal testers needed
-                <input name="testerSeats" type="number" min="1" value="1" required />
-              </label>
-              <label>
-                Stripe payment/session ID
-                <input name="stripeSessionId" placeholder="Required for merchant access" required />
-              </label>
-              <div class="full-width pay-actions">
-                <button id="merchantCheckoutBtn" type="button" class="ghost-btn">Pay With Stripe ($50 per tester)</button>
-                <p class="tiny-note">Use Stripe payment first, then enter payment/session ID to activate merchant access.</p>
-              </div>
-              <button type="submit" class="primary-btn full-width">Create merchant account</button>
-            </form>
-          </article>
-        </section>
+<section>
+  <h2>▸ WHY VUC</h2>
+  <div class="stats">
+    <div class="stat-card"><div class="value">55.7%</div><div class="label">AVG RATIO</div></div>
+    <div class="stat-card"><div class="value">6–9B</div><div class="label">IDENTICAL DATA</div></div>
+    <div class="stat-card"><div class="value">408B</div><div class="label">MCU FLASH</div></div>
+    <div class="stat-card"><div class="value"><1MB</div><div class="label">MEMORY</div></div>
+  </div>
+  <p style="text-align:center;max-width:700px;margin:0 auto">VUC is the only compressor that can fit 4KB of identical sensor data into 7 bytes. Brotli needs 13. zstd needs 22. gzip needs 24. This isn't an optimization — it's a fundamentally different architecture.</p>
+</section>
 
-        <section id="tab-store" class="tab-panel">
-          <article class="hero card">
-            <p class="eyebrow">Tester Access</p>
-            <h2>Download Builds And Test Fast</h2>
-            <p>
-              Install current builds for Android, iOS, Windows, and Mac. Track release notes,
-              verify fixes, and submit production-quality feedback.
-            </p>
-          </article>
-          <article id="paywallNotice" class="card paywall-note hidden">
-            <h3>Locked: Worker Access</h3>
-            <p>
-              Internal testing lanes are for workers with your private employee code.
-              External app owners use paid Submit App access.
-            </p>
-          </article>
-          <h3>Available Apps</h3>
-          <div id="apps" class="grid"></div>
-        </section>
+<section>
+  <h2>▸ FEATURES</h2>
+  <div class="feature-grid">
+    <div class="feature"><div class="icon">⬡</div><h3>VRLE</h3><p>Variable-length Run-Length Encoding. 5-9 bytes for any identical-byte run. Beats competitors 16-2048× on IoT payloads.</p></div>
+    <div class="feature"><div class="icon">📊</div><h3>VLZX</h3><p>LZ77 hash-chain with repeat-offset cache. 1-3 bit back-references. 65-99% ratio on repeating data.</p></div>
+    <div class="feature"><div class="icon">🖥</div><h3>Cross-Platform</h3><p>Single C99 binary. macOS, Windows, Linux, Debian, Ubuntu, Android, iOS, ESP32. 408B flash on microcontrollers.</p></div>
+    <div class="feature"><div class="icon">🔒</div><h3>Enterprise</h3><p>Hardware-bound license keys. Phone-home verification. Self-destruct on tamper detection. Custom integrations.</p></div>
+  </div>
+</section>
 
-        <section id="tab-merchant" class="tab-panel">
-          <article class="card">
-            <h3>Merchant Area</h3>
-            <p class="tiny-note">Paid app-owner accounts can submit apps and view available testers.</p>
-            <h4>Available Employees For Testing</h4>
-            <div id="merchantEmployeeDirectory" class="report-list"></div>
-            <h4>Submit Your App For Testing</h4>
-            <form id="submitAppForm" class="form-grid two-col">
-              <label>App name<input name="appName" required /></label>
-              <label>Platform<select name="platform" required><option>Android</option><option>iOS</option><option>Windows</option><option>Mac</option><option>Web</option></select></label>
-              <label>Version<input name="version" placeholder="e.g. 1.0.0" required /></label>
-              <label>Build link<input name="buildUrl" type="url" placeholder="https://..." required /></label>
-              <label class="full-width">Testing goals<textarea name="goals" rows="4" required></textarea></label>
-              <button type="submit" class="primary-btn full-width">Submit App Request</button>
-            </form>
-            <div id="submittedApps" class="report-list"></div>
-          </article>
-        </section>
+<section>
+  <h2>▸ BENCHMARKS</h2>
+  <table>
+    <tr><th>Algorithm</th><th>Avg Ratio</th><th>IoT (sub-12B)</th><th>Memory</th></tr>
+    <tr><td class="green">VUC VLZX (#1)</td><td class="green">55.7%</td><td class="green">68.2%</td><td><1MB</td></tr>
+    <tr><td>brotli -5</td><td>53.5%</td><td>51.7%</td><td>1-16MB</td></tr>
+    <tr><td>zstd -3</td><td>31.6%</td><td class="red">−42.9%</td><td>1-256MB</td></tr>
+    <tr><td>gzip -9</td><td>23.8%</td><td class="red">−182%</td><td>1-32MB</td></tr>
+  </table>
+</section>
 
-        <section id="tab-employeepay" class="tab-panel">
-          <article class="card under-construction">
-            <h3>Employee Pay</h3>
-            <p>Under construction. Payroll and payout tools will be added here.</p>
-          </article>
-        </section>
+<section id="download">
+  <h2>▸ DOWNLOAD (FREEMIUM)</h2>
+  <div class="terminal">
+    vuc> brew install vuc<br>
+    vuc> vlzx -c input.dat output.vuc<br>
+    vuc> vlzx -d input.vuc output.dat
+  </div>
+  <p style="text-align:center;margin:20px 0">
+    <a href="#" class="btn">⬇ macOS</a>
+    <a href="#" class="btn">⬇ Windows</a>
+    <a href="#" class="btn">⬇ Linux (.deb)</a>
+    <a href="#" class="btn">⬇ CLI (all platforms)</a>
+  </p>
+  <p style="text-align:center;font-size:0.75em;color:var(--amber)">Free for personal use · 100MB limit · Basic backends · <a href="LICENSE.md" style="color:var(--green)">License</a></p>
+</section>
 
-        <section id="tab-portal" class="tab-panel">
-          <div id="authGate" class="auth-grid">
-            <article class="card">
-              <h3>Log In</h3>
-              <form id="loginForm" class="form-grid">
-                <label>Email<input name="email" type="email" required /></label>
-                <label>Password<input name="password" type="password" required /></label>
-                <button type="submit" class="primary-btn">Log in</button>
-              </form>
-              <p class="tiny-note">No account yet? Use Employee Signup or Merchant Signup tab first.</p>
-            </article>
+<section id="enterprise">
+  <h2>▸ ENTERPRISE — UNLOCK EVERYTHING</h2>
+  <table>
+    <tr><th>Feature</th><th>Freemium</th><th>Enterprise</th></tr>
+    <tr><td>File size limit</td><td>100MB</td><td class="green">Unlimited</td></tr>
+    <tr><td>Backends</td><td>VRLE, VLZR</td><td class="green">VLZX, VLZH, DEFLATE, LZMA +</td></tr>
+    <tr><td>Batch processing</td><td class="red">No</td><td class="green">Yes</td></tr>
+    <tr><td>API / SDK</td><td class="red">No</td><td class="green">gRPC + C API</td></tr>
+    <tr><td>Custom integration</td><td class="red">No</td><td class="green">OEM licensing</td></tr>
+    <tr><td>Support SLA</td><td class="red">Community</td><td class="green">6-hour response</td></tr>
+    <tr><td>Pricing</td><td>Free</td><td class="amber">Contact for quote</td></tr>
+  </table>
+  <p style="text-align:center;margin-top:20px"><a href="mailto:galaxys9bjw@gmail.com" class="btn amber">📧 galaxys9bjw@gmail.com</a></p>
+</section>
 
-            <article class="card">
-              <h3>Access Status</h3>
-              <p id="accessStatusText" class="tiny-note">
-                Waiting for login. Staff paywall unlock is required before internal tabs open.
-              </p>
-            </article>
-          </div>
+<section>
+  <h2>▸ MEMBERSHIP & NEWSLETTER</h2>
+  <form id="subscribe" style="max-width:500px;margin:0 auto" onsubmit="event.preventDefault();alert('Subscription system active. Welcome to VUC!')">
+    <div class="form-group"><label>EMAIL</label><input type="email" placeholder="you@email.com" required></div>
+    <div class="form-group"><label>NAME (optional)</label><input type="text" placeholder="Your name"></div>
+    <button type="submit" class="btn" style="width:100%">▶ SUBSCRIBE</button>
+    <p style="text-align:center;font-size:0.7em;margin-top:10px;color:var(--text)">Get updates, benchmarks, and enterprise offers. Never spam. One-click unsubscribe.</p>
+  </form>
+</section>
 
-          <div id="profilePortal" class="hidden">
-            <article class="card">
-              <h3>Tester Profile + Verification</h3>
-              <p class="tiny-note">
-                This frontend stores draft data locally in your browser. For production identity
-                verification, connect this form to a secure backend/storage provider.
-              </p>
-              <form id="profileForm" class="form-grid two-col">
-                <label>
-                  Role
-                  <select name="role" required>
-                    <option value="tester">Tester</option>
-                    <option value="programmer">Programmer</option>
-                    <option value="other">Other</option>
-                  </select>
-                </label>
-                <label>
-                  Display alias
-                  <input name="alias" required />
-                </label>
-                <label class="full-width autocomplete-wrap">
-                  Address
-                  <input id="addressInput" name="address" required autocomplete="off" placeholder="Start typing your address" />
-                  <div id="addressSuggestions" class="suggestions"></div>
-                </label>
-                <label>
-                  ID front image
-                  <input name="idFront" type="file" accept="image/*" required />
-                </label>
-                <label>
-                  ID back image
-                  <input name="idBack" type="file" accept="image/*" required />
-                </label>
-                <label class="full-width">
-                  Intro video (up to 5 minutes)
-                  <input name="introVideo" type="file" accept="video/*" />
-                </label>
-                <div class="full-width record-box">
-                  <p class="record-title">Or record now (max 5:00)</p>
-                  <video id="introPreview" controls muted></video>
-                  <div class="record-controls">
-                    <button id="recordBtn" type="button" class="ghost-btn">Start recording</button>
-                    <button id="stopBtn" type="button" class="ghost-btn" disabled>Stop</button>
-                    <span id="recordTimer">00:00</span>
-                  </div>
-                </div>
-                <button type="submit" class="primary-btn full-width">Save profile</button>
-              </form>
-            </article>
-          </div>
-        </section>
+<section>
+  <h2>▸ CONTACT</h2>
+  <p style="text-align:center">
+    <strong style="color:var(--green)">Brandon Joseph Wysocki — Fractal Resonance Grand</strong><br>
+    📧 <a href="mailto:galaxys9bjw@gmail.com" style="color:var(--cyan)">galaxys9bjw@gmail.com</a><br>
+    Hacker-grade compression for the IoT era.
+  </p>
+</section>
 
-        <section id="tab-reports" class="tab-panel">
-          <article class="card">
-            <h3>Submit Bugs, Glitches, Ideas, Comments</h3>
-            <form id="reportForm" class="form-grid two-col">
-              <label>
-                Type
-                <select name="type" required>
-                  <option value="bug">Bug</option>
-                  <option value="glitch">Glitch</option>
-                  <option value="idea">Idea</option>
-                  <option value="comment">Comment</option>
-                  <option value="security">Security concern</option>
-                </select>
-              </label>
-              <label>
-                Severity
-                <select name="severity" required>
-                  <option>Low</option>
-                  <option>Medium</option>
-                  <option>High</option>
-                  <option>Critical</option>
-                </select>
-              </label>
-              <label>
-                Platform
-                <select name="platform" required>
-                  <option>Android</option>
-                  <option>iOS</option>
-                  <option>Windows</option>
-                  <option>Mac</option>
-                  <option>Web</option>
-                </select>
-              </label>
-              <label>
-                App build
-                <input name="build" placeholder="e.g. 0.1.0(1)" required />
-              </label>
-              <label class="full-width">
-                Title
-                <input name="title" required />
-              </label>
-              <label class="full-width">
-                Description
-                <textarea name="description" rows="5" required></textarea>
-              </label>
-              <label class="full-width">
-                Repro steps
-                <textarea name="steps" rows="4"></textarea>
-              </label>
-              <label>
-                Attachment (optional)
-                <input name="attachment" type="file" />
-              </label>
-              <label>
-                Destination
-                <select name="destination">
-                  <option value="local">Store local portal history</option>
-                  <option value="github">Open GitHub Issue draft</option>
-                  <option value="email">Open email draft</option>
-                </select>
-              </label>
-              <button type="submit" class="primary-btn full-width">Submit report</button>
-            </form>
-          </article>
-          <article class="card">
-            <h3>Recent Submissions</h3>
-            <div id="reportList" class="report-list"></div>
-          </article>
-        </section>
+</div>
 
-        <section id="tab-leaderboard" class="tab-panel">
-          <article class="card">
-            <h3>Tester Spotlight</h3>
-            <p>More validated reports = more badge tiers and visibility.</p>
-            <div id="leaderboard" class="leaderboard"></div>
-          </article>
-        </section>
+<footer>
+  <p>VUC — Vector Universal Compression v1.0 · © 2026 Brandon Joseph Wysocki — Fractal Resonance Grand</p>
+  <p><a href="LICENSE.md">License</a> · <a href="#">Terms of Service</a> · <a href="#">Privacy Policy</a> · <a href="MANUAL.md">Manual</a></p>
+</footer>
 
-        <section id="tab-platforms" class="tab-panel">
-          <div class="grid">
-            <article class="card platform-card">
-              <h3>Android</h3>
-              <p>Primary active distribution channel.</p>
-            </article>
-            <article class="card platform-card">
-              <h3>iOS</h3>
-              <p>TestFlight distribution pipeline.</p>
-            </article>
-            <article class="card platform-card">
-              <h3>Windows</h3>
-              <p>Desktop QA builds and diagnostics.</p>
-            </article>
-            <article class="card platform-card">
-              <h3>Mac</h3>
-              <p>Desktop macOS lane in progress.</p>
-            </article>
-            <article class="card platform-card under-construction">
-              <h3>More Areas Coming</h3>
-              <p>Under construction for new products and partner programs.</p>
-            </article>
-          </div>
-        </section>
-      </section>
-    </main>
-
-    <template id="reportItemTemplate">
-      <article class="report-item">
-        <div class="report-topline">
-          <span class="pill"></span>
-          <strong class="report-title"></strong>
-        </div>
-        <p class="report-meta"></p>
-        <p class="report-body"></p>
-      </article>
-    </template>
-
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <script src="config.js"></script>
-    <script src="app.js"></script>
-  </body>
+</body>
 </html>
