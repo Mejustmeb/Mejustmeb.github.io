@@ -93,15 +93,17 @@ footer a{color:var(--green);text-decoration:none}
 <section id="download">
   <h2>▸ DOWNLOAD (FREEMIUM)</h2>
   <div class="terminal">
-    vuc> brew install vuc<br>
-    vuc> vlzx -c input.dat output.vuc<br>
-    vuc> vlzx -d input.vuc output.dat
+    vuc> chmod +x vlzx_macos_arm64<br>
+    vuc> ./vlzx_macos_arm64 input.txt output.vuc<br>
+    vuc> ./vlzx_macos_arm64 -d output.vuc restored.txt<br>
+    <span style="color: var(--amber)">Downloads available below ↓</span>
   </div>
   <p style="text-align:center;margin:20px 0">
-    <a href="#" class="btn">⬇ macOS</a>
-    <a href="#" class="btn">⬇ Windows</a>
-    <a href="#" class="btn">⬇ Linux (.deb)</a>
-    <a href="#" class="btn">⬇ CLI (all platforms)</a>
+    <a href="vlzx_macos_arm64" class="btn" download>⬇ macOS ARM64</a>
+    <a href="vlzx_macos_x64" class="btn" download>⬇ macOS x64</a>
+    <a href="https://github.com/Mejustmeb/VUCE/raw/VUCE/build/vuc_setup.iss" class="btn">⬇ Windows (build)</a>
+    <a href="https://github.com/Mejustmeb/VUCE/raw/VUCE/build/vuc_installer.sh" class="btn" download>⬇ Linux (universal)</a>
+    <a href="https://github.com/Mejustmeb/VUCE/raw/VUCE/vlzx_engine.c" class="btn" download>⬇ Source (.c)</a>
   </p>
   <p style="text-align:center;font-size:0.75em;color:var(--amber)">Free for personal use · 100MB limit · Basic backends · <a href="LICENSE.md" style="color:var(--green)">License</a></p>
 </section>
