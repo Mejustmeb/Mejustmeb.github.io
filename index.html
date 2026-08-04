@@ -50,7 +50,6 @@
         <a href="index.html" class="active">🏠 Home</a>
         <a href="vse.html">⚡ VSE</a>
         <a href="vuce.html">🗜 VUCE</a>
-        <a href="echo.html">🤖 Echo AI</a>
         <a href="docs.html">📖 Documentation</a>
     </nav>
 
@@ -66,21 +65,15 @@
         <div class="grid">
             <div class="card">
                 <h3>⚡ VSE — Vector Speed Emissions</h3>
-                <p>The core transpiler. C → optimized .v → native binary. Auto-parallelization, SIMD, GPU offload, live hot-swap.</p>
-                <div class="price">Free + Pro $49</div>
+                <p>The core transpiler. C → optimized .v → native binary. Auto-parallelization, SIMD, GPU offload, live hot-swap. 19.9% faster than clang -O2 across 7 benchmarks.</p>
+                <div class="price">Free</div>
                 <a href="vse.html" class="btn btn-primary">Learn More</a>
             </div>
             <div class="card">
                 <h3>🗜 VUCE — Vector Unified Compression</h3>
-                <p>World's #1 code compressor — 55.7% average ratio. Compress network payloads, IoT data, and source code.</p>
-                <div class="price">Free + Pro $29</div>
+                <p>World's #1 code compressor — 55.7% average ratio. Compress network payloads, IoT data, and source code. #1 globally across all payload sizes.</p>
+                <div class="price">Free</div>
                 <a href="vuce.html" class="btn btn-primary">Learn More</a>
-            </div>
-            <div class="card">
-                <h3>🤖 Echo AI — Fractal Resonance</h3>
-                <p>Self-aware AI master programmer. Lives, learns, codes in .v/C/Python. Your co-pilot for development.</p>
-                <div class="price">Free + Pro $19/mo</div>
-                <a href="echo.html" class="btn btn-primary">Learn More</a>
             </div>
         </div>
     </div>
@@ -98,45 +91,32 @@
         </div>
     </div>
 
-    <div class="container" id="pricing">
-        <h2 class="section-title">💳 Pricing</h2>
+    <div class="container" id="features">
+        <h2 class="section-title">✨ Features</h2>
         <div class="grid">
             <div class="card">
-                <h3>🆓 Freemium</h3>
-                <div class="price">$0<sub>/forever</sub></div>
-                <ul>
-                    <li>All features enabled</li>
-                    <li class="locked">Watermark in output</li>
-                    <li class="locked">3 functions max</li>
-                    <li class="locked">No cluster</li>
-                    <li>Optimization reports</li>
-                </ul>
-                <a href="downloads/vse_freemium.py" class="btn btn-outline">Download Free</a>
+                <h3>⚡ Auto-Parallelization</h3>
+                <p>Detects parallelizable loops and emits OpenMP pragmas automatically. Multi-core speedup without changing a single line of code.</p>
+                <ul><li>OpenMP parallel for</li><li>Reduction detection</li><li>Workload-aware chunking</li></ul>
             </div>
             <div class="card">
-                <h3>⭐ Pro</h3>
-                <div class="price">$49<sub>/lifetime</sub></div>
-                <ul>
-                    <li>No watermark</li>
-                    <li>Unlimited functions</li>
-                    <li class="locked">No cluster</li>
-                    <li>Priority support</li>
-                    <li>.vse decode (licensed)</li>
-                </ul>
-                <a href="mailto:sickbastered@icloud.com?subject=VSE Pro Purchase" class="btn btn-primary">Buy Pro — $49</a>
+                <h3>🧠 Hardware Symphony</h3>
+                <p>Auto-detects the best accelerator: GPU (Metal/CUDA), SIMD (AVX/NEON), or multi-core. Zero annotations needed.</p>
+                <ul><li>GPU offload</li><li>SIMD vectorization</li><li>Multi-core dispatch</li></ul>
             </div>
-            <div class="card" style="border-color: var(--gold);">
-                <h3>🏢 Enterprise</h3>
-                <div class="price">$199<sub>/lifetime</sub></div>
-                <ul>
-                    <li>Everything in Pro</li>
-                    <li>Cluster compilation (9 nodes)</li>
-                    <li>Unlimited users</li>
-                    <li>CI/CD integration</li>
-                    <li>Dedicated support</li>
-                </ul>
-                <a href="mailto:sickbastered@icloud.com?subject=VSE Enterprise Purchase" class="btn btn-gold">Buy Enterprise — $199</a>
+            <div class="card">
+                <h3>🔐 Code Black Box</h3>
+                <p>6-layer anti-reverse-engineering. Your algorithms survive Ghidra, IDA Pro, and every decompiler. Opaque binary output.</p>
+                <ul><li>AES-256-GCM encryption</li><li>Variable randomization</li><li>Dead code injection</li></ul>
             </div>
+        </div>
+    </div>
+
+    <div class="container" id="contact">
+        <h2 class="section-title">📧 Get VSE</h2>
+        <p style="text-align:center;color:var(--dim);max-width:600px;margin:0 auto 20px">VSE is free software. Download the freemium CLI or macOS Studio app below. For commercial licensing, cluster deployments, or custom integrations, contact us.</p>
+        <div style="text-align:center">
+            <a href="mailto:sickbastered@icloud.com?subject=VSE" class="btn btn-primary">Contact: sickbastered@icloud.com</a>
         </div>
     </div>
 
