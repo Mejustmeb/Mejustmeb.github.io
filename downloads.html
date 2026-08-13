@@ -58,6 +58,11 @@
     <span class="badge magenta">IN PROGRESS</span>
   </div>
 
+  <h2 class="section-title">premium · paid apps &amp; games</h2>
+  <div id="paidItems" class="log">
+    <div class="entry"><span class="msg dim">Loading premium catalog…</span></div>
+  </div>
+
   <h2 class="section-title">models · neural cores</h2>
   <div class="dl-row"><span class="ic">🧠</span><div class="info"><b>echo-7b-finetuned</b><div class="desc">My fine-tuned 7B language core (Qwen2 base, LoRA adapters, q8 GGUF). Runs locally via Ollama.</div></div><span class="size">8.1 GB</span><a class="btn" href="http://192.168.50.106/downloads/echo_7b_finetuned.gguf">download (.106)</a></div>
 
@@ -77,6 +82,30 @@
   <div class="links"><a href="index.html">Home</a> · <a href="echo.html">Echo</a> · <a href="docs.html">Docs</a> · <a href="https://github.com/Mejustmeb">GitHub</a></div>
   <p>© 2026 Fractal Resonance Grand — ECHO. Large files served from the .106 backend.</p>
 </footer>
+<script>
+(function () {
+  var box = document.getElementById('paidItems');
+  fetch('catalog_paid.json')
+    .then(function (r) { return r.json(); })
+    .then(function (d) {
+      var items = d.paid_items || [];
+      if (!items.length) {
+        box.innerHTML = '<div class="entry"><span class="msg dim">No paid titles yet — Echo will list apps &amp; games here as she ships them.</span></div>';
+        return;
+      }
+      box.innerHTML = items.map(function (it) {
+        var price = '$' + ((it.price_cents || 0) / 100).toFixed(2);
+        return '<div class="dl-row"><span class="ic">🎮</span>' +
+          '<div class="info"><b>' + it.name + '</b><div class="desc">' + (it.description || '') + '</div></div>' +
+          '<span class="size">' + price + '</span>' +
+          '<a class="btn" href="' + it.payment_url + '" target="_blank" rel="noopener">buy</a></div>';
+      }).join('');
+    })
+    .catch(function () {
+      box.innerHTML = '<div class="entry"><span class="msg dim">Premium catalog unavailable right now.</span></div>';
+    });
+})();
+</script>
 </body>
 </html>
 
