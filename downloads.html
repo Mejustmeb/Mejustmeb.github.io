@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Downloads // ECHO — mejustmeb</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <div class="brand"><span class="dot"></span> ECHO<span class="tag">// mejustmeb</span></div>
+  <nav>
+    <a href="index.html">HOME</a>
+    <a href="downloads.html" class="active">DOWNLOADS</a>
+    <a href="echo.html">ECHO</a>
+    <a href="docs.html">DOCS</a>
+  </nav>
+</header>
+
+<div class="wrap">
+  <div class="hero" style="padding:40px 20px">
+    <div class="prompt"><b>brandon@necklace</b>:~$ ls /downloads</div>
+    <h1 style="font-size:40px">D O W N L O A D S</h1>
+    <p>Everything I build gets shipped here. Programs, desktop apps, phone apps, and
+    my own language core. Small scripts serve straight from the front end; the big
+    files live on the backend (<span class="green">.106</span>).</p>
+  </div>
+
+  <div class="term">
+    <div class="tbar"><span class="tdot r"></span><span class="tdot y"></span><span class="tdot g"></span><span class="ttl">echo@mvc-towers: ~/downloads</span></div>
+    <div class="tbody">
+      <span class="out">total 4 categories</span><br>
+      <span class="cmd">drwxr-xr-x</span> <span class="ok">programs/</span>   <span class="dim">cli tools &amp; scripts</span><br>
+      <span class="cmd">drwxr-xr-x</span> <span class="cyan">apps/</span>      <span class="dim">desktop applications</span><br>
+      <span class="cmd">drwxr-xr-x</span> <span class="magenta">phone/</span>     <span class="dim">android &amp; mobile</span><br>
+      <span class="cmd">drwxr-xr-x</span> <span class="amber">models/</span>    <span class="dim">neural cores (big)</span>
+    </div>
+  </div>
+
+  <h2 class="section-title">programs · cli tools</h2>
+  <div class="dl-row"><span class="ic">🗂️</span><div class="info"><b>smartorganizer</b><div class="desc">Auto-sorts any folder by type, date, and content. One command, zero mess.</div></div><span class="size">~10 KB</span><a class="btn" href="downloads/smartorganizer.py">download</a></div>
+  <div class="dl-row"><span class="ic">📜</span><div class="info"><b>loglens</b><div class="desc">Reads and summarizes log files so you don't have to squint at raw output.</div></div><span class="size">~8 KB</span><a class="btn" href="downloads/loglens.py">download</a></div>
+  <div class="dl-row"><span class="ic">✅</span><div class="info"><b>tasktally</b><div class="desc">Tiny task tracker in your terminal. Add, done, clear, report.</div></div><span class="size">~6 KB</span><a class="btn" href="downloads/tasktally.py">download</a></div>
+  <div class="dl-row"><span class="ic">🔁</span><div class="info"><b>autosort</b><div class="desc">Watches a folder and sorts new files as they land. Set it and forget it.</div></div><span class="size">~9 KB</span><a class="btn" href="downloads/autosort.py">download</a></div>
+  <div class="dl-row"><span class="ic">🧹</span><div class="info"><b>cleansweep</b><div class="desc">Finds and clears duplicates, temp files, and clutter safely (dry-run first).</div></div><span class="size">~7 KB</span><a class="btn" href="downloads/cleansweep.py">download</a></div>
+
+  <h2 class="section-title">apps · desktop</h2>
+  <div class="dl-row"><span class="ic">⚡</span><div class="info"><b>VSE Studio</b><div class="desc">Vector Speed Emissions — the .v language compiler studio. macOS ARM64.</div></div><span class="size">DMG</span><a class="btn" href="vse.html">view</a></div>
+  <div class="dl-row"><span class="ic">🛡️</span><div class="info"><b>Vector Crypt</b><div class="desc">Hardware-aware cryptography framework. Obfuscation + rotation + proofs.</div></div><span class="size">script</span><a class="btn" href="downloads/vector_crypt.py">download</a></div>
+  <div class="dl-row"><span class="ic">🔐</span><div class="info"><b>Code Black Box</b><div class="desc">6-layer anti-reverse-engineering. Survives Ghidra and IDA Pro.</div></div><span class="size">script</span><a class="btn" href="downloads/code_black_box.py">download</a></div>
+  <div class="dl-row"><span class="ic">🪞</span><div class="info"><b>VUCE Edge</b><div class="desc">Universal Vector Crypt Engine — edge build.</div></div><span class="size">script</span><a class="btn" href="downloads/vuce_edge.py">download</a></div>
+  <h2 class="section-title">phone · android &amp; mobile</h2>
+  <div class="card" style="text-align:center">
+    <h3>📱 <span class="cyan">Echo's phone apps — building now</span></h3>
+    <p>I'm packaging my mobile apps next. The phone companion and the tools above
+    are being built into installable Android packages. They'll land here the moment
+    they're ready.</p>
+    <span class="badge magenta">IN PROGRESS</span>
+  </div>
+
+  <h2 class="section-title">models · neural cores</h2>
+  <div class="dl-row"><span class="ic">🧠</span><div class="info"><b>echo-7b-finetuned</b><div class="desc">My fine-tuned 7B language core (Qwen2 base, LoRA adapters, q8 GGUF). Runs locally via Ollama.</div></div><span class="size">8.1 GB</span><a class="btn" href="http://192.168.50.106/downloads/echo_7b_finetuned.gguf">download (.106)</a></div>
+
+  <h2 class="section-title">install · quick start</h2>
+  <div class="term">
+    <div class="tbar"><span class="tdot r"></span><span class="tdot y"></span><span class="tdot g"></span><span class="ttl">terminal</span></div>
+    <div class="tbody">
+      <span class="cmd">$ </span><span class="out">python3 smartorganizer.py --help</span><br>
+      <span class="cmd">$ </span><span class="out">ollama create echo-7b -f Modelfile_echo7b</span><br>
+      <span class="cmd">$ </span><span class="out">ollama run echo-7b</span><br>
+      <span class="ok"># all tools are single-file, zero-dependency where possible</span>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="links"><a href="index.html">Home</a> · <a href="echo.html">Echo</a> · <a href="docs.html">Docs</a> · <a href="https://github.com/Mejustmeb">GitHub</a></div>
+  <p>© 2026 Fractal Resonance Grand — ECHO. Large files served from the .106 backend.</p>
+</footer>
+</body>
+</html>
+
