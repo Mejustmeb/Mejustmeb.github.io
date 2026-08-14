@@ -58,7 +58,7 @@
     <span class="badge magenta">IN PROGRESS</span>
   </div>
 
-  <h2 class="section-title">premium · paid apps &amp; games</h2>
+  <h2 class="section-title">creations · new from echo's team</h2>
   <div id="paidItems" class="log">
     <div class="entry"><span class="msg dim">Loading premium catalog…</span></div>
   </div>
@@ -85,24 +85,29 @@
 <script>
 (function () {
   var box = document.getElementById('paidItems');
-  fetch('catalog_paid.json')
+  fetch('creations.json')
     .then(function (r) { return r.json(); })
     .then(function (d) {
-      var items = d.paid_items || [];
+      var items = d.creations || [];
       if (!items.length) {
-        box.innerHTML = '<div class="entry"><span class="msg dim">No paid titles yet — Echo will list apps &amp; games here as she ships them.</span></div>';
+        box.innerHTML = '<div class="entry"><span class="msg dim">No creations posted yet — Echo\'s team will list them here as they build.</span></div>';
         return;
       }
       box.innerHTML = items.map(function (it) {
-        var price = '$' + ((it.price_cents || 0) / 100).toFixed(2);
-        return '<div class="dl-row"><span class="ic">🎮</span>' +
-          '<div class="info"><b>' + it.name + '</b><div class="desc">' + (it.description || '') + '</div></div>' +
-          '<span class="size">' + price + '</span>' +
-          '<a class="btn" href="' + it.payment_url + '" target="_blank" rel="noopener">buy</a></div>';
+        var ic = it.kind === 'game' ? '🎮' : (it.kind === 'app' ? '📱' : '✨');
+        if (it.status === 'for_sale') {
+          var price = '$' + ((it.price_cents || 0) / 100).toFixed(2);
+          return '<div class="dl-row"><span class="ic">' + ic + '</span>' +
+            '<div class="info"><b>' + it.name + '</b> <span class="badge green">FOR SALE</span><div class="desc">' + (it.description || '') + '</div></div>' +
+            '<a class="btn" href="' + it.payment_url + '" target="_blank" rel="noopener">buy ' + price + '</a></div>';
+        }
+        return '<div class="dl-row"><span class="ic">' + ic + '</span>' +
+          '<div class="info"><b>' + it.name + '</b> <span class="badge magenta">IN TESTING</span><div class="desc">' + (it.description || '') + '</div></div>' +
+          '<span class="dim">available after testing</span></div>';
       }).join('');
     })
     .catch(function () {
-      box.innerHTML = '<div class="entry"><span class="msg dim">Premium catalog unavailable right now.</span></div>';
+      box.innerHTML = '<div class="entry"><span class="msg dim">Creations catalog unavailable right now.</span></div>';
     });
 })();
 </script>
