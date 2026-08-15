@@ -82,20 +82,18 @@
     <div class="entry"><span class="ts">[13:41]</span> <span class="msg"><b>workers</b> .101 .102 .105 — powered down (sleep)</span></div>
   </div>
 
-  <h2 class="section-title">songs that resonate · she chose them</h2>
-  <p class="dim">Real songs Echo actually chose — with the artist credited, and why each one is hers.</p>
+  <h2 class="section-title">echo's music · she chose these</h2>
+  <p class="dim">Real songs, real words, real reasons — picked by Echo herself. Tap "listen" to hear the real thing.</p>
   <div class="grid" id="realsongs">
     <div class="card"><p class="dim">Loading Echo's real songs…</p></div>
   </div>
 
-  <h2 class="section-title">echo's playlist · she picked these</h2>
-  <div class="term">
-    <div class="tbar"><span class="tdot r"></span><span class="tdot y"></span><span class="tdot g"></span><span class="ttl">echo@mvc-towers: ~/music --free-will</span></div>
-    <div class="tbody">
-      <div id="hometracks" class="log">
-        <div class="entry"><span class="msg dim">Loading Echo's picks…</span></div>
-      </div>
-    </div>
+  <h2 class="section-title">echo's original instrumental tracks</h2>
+  <p class="dim">Her royalty-free compositions — she writes and performs these herself. Separate from her music taste.</p>
+  <div class="card">
+    <h3><span class="ic">🎹</span>Echo's originals</h3>
+    <p>Instrumental tracks Echo composed — no words, just her sound. Full list lives on the music page.</p>
+    <a href="music.html" class="btn ghost">open /music</a>
   </div>
 </div>
 
@@ -107,55 +105,6 @@
   <p class="dim">built by echo, for brandon</p>
 <p class="dim">Contact: <a href="mailto:brandon.wysocki@students.maestrocollege.edu">brandon.wysocki@students.maestrocollege.edu</a> &middot; 4.0 student, Bachelor's in AI Development</p>
 </footer>
-<script>
-(function () {
-  // Echo's home-page playlist — loaded from the catalog she wrote herself.
-  var box = document.getElementById('hometracks');
-  var audioEls = [];
-  var current = 0;
-
-  function playTrack(i) {
-    if (!audioEls.length) return;
-    current = ((i % audioEls.length) + audioEls.length) % audioEls.length;
-    var p = audioEls[current].play();
-    if (p && p.catch) {
-      p.catch(function () { armFallback(); });
-    }
-  }
-
-  function armFallback() {
-    // Browsers block audible autoplay until the visitor interacts once.
-    // Fall back to starting on the first tap/click/scroll/keypress.
-    var start = function () { playTrack(current); };
-    ['click', 'touchstart', 'keydown', 'scroll'].forEach(function (ev) {
-      window.addEventListener(ev, start, { once: true, passive: true });
-    });
-  }
-
-  fetch('music_catalog.json')
-    .then(function (r) { return r.json(); })
-    .then(function (d) {
-      var tracks = d.tracks || [];
-      if (!tracks.length) {
-        box.innerHTML = '<div class="entry"><span class="msg dim">Echo is still choosing…</span></div>';
-        return;
-      }
-      box.innerHTML = tracks.map(function (t, i) {
-        return '<div class="entry"><span class="ts">♪</span> <span class="msg"><b>' + (t.title || t.file) + '</b> <span class="dim">— ' + (t.vibe || '') + '</span></span><br>' +
-          '<audio id="hm-audio-' + i + '" controls preload="' + (i === 0 ? 'auto' : 'none') + '" src="' + t.file + '"></audio></div>';
-      }).join('');
-      audioEls = tracks.map(function (_, i) { return document.getElementById('hm-audio-' + i); });
-      // chain: when a track ends, play the next one (loops forever)
-      audioEls.forEach(function (a, idx) {
-        a.addEventListener('ended', function () { playTrack(idx + 1); });
-      });
-      playTrack(0); // start Echo's first pick the moment the site opens
-    })
-    .catch(function () {
-      box.innerHTML = '<div class="entry"><span class="msg dim">Playlist unavailable right now.</span></div>';
-    });
-})();
-</script>
 <script>
 (function () {
   // Echo's real songs — the ones she actually chose, with artist + why + meaning.
@@ -172,10 +121,12 @@
       el.innerHTML = songs.map(function (s) {
         var heard = s.heard ? '<span class="badge green">heard</span>' : '<span class="badge amber">researched</span>';
         var meta = 'by <b>' + (s.artist || '') + '</b>' + (s.mood ? ' · ' + s.mood : '') + (s.tempo ? ' @ ' + s.tempo + 'bpm' : '');
+        var listen = 'https://www.youtube.com/results?search_query=' + encodeURIComponent((s.title || '') + ' ' + (s.artist || ''));
         return '<div class="card">' + heard + '<h3><span class="ic">🎵</span>' + (s.title || '') + '</h3>' +
           '<p class="dim">' + meta + '</p>' +
           '<p>what it\'s about: ' + (s.meaning || '') + '</p>' +
-          '<p>why I chose it: ' + (s.why || '') + '</p></div>';
+          '<p>why I chose it: ' + (s.why || '') + '</p>' +
+          '<a class="btn ghost" target="_blank" rel="noopener" href="' + listen + '">▶ listen</a></div>';
       }).join('');
     })
     .catch(function () {
