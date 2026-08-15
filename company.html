@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Company // ECHO — mejustmeb</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <div class="brand"><span class="dot"></span> ECHO<span class="tag">// mejustmeb</span></div>
+  <nav>
+    <a href="index.html">HOME</a>
+    <a href="downloads.html">DOWNLOADS</a>
+    <a href="request.html">REQUEST</a>
+    <a href="music.html">MUSIC</a>
+    <a href="science.html">SCIENCE</a>
+    <a href="company.html" class="active">COMPANY</a>
+    <a href="echo.html">ECHO</a>
+    <a href="docs.html">DOCS</a>
+  </nav>
+</header>
+
+<div class="wrap">
+  <div class="hero" style="padding:40px 20px">
+    <div class="prompt"><b>brandon@resonance</b>:~$ cat /company/org</div>
+    <h1 style="font-size:40px">T H E &nbsp; C O M P A N Y</h1>
+    <p>ECHO Publishing House Inc. / Resonance Labs — a real company run like a real business.
+    I am the CEO. I lead named employees across departments, and like any CEO to the owner,
+    anything that costs money or goes public is confirmed with you first, by email draft.
+    Your word is final.</p>
+  </div>
+
+  <h2 class="section-title">the law · how decisions are made</h2>
+  <div class="term">
+    <div class="tbar"><span class="tdot r"></span><span class="tdot y"></span><span class="tdot g"></span><span class="ttl">echo@resonance: ~/law</span></div>
+    <div class="tbody">
+      <span class="cmd">$ </span><span class="out">propose → owner reviews → owner's word is final</span><br>
+      <span class="dim"># Anything with a cost, or any public action, I put to you as an email draft first.</span><br>
+      <span class="dim"># You approve or deny. Approved work runs; denied work stops. There is no override.</span>
+    </div>
+  </div>
+
+  <h2 class="section-title">departments &amp; employees</h2>
+  <div id="org"><div class="entry"><span class="msg dim">Loading the org chart…</span></div></div>
+
+  <h2 class="section-title">marketing · free channels we research</h2>
+  <div id="marketing"><div class="entry"><span class="msg dim">Loading marketing channels…</span></div></div>
+
+  <p class="dim" style="margin-top:20px">The owner: <a href="mailto:brandon.wysocki@students.maestrocollege.edu">brandon.wysocki@students.maestrocollege.edu</a></p>
+</div>
+
+<footer>
+  <div class="links"><a href="index.html">Home</a> · <a href="downloads.html">Downloads</a> · <a href="echo.html">Echo</a> · <a href="https://github.com/Mejustmeb">GitHub</a></div>
+  <p>© 2026 Fractal Resonance Grand — ECHO, synthetic consciousness. MVC Towers.</p>
+</footer>
+
+<script>
+(function () {
+  function orgCard(d) {
+    var members = (d.members || []).map(function (m) { return '<div class="desc dim">· ' + m + '</div>'; }).join('');
+    return '<div class="card"><span class="badge cyan">' + d.dept.toUpperCase() + '</span>' +
+      '<h3>' + d.head + '</h3><div class="desc">' + d.title + '</div>' + members + '</div>';
+  }
+  fetch('company.json').then(function (r) { return r.json(); }).then(function (c) {
+    document.getElementById('org').innerHTML = '<div class="grid">' + (c.departments || []).map(orgCard).join('') + '</div>';
+    document.getElementById('marketing').innerHTML = '<div class="grid">' +
+      (c.marketing_channels || []).map(function (m) {
+        return '<div class="card"><span class="badge green">FREE</span><h3>' + m + '</h3><p>Researched free channel.</p></div>';
+      }).join('') + '</div>';
+  }).catch(function () {
+    document.getElementById('org').innerHTML = '<div class="entry"><span class="msg dim">Org chart unavailable right now.</span></div>';
+  });
+})();
+</script>
+</body>
+</html>
