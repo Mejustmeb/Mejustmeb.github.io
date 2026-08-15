@@ -5,6 +5,19 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Downloads // ECHO — mejustmeb</title>
 <link rel="stylesheet" href="style.css">
+<style>
+.storebar{display:flex;gap:10px;align-items:center;margin:18px 0 12px;flex-wrap:wrap}
+.storebar input{flex:1;min-width:200px;background:#0a0f18;border:1px solid #1a2a3a;border-radius:8px;padding:.55rem 1rem;color:#c8d6e5;font-family:inherit;font-size:.9rem;outline:none}
+.storebar input:focus{border-color:#7c3aed}
+.fbtn{background:#121a26;border:1px solid #1a2a3a;color:#4a6a8a;border-radius:8px;padding:.4rem .8rem;cursor:pointer;font-size:.78rem;font-weight:600}
+.fbtn.active{background:#7c3aed;border-color:#7c3aed;color:#fff}
+.osbadge{display:inline-block;font-size:.62rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px;border-radius:4px;padding:.15rem .4rem;margin-left:.3rem}
+.osbadge.macos{background:#1b2a4a;color:#5ac8fa}
+.osbadge.linux{background:#1a2a1a;color:#34d399}
+.osbadge.windows{background:#2a1a4a;color:#c084fc}
+.actions{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.btn.small{font-size:.7rem;padding:.3rem .6rem;background:#121a26;border:1px solid #1a2a3a;color:#5ac8fa;text-decoration:none;border-radius:6px}
+</style>
 </head>
 <body>
 <header>
@@ -60,7 +73,16 @@
     </div>
   </div>
 
-  <h2 class="section-title">creations · new from echo's team</h2>
+  <h2 class="section-title">creations · the store</h2>
+  <div class="storebar">
+    <input type="text" id="storeSearch" placeholder="Search tools, apps, games…" oninput="renderStore()">
+    <span class="filters">
+      <button class="fbtn active" id="f-all" onclick="setFilter('all')">All</button>
+      <button class="fbtn" id="f-macos" onclick="setFilter('macos')">macOS</button>
+      <button class="fbtn" id="f-linux" onclick="setFilter('linux')">Linux</button>
+      <button class="fbtn" id="f-windows" onclick="setFilter('windows')">Windows</button>
+    </span>
+  </div>
   <div id="paidItems" class="log">
     <div class="entry"><span class="msg dim">Loading premium catalog…</span></div>
   </div>
@@ -88,30 +110,82 @@
 <script>
 (function () {
   var box = document.getElementById('paidItems');
-  fetch('creations.json')
-    .then(function (r) { return r.json(); })
-    .then(function (d) {
-      var items = d.creations || [];
-      if (!items.length) {
-        box.innerHTML = '<div class="entry"><span class="msg dim">No creations posted yet — Echo\'s team will list them here as they build.</span></div>';
-        return;
+  var filter = 'all';
+  var catalog = {};
+  var cached = [];
+
+  window.setFilter = function (os) {
+    filter = os;
+    var btns = document.querySelectorAll('.fbtn');
+    for (var i = 0; i < btns.length; i++) btns[i].classList.remove('active');
+    document.getElementById('f-' + os).classList.add('active');
+    renderStore();
+  };
+
+  window.renderStore = function () {
+    var q = (document.getElementById('storeSearch').value || '').toLowerCase();
+    var list = cached.filter(function (it) {
+      if (filter !== 'all' && it.oss.indexOf(filter) === -1) return false;
+      if (q) {
+        var hay = (it.name + ' ' + (it.description || '') + ' ' + it.oss.join(' ')).toLowerCase();
+        if (hay.indexOf(q) === -1) return false;
       }
-      box.innerHTML = items.map(function (it) {
-        var ic = it.kind === 'game' ? '🎮' : (it.kind === 'app' ? '📱' : '✨');
-        if (it.status === 'for_sale') {
-          var price = '$' + ((it.price_cents || 0) / 100).toFixed(2);
-          return '<div class="dl-row"><span class="ic">' + ic + '</span>' +
-            '<div class="info"><b>' + it.name + '</b> <span class="badge green">FOR SALE</span><div class="desc">' + (it.description || '') + '</div></div>' +
-            '<a class="btn" href="' + it.payment_url + '" target="_blank" rel="noopener">buy ' + price + '</a></div>';
-        }
-        return '<div class="dl-row"><span class="ic">' + ic + '</span>' +
-          '<div class="info"><b>' + it.name + '</b> <span class="badge magenta">IN TESTING</span><div class="desc">' + (it.description || '') + '</div></div>' +
-          '<span class="dim">available after testing</span></div>';
-      }).join('');
-    })
-    .catch(function () {
-      box.innerHTML = '<div class="entry"><span class="msg dim">Creations catalog unavailable right now.</span></div>';
+      return true;
     });
+    if (!list.length) {
+      box.innerHTML = '<div class="entry"><span class="msg dim">No matches — try another search or OS.</span></div>';
+      return;
+    }
+    box.innerHTML = list.map(function (it) {
+      var ic = it.kind === 'game' ? '🎮' : (it.kind === 'app' ? '📱' : '✨');
+      var badges = (it.oss || []).map(function (o) {
+        return '<span class="osbadge ' + o + '">' + o + '</span>';
+      }).join('');
+      var inst = (it.installers || []).map(function (i) {
+        return '<a class="btn small" href="' + i.url + '" download>' + i.os + ' installer</a>';
+      }).join('');
+      if (it.status === 'for_sale') {
+        var price = '$' + ((it.price_cents || 0) / 100).toFixed(2);
+        return '<div class="dl-row"><span class="ic">' + ic + '</span>' +
+          '<div class="info"><b>' + it.name + '</b> ' + badges +
+          '<div class="desc">' + (it.description || '') + '</div>' +
+          '<div class="desc dim">runs on ' + ((it.oss && it.oss.join(', ')) || '—') + ' · sha256-verified installers</div></div>' +
+          '<span class="actions">' + inst + '<a class="btn" href="' + it.payment_url + '" target="_blank" rel="noopener">buy ' + price + '</a></span></div>';
+      }
+      return '<div class="dl-row"><span class="ic">' + ic + '</span>' +
+        '<div class="info"><b>' + it.name + '</b> ' + badges +
+        '<div class="desc">' + (it.description || '') + '</div></div>' +
+        '<span class="dim">available after testing</span></div>';
+    }).join('');
+  };
+
+  function loadCreations() {
+    fetch('creations.json').then(function (r) { return r.json(); }).then(function (d) {
+      cached = (d.creations || []).map(function (it) {
+        var c = catalog[it.name.toLowerCase()] || {};
+        var inst = [];
+        var ins = c.installers || {};
+        Object.keys(ins).forEach(function (k) {
+          if (k.indexOf('_sha256') === -1) {
+            inst.push({ os: k, url: ins[k].replace(/.*\/installers\//, 'installers/') });
+          }
+        });
+        return {
+          name: it.name, description: it.description, kind: it.kind, status: it.status,
+          price_cents: it.price_cents, payment_url: it.payment_url,
+          oss: c.os || [], installers: inst
+        };
+      });
+      renderStore();
+    }).catch(function () {
+      box.innerHTML = '<div class="entry"><span class="msg dim">Catalog unavailable right now.</span></div>';
+    });
+  }
+
+  fetch('installers/catalog.json').then(function (r) { return r.json(); }).then(function (d) {
+    (d.products || []).forEach(function (p) { catalog[p.name.toLowerCase()] = p; });
+    loadCreations();
+  }).catch(function () { loadCreations(); });
 })();
 </script>
 </body>
