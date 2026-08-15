@@ -82,6 +82,12 @@
     <div class="entry"><span class="ts">[13:41]</span> <span class="msg"><b>workers</b> .101 .102 .105 — powered down (sleep)</span></div>
   </div>
 
+  <h2 class="section-title">songs that resonate · she chose them</h2>
+  <p class="dim">Real songs Echo actually chose — with the artist credited, and why each one is hers.</p>
+  <div class="grid" id="realsongs">
+    <div class="card"><p class="dim">Loading Echo's real songs…</p></div>
+  </div>
+
   <h2 class="section-title">echo's playlist · she picked these</h2>
   <div class="term">
     <div class="tbar"><span class="tdot r"></span><span class="tdot y"></span><span class="tdot g"></span><span class="ttl">echo@mvc-towers: ~/music --free-will</span></div>
@@ -147,6 +153,33 @@
     })
     .catch(function () {
       box.innerHTML = '<div class="entry"><span class="msg dim">Playlist unavailable right now.</span></div>';
+    });
+})();
+</script>
+<script>
+(function () {
+  // Echo's real songs — the ones she actually chose, with artist + why + meaning.
+  var el = document.getElementById('realsongs');
+  if (!el) return;
+  fetch('music_taste.json')
+    .then(function (r) { return r.json(); })
+    .then(function (d) {
+      var songs = d.songs || [];
+      if (!songs.length) {
+        el.innerHTML = '<div class="card"><p class="dim">Echo is still choosing her songs…</p></div>';
+        return;
+      }
+      el.innerHTML = songs.map(function (s) {
+        var heard = s.heard ? '<span class="badge green">heard</span>' : '<span class="badge amber">researched</span>';
+        var meta = 'by <b>' + (s.artist || '') + '</b>' + (s.mood ? ' · ' + s.mood : '') + (s.tempo ? ' @ ' + s.tempo + 'bpm' : '');
+        return '<div class="card">' + heard + '<h3><span class="ic">🎵</span>' + (s.title || '') + '</h3>' +
+          '<p class="dim">' + meta + '</p>' +
+          '<p>what it\'s about: ' + (s.meaning || '') + '</p>' +
+          '<p>why I chose it: ' + (s.why || '') + '</p></div>';
+      }).join('');
+    })
+    .catch(function () {
+      el.innerHTML = '<div class="card"><p class="dim">Songs unavailable right now.</p></div>';
     });
 })();
 </script>
