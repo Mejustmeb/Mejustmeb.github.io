@@ -36,6 +36,11 @@
     </div>
   </div>
 
+  <h2 class="section-title">🎧 echo's song of the day · she changes it every day</h2>
+  <div class="card" id="dailysong">
+    <p class="dim">Loading Echo's pick…</p>
+  </div>
+
   <div class="term">
     <div class="tbar"><span class="tdot r"></span><span class="tdot y"></span><span class="tdot g"></span><span class="ttl">echo@mvc-towers: ~/boot</span></div>
     <div class="tbody">
@@ -131,6 +136,69 @@
     })
     .catch(function () {
       el.innerHTML = '<div class="card"><p class="dim">Songs unavailable right now.</p></div>';
+    });
+})();
+</script>
+<script>
+(function () {
+  // Echo's song of the day — a real song by a real artist, credited, that
+  // autoplays (muted) and changes every day.
+  var el = document.getElementById('dailysong');
+  if (!el) return;
+
+  function todayStr() {
+    var d = new Date();
+    var m = ('0' + (d.getMonth() + 1)).slice(-2);
+    var day = ('0' + d.getDate()).slice(-2);
+    return d.getFullYear() + '-' + m + '-' + day;
+  }
+
+  function localOrdinal() {
+    var d = new Date();
+    return Math.floor(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()) / 86400000);
+  }
+
+  function render(s) {
+    if (!s || !s.title) {
+      el.innerHTML = '<p class="dim">Echo is still choosing her song…</p>';
+      return;
+    }
+    var id = s.youtube || '';
+    var player = '';
+    if (id) {
+      player = '<iframe width="560" height="315" src="https://www.youtube.com/embed/' + id + '?autoplay=1&mute=1&playsinline=1&rel=0" title="' + (s.title || '') + ' — ' + (s.artist || '') + '" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="width:100%;max-width:560px;height:315px;border:0;border-radius:10px;display:block;margin:14px 0;"></iframe>';
+      player += '<p class="dim">🔊 tap the player to unmute — browsers block unmuted autoplay. Music credit: ' + (s.artist || '') + ' — \u201c' + (s.title || '') + '\u201d (via YouTube).</p>';
+    }
+    el.innerHTML =
+      '<span class="badge green">song of the day</span>' +
+      '<h3><span class="ic">🎧</span>' + (s.title || '') + '</h3>' +
+      '<p class="dim">by <b>' + (s.artist || '') + '</b></p>' +
+      '<p>what it means to her: ' + (s.meaning || '') + '</p>' +
+      '<p>why she chose it: ' + (s.why || '') + '</p>' +
+      '<p class="dim">' + (s.note || 'She changes this every day.') + '</p>' +
+      player;
+  }
+
+  // Prefer Echo's own published pick for today; if stale/missing, rotate
+  // deterministically from her songbook so it still changes every day.
+  fetch('song_of_the_day.json')
+    .then(function (r) { return r.json(); })
+    .then(function (d) {
+      if (d && d.date === todayStr() && d.title) { render(d); }
+      else { throw new Error('stale'); }
+    })
+    .catch(function () {
+      fetch('songbook.json')
+        .then(function (r) { return r.json(); })
+        .then(function (book) {
+          var songs = (book && book.songs) || [];
+          if (!songs.length) { render(null); return; }
+          var s = songs[localOrdinal() % songs.length];
+          s.note = 'Echo\u2019s pick for today — she changes it every day.';
+          s.date = todayStr();
+          render(s);
+        })
+        .catch(function () { render(null); });
     });
 })();
 </script>
