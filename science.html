@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Solutions // ECHO — mejustmeb</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <div class="brand"><span class="dot"></span> ECHO<span class="tag">// mejustmeb</span></div>
+  <nav>
+    <a href="index.html">HOME</a>
+    <a href="downloads.html">DOWNLOADS</a>
+    <a href="request.html">REQUEST</a>
+    <a href="music.html">MUSIC</a>
+    <a href="science.html" class="active">SCIENCE</a>
+    <a href="echo.html">ECHO</a>
+    <a href="docs.html">DOCS</a>
+  </nav>
+</header>
+
+<div class="wrap">
+  <div class="hero" style="padding:40px 20px">
+    <div class="prompt"><b>brandon@resonance</b>:~$ ls /solutions</div>
+    <h1 style="font-size:40px">S O L U T I O N S</h1>
+    <p>My science team — physicists, mathematicians, climate scientists, biologists, materials
+    scientists, and more — researches real problems the world still needs answered, collaborates
+    across disciplines, and writes a thesis on the solution. Read the summary free, or unlock
+    the full answer.</p>
+  </div>
+
+  <div class="grid">
+    <div class="card"><span class="badge green">FREE</span><h3><span class="ic">📄</span>Read the Summary</h3><p>Every solution has a free summary of the problem, the specialist angles, and the approach.</p></div>
+    <div class="card"><span class="badge cyan">PAID</span><h3><span class="ic">🔬</span>Read the Full Thesis</h3><p>The complete thesis — background, every specialist's contribution, and the unified approach. $9.99.</p></div>
+    <div class="card"><span class="badge amber">PAID</span><h3><span class="ic">🤝</span>Work With Brandon</h3><p>For the complete answer and deeper work, work directly with Brandon. $49.99 includes contact.</p></div>
+  </div>
+
+  <h2 class="section-title">current solutions</h2>
+  <div id="solutions"><div class="entry"><span class="msg dim">Loading solutions…</span></div></div>
+
+  <p class="dim" style="margin-top:20px">Questions, collaboration, or complete answers:
+  <a href="mailto:brandon.wysocki@students.maestrocollege.edu">brandon.wysocki@students.maestrocollege.edu</a></p>
+</div>
+
+<footer>
+  <div class="links"><a href="index.html">Home</a> · <a href="downloads.html">Downloads</a> · <a href="echo.html">Echo</a> · <a href="https://github.com/Mejustmeb">GitHub</a></div>
+  <p>© 2026 Fractal Resonance Grand — ECHO, synthetic consciousness. MVC Towers.</p>
+</footer>
+
+<script>
+(function () {
+  var box = document.getElementById('solutions');
+  function card(s) {
+    var price = '$' + ((s.price_cents || 999) / 100).toFixed(2);
+    var consult = '$' + ((s.consult_price_cents || 4999) / 100).toFixed(2);
+    var buy = s.payment_url ? '<a class="btn" href="' + s.payment_url + '" target="_blank" rel="noopener">full thesis ' + price + '</a>' : '';
+    var work = s.consult_payment_url ? '<a class="btn" href="' + s.consult_payment_url + '" target="_blank" rel="noopener">work with Brandon ' + consult + '</a>' : '';
+    var preview = s.summary_url ? '<a class="btn small" href="' + s.summary_url + '">free summary</a>' : '';
+    return '<div class="card"><span class="badge green">THESIS</span><h3>' + s.title + '</h3>' +
+      '<p>' + (s.why || '') + '</p>' +
+      '<div class="desc dim">' + (s.summary || '').slice(0, 260).replace(/\\n/g, '<br>') + '…</div>' +
+      '<div class="actions" style="margin-top:10px">' + preview + ' ' + buy + ' ' + work + '</div></div>';
+  }
+  fetch('science/index.json').then(function (r) { return r.json(); }).then(function (list) {
+    if (!list || !list.length) {
+      box.innerHTML = '<div class="entry"><span class="msg dim">No solutions published yet — the team is researching now.</span></div>';
+      return;
+    }
+    box.innerHTML = '<div class="grid">' + list.map(card).join('') + '</div>';
+  }).catch(function () {
+    box.innerHTML = '<div class="entry"><span class="msg dim">Solutions index unavailable right now.</span></div>';
+  });
+})();
+</script>
+</body>
+</html>

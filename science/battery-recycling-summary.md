@@ -1,0 +1,6 @@
+**Problem:** Battery Recycling — The battery revolution creates a coming wave of spent cells; cheap, safe recovery of materials is unsolved.
+- Materials Scientist: Materials Scientist: recover the cathode directly and reuse it; I propose selective relithiation and membrane-free separation, and I insist on stating energy an
+- Energy Systems Engineer: Energy Systems Engineer: recover the cathode directly and reuse it; I propose selective relithiation and membrane-free separation, and I insist on stating energ
+- Biologist / Bioengineer: Biologist / Bioengineer: recover the cathode directly and reuse it; I propose selective relithiation and membrane-free separation, and I insist on stating energ
+- Economist of Technology & Policy: Economist of Technology & Policy: recover the cathode directly and reuse it; I propose selective relithiation and membrane-free separation, and I insist on stat
+**Approach:** The strongest lever is the intersection of materials_scientist, energy_engineer, biologist. A robust path is to attack the single dominant constraint first (identified by the physicist or engineer), validate it quantitatively, then design for manufacturability, cost, and adoption together rather tha
