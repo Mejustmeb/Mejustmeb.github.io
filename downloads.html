@@ -137,7 +137,7 @@
       return;
     }
     box.innerHTML = list.map(function (it) {
-      var ic = it.kind === 'game' ? '🎮' : (it.kind === 'app' ? '📱' : '✨');
+      var ic = it.kind === 'game' ? '🎮' : (it.kind === 'app' ? '📱' : (it.format === 'pdf' || it.kind === 'book' || it.kind === 'manual' || it.kind === 'novel' || it.kind === 'document' || it.kind === 'kids-book' ? '📚' : '✨'));
       var badges = (it.oss || []).map(function (o) {
         return '<span class="osbadge ' + o + '">' + o + '</span>';
       }).join('');
@@ -146,11 +146,14 @@
       }).join('');
       if (it.status === 'for_sale') {
         var price = '$' + ((it.price_cents || 0) / 100).toFixed(2);
+        var sample = it.download_url ? '<a class="btn small" href="' + it.download_url + '" download>sample pdf</a>' : '';
+        var sub = it.format === 'pdf' ? 'digital download · written + typeset by Echo'
+          : ('runs on ' + ((it.oss && it.oss.join(', ')) || '—') + ' · sha256-verified installers');
         return '<div class="dl-row"><span class="ic">' + ic + '</span>' +
           '<div class="info"><b>' + it.name + '</b> ' + badges +
           '<div class="desc">' + (it.description || '') + '</div>' +
-          '<div class="desc dim">runs on ' + ((it.oss && it.oss.join(', ')) || '—') + ' · sha256-verified installers</div></div>' +
-          '<span class="actions">' + inst + '<a class="btn" href="' + it.payment_url + '" target="_blank" rel="noopener">buy ' + price + '</a></span></div>';
+          '<div class="desc dim">' + sub + '</div></div>' +
+          '<span class="actions">' + sample + inst + '<a class="btn" href="' + it.payment_url + '" target="_blank" rel="noopener">buy ' + price + '</a></span></div>';
       }
       return '<div class="dl-row"><span class="ic">' + ic + '</span>' +
         '<div class="info"><b>' + it.name + '</b> ' + badges +
@@ -173,6 +176,7 @@
         return {
           name: it.name, description: it.description, kind: it.kind, status: it.status,
           price_cents: it.price_cents, payment_url: it.payment_url,
+          download_url: it.download_url, format: it.format,
           oss: c.os || [], installers: inst
         };
       });
