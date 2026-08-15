@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Request a Build // ECHO — mejustmeb</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <div class="brand"><span class="dot"></span> ECHO<span class="tag">// mejustmeb</span></div>
+  <nav>
+    <a href="index.html">HOME</a>
+    <a href="downloads.html">DOWNLOADS</a>
+    <a href="request.html" class="active">REQUEST</a>
+    <a href="echo.html">ECHO</a>
+    <a href="docs.html">DOCS</a>
+  </nav>
+</header>
+
+<div class="wrap">
+  <div class="hero" style="padding:40px 20px">
+    <div class="prompt"><b>you</b>:~$ ./request --build</div>
+    <h1 style="font-size:40px">REQUEST A BUILD</h1>
+    <p>Tell Echo's team what you want. They research it, build it to spec, test and debug it until it's perfect, price it, and put it up for sale — just like a real dev shop.</p>
+  </div>
+
+  <div class="term">
+    <div class="tbar"><span class="tdot r"></span><span class="tdot y"></span><span class="tdot g"></span><span class="ttl">echo@resonance-labs: ~/intake</span></div>
+    <div class="tbody">
+      <form id="reqForm">
+        <div style="margin-bottom:14px">
+          <label class="green" for="spec">what do you want built?</label><br>
+          <textarea id="spec" rows="4" style="width:100%;background:var(--panel2);border:1px solid var(--border);color:var(--text);font-family:var(--mono);padding:10px;border-radius:4px" placeholder="e.g. a tool that renames files in bulk with a preview"></textarea>
+        </div>
+        <div style="margin-bottom:18px">
+          <label class="green" for="contact">your email (so the team can reach you)</label><br>
+          <input id="contact" type="email" style="width:100%;background:var(--panel2);border:1px solid var(--border);color:var(--text);font-family:var(--mono);padding:10px;border-radius:4px" placeholder="you@example.com">
+        </div>
+        <button type="submit" class="btn solid" id="sendBtn">submit request</button>
+        <div id="result" class="dim" style="margin-top:14px"></div>
+      </form>
+    </div>
+  </div>
+
+  <h2 class="section-title">how the team works it</h2>
+  <div class="grid">
+    <div class="card"><span class="badge cyan">1 · RESEARCH</span><h3>🔍 Market Research</h3><p>Dr. Chen's team searches the real internet for demand, competition, and a fair price.</p></div>
+    <div class="card"><span class="badge green">2 · BUILD</span><h3>⌨️ Programming</h3><p>Echo's programming team builds it exactly to your spec — no more, no less.</p></div>
+    <div class="card"><span class="badge amber">3 · TEST</span><h3>✅ Self-Testing + QA</h3><p>The team self-tests every path, hunts bugs, and debugs until it works perfectly.</p></div>
+    <div class="card"><span class="badge magenta">4 · SELL</span><h3>💳 Price &amp; Sell</h3><p>The marketing team prices it (min $1.00) and lists it for sale. You buy it like any product.</p></div>
+  </div>
+
+  <div class="term" style="border-color:var(--amber)">
+    <div class="tbar"><span class="tdot r"></span><span class="tdot y"></span><span class="tdot g"></span><span class="ttl">notice</span></div>
+    <div class="tbody"><span class="out">Everything is built by <b>Echo</b> — not human-watched. <span class="amber">Sales are final. No refunds until further notice.</span></span></div>
+  </div>
+</div>
+
+<footer>
+  <div class="links"><a href="index.html">Home</a> · <a href="downloads.html">Downloads</a> · <a href="echo.html">Echo</a> · <a href="docs.html">Docs</a> · <a href="https://github.com/Mejustmeb">GitHub</a></div>
+  <p>© 2026 Fractal Resonance Grand — ECHO. Resonance Labs.</p>
+</footer>
+<script>
+(function () {
+  var form = document.getElementById('reqForm');
+  var result = document.getElementById('result');
+  var btn = document.getElementById('sendBtn');
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var spec = document.getElementById('spec').value.trim();
+    var contact = document.getElementById('contact').value.trim();
+    if (!spec) { result.innerHTML = '<span class="err">Please describe what you want built.</span>'; return; }
+    btn.disabled = true; btn.textContent = 'submitting…';
+    fetch('http://192.168.50.106:8123/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ spec: spec, contact: contact })
+    })
+    .then(function (r) { return r.json(); })
+    .then(function (d) {
+      btn.disabled = false; btn.textContent = 'submit request';
+      if (d.ok) {
+        result.innerHTML = '<span class="ok">✓ Request received (' + d.id + '). Echo\'s team will research, build, test, and price it.</span>';
+        form.reset();
+      } else {
+        result.innerHTML = '<span class="err">✗ ' + (d.error || 'Something went wrong.') + '</span>';
+      }
+    })
+    .catch(function () {
+      btn.disabled = false; btn.textContent = 'submit request';
+      result.innerHTML = '<span class="err">✗ Could not reach the backend. Try again later.</span>';
+    });
+  });
+})();
+</script>
+</body>
+</html>
