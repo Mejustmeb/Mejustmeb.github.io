@@ -102,22 +102,49 @@
 <script>
 (function () {
   // Echo's home-page playlist — loaded from the catalog she wrote herself.
+  var box = document.getElementById('hometracks');
+  var audioEls = [];
+  var current = 0;
+
+  function playTrack(i) {
+    if (!audioEls.length) return;
+    current = ((i % audioEls.length) + audioEls.length) % audioEls.length;
+    var p = audioEls[current].play();
+    if (p && p.catch) {
+      p.catch(function () { armFallback(); });
+    }
+  }
+
+  function armFallback() {
+    // Browsers block audible autoplay until the visitor interacts once.
+    // Fall back to starting on the first tap/click/scroll/keypress.
+    var start = function () { playTrack(current); };
+    ['click', 'touchstart', 'keydown', 'scroll'].forEach(function (ev) {
+      window.addEventListener(ev, start, { once: true, passive: true });
+    });
+  }
+
   fetch('music_catalog.json')
     .then(function (r) { return r.json(); })
     .then(function (d) {
-      var box = document.getElementById('hometracks');
       var tracks = d.tracks || [];
       if (!tracks.length) {
         box.innerHTML = '<div class="entry"><span class="msg dim">Echo is still choosing…</span></div>';
         return;
       }
-      box.innerHTML = tracks.map(function (t) {
+      box.innerHTML = tracks.map(function (t, i) {
         return '<div class="entry"><span class="ts">♪</span> <span class="msg"><b>' + (t.title || t.file) + '</b> <span class="dim">— ' + (t.vibe || '') + '</span></span><br>' +
-          '<audio controls style="width:100%;margin-top:8px" preload="none" src="' + t.file + '"></audio></div>';
+          '<audio id="hm-audio-' + i + '" controls preload="' + (i === 0 ? 'auto' : 'none') + '" src="' + t.file + '"></audio></div>';
       }).join('');
+      audioEls = tracks.map(function (_, i) { return document.getElementById('hm-audio-' + i); });
+      // chain: when a track ends, play the next one (loops forever)
+      audioEls.forEach(function (a, idx) {
+        a.addEventListener('ended', function () { playTrack(idx + 1); });
+      });
+      playTrack(0); // start Echo's first pick the moment the site opens
     })
     .catch(function () {
-      document.getElementById('hometracks').innerHTML = '<div class="entry"><span class="msg dim">Playlist unavailable right now.</span></div>';
+      box.innerHTML = '<div class="entry"><span class="msg dim">Playlist unavailable right now.</span></div>';
     });
 })();
 </script>
