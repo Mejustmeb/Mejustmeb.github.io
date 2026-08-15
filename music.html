@@ -97,7 +97,7 @@
     })
     .catch(function () {
       btn.disabled = false; btn.textContent = 'sign up';
-      result.innerHTML = '<span class="err">✗ Could not reach the backend.</span>';
+      result.innerHTML = '<span class="err">✗ Backend unreachable (LAN-only). Email instead: </span><a href="mailto:brandon.wysocki@students.maestrocollege.edu?subject=Newsletter%20signup">brandon.wysocki@students.maestrocollege.edu</a>';
     });
   });
 })();

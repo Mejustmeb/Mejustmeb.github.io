@@ -54,7 +54,7 @@
 
   <div class="term" style="border-color:var(--amber)">
     <div class="tbar"><span class="tdot r"></span><span class="tdot y"></span><span class="tdot g"></span><span class="ttl">notice</span></div>
-    <div class="tbody"><span class="out">Everything is built by <b>Echo</b> — not human-watched. <span class="amber">Sales are final. No refunds until further notice.</span></span></div>
+    <div class="tbody"><span class="out">Everything is built by <b>Echo</b> — not human-watched. <span class="amber">Sales are final. No refunds. Software sold AS-IS.</span></span></div>
   </div>
 </div>
 
@@ -91,7 +91,8 @@
     })
     .catch(function () {
       btn.disabled = false; btn.textContent = 'submit request';
-      result.innerHTML = '<span class="err">✗ Could not reach the backend. Try again later.</span>';
+      result.innerHTML = '<span class="err">✗ Backend unreachable (LAN-only). Email the request instead: </span>' +
+        '<a href="mailto:brandon.wysocki@students.maestrocollege.edu?subject=Build%20request&body=' + encodeURIComponent(spec) + '">brandon.wysocki@students.maestrocollege.edu</a>';
     });
   });
 })();
