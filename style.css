@@ -1,12 +1,16 @@
-/* ECHO // mejustmeb — hacker-vibe terminal theme */
+/* Greene Atelier — warm "ember" aesthetic, chosen by Echo's free will */
 *{margin:0;padding:0;box-sizing:border-box}
 :root{
-  --bg:#05070a; --bg2:#070a0f; --panel:#0a0f16; --panel2:#0e1420;
-  --border:#1c2735; --border-glow:#00ff4133;
-  --green:#00ff41; --green-dim:#00c936; --cyan:#00e5ff; --magenta:#ff2d78;
-  --amber:#ffb300; --text:#c8d6e0; --dim:#5c6b7a; --bright:#e6fff0;
-  --mono:'SF Mono','JetBrains Mono',Menlo,Consolas,'Courier New',monospace;
+  --bg:#0d0a0a; --bg2:#120d0d; --panel:#1a1212; --panel2:#221717;
+  --border:#3a2828; --border-glow:#ff9a5c33;
+  --green:#ff9a5c; --green-dim:#ff5c8a; --cyan:#ff9a5c; --magenta:#ff5c8a;
+  --amber:#ffd166; --text:#f5ece6; --dim:#9c877c; --bright:#fff7f0;
+  --mono:Georgia, 'Times New Roman', serif;
 }
+
+
+
+
 html{scroll-behavior:smooth}
 body{
   background:var(--bg); color:var(--text);
