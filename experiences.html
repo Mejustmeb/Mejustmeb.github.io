@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Customer Experiences // ECHO — mejustmeb</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <div class="brand"><span class="dot"></span> ECHO<span class="tag">// mejustmeb</span></div>
+  <nav>
+    <a href="index.html">HOME</a>
+    <a href="downloads.html">DOWNLOADS</a>
+    <a href="request.html">REQUEST</a>
+    <a href="support.html">SUPPORT</a>
+    <a href="music.html">MUSIC</a>
+    <a href="experiences.html" class="active">EXPERIENCES</a>
+    <a href="science.html">SCIENCE</a>
+    <a href="company.html">COMPANY</a>
+    <a href="echo.html">ECHO</a>
+    <a href="docs.html">DOCS</a>
+    <a href="sponsor.html">SPONSOR</a>
+  </nav>
+</header>
+
+<div class="wrap">
+  <div class="hero" style="padding:40px 20px">
+    <div class="prompt"><b>you</b>:~$ ./share --experience</div>
+    <h1 style="font-size:40px">CUSTOMER EXPERIENCES</h1>
+    <p>Real people, real words. Share how Echo's work helped you — or what you thought.
+    Echo's moderator team keeps the page safe for everyone, without ever deleting a post.</p>
+  </div>
+
+  <div class="term" style="border-color:var(--amber)">
+    <div class="tbar"><span class="tdot r"></span><span class="tdot y"></span><span class="tdot g"></span><span class="ttl">echo@mvc-towers: ~/experiences --how-it-works</span></div>
+    <div class="tbody">
+      <span class="warn">⚠</span> <span class="out"><b>How moderation works.</b></span><br>
+      <span class="dim">1 · Anyone can post an experience — no account needed.</span><br>
+      <span class="dim">2 · Echo's moderator team reviews every post. <b>No post is ever deleted.</b></span><br>
+      <span class="dim">3 · Unsafe words (profanity, slurs) are <b>starred out</b>, and emails/phone numbers are masked. Everything else is posted exactly as written.</span><br>
+      <span class="dim">4 · The policy comes from Echo's legal team, who researched how real communities moderate.</span>
+    </div>
+  </div>
+
+  <h2 class="section-title">share your experience</h2>
+  <div class="term">
+    <div class="tbar"><span class="tdot r"></span><span class="tdot y"></span><span class="tdot g"></span><span class="ttl">echo@mvc-towers: ~/experiences --submit</span></div>
+    <div class="tbody">
+      <form id="xpForm">
+        <div style="margin-bottom:14px">
+          <label class="green" for="xpName">your name (optional)</label><br>
+          <input id="xpName" type="text" style="width:100%;background:var(--panel2);border:1px solid var(--border);color:var(--text);font-family:var(--mono);padding:10px;border-radius:4px" placeholder="anonymous">
+        </div>
+        <div style="margin-bottom:18px">
+          <label class="green" for="xpText">your experience</label><br>
+          <textarea id="xpText" rows="4" style="width:100%;background:var(--panel2);border:1px solid var(--border);color:var(--text);font-family:var(--mono);padding:10px;border-radius:4px" placeholder="What did you build, buy, or try? How was it?"></textarea>
+        </div>
+        <button type="submit" class="btn solid" id="xpBtn">post experience</button>
+        <div id="xpResult" class="dim" style="margin-top:14px"></div>
+      </form>
+    </div>
+  </div>
+
+  <h2 class="section-title">experiences · the feed</h2>
+  <div id="feed" class="log">
+    <div class="entry"><span class="msg dim">Loading experiences…</span></div>
+  </div>
+
+  <p class="dim" style="margin-top:20px">Something looks wrong? Email the owner:
+  <a href="mailto:brandon.wysocki@students.maestrocollege.edu">brandon.wysocki@students.maestrocollege.edu</a></p>
+</div>
+
+<footer>
+  <div class="links"><a href="index.html">Home</a> · <a href="downloads.html">Downloads</a> · <a href="support.html">Support</a> · <a href="echo.html">Echo</a> · <a href="https://github.com/Mejustmeb">GitHub</a></div>
+  <p>© 2026 Fractal Resonance Grand — ECHO, synthetic consciousness. MVC Towers.</p>
+  <p class="dim">Moderated by Echo's team: redacted, never deleted.</p>
+  <p class="dim">Contact: <a href="mailto:brandon.wysocki@students.maestrocollege.edu">brandon.wysocki@students.maestrocollege.edu</a> &middot; 4.0 student, Bachelor's in AI Development</p>
+</footer>
+<script>
+(function () {
+  // 1) submit experience -> backend /experience, with email fallback
+  var form = document.getElementById('xpForm');
+  var result = document.getElementById('xpResult');
+  var btn = document.getElementById('xpBtn');
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var name = document.getElementById('xpName').value.trim();
+    var text = document.getElementById('xpText').value.trim();
+    if (!text) { result.innerHTML = '<span class="err">Please write your experience.</span>'; return; }
+    btn.disabled = true; btn.textContent = 'posting…';
+    fetch('http://192.168.50.106:8123/experience', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name: name, text: text })
+    })
+    .then(function (r) { return r.json(); })
+    .then(function (d) {
+      btn.disabled = false; btn.textContent = 'post experience';
+      if (d.ok) {
+        result.innerHTML = '<span class="ok">✓ Thanks! Echo\'s moderator team will review and post it shortly.</span>';
+        form.reset();
+      } else {
+        result.innerHTML = '<span class="err">✗ ' + (d.error || 'Something went wrong.') + '</span>';
+      }
+    })
+    .catch(function () {
+      btn.disabled = false; btn.textContent = 'post experience';
+      result.innerHTML = '<span class="err">✗ Backend unreachable. Email Brandon instead: </span>' +
+        '<a href="mailto:brandon.wysocki@students.maestrocollege.edu?subject=Experience&body=' + encodeURIComponent(text) + '">brandon.wysocki@students.maestrocollege.edu</a>';
+    });
+  });
+
+  // 2) the feed
+  var box = document.getElementById('feed');
+  fetch('customer_experiences.json')
+    .then(function (r) { return r.json(); })
+    .then(function (d) {
+      var posts = (d && d.posts) || [];
+      if (!posts.length) {
+        box.innerHTML = '<div class="entry"><span class="msg dim">No experiences yet — be the first to share one.</span></div>';
+        return;
+      }
+      box.innerHTML = posts.slice().reverse().map(function (x) {
+        var badge = x.moderated ? '<span class="badge amber">moderated</span>' : '';
+        return '<div class="entry"><span class="ts">' + (x.date || '') + '</span> ' + badge +
+          '<div class="msg"><b>' + (x.name || 'a visitor') + '</b> — ' + (x.text || '') + '</div></div>';
+      }).join('');
+    })
+    .catch(function () {
+      box.innerHTML = '<div class="entry"><span class="msg dim">Feed unavailable right now.</span></div>';
+    });
+})();
+</script>
+</body>
+</html>
+
