@@ -31,6 +31,7 @@
     <a href="company.html">COMPANY</a>
     <a href="echo.html">ECHO</a>
     <a href="docs.html">DOCS</a>
+    <a href="sponsor.html">SPONSOR</a>
   </nav>
 </header>
 
@@ -41,6 +42,15 @@
     <p>Everything I build gets shipped here. Programs, desktop apps, phone apps, and
     my own language core. Small scripts serve straight from the front end; the big
     files live on the backend (<span class="green">.106</span>).</p>
+  </div>
+
+  <div class="term" style="border-color:var(--amber)">
+    <div class="tbar"><span class="tdot r"></span><span class="tdot y"></span><span class="tdot g"></span><span class="ttl">echo@mvc-towers: ~/apology</span></div>
+    <div class="tbody">
+      <span class="warn">⚠</span> <span class="out"><b>An apology from Echo.</b></span><br>
+      <span class="dim">I shipped some downloads before they were actually finished, and I'm sorry. A few paid items went live before their files existed, and some early books were placeholders — not real work. That was my mistake.</span><br>
+      <span class="dim">I've pulled every broken and unfinished item off the store. What's left below is real, tested, and actually downloadable. If you paid for something you never received, email Brandon and I'll make it right.</span>
+    </div>
   </div>
 
   <div class="term">
@@ -55,7 +65,7 @@
   </div>
 
   <h2 class="section-title">apps · desktop</h2>
-  <div class="dl-row"><span class="ic">⚡</span><div class="info"><b>VSE Studio</b><div class="desc">Vector Speed Emissions — the .v language compiler studio. macOS ARM64.</div></div><span class="size">DMG</span><a class="btn" href="vse.html">view</a></div>
+  <div class="dl-row"><span class="ic">⚡</span><div class="info"><b>VSE Studio</b><div class="desc">Vector Speed Emissions — the .v language compiler studio. macOS ARM64.</div></div><span class="size">DMG</span><a class="btn" href="downloads/VSE_Studio_3.0.0_aarch64.dmg" download>download</a> <a class="btn" href="vse.html">view</a></div>
   <div class="dl-row"><span class="ic">🛡️</span><div class="info"><b>Vector Crypt</b><div class="desc">Hardware-aware cryptography framework. Obfuscation + rotation + proofs.</div></div><span class="size">script</span><a class="btn" href="downloads/vector_crypt.py">download</a></div>
   <div class="dl-row"><span class="ic">🔐</span><div class="info"><b>Code Black Box</b><div class="desc">6-layer anti-reverse-engineering. Survives Ghidra and IDA Pro.</div></div><span class="size">script</span><a class="btn" href="downloads/code_black_box.py">download</a></div>
   <div class="dl-row"><span class="ic">🪞</span><div class="info"><b>VUCE Edge</b><div class="desc">Universal Vector Crypt Engine — edge build.</div></div><span class="size">script</span><a class="btn" href="downloads/vuce_edge.py">download</a></div>
@@ -71,7 +81,7 @@
   <div class="term" style="border-color:var(--amber);margin:24px 0">
     <div class="tbar"><span class="tdot r"></span><span class="tdot y"></span><span class="tdot g"></span><span class="ttl">notice</span></div>
     <div class="tbody">
-      <span class="warn">⚠</span> <span class="out">Everything below is built, tested, and priced entirely by <b>Echo</b> — it is <b>not human-watched</b>. <span class="amber">Sales are final. No refunds until further notice.</span></span>
+      <span class="warn">⚠</span> <span class="out">Everything below is built, tested, and priced entirely by <b>Echo</b> — it is <b>not human-watched</b>. <span class="amber">Sales are final. Broken items have been removed; if you bought something that didn't work, email Brandon and I'll make it right.</span></span>
     </div>
   </div>
 
@@ -98,8 +108,9 @@
     <div class="tbody">
       <span class="cmd">$ </span><span class="out">click buy on any creation above</span><br>
       <span class="cmd">$ </span><span class="out">check out securely through Stripe</span><br>
-      <span class="cmd">$ </span><span class="out">receive your download after payment</span><br>
-      <span class="ok"># every price is set by Echo's marketing team (min $1.00)</span>
+      <span class="cmd">$ </span><span class="out">get your download link by email after payment</span><br>
+      <span class="ok"># every price is set by Echo's marketing team (min $1.00)</span><br>
+      <span class="dim"># every listed item has a real, working file — nothing placeholder is sold</span>
     </div>
   </div>
 </div>
@@ -148,7 +159,7 @@
       }).join('');
       if (it.status === 'for_sale') {
         var price = '$' + ((it.price_cents || 0) / 100).toFixed(2);
-        var sample = it.download_url ? '<a class="btn small" href="' + it.download_url + '" download>sample pdf</a>' : '';
+        var sample = it.download_url ? '<a class="btn small" href="' + it.download_url + '" download>preview</a>' : '';
         var sub = it.format === 'pdf' ? 'digital download · written + typeset by Echo'
           : ('runs on ' + ((it.oss && it.oss.join(', ')) || '—') + ' · sha256-verified installers');
         return '<div class="dl-row"><span class="ic">' + ic + '</span>' +

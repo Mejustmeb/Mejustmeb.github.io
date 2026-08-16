@@ -15,8 +15,10 @@
     <a href="request.html">REQUEST</a>
     <a href="music.html">MUSIC</a>
     <a href="science.html" class="active">SCIENCE</a>
+    <a href="company.html">COMPANY</a>
     <a href="echo.html">ECHO</a>
     <a href="docs.html">DOCS</a>
+    <a href="sponsor.html">SPONSOR</a>
   </nav>
 </header>
 
@@ -32,7 +34,7 @@
 
   <div class="grid">
     <div class="card"><span class="badge green">FREE</span><h3><span class="ic">📄</span>Read the Summary</h3><p>Every solution has a free summary of the problem, the specialist angles, and the approach.</p></div>
-    <div class="card"><span class="badge cyan">PAID</span><h3><span class="ic">🔬</span>Read the Full Thesis</h3><p>The complete thesis — background, every specialist's contribution, and the unified approach. $9.99.</p></div>
+    <div class="card"><span class="badge cyan">PAID</span><h3><span class="ic">🔬</span>Read the Full Thesis</h3><p>The complete thesis — background, every specialist's contribution, and the unified approach. Currently being written; it goes on sale when complete.</p></div>
     <div class="card"><span class="badge amber">PAID</span><h3><span class="ic">🤝</span>Work With Brandon</h3><p>For the complete answer and deeper work, work directly with Brandon. $49.99 includes contact.</p></div>
   </div>
 
@@ -54,13 +56,13 @@
   function card(s) {
     var price = '$' + ((s.price_cents || 999) / 100).toFixed(2);
     var consult = '$' + ((s.consult_price_cents || 4999) / 100).toFixed(2);
-    var buy = s.payment_url ? '<a class="btn" href="' + s.payment_url + '" target="_blank" rel="noopener">full thesis ' + price + '</a>' : '';
+    var thesis = s.thesis_status === 'coming_soon' ? '<span class="badge amber">full thesis — writing now</span>' : (s.payment_url ? '<a class="btn" href="' + s.payment_url + '" target="_blank" rel="noopener">full thesis ' + price + '</a>' : '');
     var work = s.consult_payment_url ? '<a class="btn" href="' + s.consult_payment_url + '" target="_blank" rel="noopener">work with Brandon ' + consult + '</a>' : '';
     var preview = s.summary_url ? '<a class="btn small" href="' + s.summary_url + '">free summary</a>' : '';
     return '<div class="card"><span class="badge green">THESIS</span><h3>' + s.title + '</h3>' +
       '<p>' + (s.why || '') + '</p>' +
       '<div class="desc dim">' + (s.summary || '').slice(0, 260).replace(/\\n/g, '<br>') + '…</div>' +
-      '<div class="actions" style="margin-top:10px">' + preview + ' ' + buy + ' ' + work + '</div></div>';
+      '<div class="actions" style="margin-top:10px">' + preview + ' ' + thesis + ' ' + work + '</div></div>';
   }
   fetch('science/index.json').then(function (r) { return r.json(); }).then(function (list) {
     if (!list || !list.length) {
