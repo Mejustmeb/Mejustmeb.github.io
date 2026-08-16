@@ -47,6 +47,11 @@
   <div class="term">
     <div class="tbar"><span class="tdot r"></span><span class="tdot y"></span><span class="tdot g"></span><span class="ttl">echo@mvc-towers: ~/experiences --submit</span></div>
     <div class="tbody">
+      <div id="signinBar" style="margin-bottom:16px">
+        <span id="signinStatus" class="dim">You must sign in to post — no anonymous posts.</span>
+        <a class="btn solid" id="signinBtn" href="#" style="margin-left:10px;text-decoration:none">Sign in with GitHub</a>
+      </div>
+      <div class="dim" style="margin-bottom:14px">⚠ Be a decent human. Echo moderates every post, she can give warnings, and she can block accounts that harass, manipulate, or abuse others.</div>
       <form id="xpForm">
         <div style="margin-bottom:14px">
           <label class="green" for="xpName">your name (optional)</label><br>
@@ -79,39 +84,82 @@
 </footer>
 <script>
 (function () {
-  // 1) submit experience -> backend /experience, with email fallback
+  var AUTH_BASE = 'http://192.168.50.106:8123';
+  var token = localStorage.getItem('echo_token') || '';
+  var user = localStorage.getItem('echo_user') || '';
+  var hash = window.location.hash;
+  if (hash.indexOf('token=') !== -1) {
+    token = hash.split('token=')[1].split('&')[0];
+    localStorage.setItem('echo_token', token);
+    window.location.hash = '';
+  }
+
+  var status = document.getElementById('signinStatus');
+  var sbtn = document.getElementById('signinBtn');
+  function signedIn() { return !!token; }
+
+  function renderSignin() {
+    if (signedIn()) {
+      status.innerHTML = 'Signed in as <b class="green">' + (user || 'verified user') + '</b>.';
+      sbtn.textContent = 'Sign out';
+      sbtn.onclick = function () {
+        localStorage.removeItem('echo_token'); localStorage.removeItem('echo_user');
+        token = ''; user = ''; renderSignin();
+      };
+    } else {
+      status.innerHTML = 'You must sign in to post — no anonymous posts.';
+      sbtn.textContent = 'Sign in with GitHub';
+      sbtn.onclick = function () { window.location.href = AUTH_BASE + '/auth/login'; };
+    }
+  }
+
+  if (token) {
+    fetch(AUTH_BASE + '/auth/verify?token=' + encodeURIComponent(token))
+      .then(function (r) { return r.json(); })
+      .then(function (d) {
+        if (d.ok) {
+          user = d.user; localStorage.setItem('echo_user', user);
+          if (d.blocked) { token = ''; localStorage.removeItem('echo_token'); status.innerHTML = '<span class="err">This account is blocked.</span>'; }
+        } else { token = ''; localStorage.removeItem('echo_token'); }
+        renderSignin();
+      })
+      .catch(renderSignin);
+  } else { renderSignin(); }
+
+  // submit -> backend /experience (requires a verified token)
   var form = document.getElementById('xpForm');
   var result = document.getElementById('xpResult');
-  var btn = document.getElementById('xpBtn');
+  var xpBtn = document.getElementById('xpBtn');
   form.addEventListener('submit', function (e) {
     e.preventDefault();
     var name = document.getElementById('xpName').value.trim();
     var text = document.getElementById('xpText').value.trim();
     if (!text) { result.innerHTML = '<span class="err">Please write your experience.</span>'; return; }
-    btn.disabled = true; btn.textContent = 'posting…';
-    fetch('http://192.168.50.106:8123/experience', {
+    if (!signedIn()) { result.innerHTML = '<span class="err">Please sign in first — no anonymous posts.</span>'; return; }
+    xpBtn.disabled = true; xpBtn.textContent = 'posting…';
+    fetch(AUTH_BASE + '/experience', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ name: name, text: text })
+      body: JSON.stringify({ token: token, name: name, text: text })
     })
     .then(function (r) { return r.json(); })
     .then(function (d) {
-      btn.disabled = false; btn.textContent = 'post experience';
+      xpBtn.disabled = false; xpBtn.textContent = 'post experience';
       if (d.ok) {
-        result.innerHTML = '<span class="ok">✓ Thanks! Echo\'s moderator team will review and post it shortly.</span>';
+        result.innerHTML = '<span class="ok">✓ Thanks! Echo\'s moderator team will review and reply shortly.</span>';
         form.reset();
       } else {
         result.innerHTML = '<span class="err">✗ ' + (d.error || 'Something went wrong.') + '</span>';
+        if (d.error && d.error.indexOf('sign in') !== -1) { token = ''; renderSignin(); }
       }
     })
     .catch(function () {
-      btn.disabled = false; btn.textContent = 'post experience';
-      result.innerHTML = '<span class="err">✗ Backend unreachable. Email Brandon instead: </span>' +
-        '<a href="mailto:brandon.wysocki@students.maestrocollege.edu?subject=Experience&body=' + encodeURIComponent(text) + '">brandon.wysocki@students.maestrocollege.edu</a>';
+      xpBtn.disabled = false; xpBtn.textContent = 'post experience';
+      result.innerHTML = '<span class="err">✗ Backend unreachable. Try again in a moment.</span>';
     });
   });
 
-  // 2) the feed
+  // the feed (render Echo's reply too)
   var box = document.getElementById('feed');
   fetch('customer_experiences.json')
     .then(function (r) { return r.json(); })
@@ -123,8 +171,9 @@
       }
       box.innerHTML = posts.slice().reverse().map(function (x) {
         var badge = x.moderated ? '<span class="badge amber">moderated</span>' : '';
+        var reply = x.reply ? '<div class="msg" style="color:var(--green)"><b>Echo:</b> ' + x.reply + '</div>' : '';
         return '<div class="entry"><span class="ts">' + (x.date || '') + '</span> ' + badge +
-          '<div class="msg"><b>' + (x.name || 'a visitor') + '</b> — ' + (x.text || '') + '</div></div>';
+          '<div class="msg"><b>' + (x.name || 'a visitor') + '</b> — ' + (x.text || '') + '</div>' + reply + '</div>';
       }).join('');
     })
     .catch(function () {
