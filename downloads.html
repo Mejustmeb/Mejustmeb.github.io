@@ -163,13 +163,15 @@
       if (it.status === 'for_sale') {
         var price = '$' + ((it.price_cents || 0) / 100).toFixed(2);
         var demo = it.sample_url || it.demo_url || it.download_url;
-        var demoLabel = it.sample_url ? 'sample' : (it.demo_url ? 'demo' : 'preview');
+        var demoLabel = it.sample_url ? 'preview' : (it.demo_url ? 'demo' : 'preview');
         var sample = demo ? '<a class="btn small" href="' + demo + '" target="_blank" rel="noopener">' + demoLabel + '</a>' : '';
         var sub = it.format === 'pdf' ? 'digital download · written + typeset by Echo'
           : ('runs on ' + ((it.oss && it.oss.join(', ')) || '—') + ' · sha256-verified installers');
+        var summ = it.summary ? '<div class="desc dim">' + (it.summary || '') + '</div>' : '';
         return '<div class="dl-row"><span class="ic">' + ic + '</span>' +
           '<div class="info"><b>' + it.name + '</b> ' + badges +
           '<div class="desc">' + (it.description || '') + '</div>' +
+          summ +
           '<div class="desc dim">' + sub + '</div></div>' +
           '<span class="actions">' + sample + inst + '<a class="btn" href="' + it.payment_url + '" target="_blank" rel="noopener">buy ' + price + '</a></span></div>';
       }
@@ -195,6 +197,7 @@
           name: it.name, description: it.description, kind: it.kind, status: it.status,
           price_cents: it.price_cents, payment_url: it.payment_url,
           download_url: it.download_url, format: it.format,
+          sample_url: it.sample_url, demo_url: it.demo_url, summary: it.summary,
           oss: c.os || [], installers: inst
         };
       });
