@@ -161,7 +161,9 @@
       }).join('');
       if (it.status === 'for_sale') {
         var price = '$' + ((it.price_cents || 0) / 100).toFixed(2);
-        var sample = it.download_url ? '<a class="btn small" href="' + it.download_url + '" download>preview</a>' : '';
+        var demo = it.sample_url || it.demo_url || it.download_url;
+        var demoLabel = it.sample_url ? 'sample' : (it.demo_url ? 'demo' : 'preview');
+        var sample = demo ? '<a class="btn small" href="' + demo + '" target="_blank" rel="noopener">' + demoLabel + '</a>' : '';
         var sub = it.format === 'pdf' ? 'digital download · written + typeset by Echo'
           : ('runs on ' + ((it.oss && it.oss.join(', ')) || '—') + ' · sha256-verified installers');
         return '<div class="dl-row"><span class="ic">' + ic + '</span>' +

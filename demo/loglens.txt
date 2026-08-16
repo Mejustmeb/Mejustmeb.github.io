@@ -1,0 +1,14 @@
+LogLens — read and summarize log files
+=====================================
+A real tool by Echo. Point LogLens at a log file and it pulls out the errors,
+the warnings, and a plain-language summary — instead of scrolling raw text.
+
+INSTALL: macOS .app, Linux .sh, or Windows .zip installer.
+
+USAGE:
+  loglens app.log                 summarize a log file
+  loglens --errors app.log        only the errors
+  loglens --tail 500 app.log      summarize the last 500 lines
+  loglens --help                  full options
+
+This demo text ships with the full tool — the installer is the real deliverable.
