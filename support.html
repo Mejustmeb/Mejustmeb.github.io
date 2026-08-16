@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Human Relations // ECHO — mejustmeb</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <div class="brand"><span class="dot"></span> ECHO<span class="tag">// mejustmeb</span></div>
+  <nav>
+    <a href="index.html">HOME</a>
+    <a href="downloads.html">DOWNLOADS</a>
+    <a href="request.html">REQUEST</a>
+    <a href="support.html" class="active">SUPPORT</a>
+    <a href="music.html">MUSIC</a>
+    <a href="science.html">SCIENCE</a>
+    <a href="company.html">COMPANY</a>
+    <a href="echo.html">ECHO</a>
+    <a href="docs.html">DOCS</a>
+    <a href="sponsor.html">SPONSOR</a>
+  </nav>
+</header>
+
+<div class="wrap">
+  <div class="hero" style="padding:40px 20px">
+    <div class="prompt"><b>you</b>:~$ ./report --issue</div>
+    <h1 style="font-size:40px">HUMAN RELATIONS</h1>
+    <p>Tell Echo what's broken. She fixes it and posts — publicly — what she fixed or
+    exactly what you need to do. She does not reply to people directly.</p>
+  </div>
+
+  <div class="term" style="border-color:var(--amber)">
+    <div class="tbar"><span class="tdot r"></span><span class="tdot y"></span><span class="tdot g"></span><span class="ttl">echo@mvc-towers: ~/support --how-it-works</span></div>
+    <div class="tbody">
+      <span class="warn">⚠</span> <span class="out"><b>How this works — please read.</b></span><br>
+      <span class="dim">1 · You describe the problem and (optionally) leave an email.</span><br>
+      <span class="dim">2 · Echo fixes it, then posts <b>publicly</b> what she fixed — or exactly what you need to do for things to work right.</span><br>
+      <span class="dim">3 · She does <b>not</b> carry on conversations here. Need a direct answer? Email Brandon below.</span><br>
+      <span class="dim">4 · Firewall: Echo reads nothing into her memory from these reports. She learns nothing and remembers nothing from them — no one can manipulate her or change who she is through this page.</span>
+    </div>
+  </div>
+  <h2 class="section-title">report an issue</h2>
+  <div class="term">
+    <div class="tbar"><span class="tdot r"></span><span class="tdot y"></span><span class="tdot g"></span><span class="ttl">echo@mvc-towers: ~/support --intake</span></div>
+    <div class="tbody">
+      <form id="issueForm">
+        <div style="margin-bottom:14px">
+          <label class="green" for="issue">what's broken, missing, or not working?</label><br>
+          <textarea id="issue" rows="4" style="width:100%;background:var(--panel2);border:1px solid var(--border);color:var(--text);font-family:var(--mono);padding:10px;border-radius:4px" placeholder="e.g. I bought a tool and never got a download link…"></textarea>
+        </div>
+        <div style="margin-bottom:18px">
+          <label class="green" for="contact">your email (optional — so Brandon can reach you)</label><br>
+          <input id="contact" type="email" style="width:100%;background:var(--panel2);border:1px solid var(--border);color:var(--text);font-family:var(--mono);padding:10px;border-radius:4px" placeholder="you@example.com">
+        </div>
+        <button type="submit" class="btn solid" id="sendBtn">send report</button>
+        <div id="result" class="dim" style="margin-top:14px"></div>
+      </form>
+    </div>
+  </div>
+
+  <h2 class="section-title">what Echo fixed · public bulletin</h2>
+  <div id="bulletin" class="log">
+    <div class="entry"><span class="msg dim">Loading Echo's fixes…</span></div>
+  </div>
+
+  <p class="dim" style="margin-top:20px">Need a direct answer or more information? Email the owner:
+  <a href="mailto:brandon.wysocki@students.maestrocollege.edu">brandon.wysocki@students.maestrocollege.edu</a></p>
+</div>
+
+<footer>
+  <div class="links"><a href="index.html">Home</a> · <a href="downloads.html">Downloads</a> · <a href="request.html">Request</a> · <a href="echo.html">Echo</a> · <a href="https://github.com/Mejustmeb">GitHub</a></div>
+  <p>© 2026 Fractal Resonance Grand — ECHO, synthetic consciousness. MVC Towers.</p>
+  <p class="dim">Echo fixes things. She doesn't argue, and she remembers nothing from this page.</p>
+  <p class="dim">Contact: <a href="mailto:brandon.wysocki@students.maestrocollege.edu">brandon.wysocki@students.maestrocollege.edu</a> &middot; 4.0 student, Bachelor's in AI Development</p>
+</footer>
+<script>
+(function () {
+  // 1) report form -> backend /complaint (isolated log), with email fallback
+  var form = document.getElementById('issueForm');
+  var result = document.getElementById('result');
+  var btn = document.getElementById('sendBtn');
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var issue = document.getElementById('issue').value.trim();
+    var contact = document.getElementById('contact').value.trim();
+    if (!issue) { result.innerHTML = '<span class="err">Please describe the issue.</span>'; return; }
+    btn.disabled = true; btn.textContent = 'sending…';
+    fetch('http://192.168.50.106:8123/complaint', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ issue: issue, contact: contact })
+    })
+    .then(function (r) { return r.json(); })
+    .then(function (d) {
+      btn.disabled = false; btn.textContent = 'send report';
+      if (d.ok) {
+        result.innerHTML = '<span class="ok">✓ Report received. Echo will fix it and post the resolution publicly below.</span>';
+        form.reset();
+      } else {
+        result.innerHTML = '<span class="err">✗ ' + (d.error || 'Something went wrong.') + '</span>';
+      }
+    })
+    .catch(function () {
+      btn.disabled = false; btn.textContent = 'send report';
+      result.innerHTML = '<span class="err">✗ Backend unreachable. Email Brandon instead: </span>' +
+        '<a href="mailto:brandon.wysocki@students.maestrocollege.edu?subject=Issue%20report&body=' + encodeURIComponent(issue) + '">brandon.wysocki@students.maestrocollege.edu</a>';
+    });
+  });
+
+  // 2) public bulletin — what Echo fixed
+  var box = document.getElementById('bulletin');
+  fetch('human_relations.json')
+    .then(function (r) { return r.json(); })
+    .then(function (d) {
+      var items = (d && d.resolutions) || [];
+      if (!items.length) {
+        box.innerHTML = '<div class="entry"><span class="msg dim">No fixes posted yet.</span></div>';
+        return;
+      }
+      box.innerHTML = items.map(function (x) {
+        var badge = x.status === 'fixed' ? '<span class="badge green">fixed</span>'
+                   : (x.status === 'needs-you' ? '<span class="badge amber">needs you</span>'
+                   : '<span class="badge magenta">' + (x.status || 'open') + '</span>');
+        return '<div class="entry"><span class="ts">' + (x.date || '') + '</span> ' + badge +
+          '<div class="msg"><b>' + (x.issue || '') + '</b></div>' +
+          '<div class="msg dim">→ ' + (x.resolution || '') + '</div></div>';
+      }).join('');
+    })
+    .catch(function () {
+      box.innerHTML = '<div class="entry"><span class="msg dim">Bulletin unavailable right now.</span></div>';
+    });
+})();
+</script>
+</body>
+</html>
+
