@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>City of the hour</title>
+<link rel="manifest" href="manifest.json">
+<style>body{font-family:system-ui;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:90vh;margin:0;background:#0f1115;color:#e8eaf0}button{padding:14px 28px;font-size:18px;border-radius:10px;border:0;background:#3b82f6;color:#fff}#out{font-size:20px;max-width:70%;text-align:center;margin:20px}</style>
+</head>
+<body>
+<h1>City of the hour</h1>
+<p id="out">tap the button</p>
+<button onclick="show()">New City</button>
+<script>
+const D=["Paris", "Tokyo", "Cairo", "Lima"];
+function show(){document.getElementById("out").textContent=D[Math.floor(Math.random()*D.length)];}
+</script>
+</body>
+</html>
