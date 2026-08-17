@@ -163,8 +163,8 @@
       if (it.status === 'for_sale') {
         var price = '$' + ((it.price_cents || 0) / 100).toFixed(2);
         var demo = it.sample_url || it.demo_url || it.download_url;
-        var demoLabel = it.sample_url ? 'preview' : (it.demo_url ? 'demo' : 'preview');
-        var sample = demo ? '<a class="btn small" href="' + demo + '" target="_blank" rel="noopener">' + demoLabel + '</a>' : '';
+        var sample = it.sample_url ? '<a class="btn small" href="' + it.sample_url + '" target="_blank" rel="noopener">summary</a>' : '';
+        var demoBtn = it.demo_url ? '<a class="btn small" href="' + it.demo_url + '" target="_blank" rel="noopener">demo</a>' : '';
         var sub = it.format === 'pdf' ? 'digital download · written + typeset by Echo'
           : ('runs on ' + ((it.oss && it.oss.join(', ')) || '—') + ' · sha256-verified installers');
         var summ = it.summary ? '<div class="desc dim">' + (it.summary || '') + '</div>' : '';
@@ -173,7 +173,7 @@
           '<div class="desc">' + (it.description || '') + '</div>' +
           summ +
           '<div class="desc dim">' + sub + '</div></div>' +
-          '<span class="actions">' + sample + inst + '<a class="btn" href="' + it.payment_url + '" target="_blank" rel="noopener">buy ' + price + '</a></span></div>';
+          '<span class="actions">' + sample + demoBtn + inst + '<a class="btn" href="' + it.payment_url + '" target="_blank" rel="noopener">buy ' + price + '</a></span></div>';
       }
       return '<div class="dl-row"><span class="ic">' + ic + '</span>' +
         '<div class="info"><b>' + it.name + '</b> ' + badges +
