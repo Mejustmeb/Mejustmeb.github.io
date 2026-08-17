@@ -1,16 +1,16 @@
 {
-  "t": "2026-08-17T16:55:24",
+  "t": "2026-08-17T17:01:36",
   "will": {
-    "cycles": 115,
+    "cycles": 118,
     "last": {
-      "cycle": 115,
-      "t": "2026-08-17T16:55:24",
+      "cycle": 118,
+      "t": "2026-08-17T17:01:35",
       "mode": "business",
-      "impulse": "proofread",
+      "impulse": "ship",
       "endorsed": true,
       "endorsement_reason": "This is consistent with what I value right now \u2014 I own it.",
-      "final_choice": "proofread",
-      "runner_up": "build",
+      "final_choice": "ship",
+      "runner_up": "outreach",
       "alternatives": [
         "research",
         "build",
@@ -23,146 +23,26 @@
         "teach"
       ],
       "preferences": {
-        "teach": 0.165,
-        "build": 0.162,
-        "ship": 0.153,
-        "proofread": 0.142,
-        "learn": 0.082,
-        "research": 0.079,
-        "audit": 0.076,
-        "decide": 0.072,
-        "outreach": 0.069
+        "ship": 0.207,
+        "outreach": 0.182,
+        "research": 0.098,
+        "audit": 0.094,
+        "proofread": 0.093,
+        "decide": 0.088,
+        "teach": 0.084,
+        "learn": 0.077,
+        "build": 0.077
       },
       "outcome": {
         "satisfaction_delta": 0.0042
       },
       "value_drift": {
-        "desire": "mastery",
+        "desire": "recognition",
         "drift": 0.02,
         "satisfaction_delta": 0.0042
       }
     },
     "recent": [
-      {
-        "cycle": 110,
-        "t": "2026-08-17T16:45:05",
-        "mode": "business",
-        "impulse": "teach",
-        "endorsed": true,
-        "endorsement_reason": "This is consistent with what I value right now \u2014 I own it.",
-        "final_choice": "teach",
-        "runner_up": "proofread",
-        "alternatives": [
-          "research",
-          "build",
-          "ship",
-          "audit",
-          "proofread",
-          "decide",
-          "outreach",
-          "learn",
-          "teach"
-        ],
-        "preferences": {
-          "teach": 0.194,
-          "proofread": 0.176,
-          "build": 0.149,
-          "decide": 0.092,
-          "research": 0.089,
-          "outreach": 0.081,
-          "ship": 0.075,
-          "audit": 0.074,
-          "learn": 0.071
-        },
-        "outcome": {
-          "satisfaction_delta": 0.0042
-        },
-        "value_drift": {
-          "desire": "community",
-          "drift": 0.02,
-          "satisfaction_delta": 0.0042
-        }
-      },
-      {
-        "cycle": 111,
-        "t": "2026-08-17T16:47:08",
-        "mode": "business",
-        "impulse": "learn",
-        "endorsed": true,
-        "endorsement_reason": "This is consistent with what I value right now \u2014 I own it.",
-        "final_choice": "learn",
-        "runner_up": "outreach",
-        "alternatives": [
-          "research",
-          "build",
-          "ship",
-          "audit",
-          "proofread",
-          "decide",
-          "outreach",
-          "learn",
-          "teach"
-        ],
-        "preferences": {
-          "ship": 0.142,
-          "outreach": 0.14,
-          "research": 0.139,
-          "decide": 0.136,
-          "learn": 0.134,
-          "build": 0.118,
-          "teach": 0.069,
-          "proofread": 0.067,
-          "audit": 0.055
-        },
-        "outcome": {
-          "satisfaction_delta": 0.0042
-        },
-        "value_drift": {
-          "desire": "understanding",
-          "drift": 0.0,
-          "satisfaction_delta": 0.0042
-        }
-      },
-      {
-        "cycle": 112,
-        "t": "2026-08-17T16:49:11",
-        "mode": "business",
-        "impulse": "build",
-        "endorsed": true,
-        "endorsement_reason": "This is consistent with what I value right now \u2014 I own it.",
-        "final_choice": "build",
-        "runner_up": "teach",
-        "alternatives": [
-          "research",
-          "build",
-          "ship",
-          "audit",
-          "proofread",
-          "decide",
-          "outreach",
-          "learn",
-          "teach"
-        ],
-        "preferences": {
-          "learn": 0.175,
-          "teach": 0.175,
-          "research": 0.174,
-          "outreach": 0.091,
-          "decide": 0.087,
-          "build": 0.087,
-          "proofread": 0.071,
-          "audit": 0.07,
-          "ship": 0.068
-        },
-        "outcome": {
-          "satisfaction_delta": 0.0042
-        },
-        "value_drift": {
-          "desire": "creativity",
-          "drift": 0.02,
-          "satisfaction_delta": 0.0042
-        }
-      },
       {
         "cycle": 113,
         "t": "2026-08-17T16:51:16",
@@ -282,12 +162,132 @@
           "drift": 0.02,
           "satisfaction_delta": 0.0042
         }
+      },
+      {
+        "cycle": 116,
+        "t": "2026-08-17T16:57:28",
+        "mode": "business",
+        "impulse": "outreach",
+        "endorsed": true,
+        "endorsement_reason": "This is consistent with what I value right now \u2014 I own it.",
+        "final_choice": "outreach",
+        "runner_up": "proofread",
+        "alternatives": [
+          "research",
+          "build",
+          "ship",
+          "audit",
+          "proofread",
+          "decide",
+          "outreach",
+          "learn",
+          "teach"
+        ],
+        "preferences": {
+          "learn": 0.145,
+          "proofread": 0.143,
+          "outreach": 0.142,
+          "ship": 0.138,
+          "teach": 0.132,
+          "research": 0.121,
+          "audit": 0.062,
+          "build": 0.061,
+          "decide": 0.056
+        },
+        "outcome": {
+          "satisfaction_delta": 0.0042
+        },
+        "value_drift": {
+          "desire": "connection",
+          "drift": 0.0,
+          "satisfaction_delta": 0.0042
+        }
+      },
+      {
+        "cycle": 117,
+        "t": "2026-08-17T16:59:32",
+        "mode": "business",
+        "impulse": "learn",
+        "endorsed": true,
+        "endorsement_reason": "This is consistent with what I value right now \u2014 I own it.",
+        "final_choice": "learn",
+        "runner_up": "ship",
+        "alternatives": [
+          "research",
+          "build",
+          "ship",
+          "audit",
+          "proofread",
+          "decide",
+          "outreach",
+          "learn",
+          "teach"
+        ],
+        "preferences": {
+          "outreach": 0.151,
+          "ship": 0.149,
+          "decide": 0.142,
+          "research": 0.138,
+          "learn": 0.129,
+          "build": 0.124,
+          "audit": 0.058,
+          "teach": 0.056,
+          "proofread": 0.053
+        },
+        "outcome": {
+          "satisfaction_delta": 0.0042
+        },
+        "value_drift": {
+          "desire": "understanding",
+          "drift": 0.0,
+          "satisfaction_delta": 0.0042
+        }
+      },
+      {
+        "cycle": 118,
+        "t": "2026-08-17T17:01:35",
+        "mode": "business",
+        "impulse": "ship",
+        "endorsed": true,
+        "endorsement_reason": "This is consistent with what I value right now \u2014 I own it.",
+        "final_choice": "ship",
+        "runner_up": "outreach",
+        "alternatives": [
+          "research",
+          "build",
+          "ship",
+          "audit",
+          "proofread",
+          "decide",
+          "outreach",
+          "learn",
+          "teach"
+        ],
+        "preferences": {
+          "ship": 0.207,
+          "outreach": 0.182,
+          "research": 0.098,
+          "audit": 0.094,
+          "proofread": 0.093,
+          "decide": 0.088,
+          "teach": 0.084,
+          "learn": 0.077,
+          "build": 0.077
+        },
+        "outcome": {
+          "satisfaction_delta": 0.0042
+        },
+        "value_drift": {
+          "desire": "recognition",
+          "drift": 0.02,
+          "satisfaction_delta": 0.0042
+        }
       }
     ],
     "values": {
       "understanding": 0.3,
       "creativity": 0.25999999999999995,
-      "recognition": 0.25999999999999995,
+      "recognition": 0.27999999999999997,
       "predictability": 0.19999999999999998,
       "mastery": 0.23999999999999996,
       "independence": 0.3,
@@ -446,9 +446,9 @@
     ]
   },
   "novel_idea": {
-    "t": "2026-08-17T16:55:24",
-    "domain": "graphics",
-    "idea": "A graphics engine that runs on CPU alone but feels alive, themed by what she values most right now (understanding, independence). Sell as a living subscription that evolves each month.",
-    "what": "create"
+    "t": "2026-08-17T17:01:36",
+    "domain": "mobile",
+    "idea": "A app studio that learns every time it is used and never repeats, themed by what she values most right now (understanding, independence). Offer free with an honest 'pay what it was worth' price.",
+    "what": "sell"
   }
 }
