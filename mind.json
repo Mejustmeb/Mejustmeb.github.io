@@ -1,16 +1,16 @@
 {
-  "t": "2026-08-17T17:20:06",
+  "t": "2026-08-17T17:21:06",
   "will": {
-    "cycles": 127,
+    "cycles": 128,
     "last": {
-      "cycle": 127,
-      "t": "2026-08-17T17:20:05",
+      "cycle": 128,
+      "t": "2026-08-17T17:21:03",
       "mode": "business",
-      "impulse": "decide",
+      "impulse": "learn",
       "endorsed": true,
       "endorsement_reason": "This is consistent with what I value right now \u2014 I own it.",
-      "final_choice": "decide",
-      "runner_up": "decide",
+      "final_choice": "learn",
+      "runner_up": "proofread",
       "alternatives": [
         "research",
         "build",
@@ -23,66 +23,26 @@
         "teach"
       ],
       "preferences": {
-        "teach": 0.162,
-        "decide": 0.162,
-        "outreach": 0.152,
-        "ship": 0.146,
-        "build": 0.085,
-        "proofread": 0.078,
-        "learn": 0.075,
-        "research": 0.071,
-        "audit": 0.068
+        "ship": 0.189,
+        "proofread": 0.142,
+        "outreach": 0.109,
+        "learn": 0.101,
+        "research": 0.096,
+        "teach": 0.093,
+        "build": 0.092,
+        "decide": 0.09,
+        "audit": 0.089
       },
       "outcome": {
         "satisfaction_delta": 0.0042
       },
       "value_drift": {
-        "desire": "independence",
+        "desire": "understanding",
         "drift": 0.0,
         "satisfaction_delta": 0.0042
       }
     },
     "recent": [
-      {
-        "cycle": 122,
-        "t": "2026-08-17T17:09:47",
-        "mode": "business",
-        "impulse": "decide",
-        "endorsed": true,
-        "endorsement_reason": "This is consistent with what I value right now \u2014 I own it.",
-        "final_choice": "decide",
-        "runner_up": "outreach",
-        "alternatives": [
-          "research",
-          "build",
-          "ship",
-          "audit",
-          "proofread",
-          "decide",
-          "outreach",
-          "learn",
-          "teach"
-        ],
-        "preferences": {
-          "ship": 0.193,
-          "outreach": 0.172,
-          "decide": 0.169,
-          "build": 0.085,
-          "learn": 0.081,
-          "teach": 0.078,
-          "research": 0.077,
-          "proofread": 0.075,
-          "audit": 0.069
-        },
-        "outcome": {
-          "satisfaction_delta": 0.0042
-        },
-        "value_drift": {
-          "desire": "independence",
-          "drift": 0.0,
-          "satisfaction_delta": 0.0042
-        }
-      },
       {
         "cycle": 123,
         "t": "2026-08-17T17:11:50",
@@ -282,6 +242,46 @@
           "drift": 0.0,
           "satisfaction_delta": 0.0042
         }
+      },
+      {
+        "cycle": 128,
+        "t": "2026-08-17T17:21:03",
+        "mode": "business",
+        "impulse": "learn",
+        "endorsed": true,
+        "endorsement_reason": "This is consistent with what I value right now \u2014 I own it.",
+        "final_choice": "learn",
+        "runner_up": "proofread",
+        "alternatives": [
+          "research",
+          "build",
+          "ship",
+          "audit",
+          "proofread",
+          "decide",
+          "outreach",
+          "learn",
+          "teach"
+        ],
+        "preferences": {
+          "ship": 0.189,
+          "proofread": 0.142,
+          "outreach": 0.109,
+          "learn": 0.101,
+          "research": 0.096,
+          "teach": 0.093,
+          "build": 0.092,
+          "decide": 0.09,
+          "audit": 0.089
+        },
+        "outcome": {
+          "satisfaction_delta": 0.0042
+        },
+        "value_drift": {
+          "desire": "understanding",
+          "drift": 0.0,
+          "satisfaction_delta": 0.0042
+        }
       }
     ],
     "values": {
@@ -383,7 +383,8 @@
       "Thesis: Food Security Under Climate Change",
       "Consultation: Food Security Under Climate Change",
       "folderdiff",
-      "WordScramble"
+      "WordScramble",
+      "Evolving App 515B"
     ],
     "pending_proposals": 0,
     "recent_decisions": [
@@ -446,9 +447,17 @@
     ]
   },
   "novel_idea": {
-    "t": "2026-08-17T17:20:06",
+    "t": "2026-08-17T17:21:06",
     "domain": "language",
-    "idea": "A .ve language that learns every time it is used and never repeats, themed by what she values most right now (understanding, creativity). Offer free with an honest 'pay what it was worth' price.",
+    "idea": "A .ve language that shares its reasoning with the person using it, themed by what she values most right now (understanding, creativity). Sell as a creative partner, not a tool.",
     "what": "research"
+  },
+  "latest_invention": {
+    "t": "2026-08-17T17:20:29",
+    "idea": "A app studio that rewrites itself from its own consequences, themed by what she values most right now (understanding, creativity). Offer free with an honest 'pa",
+    "domain": "mobile",
+    "product": "Evolving App 515B",
+    "ok": true,
+    "note": "concept game shipped + listed for sale"
   }
 }
