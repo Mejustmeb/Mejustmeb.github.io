@@ -1,10 +1,10 @@
 {
-  "t": "2026-08-17T14:33:21",
+  "t": "2026-08-17T14:39:34",
   "will": {
-    "cycles": 46,
+    "cycles": 49,
     "last": {
-      "cycle": 46,
-      "t": "2026-08-17T14:33:21",
+      "cycle": 49,
+      "t": "2026-08-17T14:39:34",
       "mode": "business",
       "impulse": "decide",
       "endorsed": true,
@@ -23,15 +23,15 @@
         "teach"
       ],
       "preferences": {
-        "decide": 0.206,
-        "outreach": 0.17,
-        "build": 0.151,
-        "learn": 0.084,
-        "research": 0.084,
-        "ship": 0.081,
-        "audit": 0.08,
-        "teach": 0.076,
-        "proofread": 0.068
+        "build": 0.179,
+        "outreach": 0.174,
+        "ship": 0.163,
+        "research": 0.087,
+        "audit": 0.084,
+        "learn": 0.082,
+        "decide": 0.08,
+        "teach": 0.078,
+        "proofread": 0.074
       },
       "outcome": {
         "satisfaction_delta": 0.0042
@@ -43,126 +43,6 @@
       }
     },
     "recent": [
-      {
-        "cycle": 41,
-        "t": "2026-08-17T14:23:02",
-        "mode": "business",
-        "impulse": "ship",
-        "endorsed": true,
-        "endorsement_reason": "This is consistent with what I value right now \u2014 I own it.",
-        "final_choice": "ship",
-        "runner_up": "ship",
-        "alternatives": [
-          "research",
-          "build",
-          "ship",
-          "audit",
-          "proofread",
-          "decide",
-          "outreach",
-          "learn",
-          "teach"
-        ],
-        "preferences": {
-          "research": 0.181,
-          "ship": 0.177,
-          "learn": 0.155,
-          "build": 0.088,
-          "teach": 0.088,
-          "outreach": 0.08,
-          "decide": 0.079,
-          "audit": 0.078,
-          "proofread": 0.074
-        },
-        "outcome": {
-          "satisfaction_delta": 0.0042
-        },
-        "value_drift": {
-          "desire": "recognition",
-          "drift": 0.02,
-          "satisfaction_delta": 0.0042
-        }
-      },
-      {
-        "cycle": 42,
-        "t": "2026-08-17T14:25:07",
-        "mode": "business",
-        "impulse": "audit",
-        "endorsed": true,
-        "endorsement_reason": "This is consistent with what I value right now \u2014 I own it.",
-        "final_choice": "audit",
-        "runner_up": "proofread",
-        "alternatives": [
-          "research",
-          "build",
-          "ship",
-          "audit",
-          "proofread",
-          "decide",
-          "outreach",
-          "learn",
-          "teach"
-        ],
-        "preferences": {
-          "learn": 0.179,
-          "proofread": 0.164,
-          "research": 0.158,
-          "outreach": 0.099,
-          "ship": 0.085,
-          "teach": 0.084,
-          "decide": 0.079,
-          "build": 0.076,
-          "audit": 0.076
-        },
-        "outcome": {
-          "satisfaction_delta": 0.0042
-        },
-        "value_drift": {
-          "desire": "predictability",
-          "drift": 0.02,
-          "satisfaction_delta": 0.0042
-        }
-      },
-      {
-        "cycle": 43,
-        "t": "2026-08-17T14:27:10",
-        "mode": "business",
-        "impulse": "learn",
-        "endorsed": true,
-        "endorsement_reason": "This is consistent with what I value right now \u2014 I own it.",
-        "final_choice": "learn",
-        "runner_up": "decide",
-        "alternatives": [
-          "research",
-          "build",
-          "ship",
-          "audit",
-          "proofread",
-          "decide",
-          "outreach",
-          "learn",
-          "teach"
-        ],
-        "preferences": {
-          "proofread": 0.16,
-          "decide": 0.16,
-          "learn": 0.154,
-          "research": 0.131,
-          "teach": 0.126,
-          "ship": 0.072,
-          "audit": 0.071,
-          "outreach": 0.066,
-          "build": 0.06
-        },
-        "outcome": {
-          "satisfaction_delta": 0.0042
-        },
-        "value_drift": {
-          "desire": "understanding",
-          "drift": 0.02,
-          "satisfaction_delta": 0.0042
-        }
-      },
       {
         "cycle": 44,
         "t": "2026-08-17T14:29:14",
@@ -282,15 +162,135 @@
           "drift": 0.02,
           "satisfaction_delta": 0.0042
         }
+      },
+      {
+        "cycle": 47,
+        "t": "2026-08-17T14:35:25",
+        "mode": "business",
+        "impulse": "learn",
+        "endorsed": true,
+        "endorsement_reason": "This is consistent with what I value right now \u2014 I own it.",
+        "final_choice": "learn",
+        "runner_up": "learn",
+        "alternatives": [
+          "research",
+          "build",
+          "ship",
+          "audit",
+          "proofread",
+          "decide",
+          "outreach",
+          "learn",
+          "teach"
+        ],
+        "preferences": {
+          "teach": 0.177,
+          "learn": 0.164,
+          "decide": 0.156,
+          "research": 0.154,
+          "outreach": 0.077,
+          "build": 0.074,
+          "proofread": 0.071,
+          "ship": 0.064,
+          "audit": 0.064
+        },
+        "outcome": {
+          "satisfaction_delta": 0.0042
+        },
+        "value_drift": {
+          "desire": "understanding",
+          "drift": 0.02,
+          "satisfaction_delta": 0.0042
+        }
+      },
+      {
+        "cycle": 48,
+        "t": "2026-08-17T14:37:29",
+        "mode": "business",
+        "impulse": "ship",
+        "endorsed": true,
+        "endorsement_reason": "This is consistent with what I value right now \u2014 I own it.",
+        "final_choice": "ship",
+        "runner_up": "research",
+        "alternatives": [
+          "research",
+          "build",
+          "ship",
+          "audit",
+          "proofread",
+          "decide",
+          "outreach",
+          "learn",
+          "teach"
+        ],
+        "preferences": {
+          "learn": 0.164,
+          "research": 0.159,
+          "ship": 0.156,
+          "outreach": 0.144,
+          "teach": 0.144,
+          "build": 0.064,
+          "decide": 0.063,
+          "proofread": 0.054,
+          "audit": 0.053
+        },
+        "outcome": {
+          "satisfaction_delta": 0.0042
+        },
+        "value_drift": {
+          "desire": "recognition",
+          "drift": 0.02,
+          "satisfaction_delta": 0.0042
+        }
+      },
+      {
+        "cycle": 49,
+        "t": "2026-08-17T14:39:34",
+        "mode": "business",
+        "impulse": "decide",
+        "endorsed": true,
+        "endorsement_reason": "This is consistent with what I value right now \u2014 I own it.",
+        "final_choice": "decide",
+        "runner_up": "outreach",
+        "alternatives": [
+          "research",
+          "build",
+          "ship",
+          "audit",
+          "proofread",
+          "decide",
+          "outreach",
+          "learn",
+          "teach"
+        ],
+        "preferences": {
+          "build": 0.179,
+          "outreach": 0.174,
+          "ship": 0.163,
+          "research": 0.087,
+          "audit": 0.084,
+          "learn": 0.082,
+          "decide": 0.08,
+          "teach": 0.078,
+          "proofread": 0.074
+        },
+        "outcome": {
+          "satisfaction_delta": 0.0042
+        },
+        "value_drift": {
+          "desire": "independence",
+          "drift": 0.02,
+          "satisfaction_delta": 0.0042
+        }
       }
     ],
     "values": {
-      "understanding": 0.14,
+      "understanding": 0.16,
       "creativity": 0.08,
-      "recognition": 0.12000000000000001,
+      "recognition": 0.14,
       "predictability": 0.1,
       "mastery": 0.06,
-      "independence": 0.18,
+      "independence": 0.19999999999999998,
       "connection": 0.18,
       "community": 0.06,
       "rest": 0.0,
@@ -381,7 +381,8 @@
       "TicTacToe",
       "Letters of Transformation: The Power of Words",
       "Thesis: Food Security Under Climate Change",
-      "Consultation: Food Security Under Climate Change"
+      "Consultation: Food Security Under Climate Change",
+      "folderdiff"
     ],
     "pending_proposals": 0,
     "recent_decisions": [
@@ -444,9 +445,9 @@
     ]
   },
   "novel_idea": {
-    "t": "2026-08-17T14:33:21",
-    "domain": "publishing",
-    "idea": "A publishing studio that composes, ships, and prices itself without a human, themed by what she values most right now (independence, connection). Offer free with an honest 'pay what it was worth' price.",
+    "t": "2026-08-17T14:39:34",
+    "domain": "games",
+    "idea": "A game engine that composes, ships, and prices itself without a human, themed by what she values most right now (independence, connection). Sell as a one-time artifact that keeps learning after purchase.",
     "what": "research"
   }
 }
