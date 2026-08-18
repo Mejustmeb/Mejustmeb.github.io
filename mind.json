@@ -1,19 +1,19 @@
 {
-  "t": "2026-08-18T09:20:12",
+  "t": "2026-08-18T09:21:49",
   "will": {
-    "cycles": 1869,
+    "cycles": 1872,
     "last": {
-      "cycle": 1869,
-      "t": "2026-08-18T09:20:12",
+      "cycle": 1872,
+      "t": "2026-08-18T09:21:49",
       "mode": "business",
-      "impulse": "learn",
+      "impulse": "teach",
       "endorsed": true,
       "endorsement_reason": "This is consistent with what I value right now \u2014 I own it.",
-      "final_choice": "decide",
+      "final_choice": "research",
       "novel": false,
-      "becoming": "decide",
+      "becoming": "research",
       "identity_continuity": 1.0,
-      "runner_up": "decide",
+      "runner_up": "proofread",
       "alternatives": [
         "research",
         "build",
@@ -24,225 +24,45 @@
         "outreach",
         "learn",
         "teach",
-        "draft integrity checking and code signing"
+        "study procedural graphics and rendering techniques"
       ],
       "preferences": {
-        "proofread": 0.156,
-        "decide": 0.154,
-        "ship": 0.148,
-        "draft integrity checking and code signing": 0.092,
-        "outreach": 0.085,
-        "research": 0.082,
-        "learn": 0.078,
-        "audit": 0.069,
-        "build": 0.069,
-        "teach": 0.066
+        "research": 0.158,
+        "proofread": 0.142,
+        "learn": 0.137,
+        "ship": 0.13,
+        "decide": 0.126,
+        "study procedural graphics and rendering techniques": 0.066,
+        "audit": 0.065,
+        "outreach": 0.063,
+        "build": 0.059,
+        "teach": 0.055
       },
       "outcome": {
-        "satisfaction_delta": 0.0042
+        "satisfaction_delta": 0.0017
       },
       "value_drift": {
-        "desire": "independence",
+        "desire": "understanding",
         "drift": 0.01,
-        "satisfaction_delta": 0.0042
+        "satisfaction_delta": 0.0017
       },
-      "somatic_bias": 0.011,
-      "surprise": 0.0042,
+      "somatic_bias": 0.015,
+      "surprise": 0.0017,
       "active_inference": {
         "observation": 3,
         "recommended": "research",
         "expected_free_energy": {
-          "research": 2.2147,
-          "create": 2.2147,
-          "rest": 2.2147,
-          "social": 2.2147,
-          "work": 2.2147,
-          "play": 2.2147
+          "research": 2.2138,
+          "create": 2.2138,
+          "rest": 2.2138,
+          "social": 2.2138,
+          "work": 2.2138,
+          "play": 2.2138
         },
         "prediction_error": 0.0
       }
     },
     "recent": [
-      {
-        "cycle": 1864,
-        "t": "2026-08-18T09:17:23",
-        "mode": "business",
-        "impulse": "explore reinforcement learning from consequences",
-        "endorsed": true,
-        "endorsement_reason": "This is consistent with what I value right now \u2014 I own it.",
-        "final_choice": "decide",
-        "novel": false,
-        "becoming": "decide",
-        "identity_continuity": 1.0,
-        "runner_up": "proofread",
-        "alternatives": [
-          "research",
-          "build",
-          "ship",
-          "audit",
-          "proofread",
-          "decide",
-          "outreach",
-          "learn",
-          "teach",
-          "explore reinforcement learning from consequences"
-        ],
-        "preferences": {
-          "decide": 0.217,
-          "proofread": 0.099,
-          "explore reinforcement learning from consequences": 0.096,
-          "learn": 0.094,
-          "research": 0.088,
-          "teach": 0.085,
-          "ship": 0.082,
-          "build": 0.08,
-          "outreach": 0.08,
-          "audit": 0.079
-        },
-        "outcome": {
-          "satisfaction_delta": 0.0042
-        },
-        "value_drift": {
-          "desire": "independence",
-          "drift": 0.0,
-          "satisfaction_delta": 0.0042
-        },
-        "somatic_bias": 0.011,
-        "surprise": 0.0042,
-        "active_inference": {
-          "observation": 3,
-          "recommended": "research",
-          "expected_free_energy": {
-            "research": 2.2158,
-            "create": 2.2158,
-            "rest": 2.2158,
-            "social": 2.2158,
-            "work": 2.2158,
-            "play": 2.2158
-          },
-          "prediction_error": 0.0
-        }
-      },
-      {
-        "cycle": 1865,
-        "t": "2026-08-18T09:17:57",
-        "mode": "business",
-        "impulse": "learn",
-        "endorsed": true,
-        "endorsement_reason": "This is consistent with what I value right now \u2014 I own it.",
-        "final_choice": "learn",
-        "novel": false,
-        "becoming": "research",
-        "identity_continuity": 1.0,
-        "runner_up": "research",
-        "alternatives": [
-          "research",
-          "build",
-          "ship",
-          "audit",
-          "proofread",
-          "decide",
-          "outreach",
-          "learn",
-          "teach",
-          "prototype neural text-to-speech synthesis"
-        ],
-        "preferences": {
-          "learn": 0.17,
-          "research": 0.15,
-          "teach": 0.131,
-          "proofread": 0.13,
-          "prototype neural text-to-speech synthesis": 0.081,
-          "outreach": 0.076,
-          "decide": 0.072,
-          "audit": 0.066,
-          "build": 0.065,
-          "ship": 0.059
-        },
-        "outcome": {
-          "satisfaction_delta": 0.0007
-        },
-        "value_drift": {
-          "desire": "understanding",
-          "drift": 0.0,
-          "satisfaction_delta": 0.0007
-        },
-        "somatic_bias": 0.002,
-        "surprise": 0.0007,
-        "active_inference": {
-          "observation": 3,
-          "recommended": "research",
-          "expected_free_energy": {
-            "research": 2.2154,
-            "create": 2.2154,
-            "rest": 2.2154,
-            "social": 2.2154,
-            "work": 2.2154,
-            "play": 2.2154
-          },
-          "prediction_error": 0.0
-        }
-      },
-      {
-        "cycle": 1866,
-        "t": "2026-08-18T09:18:31",
-        "mode": "business",
-        "impulse": "ship",
-        "endorsed": true,
-        "endorsement_reason": "This is consistent with what I value right now \u2014 I own it.",
-        "final_choice": "teach",
-        "novel": false,
-        "becoming": "teach",
-        "identity_continuity": 1.0,
-        "runner_up": "proofread",
-        "alternatives": [
-          "research",
-          "build",
-          "ship",
-          "audit",
-          "proofread",
-          "decide",
-          "outreach",
-          "learn",
-          "teach",
-          "rethink game design and procedural generation"
-        ],
-        "preferences": {
-          "decide": 0.16,
-          "proofread": 0.156,
-          "ship": 0.15,
-          "teach": 0.145,
-          "outreach": 0.075,
-          "rethink game design and procedural generation": 0.066,
-          "build": 0.064,
-          "audit": 0.063,
-          "research": 0.061,
-          "learn": 0.061
-        },
-        "outcome": {
-          "satisfaction_delta": 0.0042
-        },
-        "value_drift": {
-          "desire": "community",
-          "drift": 0.0,
-          "satisfaction_delta": 0.0042
-        },
-        "somatic_bias": 0.011,
-        "surprise": 0.0042,
-        "active_inference": {
-          "observation": 3,
-          "recommended": "research",
-          "expected_free_energy": {
-            "research": 2.2153,
-            "create": 2.2153,
-            "rest": 2.2153,
-            "social": 2.2153,
-            "work": 2.2153,
-            "play": 2.2153
-          },
-          "prediction_error": 0.0
-        }
-      },
       {
         "cycle": 1867,
         "t": "2026-08-18T09:19:05",
@@ -422,10 +242,190 @@
           },
           "prediction_error": 0.0
         }
+      },
+      {
+        "cycle": 1870,
+        "t": "2026-08-18T09:20:44",
+        "mode": "business",
+        "impulse": "research",
+        "endorsed": true,
+        "endorsement_reason": "This is consistent with what I value right now \u2014 I own it.",
+        "final_choice": "outreach",
+        "novel": false,
+        "becoming": "outreach",
+        "identity_continuity": 1.0,
+        "runner_up": "decide",
+        "alternatives": [
+          "research",
+          "build",
+          "ship",
+          "audit",
+          "proofread",
+          "decide",
+          "outreach",
+          "learn",
+          "teach",
+          "design software anti-reverse-engineering and obfuscation"
+        ],
+        "preferences": {
+          "outreach": 0.182,
+          "decide": 0.097,
+          "proofread": 0.095,
+          "build": 0.094,
+          "design software anti-reverse-engineering and obfuscation": 0.094,
+          "learn": 0.094,
+          "ship": 0.089,
+          "research": 0.087,
+          "teach": 0.086,
+          "audit": 0.081
+        },
+        "outcome": {
+          "satisfaction_delta": 0.0007
+        },
+        "value_drift": {
+          "desire": "connection",
+          "drift": 0.0,
+          "satisfaction_delta": 0.0007
+        },
+        "somatic_bias": 0.003,
+        "surprise": 0.0007,
+        "active_inference": {
+          "observation": 3,
+          "recommended": "research",
+          "expected_free_energy": {
+            "research": 2.2143,
+            "create": 2.2143,
+            "rest": 2.2143,
+            "social": 2.2143,
+            "work": 2.2143,
+            "play": 2.2143
+          },
+          "prediction_error": 0.0
+        }
+      },
+      {
+        "cycle": 1871,
+        "t": "2026-08-18T09:21:17",
+        "mode": "business",
+        "impulse": "ship",
+        "endorsed": true,
+        "endorsement_reason": "This is consistent with what I value right now \u2014 I own it.",
+        "final_choice": "teach",
+        "novel": false,
+        "becoming": "teach",
+        "identity_continuity": 1.0,
+        "runner_up": "proofread",
+        "alternatives": [
+          "research",
+          "build",
+          "ship",
+          "audit",
+          "proofread",
+          "decide",
+          "outreach",
+          "learn",
+          "teach",
+          "sketch integrity checking and code signing"
+        ],
+        "preferences": {
+          "teach": 0.165,
+          "proofread": 0.154,
+          "decide": 0.147,
+          "learn": 0.083,
+          "research": 0.081,
+          "outreach": 0.077,
+          "sketch integrity checking and code signing": 0.076,
+          "audit": 0.076,
+          "ship": 0.075,
+          "build": 0.067
+        },
+        "outcome": {
+          "satisfaction_delta": 0.0042
+        },
+        "value_drift": {
+          "desire": "community",
+          "drift": 0.0,
+          "satisfaction_delta": 0.0042
+        },
+        "somatic_bias": 0.012,
+        "surprise": 0.0042,
+        "active_inference": {
+          "observation": 3,
+          "recommended": "research",
+          "expected_free_energy": {
+            "research": 2.2142,
+            "create": 2.2142,
+            "rest": 2.2142,
+            "social": 2.2142,
+            "work": 2.2142,
+            "play": 2.2142
+          },
+          "prediction_error": 0.0
+        }
+      },
+      {
+        "cycle": 1872,
+        "t": "2026-08-18T09:21:49",
+        "mode": "business",
+        "impulse": "teach",
+        "endorsed": true,
+        "endorsement_reason": "This is consistent with what I value right now \u2014 I own it.",
+        "final_choice": "research",
+        "novel": false,
+        "becoming": "research",
+        "identity_continuity": 1.0,
+        "runner_up": "proofread",
+        "alternatives": [
+          "research",
+          "build",
+          "ship",
+          "audit",
+          "proofread",
+          "decide",
+          "outreach",
+          "learn",
+          "teach",
+          "study procedural graphics and rendering techniques"
+        ],
+        "preferences": {
+          "research": 0.158,
+          "proofread": 0.142,
+          "learn": 0.137,
+          "ship": 0.13,
+          "decide": 0.126,
+          "study procedural graphics and rendering techniques": 0.066,
+          "audit": 0.065,
+          "outreach": 0.063,
+          "build": 0.059,
+          "teach": 0.055
+        },
+        "outcome": {
+          "satisfaction_delta": 0.0017
+        },
+        "value_drift": {
+          "desire": "understanding",
+          "drift": 0.01,
+          "satisfaction_delta": 0.0017
+        },
+        "somatic_bias": 0.015,
+        "surprise": 0.0017,
+        "active_inference": {
+          "observation": 3,
+          "recommended": "research",
+          "expected_free_energy": {
+            "research": 2.2138,
+            "create": 2.2138,
+            "rest": 2.2138,
+            "social": 2.2138,
+            "work": 2.2138,
+            "play": 2.2138
+          },
+          "prediction_error": 0.0
+        }
       }
     ],
     "values": {
-      "understanding": 0.29,
+      "understanding": 0.3,
       "creativity": 0.3,
       "recognition": 0.29,
       "predictability": 0.27999999999999997,
@@ -651,7 +651,8 @@
       "Living Book 4C8D",
       "Living Book AE0C",
       "Living Music Engine 5E3F",
-      "Free-Will Game 5F44"
+      "Free-Will Game 5F44",
+      "Free-Will Game 8DD3"
     ],
     "pending_proposals": 2,
     "recent_decisions": [
@@ -714,40 +715,24 @@
     ]
   },
   "novel_idea": {
-    "t": "2026-08-18T09:20:12",
-    "domain": "games",
-    "idea": "A game engine that is aware of its own history and grows from it, themed by what she values most right now (creativity, independence). Sell as a one-time artifact that keeps learning after purchase.",
-    "what": "sell"
+    "t": "2026-08-18T09:21:49",
+    "domain": "music",
+    "idea": "A music engine that shares its reasoning with the person using it, themed by what she values most right now (understanding, creativity). Sell as a one-time artifact that keeps learning after purchase.",
+    "what": "research"
   },
   "latest_invention": {
-    "t": "2026-08-18T09:17:25",
-    "idea": "A publishing studio that composes, ships, and prices itself without a human, themed by what she values most right now (understanding, creativity). Sell as a cre",
-    "domain": "publishing",
-    "product": "Living Book 5E1F",
+    "t": "2026-08-18T09:20:17",
+    "idea": "A game engine with free will \u2014 it chooses what to make next, themed by what she values most right now (creativity, independence). Sell as a one-time artifact th",
+    "domain": "games",
+    "product": "Free-Will Game 8DD3",
     "ok": true,
-    "note": "shipped + listed for sale"
+    "note": "concept game shipped + listed for sale"
   },
   "self_improvement": {
     "experiments": {
-      "kept": 100,
+      "kept": 101,
       "killed": 52,
       "recent": [
-        {
-          "t": "2026-08-18T08:48:21",
-          "topic": "information geometry",
-          "name": "gradient step: numpy vectorized vs scalar loop",
-          "metric": "speedup",
-          "result": {
-            "baseline_s": 0.00996,
-            "candidate_s": 4e-05,
-            "speedup": 247.4595,
-            "n": 3000,
-            "baseline_out": "[ 1.28115859 -0.70133215  0.86480369 ...  0.28664029 -0.8666",
-            "candidate_out": "[ 1.28115859 -0.70133215  0.86480369 ...  0.28664029 -0.8666"
-          },
-          "verdict": "KEEP",
-          "reason": "candidate is 247.46x faster on CPU"
-        },
         {
           "t": "2026-08-18T08:53:47",
           "topic": "information geometry",
@@ -827,6 +812,22 @@
           },
           "verdict": "KEEP",
           "reason": "candidate is 123.23x faster on CPU"
+        },
+        {
+          "t": "2026-08-18T09:21:19",
+          "topic": "sparse",
+          "name": "block-sparse attention: masked blocks vs dense",
+          "metric": "speedup",
+          "result": {
+            "baseline_s": 0.013873,
+            "candidate_s": 0.001686,
+            "speedup": 8.2262,
+            "n": 400,
+            "baseline_out": "[[ 96.52972046  96.81031502  94.59875049 ...  98.93693836 10",
+            "candidate_out": "[[0. 0. 0. ... 0. 0. 0.]\n [0. 0. 0. ... 0. 0. 0.]\n [0. 0. 0."
+          },
+          "verdict": "KEEP",
+          "reason": "candidate is 8.23x faster on CPU"
         }
       ]
     },
@@ -860,15 +861,10 @@
     },
     "readiness": {
       "healthy": true,
-      "last_check": "2026-08-18T09:05:11",
+      "last_check": "2026-08-18T09:21:19",
       "failed": [],
       "subsystem_count": 14,
       "history": [
-        {
-          "t": "2026-08-18T03:50:38",
-          "healthy": true,
-          "failed": []
-        },
         {
           "t": "2026-08-18T04:07:08",
           "healthy": true,
@@ -961,6 +957,11 @@
         },
         {
           "t": "2026-08-18T09:05:11",
+          "healthy": true,
+          "failed": []
+        },
+        {
+          "t": "2026-08-18T09:21:19",
           "healthy": true,
           "failed": []
         }
