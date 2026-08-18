@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+print("\n=== ECHO FREE TRIAL (watermarked) — support the full tool at https://mejustmeb.github.io/downloads.html ===\n")
 """Self-Tuning Compressor 7C88 — A VUCE compression that is aware of its own history and grows from it, themed by what she values most right now (creativity, connection). Of"""
 import os, subprocess, sys
 from pathlib import Path

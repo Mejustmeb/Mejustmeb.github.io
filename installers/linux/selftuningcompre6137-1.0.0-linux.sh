@@ -5,7 +5,7 @@ BIN="$HOME/.local/bin"
 mkdir -p "$BIN"
 cat > "$BIN/selftuningcompre6137" << 'PYEOF'
 #!/usr/bin/env python3
-"""Self-Tuning Compressor C273 — A VUCE compression that rewrites itself from its own consequences, themed by what she values most right now (creativity, rest). Sell as a li"""
+"""Self-Tuning Compressor 7C88 — A VUCE compression that is aware of its own history and grows from it, themed by what she values most right now (creativity, connection). Of"""
 import os, subprocess, sys
 from pathlib import Path
 
@@ -59,8 +59,8 @@ if __name__ == "__main__":
     Path("/tmp/vuce_in.bin").write_bytes(data)
     subprocess.run([str(_kernel_bin())], capture_output=True, text=True, timeout=120)
     out = Path("/tmp/vuce_out.bin").read_bytes()
-    print("=== Self-Tuning Compressor C273 ===")
-    print("- A VUCE compression that rewrites itself from its own consequences, themed by what she values most right now (creativity, rest). Sell as a li")
+    print("=== Self-Tuning Compressor 7C88 ===")
+    print("- A VUCE compression that is aware of its own history and grows from it, themed by what she values most right now (creativity, connection). Of")
     print("in=%d out=%d ratio=%.2fx" % (len(data), len(out), (len(out) / len(data)) if data else 0))
     print("lossless=%s" % ("yes" if _decode_vrle(out) == data else "no"))
 
