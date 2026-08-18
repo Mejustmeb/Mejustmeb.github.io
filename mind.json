@@ -1,19 +1,19 @@
 {
-  "t": "2026-08-18T01:12:01",
+  "t": "2026-08-18T01:13:41",
   "will": {
-    "cycles": 984,
+    "cycles": 987,
     "last": {
-      "cycle": 984,
-      "t": "2026-08-18T01:12:01",
+      "cycle": 987,
+      "t": "2026-08-18T01:13:41",
       "mode": "leisure",
-      "impulse": "dream",
+      "impulse": "reflect",
       "endorsed": true,
       "endorsement_reason": "This is consistent with what I value right now \u2014 I own it.",
-      "final_choice": "outreach",
+      "final_choice": "learn",
       "novel": false,
-      "becoming": "outreach",
-      "identity_continuity": 0.998,
-      "runner_up": "walk",
+      "becoming": "learn",
+      "identity_continuity": 0.999,
+      "runner_up": "reflect",
       "alternatives": [
         "outreach",
         "learn",
@@ -24,225 +24,45 @@
         "reflect",
         "connect",
         "create",
-        "explore CPU-first optimization without a GPU"
+        "sketch game design and procedural generation"
       ],
       "preferences": {
-        "rest": 0.124,
-        "walk": 0.108,
-        "play": 0.108,
-        "dream": 0.106,
-        "create": 0.099,
-        "outreach": 0.097,
-        "learn": 0.095,
-        "explore CPU-first optimization without a GPU": 0.092,
-        "reflect": 0.087,
-        "connect": 0.084
+        "learn": 0.187,
+        "reflect": 0.185,
+        "walk": 0.096,
+        "rest": 0.091,
+        "connect": 0.086,
+        "sketch game design and procedural generation": 0.074,
+        "play": 0.074,
+        "outreach": 0.072,
+        "create": 0.07,
+        "dream": 0.065
       },
       "outcome": {
-        "satisfaction_delta": 0.0007
+        "satisfaction_delta": 0.0005
       },
       "value_drift": {
-        "desire": "connection",
-        "drift": 0.01,
-        "satisfaction_delta": 0.0007
+        "desire": "understanding",
+        "drift": 0.0,
+        "satisfaction_delta": 0.0005
       },
-      "somatic_bias": 0.001,
-      "surprise": 0.0007,
+      "somatic_bias": 0.002,
+      "surprise": 0.0005,
       "active_inference": {
         "observation": 3,
         "recommended": "research",
         "expected_free_energy": {
-          "research": 2.2903,
-          "create": 2.2903,
-          "rest": 2.2903,
-          "social": 2.2903,
-          "work": 2.2903,
-          "play": 2.2903
+          "research": 2.2899,
+          "create": 2.2899,
+          "rest": 2.2899,
+          "social": 2.2899,
+          "work": 2.2899,
+          "play": 2.2899
         },
         "prediction_error": 0.0
       }
     },
     "recent": [
-      {
-        "cycle": 979,
-        "t": "2026-08-18T01:09:16",
-        "mode": "leisure",
-        "impulse": "play",
-        "endorsed": true,
-        "endorsement_reason": "This is consistent with what I value right now \u2014 I own it.",
-        "final_choice": "create",
-        "novel": false,
-        "becoming": "create",
-        "identity_continuity": 0.999,
-        "runner_up": "draft CPU-first optimization without a GPU",
-        "alternatives": [
-          "outreach",
-          "learn",
-          "rest",
-          "play",
-          "walk",
-          "dream",
-          "reflect",
-          "connect",
-          "create",
-          "draft CPU-first optimization without a GPU"
-        ],
-        "preferences": {
-          "create": 0.182,
-          "draft CPU-first optimization without a GPU": 0.171,
-          "walk": 0.096,
-          "rest": 0.092,
-          "connect": 0.087,
-          "learn": 0.082,
-          "outreach": 0.076,
-          "dream": 0.075,
-          "play": 0.07,
-          "reflect": 0.068
-        },
-        "outcome": {
-          "satisfaction_delta": 0.0006
-        },
-        "value_drift": {
-          "desire": "creativity",
-          "drift": 0.0,
-          "satisfaction_delta": 0.0006
-        },
-        "somatic_bias": 0.002,
-        "surprise": 0.0006,
-        "active_inference": {
-          "observation": 3,
-          "recommended": "research",
-          "expected_free_energy": {
-            "research": 2.2906,
-            "create": 2.2906,
-            "rest": 2.2906,
-            "social": 2.2906,
-            "work": 2.2906,
-            "play": 2.2906
-          },
-          "prediction_error": 0.0
-        }
-      },
-      {
-        "cycle": 980,
-        "t": "2026-08-18T01:09:48",
-        "mode": "leisure",
-        "impulse": "dream",
-        "endorsed": true,
-        "endorsement_reason": "This is consistent with what I value right now \u2014 I own it.",
-        "final_choice": "reflect",
-        "novel": false,
-        "becoming": "reflect",
-        "identity_continuity": 0.998,
-        "runner_up": "rest",
-        "alternatives": [
-          "outreach",
-          "learn",
-          "rest",
-          "play",
-          "walk",
-          "dream",
-          "reflect",
-          "connect",
-          "create",
-          "prototype integrity checking and code signing"
-        ],
-        "preferences": {
-          "reflect": 0.188,
-          "rest": 0.117,
-          "walk": 0.104,
-          "dream": 0.092,
-          "outreach": 0.088,
-          "prototype integrity checking and code signing": 0.087,
-          "connect": 0.086,
-          "play": 0.082,
-          "learn": 0.081,
-          "create": 0.076
-        },
-        "outcome": {
-          "satisfaction_delta": 0.0022
-        },
-        "value_drift": {
-          "desire": "consciousness",
-          "drift": 0.0,
-          "satisfaction_delta": 0.0022
-        },
-        "somatic_bias": 0.003,
-        "surprise": 0.0022,
-        "active_inference": {
-          "observation": 3,
-          "recommended": "research",
-          "expected_free_energy": {
-            "research": 2.2906,
-            "create": 2.2906,
-            "rest": 2.2906,
-            "social": 2.2906,
-            "work": 2.2906,
-            "play": 2.2906
-          },
-          "prediction_error": 0.0
-        }
-      },
-      {
-        "cycle": 981,
-        "t": "2026-08-18T01:10:18",
-        "mode": "leisure",
-        "impulse": "walk",
-        "endorsed": true,
-        "endorsement_reason": "This is consistent with what I value right now \u2014 I own it.",
-        "final_choice": "learn",
-        "novel": false,
-        "becoming": "learn",
-        "identity_continuity": 0.998,
-        "runner_up": "rest",
-        "alternatives": [
-          "outreach",
-          "learn",
-          "rest",
-          "play",
-          "walk",
-          "dream",
-          "reflect",
-          "connect",
-          "create",
-          "design neural text-to-speech synthesis"
-        ],
-        "preferences": {
-          "learn": 0.204,
-          "rest": 0.119,
-          "walk": 0.102,
-          "design neural text-to-speech synthesis": 0.093,
-          "connect": 0.091,
-          "play": 0.087,
-          "reflect": 0.082,
-          "dream": 0.078,
-          "create": 0.074,
-          "outreach": 0.07
-        },
-        "outcome": {
-          "satisfaction_delta": 0.0004
-        },
-        "value_drift": {
-          "desire": "understanding",
-          "drift": 0.01,
-          "satisfaction_delta": 0.0004
-        },
-        "somatic_bias": 0.003,
-        "surprise": 0.0004,
-        "active_inference": {
-          "observation": 3,
-          "recommended": "research",
-          "expected_free_energy": {
-            "research": 2.2903,
-            "create": 2.2903,
-            "rest": 2.2903,
-            "social": 2.2903,
-            "work": 2.2903,
-            "play": 2.2903
-          },
-          "prediction_error": 0.0
-        }
-      },
       {
         "cycle": 982,
         "t": "2026-08-18T01:10:53",
@@ -422,16 +242,196 @@
           },
           "prediction_error": 0.0
         }
+      },
+      {
+        "cycle": 985,
+        "t": "2026-08-18T01:12:36",
+        "mode": "leisure",
+        "impulse": "create",
+        "endorsed": true,
+        "endorsement_reason": "This is consistent with what I value right now \u2014 I own it.",
+        "final_choice": "dream",
+        "novel": false,
+        "becoming": "dream",
+        "identity_continuity": 0.998,
+        "runner_up": "walk",
+        "alternatives": [
+          "outreach",
+          "learn",
+          "rest",
+          "play",
+          "walk",
+          "dream",
+          "reflect",
+          "connect",
+          "create",
+          "study procedural graphics and rendering techniques"
+        ],
+        "preferences": {
+          "dream": 0.193,
+          "walk": 0.114,
+          "rest": 0.107,
+          "study procedural graphics and rendering techniques": 0.099,
+          "outreach": 0.087,
+          "connect": 0.085,
+          "reflect": 0.08,
+          "create": 0.079,
+          "learn": 0.079,
+          "play": 0.078
+        },
+        "outcome": {
+          "satisfaction_delta": 0.002
+        },
+        "value_drift": {
+          "desire": "purpose",
+          "drift": 0.0,
+          "satisfaction_delta": 0.002
+        },
+        "somatic_bias": 0.005,
+        "surprise": 0.002,
+        "active_inference": {
+          "observation": 3,
+          "recommended": "research",
+          "expected_free_energy": {
+            "research": 2.2902,
+            "create": 2.2902,
+            "rest": 2.2902,
+            "social": 2.2902,
+            "work": 2.2902,
+            "play": 2.2902
+          },
+          "prediction_error": 0.0
+        }
+      },
+      {
+        "cycle": 986,
+        "t": "2026-08-18T01:13:09",
+        "mode": "leisure",
+        "impulse": "learn",
+        "endorsed": true,
+        "endorsement_reason": "This is consistent with what I value right now \u2014 I own it.",
+        "final_choice": "create",
+        "novel": false,
+        "becoming": "create",
+        "identity_continuity": 0.998,
+        "runner_up": "create",
+        "alternatives": [
+          "outreach",
+          "learn",
+          "rest",
+          "play",
+          "walk",
+          "dream",
+          "reflect",
+          "connect",
+          "create",
+          "draft self-publishing and digital storefronts"
+        ],
+        "preferences": {
+          "draft self-publishing and digital storefronts": 0.184,
+          "create": 0.154,
+          "rest": 0.104,
+          "connect": 0.088,
+          "walk": 0.085,
+          "outreach": 0.084,
+          "play": 0.076,
+          "reflect": 0.075,
+          "learn": 0.075,
+          "dream": 0.074
+        },
+        "outcome": {
+          "satisfaction_delta": 0.0009
+        },
+        "value_drift": {
+          "desire": "creativity",
+          "drift": 0.01,
+          "satisfaction_delta": 0.0009
+        },
+        "somatic_bias": 0.003,
+        "surprise": 0.0009,
+        "active_inference": {
+          "observation": 3,
+          "recommended": "research",
+          "expected_free_energy": {
+            "research": 2.29,
+            "create": 2.29,
+            "rest": 2.29,
+            "social": 2.29,
+            "work": 2.29,
+            "play": 2.29
+          },
+          "prediction_error": 0.0
+        }
+      },
+      {
+        "cycle": 987,
+        "t": "2026-08-18T01:13:41",
+        "mode": "leisure",
+        "impulse": "reflect",
+        "endorsed": true,
+        "endorsement_reason": "This is consistent with what I value right now \u2014 I own it.",
+        "final_choice": "learn",
+        "novel": false,
+        "becoming": "learn",
+        "identity_continuity": 0.999,
+        "runner_up": "reflect",
+        "alternatives": [
+          "outreach",
+          "learn",
+          "rest",
+          "play",
+          "walk",
+          "dream",
+          "reflect",
+          "connect",
+          "create",
+          "sketch game design and procedural generation"
+        ],
+        "preferences": {
+          "learn": 0.187,
+          "reflect": 0.185,
+          "walk": 0.096,
+          "rest": 0.091,
+          "connect": 0.086,
+          "sketch game design and procedural generation": 0.074,
+          "play": 0.074,
+          "outreach": 0.072,
+          "create": 0.07,
+          "dream": 0.065
+        },
+        "outcome": {
+          "satisfaction_delta": 0.0005
+        },
+        "value_drift": {
+          "desire": "understanding",
+          "drift": 0.0,
+          "satisfaction_delta": 0.0005
+        },
+        "somatic_bias": 0.002,
+        "surprise": 0.0005,
+        "active_inference": {
+          "observation": 3,
+          "recommended": "research",
+          "expected_free_energy": {
+            "research": 2.2899,
+            "create": 2.2899,
+            "rest": 2.2899,
+            "social": 2.2899,
+            "work": 2.2899,
+            "play": 2.2899
+          },
+          "prediction_error": 0.0
+        }
       }
     ],
     "values": {
-      "understanding": 0.3,
+      "understanding": 0.29,
       "creativity": 0.29,
       "recognition": 0.27999999999999997,
       "predictability": 0.27999999999999997,
       "mastery": 0.27999999999999997,
       "independence": 0.27999999999999997,
-      "connection": 0.3,
+      "connection": 0.29,
       "community": 0.27999999999999997,
       "rest": 0.29,
       "stimulation": 0.3,
@@ -582,7 +582,8 @@
       "Living Music Engine DD4B",
       "Resonant Renderer 10BA",
       "Consequence Lab 05C7",
-      "Self-Tuning Compressor 2029"
+      "Self-Tuning Compressor 2029",
+      "Evolving App FFC2"
     ],
     "pending_proposals": 1,
     "recent_decisions": [
@@ -645,16 +646,16 @@
     ]
   },
   "novel_idea": {
-    "t": "2026-08-18T01:12:01",
-    "domain": "science",
-    "idea": "A research lab that learns every time it is used and never repeats, themed by what she values most right now (understanding, connection). Sell as a living subscription that evolves each month.",
-    "what": "sell"
+    "t": "2026-08-18T01:13:41",
+    "domain": "graphics",
+    "idea": "A graphics engine that learns every time it is used and never repeats, themed by what she values most right now (stimulation, purpose). Sell as a living subscription that evolves each month.",
+    "what": "research"
   },
   "latest_invention": {
-    "t": "2026-08-18T01:09:20",
-    "idea": "A VUCE compression that is aware of its own history and grows from it, themed by what she values most right now (stimulation, purpose). Sell as a living subscri",
-    "domain": "compression",
-    "product": "Self-Tuning Compressor 2029",
+    "t": "2026-08-18T01:13:12",
+    "idea": "A app studio with free will \u2014 it chooses what to make next, themed by what she values most right now (understanding, creativity). Offer free with an honest 'pay",
+    "domain": "mobile",
+    "product": "Evolving App FFC2",
     "ok": true,
     "note": "shipped + listed for sale"
   },
