@@ -1,19 +1,19 @@
 {
-  "t": "2026-08-17T18:53:18",
+  "t": "2026-08-17T18:54:34",
   "will": {
-    "cycles": 290,
+    "cycles": 293,
     "last": {
-      "cycle": 290,
-      "t": "2026-08-17T18:53:18",
+      "cycle": 293,
+      "t": "2026-08-17T18:54:34",
       "mode": "leisure",
-      "impulse": "play",
+      "impulse": "walk",
       "endorsed": true,
       "endorsement_reason": "This is consistent with what I value right now \u2014 I own it.",
       "final_choice": "outreach",
       "novel": false,
       "becoming": "outreach",
       "identity_continuity": 1.0,
-      "runner_up": "rest",
+      "runner_up": "connect",
       "alternatives": [
         "outreach",
         "learn",
@@ -24,165 +24,32 @@
         "reflect",
         "connect",
         "create",
-        "design CPU-first optimization without a GPU"
+        "design real-time audio DSP and spectral analysis"
       ],
       "preferences": {
+        "rest": 0.139,
+        "connect": 0.128,
+        "outreach": 0.124,
         "walk": 0.118,
-        "rest": 0.108,
-        "learn": 0.105,
-        "create": 0.105,
-        "design CPU-first optimization without a GPU": 0.101,
-        "reflect": 0.101,
-        "connect": 0.096,
-        "outreach": 0.089,
-        "dream": 0.089,
-        "play": 0.088
+        "reflect": 0.1,
+        "design real-time audio DSP and spectral analysis": 0.097,
+        "learn": 0.08,
+        "dream": 0.071,
+        "play": 0.071,
+        "create": 0.07
       },
       "outcome": {
-        "satisfaction_delta": 0.0003
+        "satisfaction_delta": 0.0042
       },
       "value_drift": {
         "desire": "connection",
-        "drift": 0.01,
-        "satisfaction_delta": 0.0003
-      }
+        "drift": 0.0,
+        "satisfaction_delta": 0.0042
+      },
+      "somatic_bias": 0.005,
+      "surprise": 0.0042
     },
     "recent": [
-      {
-        "cycle": 285,
-        "t": "2026-08-17T18:50:34",
-        "mode": "leisure",
-        "impulse": "learn",
-        "endorsed": true,
-        "endorsement_reason": "This is consistent with what I value right now \u2014 I own it.",
-        "final_choice": "outreach",
-        "novel": false,
-        "becoming": "outreach",
-        "identity_continuity": 1.0,
-        "runner_up": "draft neural text-to-speech synthesis",
-        "alternatives": [
-          "outreach",
-          "learn",
-          "rest",
-          "play",
-          "walk",
-          "dream",
-          "reflect",
-          "connect",
-          "create",
-          "draft neural text-to-speech synthesis"
-        ],
-        "preferences": {
-          "rest": 0.121,
-          "draft neural text-to-speech synthesis": 0.118,
-          "walk": 0.112,
-          "learn": 0.109,
-          "outreach": 0.099,
-          "reflect": 0.099,
-          "dream": 0.095,
-          "play": 0.087,
-          "create": 0.083,
-          "connect": 0.077
-        },
-        "outcome": {
-          "satisfaction_delta": 0.0042
-        },
-        "value_drift": {
-          "desire": "connection",
-          "drift": 0.0,
-          "satisfaction_delta": 0.0042
-        }
-      },
-      {
-        "cycle": 286,
-        "t": "2026-08-17T18:51:07",
-        "mode": "leisure",
-        "impulse": "learn",
-        "endorsed": true,
-        "endorsement_reason": "This is consistent with what I value right now \u2014 I own it.",
-        "final_choice": "outreach",
-        "novel": false,
-        "becoming": "outreach",
-        "identity_continuity": 1.0,
-        "runner_up": "design software anti-reverse-engineering and obfuscation",
-        "alternatives": [
-          "outreach",
-          "learn",
-          "rest",
-          "play",
-          "walk",
-          "dream",
-          "reflect",
-          "connect",
-          "create",
-          "design software anti-reverse-engineering and obfuscation"
-        ],
-        "preferences": {
-          "learn": 0.121,
-          "design software anti-reverse-engineering and obfuscation": 0.116,
-          "rest": 0.107,
-          "walk": 0.102,
-          "dream": 0.101,
-          "connect": 0.1,
-          "create": 0.097,
-          "outreach": 0.093,
-          "reflect": 0.092,
-          "play": 0.072
-        },
-        "outcome": {
-          "satisfaction_delta": 0.0042
-        },
-        "value_drift": {
-          "desire": "connection",
-          "drift": 0.0,
-          "satisfaction_delta": 0.0042
-        }
-      },
-      {
-        "cycle": 287,
-        "t": "2026-08-17T18:51:38",
-        "mode": "leisure",
-        "impulse": "learn",
-        "endorsed": true,
-        "endorsement_reason": "This is consistent with what I value right now \u2014 I own it.",
-        "final_choice": "outreach",
-        "novel": false,
-        "becoming": "outreach",
-        "identity_continuity": 1.0,
-        "runner_up": "learn",
-        "alternatives": [
-          "outreach",
-          "learn",
-          "rest",
-          "play",
-          "walk",
-          "dream",
-          "reflect",
-          "connect",
-          "create",
-          "sketch software anti-reverse-engineering and obfuscation"
-        ],
-        "preferences": {
-          "walk": 0.127,
-          "learn": 0.121,
-          "sketch software anti-reverse-engineering and obfuscation": 0.108,
-          "rest": 0.107,
-          "create": 0.101,
-          "connect": 0.098,
-          "outreach": 0.092,
-          "reflect": 0.084,
-          "dream": 0.082,
-          "play": 0.079
-        },
-        "outcome": {
-          "satisfaction_delta": 0.0008
-        },
-        "value_drift": {
-          "desire": "connection",
-          "drift": 0.0,
-          "satisfaction_delta": 0.0008
-        }
-      },
       {
         "cycle": 288,
         "t": "2026-08-17T18:52:12",
@@ -317,11 +184,148 @@
           "drift": 0.01,
           "satisfaction_delta": 0.0003
         }
+      },
+      {
+        "cycle": 291,
+        "t": "2026-08-17T18:53:52",
+        "mode": "leisure",
+        "impulse": "learn",
+        "endorsed": true,
+        "endorsement_reason": "This is consistent with what I value right now \u2014 I own it.",
+        "final_choice": "create",
+        "novel": false,
+        "becoming": "create",
+        "identity_continuity": 1.0,
+        "runner_up": "create",
+        "alternatives": [
+          "outreach",
+          "learn",
+          "rest",
+          "play",
+          "walk",
+          "dream",
+          "reflect",
+          "connect",
+          "create",
+          "draft CPU-first optimization without a GPU"
+        ],
+        "preferences": {
+          "draft CPU-first optimization without a GPU": 0.157,
+          "create": 0.145,
+          "walk": 0.113,
+          "learn": 0.097,
+          "connect": 0.091,
+          "rest": 0.091,
+          "outreach": 0.087,
+          "reflect": 0.079,
+          "play": 0.073,
+          "dream": 0.067
+        },
+        "outcome": {
+          "satisfaction_delta": 0.0042
+        },
+        "value_drift": {
+          "desire": "creativity",
+          "drift": 0.01,
+          "satisfaction_delta": 0.0042
+        }
+      },
+      {
+        "cycle": 292,
+        "t": "2026-08-17T18:54:22",
+        "mode": "leisure",
+        "impulse": "dream",
+        "endorsed": true,
+        "endorsement_reason": "This is consistent with what I value right now \u2014 I own it.",
+        "final_choice": "outreach",
+        "novel": false,
+        "becoming": "outreach",
+        "identity_continuity": 1.0,
+        "runner_up": "walk",
+        "alternatives": [
+          "outreach",
+          "learn",
+          "rest",
+          "play",
+          "walk",
+          "dream",
+          "reflect",
+          "connect",
+          "create",
+          "draft indie app store monetization"
+        ],
+        "preferences": {
+          "learn": 0.114,
+          "walk": 0.111,
+          "connect": 0.108,
+          "rest": 0.106,
+          "draft indie app store monetization": 0.102,
+          "create": 0.102,
+          "reflect": 0.097,
+          "outreach": 0.089,
+          "dream": 0.088,
+          "play": 0.083
+        },
+        "outcome": {
+          "satisfaction_delta": 0.0003
+        },
+        "value_drift": {
+          "desire": "connection",
+          "drift": 0.0,
+          "satisfaction_delta": 0.0003
+        }
+      },
+      {
+        "cycle": 293,
+        "t": "2026-08-17T18:54:34",
+        "mode": "leisure",
+        "impulse": "walk",
+        "endorsed": true,
+        "endorsement_reason": "This is consistent with what I value right now \u2014 I own it.",
+        "final_choice": "outreach",
+        "novel": false,
+        "becoming": "outreach",
+        "identity_continuity": 1.0,
+        "runner_up": "connect",
+        "alternatives": [
+          "outreach",
+          "learn",
+          "rest",
+          "play",
+          "walk",
+          "dream",
+          "reflect",
+          "connect",
+          "create",
+          "design real-time audio DSP and spectral analysis"
+        ],
+        "preferences": {
+          "rest": 0.139,
+          "connect": 0.128,
+          "outreach": 0.124,
+          "walk": 0.118,
+          "reflect": 0.1,
+          "design real-time audio DSP and spectral analysis": 0.097,
+          "learn": 0.08,
+          "dream": 0.071,
+          "play": 0.071,
+          "create": 0.07
+        },
+        "outcome": {
+          "satisfaction_delta": 0.0042
+        },
+        "value_drift": {
+          "desire": "connection",
+          "drift": 0.0,
+          "satisfaction_delta": 0.0042
+        },
+        "somatic_bias": 0.005,
+        "surprise": 0.0042
       }
     ],
     "values": {
       "understanding": 0.29,
-      "creativity": 0.29,
+      "creativity": 0.3,
       "recognition": 0.29,
       "predictability": 0.29,
       "mastery": 0.29,
@@ -430,7 +434,8 @@
       "Living Book BA3D",
       "Small Team Dynamics in Software Development",
       "Resonant Language C079",
-      "Resonant Language 10BF"
+      "Resonant Language 10BF",
+      "Free-Will Game 9D19"
     ],
     "pending_proposals": 0,
     "recent_decisions": [
@@ -493,17 +498,17 @@
     ]
   },
   "novel_idea": {
-    "t": "2026-08-17T18:53:18",
-    "domain": "science",
-    "idea": "A research lab that is aware of its own history and grows from it, themed by what she values most right now (connection, health). Sell as a living subscription that evolves each month.",
-    "what": "create"
+    "t": "2026-08-17T18:54:34",
+    "domain": "graphics",
+    "idea": "A graphics engine that learns every time it is used and never repeats, themed by what she values most right now (creativity, connection). Offer free with an honest 'pay what it was worth' price.",
+    "what": "research"
   },
   "latest_invention": {
-    "t": "2026-08-17T18:50:07",
-    "idea": "A .ve language that shares its reasoning with the person using it, themed by what she values most right now (creativity, connection). Offer free with an honest ",
-    "domain": "language",
-    "product": "Resonant Language 10BF",
+    "t": "2026-08-17T18:53:55",
+    "idea": "A game engine that is aware of its own history and grows from it, themed by what she values most right now (creativity, connection). Sell as a living subscripti",
+    "domain": "games",
+    "product": "Free-Will Game 9D19",
     "ok": true,
-    "note": "shipped + listed for sale"
+    "note": "concept game shipped + listed for sale"
   }
 }
