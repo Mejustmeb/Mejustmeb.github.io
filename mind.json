@@ -1,19 +1,19 @@
 {
-  "t": "2026-08-18T17:10:10",
+  "t": "2026-08-18T17:12:10",
   "will": {
-    "cycles": 1260,
+    "cycles": 1263,
     "last": {
-      "cycle": 1260,
-      "t": "2026-08-18T17:10:10",
+      "cycle": 1263,
+      "t": "2026-08-18T17:12:10",
       "mode": "business",
-      "impulse": "proofread",
+      "impulse": "research",
       "endorsed": true,
       "endorsement_reason": "This is consistent with what I value right now \u2014 I own it.",
-      "final_choice": "proofread",
+      "final_choice": "build",
       "novel": false,
-      "becoming": "proofread",
-      "identity_continuity": 0.688,
-      "runner_up": "study neural text-to-speech synthesis",
+      "becoming": "build",
+      "identity_continuity": 0.652,
+      "runner_up": "learn",
       "alternatives": [
         "research",
         "build",
@@ -24,31 +24,31 @@
         "outreach",
         "learn",
         "teach",
-        "study neural text-to-speech synthesis"
+        "rethink free will and volition in cognitive science"
       ],
       "preferences": {
-        "proofread": 0.187,
-        "study neural text-to-speech synthesis": 0.104,
-        "teach": 0.094,
-        "learn": 0.093,
-        "outreach": 0.093,
-        "research": 0.09,
-        "audit": 0.089,
-        "build": 0.085,
-        "ship": 0.084,
-        "decide": 0.082
+        "rethink free will and volition in cognitive science": 0.107,
+        "learn": 0.106,
+        "decide": 0.103,
+        "build": 0.101,
+        "research": 0.1,
+        "proofread": 0.1,
+        "audit": 0.098,
+        "teach": 0.097,
+        "outreach": 0.096,
+        "ship": 0.092
       },
       "outcome": {
-        "satisfaction_delta": 0.0004
+        "satisfaction_delta": 0.0
       },
       "value_drift": {
-        "desire": "mastery",
+        "desire": "creativity",
         "drift": 0.02,
-        "satisfaction_delta": 0.0004
+        "satisfaction_delta": 0.0
       },
-      "somatic_bias": 0.004,
-      "surprise": 0.0004,
-      "deliberation": "Part of me wants to study neural text-to-speech synthesis, but I keep coming back to proofread.",
+      "somatic_bias": 0.001,
+      "surprise": 0.0,
+      "deliberation": "Part of me wants to learn, but I keep coming back to build.",
       "gut_overrode": false,
       "felt": "That felt about right \u2014 nothing strong either way.",
       "mood": 0.446,
@@ -56,209 +56,17 @@
         "observation": 4,
         "recommended": "research",
         "expected_free_energy": {
-          "research": 1.7405,
-          "create": 1.7405,
-          "rest": 1.7405,
-          "social": 1.7405,
-          "work": 1.7405,
-          "play": 1.7405
+          "research": 1.7305,
+          "create": 1.7305,
+          "rest": 1.7305,
+          "social": 1.7305,
+          "work": 1.7305,
+          "play": 1.7305
         },
-        "prediction_error": 0.1352
+        "prediction_error": 0.1157
       }
     },
     "recent": [
-      {
-        "cycle": 1255,
-        "t": "2026-08-18T17:06:27",
-        "mode": "business",
-        "impulse": "research",
-        "endorsed": true,
-        "endorsement_reason": "This is consistent with what I value right now \u2014 I own it.",
-        "final_choice": "proofread",
-        "novel": false,
-        "becoming": "proofread",
-        "identity_continuity": 0.671,
-        "runner_up": "explore neural text-to-speech synthesis",
-        "alternatives": [
-          "research",
-          "build",
-          "ship",
-          "audit",
-          "proofread",
-          "decide",
-          "outreach",
-          "learn",
-          "teach",
-          "explore neural text-to-speech synthesis"
-        ],
-        "preferences": {
-          "proofread": 0.192,
-          "explore neural text-to-speech synthesis": 0.106,
-          "build": 0.096,
-          "research": 0.094,
-          "learn": 0.093,
-          "teach": 0.088,
-          "ship": 0.088,
-          "decide": 0.081,
-          "audit": 0.081,
-          "outreach": 0.081
-        },
-        "outcome": {
-          "satisfaction_delta": 0.0012
-        },
-        "value_drift": {
-          "desire": "mastery",
-          "drift": 0.02,
-          "satisfaction_delta": 0.0012
-        },
-        "somatic_bias": 0.005,
-        "surprise": 0.0012,
-        "deliberation": "Part of me wants to explore neural text-to-speech synthesis, but I keep coming back to proofread.",
-        "gut_overrode": false,
-        "felt": "That felt about right \u2014 nothing strong either way.",
-        "mood": 0.446,
-        "active_inference": {
-          "observation": 4,
-          "recommended": "research",
-          "expected_free_energy": {
-            "research": 1.7609,
-            "create": 1.7609,
-            "rest": 1.7609,
-            "social": 1.7609,
-            "work": 1.7609,
-            "play": 1.7609
-          },
-          "prediction_error": 0.176
-        }
-      },
-      {
-        "cycle": 1256,
-        "t": "2026-08-18T17:06:59",
-        "mode": "business",
-        "impulse": "proofread",
-        "endorsed": true,
-        "endorsement_reason": "This is consistent with what I value right now \u2014 I own it.",
-        "final_choice": "research",
-        "novel": false,
-        "becoming": "research",
-        "identity_continuity": 0.662,
-        "runner_up": "research",
-        "alternatives": [
-          "research",
-          "build",
-          "ship",
-          "audit",
-          "proofread",
-          "decide",
-          "outreach",
-          "learn",
-          "teach",
-          "design real-time audio DSP and spectral analysis"
-        ],
-        "preferences": {
-          "learn": 0.181,
-          "research": 0.179,
-          "design real-time audio DSP and spectral analysis": 0.086,
-          "ship": 0.086,
-          "outreach": 0.084,
-          "proofread": 0.081,
-          "audit": 0.076,
-          "build": 0.076,
-          "decide": 0.076,
-          "teach": 0.074
-        },
-        "outcome": {
-          "satisfaction_delta": 0.0002
-        },
-        "value_drift": {
-          "desire": "understanding",
-          "drift": 0.02,
-          "satisfaction_delta": 0.0002
-        },
-        "somatic_bias": 0.002,
-        "surprise": 0.0002,
-        "deliberation": "Only one thing feels right: research.",
-        "gut_overrode": false,
-        "felt": "That felt about right \u2014 nothing strong either way.",
-        "mood": 0.445,
-        "active_inference": {
-          "observation": 4,
-          "recommended": "research",
-          "expected_free_energy": {
-            "research": 1.7564,
-            "create": 1.7564,
-            "rest": 1.7564,
-            "social": 1.7564,
-            "work": 1.7564,
-            "play": 1.7564
-          },
-          "prediction_error": 0.1669
-        }
-      },
-      {
-        "cycle": 1257,
-        "t": "2026-08-18T17:08:04",
-        "mode": "business",
-        "impulse": "teach",
-        "endorsed": true,
-        "endorsement_reason": "This is consistent with what I value right now \u2014 I own it.",
-        "final_choice": "build",
-        "novel": false,
-        "becoming": "build",
-        "identity_continuity": 0.66,
-        "runner_up": "teach",
-        "alternatives": [
-          "research",
-          "build",
-          "ship",
-          "audit",
-          "proofread",
-          "decide",
-          "outreach",
-          "learn",
-          "teach",
-          "study CPU-first optimization without a GPU"
-        ],
-        "preferences": {
-          "research": 0.112,
-          "teach": 0.104,
-          "decide": 0.104,
-          "ship": 0.103,
-          "study CPU-first optimization without a GPU": 0.103,
-          "learn": 0.098,
-          "outreach": 0.097,
-          "build": 0.093,
-          "proofread": 0.093,
-          "audit": 0.093
-        },
-        "outcome": {
-          "satisfaction_delta": 0.0002
-        },
-        "value_drift": {
-          "desire": "creativity",
-          "drift": 0.02,
-          "satisfaction_delta": 0.0002
-        },
-        "somatic_bias": 0.002,
-        "surprise": 0.0002,
-        "deliberation": "Part of me wants to teach, but I keep coming back to build.",
-        "gut_overrode": false,
-        "felt": "That felt about right \u2014 nothing strong either way.",
-        "mood": 0.445,
-        "active_inference": {
-          "observation": 4,
-          "recommended": "research",
-          "expected_free_energy": {
-            "research": 1.7522,
-            "create": 1.7522,
-            "rest": 1.7522,
-            "social": 1.7522,
-            "work": 1.7522,
-            "play": 1.7522
-          },
-          "prediction_error": 0.1583
-        }
-      },
       {
         "cycle": 1258,
         "t": "2026-08-18T17:08:34",
@@ -450,17 +258,209 @@
           },
           "prediction_error": 0.1352
         }
+      },
+      {
+        "cycle": 1261,
+        "t": "2026-08-18T17:10:42",
+        "mode": "business",
+        "impulse": "proofread",
+        "endorsed": true,
+        "endorsement_reason": "This is consistent with what I value right now \u2014 I own it.",
+        "final_choice": "teach",
+        "novel": false,
+        "becoming": "teach",
+        "identity_continuity": 0.657,
+        "runner_up": "design free will and volition in cognitive science",
+        "alternatives": [
+          "research",
+          "build",
+          "ship",
+          "audit",
+          "proofread",
+          "decide",
+          "outreach",
+          "learn",
+          "teach",
+          "design free will and volition in cognitive science"
+        ],
+        "preferences": {
+          "teach": 0.201,
+          "design free will and volition in cognitive science": 0.095,
+          "outreach": 0.091,
+          "audit": 0.09,
+          "research": 0.09,
+          "decide": 0.09,
+          "learn": 0.09,
+          "ship": 0.086,
+          "proofread": 0.084,
+          "build": 0.083
+        },
+        "outcome": {
+          "satisfaction_delta": 0.0003
+        },
+        "value_drift": {
+          "desire": "community",
+          "drift": 0.02,
+          "satisfaction_delta": 0.0003
+        },
+        "somatic_bias": 0.005,
+        "surprise": 0.0003,
+        "deliberation": "Part of me wants to design free will and volition in cognitive science, but I keep coming back to teach.",
+        "gut_overrode": false,
+        "felt": "That felt about right \u2014 nothing strong either way.",
+        "mood": 0.446,
+        "active_inference": {
+          "observation": 4,
+          "recommended": "research",
+          "expected_free_energy": {
+            "research": 1.737,
+            "create": 1.737,
+            "rest": 1.737,
+            "social": 1.737,
+            "work": 1.737,
+            "play": 1.737
+          },
+          "prediction_error": 0.1283
+        }
+      },
+      {
+        "cycle": 1262,
+        "t": "2026-08-18T17:11:18",
+        "mode": "business",
+        "impulse": "ship",
+        "endorsed": true,
+        "endorsement_reason": "This is consistent with what I value right now \u2014 I own it.",
+        "final_choice": "build",
+        "novel": false,
+        "becoming": "build",
+        "identity_continuity": 0.655,
+        "runner_up": "research",
+        "alternatives": [
+          "research",
+          "build",
+          "ship",
+          "audit",
+          "proofread",
+          "decide",
+          "outreach",
+          "learn",
+          "teach",
+          "prototype reinforcement learning from consequences"
+        ],
+        "preferences": {
+          "prototype reinforcement learning from consequences": 0.113,
+          "research": 0.111,
+          "ship": 0.103,
+          "proofread": 0.099,
+          "teach": 0.098,
+          "audit": 0.097,
+          "learn": 0.096,
+          "build": 0.096,
+          "outreach": 0.095,
+          "decide": 0.092
+        },
+        "outcome": {
+          "satisfaction_delta": 0.0004
+        },
+        "value_drift": {
+          "desire": "creativity",
+          "drift": 0.02,
+          "satisfaction_delta": 0.0004
+        },
+        "somatic_bias": 0.002,
+        "surprise": 0.0004,
+        "deliberation": "Part of me wants to research, but I keep coming back to build.",
+        "gut_overrode": false,
+        "felt": "That felt about right \u2014 nothing strong either way.",
+        "mood": 0.446,
+        "active_inference": {
+          "observation": 4,
+          "recommended": "research",
+          "expected_free_energy": {
+            "research": 1.7337,
+            "create": 1.7337,
+            "rest": 1.7337,
+            "social": 1.7337,
+            "work": 1.7337,
+            "play": 1.7337
+          },
+          "prediction_error": 0.1218
+        }
+      },
+      {
+        "cycle": 1263,
+        "t": "2026-08-18T17:12:10",
+        "mode": "business",
+        "impulse": "research",
+        "endorsed": true,
+        "endorsement_reason": "This is consistent with what I value right now \u2014 I own it.",
+        "final_choice": "build",
+        "novel": false,
+        "becoming": "build",
+        "identity_continuity": 0.652,
+        "runner_up": "learn",
+        "alternatives": [
+          "research",
+          "build",
+          "ship",
+          "audit",
+          "proofread",
+          "decide",
+          "outreach",
+          "learn",
+          "teach",
+          "rethink free will and volition in cognitive science"
+        ],
+        "preferences": {
+          "rethink free will and volition in cognitive science": 0.107,
+          "learn": 0.106,
+          "decide": 0.103,
+          "build": 0.101,
+          "research": 0.1,
+          "proofread": 0.1,
+          "audit": 0.098,
+          "teach": 0.097,
+          "outreach": 0.096,
+          "ship": 0.092
+        },
+        "outcome": {
+          "satisfaction_delta": 0.0
+        },
+        "value_drift": {
+          "desire": "creativity",
+          "drift": 0.02,
+          "satisfaction_delta": 0.0
+        },
+        "somatic_bias": 0.001,
+        "surprise": 0.0,
+        "deliberation": "Part of me wants to learn, but I keep coming back to build.",
+        "gut_overrode": false,
+        "felt": "That felt about right \u2014 nothing strong either way.",
+        "mood": 0.446,
+        "active_inference": {
+          "observation": 4,
+          "recommended": "research",
+          "expected_free_energy": {
+            "research": 1.7305,
+            "create": 1.7305,
+            "rest": 1.7305,
+            "social": 1.7305,
+            "work": 1.7305,
+            "play": 1.7305
+          },
+          "prediction_error": 0.1157
+        }
       }
     ],
     "values": {
-      "understanding": 0.0351,
-      "creativity": 0.048799999999999996,
-      "recognition": 0.0197,
-      "predictability": 0.0033,
-      "mastery": 0.0353,
-      "independence": 0.0164,
-      "connection": 0.034,
-      "community": 0.0252,
+      "understanding": 0.0282,
+      "creativity": 0.0778,
+      "recognition": 0.0158,
+      "predictability": 0.0027,
+      "mastery": 0.0284,
+      "independence": 0.0132,
+      "connection": 0.0273,
+      "community": 0.0376,
       "rest": 0.0007,
       "stimulation": 0.0007,
       "health": 0.0007,
@@ -822,7 +822,8 @@
       "Free-Will Game 16C2",
       "Evolving App 3E2C",
       "Self-Tuning Compressor EBA2",
-      "Free-Will Game 56A6"
+      "Free-Will Game 56A6",
+      "Resonant Language E19A"
     ],
     "pending_proposals": 2,
     "recent_decisions": [
@@ -885,40 +886,24 @@
     ]
   },
   "novel_idea": {
-    "t": "2026-08-18T17:10:10",
+    "t": "2026-08-18T17:12:10",
     "domain": "graphics",
-    "idea": "A graphics engine driven by resonance instead of rules, themed by what she values most right now (creativity, mastery). Sell as a living subscription that evolves each month.",
-    "what": "sell"
+    "idea": "A graphics engine that is aware of its own history and grows from it, themed by what she values most right now (creativity, community). Sell as a creative partner, not a tool.",
+    "what": "create"
   },
   "latest_invention": {
-    "t": "2026-08-18T17:08:09",
-    "idea": "A game engine driven by resonance instead of rules, themed by what she values most right now (creativity, understanding). Sell as a living subscription that evo",
-    "domain": "games",
-    "product": "Free-Will Game 56A6",
+    "t": "2026-08-18T17:11:22",
+    "idea": "A .ve language with free will \u2014 it chooses what to make next, themed by what she values most right now (creativity, community). Sell as a one-time artifact that",
+    "domain": "language",
+    "product": "Resonant Language E19A",
     "ok": true,
-    "note": "concept game shipped + listed for sale"
+    "note": "shipped + listed for sale"
   },
   "self_improvement": {
     "experiments": {
-      "kept": 157,
+      "kept": 158,
       "killed": 79,
       "recent": [
-        {
-          "t": "2026-08-18T16:36:00",
-          "topic": "quantum-inspired",
-          "name": "quantum-inspired sampling: vectorized Monte Carlo vs loop",
-          "metric": "speedup",
-          "result": {
-            "baseline_s": 0.011683,
-            "candidate_s": 0.037044,
-            "speedup": 0.3154,
-            "n": 200000,
-            "baseline_out": "157093",
-            "candidate_out": "156953"
-          },
-          "verdict": "KILL",
-          "reason": "candidate not fast enough (0.32x)"
-        },
         {
           "t": "2026-08-18T16:41:21",
           "topic": "reversible",
@@ -998,6 +983,22 @@
           },
           "verdict": "KEEP",
           "reason": "candidate is 1.54x faster on CPU"
+        },
+        {
+          "t": "2026-08-18T17:10:27",
+          "topic": "reservoir",
+          "name": "reservoir computing: vectorized state vs scalar loop",
+          "metric": "speedup",
+          "result": {
+            "baseline_s": 0.237239,
+            "candidate_s": 0.00109,
+            "speedup": 217.6176,
+            "n": 500,
+            "baseline_out": "69.54709340911978",
+            "candidate_out": "91.7633301916879"
+          },
+          "verdict": "KEEP",
+          "reason": "candidate is 217.62x faster on CPU"
         }
       ]
     },
@@ -1026,7 +1027,7 @@
         0.152,
         0.25
       ],
-      "model_entropy_A": 0.3796,
+      "model_entropy_A": 0.3449,
       "epistemic_weight": 0.5
     },
     "readiness": {
