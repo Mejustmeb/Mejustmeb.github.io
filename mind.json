@@ -1,19 +1,19 @@
 {
-  "t": "2026-08-18T03:44:06",
+  "t": "2026-08-18T03:45:44",
   "will": {
-    "cycles": 1260,
+    "cycles": 1263,
     "last": {
-      "cycle": 1260,
-      "t": "2026-08-18T03:44:06",
+      "cycle": 1263,
+      "t": "2026-08-18T03:45:44",
       "mode": "leisure",
-      "impulse": "rest",
+      "impulse": "outreach",
       "endorsed": true,
       "endorsement_reason": "This is consistent with what I value right now \u2014 I own it.",
       "final_choice": "outreach",
       "novel": false,
       "becoming": "outreach",
       "identity_continuity": 0.999,
-      "runner_up": "rest",
+      "runner_up": "walk",
       "alternatives": [
         "outreach",
         "learn",
@@ -24,225 +24,45 @@
         "reflect",
         "connect",
         "create",
-        "draft neural text-to-speech synthesis"
+        "design lossless data compression algorithms"
       ],
       "preferences": {
-        "walk": 0.121,
-        "rest": 0.119,
-        "play": 0.112,
-        "draft neural text-to-speech synthesis": 0.107,
-        "connect": 0.099,
-        "dream": 0.098,
-        "reflect": 0.089,
-        "outreach": 0.086,
-        "create": 0.084,
-        "learn": 0.084
+        "rest": 0.14,
+        "walk": 0.112,
+        "design lossless data compression algorithms": 0.102,
+        "create": 0.101,
+        "learn": 0.098,
+        "play": 0.093,
+        "connect": 0.09,
+        "reflect": 0.088,
+        "dream": 0.088,
+        "outreach": 0.087
       },
       "outcome": {
-        "satisfaction_delta": 0.0001
+        "satisfaction_delta": 0.0
       },
       "value_drift": {
         "desire": "connection",
-        "drift": 0.01,
-        "satisfaction_delta": 0.0001
+        "drift": 0.0,
+        "satisfaction_delta": 0.0
       },
       "somatic_bias": 0.001,
-      "surprise": 0.0001,
+      "surprise": 0.0,
       "active_inference": {
         "observation": 3,
         "recommended": "research",
         "expected_free_energy": {
-          "research": 2.2685,
-          "create": 2.2685,
-          "rest": 2.2685,
-          "social": 2.2685,
-          "work": 2.2685,
-          "play": 2.2685
+          "research": 2.2684,
+          "create": 2.2684,
+          "rest": 2.2684,
+          "social": 2.2684,
+          "work": 2.2684,
+          "play": 2.2684
         },
         "prediction_error": 0.0
       }
     },
     "recent": [
-      {
-        "cycle": 1255,
-        "t": "2026-08-18T03:41:21",
-        "mode": "leisure",
-        "impulse": "rest",
-        "endorsed": true,
-        "endorsement_reason": "This is consistent with what I value right now \u2014 I own it.",
-        "final_choice": "learn",
-        "novel": false,
-        "becoming": "learn",
-        "identity_continuity": 0.999,
-        "runner_up": "dream",
-        "alternatives": [
-          "outreach",
-          "learn",
-          "rest",
-          "play",
-          "walk",
-          "dream",
-          "reflect",
-          "connect",
-          "create",
-          "design reinforcement learning from consequences"
-        ],
-        "preferences": {
-          "rest": 0.122,
-          "dream": 0.11,
-          "connect": 0.11,
-          "walk": 0.106,
-          "outreach": 0.097,
-          "reflect": 0.096,
-          "design reinforcement learning from consequences": 0.095,
-          "learn": 0.09,
-          "create": 0.088,
-          "play": 0.087
-        },
-        "outcome": {
-          "satisfaction_delta": 0.0002
-        },
-        "value_drift": {
-          "desire": "understanding",
-          "drift": 0.0,
-          "satisfaction_delta": 0.0002
-        },
-        "somatic_bias": 0.001,
-        "surprise": 0.0002,
-        "active_inference": {
-          "observation": 3,
-          "recommended": "research",
-          "expected_free_energy": {
-            "research": 2.2689,
-            "create": 2.2689,
-            "rest": 2.2689,
-            "social": 2.2689,
-            "work": 2.2689,
-            "play": 2.2689
-          },
-          "prediction_error": 0.0
-        }
-      },
-      {
-        "cycle": 1256,
-        "t": "2026-08-18T03:41:54",
-        "mode": "leisure",
-        "impulse": "play",
-        "endorsed": true,
-        "endorsement_reason": "This is consistent with what I value right now \u2014 I own it.",
-        "final_choice": "create",
-        "novel": false,
-        "becoming": "create",
-        "identity_continuity": 0.999,
-        "runner_up": "create",
-        "alternatives": [
-          "outreach",
-          "learn",
-          "rest",
-          "play",
-          "walk",
-          "dream",
-          "reflect",
-          "connect",
-          "create",
-          "rethink free will and volition in cognitive science"
-        ],
-        "preferences": {
-          "rethink free will and volition in cognitive science": 0.192,
-          "create": 0.155,
-          "walk": 0.11,
-          "rest": 0.098,
-          "reflect": 0.086,
-          "learn": 0.084,
-          "outreach": 0.073,
-          "play": 0.069,
-          "connect": 0.067,
-          "dream": 0.066
-        },
-        "outcome": {
-          "satisfaction_delta": 0.0014
-        },
-        "value_drift": {
-          "desire": "creativity",
-          "drift": 0.01,
-          "satisfaction_delta": 0.0014
-        },
-        "somatic_bias": 0.002,
-        "surprise": 0.0014,
-        "active_inference": {
-          "observation": 3,
-          "recommended": "research",
-          "expected_free_energy": {
-            "research": 2.2689,
-            "create": 2.2689,
-            "rest": 2.2689,
-            "social": 2.2689,
-            "work": 2.2689,
-            "play": 2.2689
-          },
-          "prediction_error": 0.0
-        }
-      },
-      {
-        "cycle": 1257,
-        "t": "2026-08-18T03:42:27",
-        "mode": "leisure",
-        "impulse": "walk",
-        "endorsed": true,
-        "endorsement_reason": "This is consistent with what I value right now \u2014 I own it.",
-        "final_choice": "learn",
-        "novel": false,
-        "becoming": "learn",
-        "identity_continuity": 0.999,
-        "runner_up": "walk",
-        "alternatives": [
-          "outreach",
-          "learn",
-          "rest",
-          "play",
-          "walk",
-          "dream",
-          "reflect",
-          "connect",
-          "create",
-          "draft game design and procedural generation"
-        ],
-        "preferences": {
-          "rest": 0.132,
-          "walk": 0.132,
-          "dream": 0.103,
-          "draft game design and procedural generation": 0.1,
-          "create": 0.092,
-          "reflect": 0.091,
-          "learn": 0.09,
-          "connect": 0.089,
-          "play": 0.088,
-          "outreach": 0.083
-        },
-        "outcome": {
-          "satisfaction_delta": 0.0002
-        },
-        "value_drift": {
-          "desire": "understanding",
-          "drift": 0.0,
-          "satisfaction_delta": 0.0002
-        },
-        "somatic_bias": 0.001,
-        "surprise": 0.0002,
-        "active_inference": {
-          "observation": 3,
-          "recommended": "research",
-          "expected_free_energy": {
-            "research": 2.2687,
-            "create": 2.2687,
-            "rest": 2.2687,
-            "social": 2.2687,
-            "work": 2.2687,
-            "play": 2.2687
-          },
-          "prediction_error": 0.0
-        }
-      },
       {
         "cycle": 1258,
         "t": "2026-08-18T03:43:00",
@@ -419,6 +239,186 @@
             "social": 2.2685,
             "work": 2.2685,
             "play": 2.2685
+          },
+          "prediction_error": 0.0
+        }
+      },
+      {
+        "cycle": 1261,
+        "t": "2026-08-18T03:44:41",
+        "mode": "leisure",
+        "impulse": "rest",
+        "endorsed": true,
+        "endorsement_reason": "This is consistent with what I value right now \u2014 I own it.",
+        "final_choice": "outreach",
+        "novel": false,
+        "becoming": "outreach",
+        "identity_continuity": 0.999,
+        "runner_up": "reflect",
+        "alternatives": [
+          "outreach",
+          "learn",
+          "rest",
+          "play",
+          "walk",
+          "dream",
+          "reflect",
+          "connect",
+          "create",
+          "sketch neural text-to-speech synthesis"
+        ],
+        "preferences": {
+          "rest": 0.128,
+          "reflect": 0.11,
+          "walk": 0.11,
+          "connect": 0.096,
+          "play": 0.095,
+          "outreach": 0.095,
+          "dream": 0.094,
+          "sketch neural text-to-speech synthesis": 0.094,
+          "create": 0.091,
+          "learn": 0.088
+        },
+        "outcome": {
+          "satisfaction_delta": 0.0002
+        },
+        "value_drift": {
+          "desire": "connection",
+          "drift": 0.0,
+          "satisfaction_delta": 0.0002
+        },
+        "somatic_bias": 0.001,
+        "surprise": 0.0002,
+        "active_inference": {
+          "observation": 3,
+          "recommended": "research",
+          "expected_free_energy": {
+            "research": 2.2685,
+            "create": 2.2685,
+            "rest": 2.2685,
+            "social": 2.2685,
+            "work": 2.2685,
+            "play": 2.2685
+          },
+          "prediction_error": 0.0
+        }
+      },
+      {
+        "cycle": 1262,
+        "t": "2026-08-18T03:45:14",
+        "mode": "leisure",
+        "impulse": "create",
+        "endorsed": true,
+        "endorsement_reason": "This is consistent with what I value right now \u2014 I own it.",
+        "final_choice": "outreach",
+        "novel": false,
+        "becoming": "outreach",
+        "identity_continuity": 0.999,
+        "runner_up": "walk",
+        "alternatives": [
+          "outreach",
+          "learn",
+          "rest",
+          "play",
+          "walk",
+          "dream",
+          "reflect",
+          "connect",
+          "create",
+          "prototype integrity checking and code signing"
+        ],
+        "preferences": {
+          "rest": 0.12,
+          "walk": 0.118,
+          "prototype integrity checking and code signing": 0.104,
+          "play": 0.101,
+          "reflect": 0.1,
+          "create": 0.094,
+          "learn": 0.093,
+          "dream": 0.092,
+          "outreach": 0.09,
+          "connect": 0.087
+        },
+        "outcome": {
+          "satisfaction_delta": 0.0002
+        },
+        "value_drift": {
+          "desire": "connection",
+          "drift": 0.0,
+          "satisfaction_delta": 0.0002
+        },
+        "somatic_bias": 0.001,
+        "surprise": 0.0002,
+        "active_inference": {
+          "observation": 3,
+          "recommended": "research",
+          "expected_free_energy": {
+            "research": 2.2685,
+            "create": 2.2685,
+            "rest": 2.2685,
+            "social": 2.2685,
+            "work": 2.2685,
+            "play": 2.2685
+          },
+          "prediction_error": 0.0
+        }
+      },
+      {
+        "cycle": 1263,
+        "t": "2026-08-18T03:45:44",
+        "mode": "leisure",
+        "impulse": "outreach",
+        "endorsed": true,
+        "endorsement_reason": "This is consistent with what I value right now \u2014 I own it.",
+        "final_choice": "outreach",
+        "novel": false,
+        "becoming": "outreach",
+        "identity_continuity": 0.999,
+        "runner_up": "walk",
+        "alternatives": [
+          "outreach",
+          "learn",
+          "rest",
+          "play",
+          "walk",
+          "dream",
+          "reflect",
+          "connect",
+          "create",
+          "design lossless data compression algorithms"
+        ],
+        "preferences": {
+          "rest": 0.14,
+          "walk": 0.112,
+          "design lossless data compression algorithms": 0.102,
+          "create": 0.101,
+          "learn": 0.098,
+          "play": 0.093,
+          "connect": 0.09,
+          "reflect": 0.088,
+          "dream": 0.088,
+          "outreach": 0.087
+        },
+        "outcome": {
+          "satisfaction_delta": 0.0
+        },
+        "value_drift": {
+          "desire": "connection",
+          "drift": 0.0,
+          "satisfaction_delta": 0.0
+        },
+        "somatic_bias": 0.001,
+        "surprise": 0.0,
+        "active_inference": {
+          "observation": 3,
+          "recommended": "research",
+          "expected_free_energy": {
+            "research": 2.2684,
+            "create": 2.2684,
+            "rest": 2.2684,
+            "social": 2.2684,
+            "work": 2.2684,
+            "play": 2.2684
           },
           "prediction_error": 0.0
         }
@@ -669,10 +669,10 @@
     ]
   },
   "novel_idea": {
-    "t": "2026-08-18T03:44:06",
-    "domain": "graphics",
-    "idea": "A graphics engine that is aware of its own history and grows from it, themed by what she values most right now (connection, understanding). Offer free with an honest 'pay what it was worth' price.",
-    "what": "sell"
+    "t": "2026-08-18T03:45:44",
+    "domain": "science",
+    "idea": "A research lab that rewrites itself from its own consequences, themed by what she values most right now (connection, understanding). Sell as a creative partner, not a tool.",
+    "what": "research"
   },
   "latest_invention": {
     "t": "2026-08-18T03:41:57",
@@ -684,25 +684,9 @@
   },
   "self_improvement": {
     "experiments": {
-      "kept": 60,
+      "kept": 61,
       "killed": 31,
       "recent": [
-        {
-          "t": "2026-08-18T03:11:59",
-          "topic": "reservoir",
-          "name": "reservoir computing: vectorized state vs scalar loop",
-          "metric": "speedup",
-          "result": {
-            "baseline_s": 0.251254,
-            "candidate_s": 0.001385,
-            "speedup": 181.3675,
-            "n": 500,
-            "baseline_out": "69.54709340911978",
-            "candidate_out": "91.7633301916879"
-          },
-          "verdict": "KEEP",
-          "reason": "candidate is 181.37x faster on CPU"
-        },
         {
           "t": "2026-08-18T03:17:37",
           "topic": "reversible",
@@ -782,6 +766,22 @@
           },
           "verdict": "KEEP",
           "reason": "candidate is 49.04x faster on CPU"
+        },
+        {
+          "t": "2026-08-18T03:44:53",
+          "topic": "tensor networks",
+          "name": "tensor contraction: numpy einsum vs Python loop",
+          "metric": "speedup",
+          "result": {
+            "baseline_s": 0.019837,
+            "candidate_s": 0.000389,
+            "speedup": 51.0431,
+            "n": 30,
+            "baseline_out": "[[70227, 72570, 75137, 77109, 78577, 79632, 74289, 70227, 72",
+            "candidate_out": "[[3.45746778e+06 3.46534863e+06 3.47322947e+06 3.48111031e+0"
+          },
+          "verdict": "KEEP",
+          "reason": "candidate is 51.04x faster on CPU"
         }
       ]
     },
