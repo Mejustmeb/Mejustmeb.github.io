@@ -1,16 +1,16 @@
 {
-  "t": "2026-08-17T18:12:13",
+  "t": "2026-08-17T18:14:02",
   "will": {
-    "cycles": 204,
+    "cycles": 206,
     "last": {
-      "cycle": 204,
-      "t": "2026-08-17T18:12:11",
+      "cycle": 206,
+      "t": "2026-08-17T18:13:15",
       "mode": "leisure",
-      "impulse": "connect",
+      "impulse": "outreach",
       "endorsed": true,
       "endorsement_reason": "This is consistent with what I value right now \u2014 I own it.",
-      "final_choice": "connect",
-      "runner_up": "learn",
+      "final_choice": "outreach",
+      "runner_up": "walk",
       "alternatives": [
         "outreach",
         "learn",
@@ -23,15 +23,15 @@
         "create"
       ],
       "preferences": {
-        "rest": 0.145,
-        "learn": 0.143,
-        "walk": 0.141,
-        "reflect": 0.123,
-        "connect": 0.106,
-        "create": 0.092,
-        "play": 0.089,
-        "outreach": 0.086,
-        "dream": 0.075
+        "rest": 0.154,
+        "walk": 0.146,
+        "reflect": 0.121,
+        "outreach": 0.114,
+        "learn": 0.11,
+        "connect": 0.097,
+        "create": 0.096,
+        "dream": 0.082,
+        "play": 0.079
       },
       "outcome": {
         "satisfaction_delta": 0.0042
@@ -43,86 +43,6 @@
       }
     },
     "recent": [
-      {
-        "cycle": 199,
-        "t": "2026-08-17T18:12:10",
-        "mode": "leisure",
-        "impulse": "dream",
-        "endorsed": true,
-        "endorsement_reason": "This is consistent with what I value right now \u2014 I own it.",
-        "final_choice": "dream",
-        "runner_up": "create",
-        "alternatives": [
-          "outreach",
-          "learn",
-          "rest",
-          "play",
-          "walk",
-          "dream",
-          "reflect",
-          "connect",
-          "create"
-        ],
-        "preferences": {
-          "play": 0.157,
-          "create": 0.122,
-          "learn": 0.119,
-          "connect": 0.11,
-          "walk": 0.106,
-          "outreach": 0.102,
-          "reflect": 0.096,
-          "rest": 0.095,
-          "dream": 0.093
-        },
-        "outcome": {
-          "satisfaction_delta": 0.0042
-        },
-        "value_drift": {
-          "desire": "purpose",
-          "drift": 0.02,
-          "satisfaction_delta": 0.0042
-        }
-      },
-      {
-        "cycle": 200,
-        "t": "2026-08-17T18:12:10",
-        "mode": "leisure",
-        "impulse": "play",
-        "endorsed": true,
-        "endorsement_reason": "This is consistent with what I value right now \u2014 I own it.",
-        "final_choice": "play",
-        "runner_up": "rest",
-        "alternatives": [
-          "outreach",
-          "learn",
-          "rest",
-          "play",
-          "walk",
-          "dream",
-          "reflect",
-          "connect",
-          "create"
-        ],
-        "preferences": {
-          "play": 0.135,
-          "rest": 0.125,
-          "create": 0.121,
-          "learn": 0.116,
-          "outreach": 0.11,
-          "connect": 0.103,
-          "reflect": 0.102,
-          "walk": 0.1,
-          "dream": 0.087
-        },
-        "outcome": {
-          "satisfaction_delta": 0.0042
-        },
-        "value_drift": {
-          "desire": "stimulation",
-          "drift": 0.02,
-          "satisfaction_delta": 0.0042
-        }
-      },
       {
         "cycle": 201,
         "t": "2026-08-17T18:12:11",
@@ -282,6 +202,86 @@
           "drift": 0.0,
           "satisfaction_delta": 0.0042
         }
+      },
+      {
+        "cycle": 205,
+        "t": "2026-08-17T18:12:44",
+        "mode": "leisure",
+        "impulse": "create",
+        "endorsed": true,
+        "endorsement_reason": "This is consistent with what I value right now \u2014 I own it.",
+        "final_choice": "create",
+        "runner_up": "reflect",
+        "alternatives": [
+          "outreach",
+          "learn",
+          "rest",
+          "play",
+          "walk",
+          "dream",
+          "reflect",
+          "connect",
+          "create"
+        ],
+        "preferences": {
+          "learn": 0.172,
+          "reflect": 0.133,
+          "walk": 0.129,
+          "rest": 0.121,
+          "create": 0.095,
+          "outreach": 0.093,
+          "connect": 0.092,
+          "play": 0.084,
+          "dream": 0.08
+        },
+        "outcome": {
+          "satisfaction_delta": 0.0042
+        },
+        "value_drift": {
+          "desire": "creativity",
+          "drift": 0.0,
+          "satisfaction_delta": 0.0042
+        }
+      },
+      {
+        "cycle": 206,
+        "t": "2026-08-17T18:13:15",
+        "mode": "leisure",
+        "impulse": "outreach",
+        "endorsed": true,
+        "endorsement_reason": "This is consistent with what I value right now \u2014 I own it.",
+        "final_choice": "outreach",
+        "runner_up": "walk",
+        "alternatives": [
+          "outreach",
+          "learn",
+          "rest",
+          "play",
+          "walk",
+          "dream",
+          "reflect",
+          "connect",
+          "create"
+        ],
+        "preferences": {
+          "rest": 0.154,
+          "walk": 0.146,
+          "reflect": 0.121,
+          "outreach": 0.114,
+          "learn": 0.11,
+          "connect": 0.097,
+          "create": 0.096,
+          "dream": 0.082,
+          "play": 0.079
+        },
+        "outcome": {
+          "satisfaction_delta": 0.0042
+        },
+        "value_drift": {
+          "desire": "connection",
+          "drift": 0.0,
+          "satisfaction_delta": 0.0042
+        }
       }
     ],
     "values": {
@@ -388,7 +388,8 @@
       "Self-Tuning Compressor 8D84",
       "Living Music Engine 52AF",
       "Living Music Engine D033",
-      "Resonant Renderer 1B97"
+      "Resonant Renderer 1B97",
+      "Evolving App 466C"
     ],
     "pending_proposals": 0,
     "recent_decisions": [
@@ -451,16 +452,16 @@
     ]
   },
   "novel_idea": {
-    "t": "2026-08-17T18:12:13",
+    "t": "2026-08-17T18:14:03",
     "domain": "games",
-    "idea": "A game engine that rewrites itself from its own consequences, themed by what she values most right now (understanding, creativity). Sell as a one-time artifact that keeps learning after purchase.",
-    "what": "sell"
+    "idea": "A game engine that rewrites itself from its own consequences, themed by what she values most right now (understanding, creativity). Sell as a living subscription that evolves each month.",
+    "what": "research"
   },
   "latest_invention": {
-    "t": "2026-08-17T17:59:11",
-    "idea": "A graphics engine driven by resonance instead of rules, themed by what she values most right now (understanding, creativity). Offer free with an honest 'pay wha",
-    "domain": "graphics",
-    "product": "Resonant Renderer 1B97",
+    "t": "2026-08-17T18:12:53",
+    "idea": "A app studio that composes, ships, and prices itself without a human, themed by what she values most right now (understanding, creativity). Offer free with an h",
+    "domain": "mobile",
+    "product": "Evolving App 466C",
     "ok": true,
     "note": "shipped + listed for sale"
   }
