@@ -1,16 +1,16 @@
 {
-  "t": "2026-08-17T18:25:45",
+  "t": "2026-08-17T18:26:31",
   "will": {
-    "cycles": 227,
+    "cycles": 238,
     "last": {
-      "cycle": 227,
-      "t": "2026-08-17T18:25:41",
+      "cycle": 238,
+      "t": "2026-08-17T18:26:31",
       "mode": "leisure",
-      "impulse": "rest",
+      "impulse": "connect",
       "endorsed": true,
       "endorsement_reason": "This is consistent with what I value right now \u2014 I own it.",
-      "final_choice": "rest",
-      "runner_up": "outreach",
+      "final_choice": "connect",
+      "runner_up": "walk",
       "alternatives": [
         "outreach",
         "learn",
@@ -23,35 +23,35 @@
         "create"
       ],
       "preferences": {
-        "connect": 0.202,
-        "outreach": 0.171,
-        "rest": 0.109,
-        "walk": 0.1,
-        "create": 0.095,
-        "learn": 0.085,
-        "dream": 0.082,
-        "reflect": 0.081,
-        "play": 0.075
+        "play": 0.15,
+        "walk": 0.141,
+        "connect": 0.117,
+        "create": 0.108,
+        "outreach": 0.106,
+        "learn": 0.101,
+        "dream": 0.095,
+        "rest": 0.093,
+        "reflect": 0.088
       },
       "outcome": {
         "satisfaction_delta": 0.0042
       },
       "value_drift": {
-        "desire": "rest",
-        "drift": 0.02,
+        "desire": "connection",
+        "drift": 0.0,
         "satisfaction_delta": 0.0042
       }
     },
     "recent": [
       {
-        "cycle": 222,
-        "t": "2026-08-17T18:22:59",
+        "cycle": 233,
+        "t": "2026-08-17T18:26:15",
         "mode": "leisure",
         "impulse": "create",
         "endorsed": true,
         "endorsement_reason": "This is consistent with what I value right now \u2014 I own it.",
         "final_choice": "create",
-        "runner_up": "walk",
+        "runner_up": "dream",
         "alternatives": [
           "outreach",
           "learn",
@@ -64,15 +64,15 @@
           "create"
         ],
         "preferences": {
-          "dream": 0.159,
-          "walk": 0.128,
-          "create": 0.114,
-          "rest": 0.113,
-          "learn": 0.108,
-          "outreach": 0.107,
-          "connect": 0.107,
-          "reflect": 0.089,
-          "play": 0.075
+          "create": 0.166,
+          "dream": 0.132,
+          "learn": 0.122,
+          "outreach": 0.112,
+          "walk": 0.098,
+          "connect": 0.097,
+          "rest": 0.097,
+          "play": 0.097,
+          "reflect": 0.08
         },
         "outcome": {
           "satisfaction_delta": 0.0042
@@ -84,88 +84,8 @@
         }
       },
       {
-        "cycle": 223,
-        "t": "2026-08-17T18:23:33",
-        "mode": "leisure",
-        "impulse": "dream",
-        "endorsed": true,
-        "endorsement_reason": "This is consistent with what I value right now \u2014 I own it.",
-        "final_choice": "dream",
-        "runner_up": "rest",
-        "alternatives": [
-          "outreach",
-          "learn",
-          "rest",
-          "play",
-          "walk",
-          "dream",
-          "reflect",
-          "connect",
-          "create"
-        ],
-        "preferences": {
-          "dream": 0.152,
-          "rest": 0.141,
-          "learn": 0.119,
-          "outreach": 0.11,
-          "walk": 0.105,
-          "create": 0.104,
-          "connect": 0.099,
-          "play": 0.094,
-          "reflect": 0.077
-        },
-        "outcome": {
-          "satisfaction_delta": 0.0042
-        },
-        "value_drift": {
-          "desire": "purpose",
-          "drift": 0.02,
-          "satisfaction_delta": 0.0042
-        }
-      },
-      {
-        "cycle": 224,
-        "t": "2026-08-17T18:24:06",
-        "mode": "leisure",
-        "impulse": "learn",
-        "endorsed": true,
-        "endorsement_reason": "This is consistent with what I value right now \u2014 I own it.",
-        "final_choice": "learn",
-        "runner_up": "rest",
-        "alternatives": [
-          "outreach",
-          "learn",
-          "rest",
-          "play",
-          "walk",
-          "dream",
-          "reflect",
-          "connect",
-          "create"
-        ],
-        "preferences": {
-          "reflect": 0.165,
-          "rest": 0.138,
-          "walk": 0.124,
-          "create": 0.112,
-          "learn": 0.112,
-          "connect": 0.1,
-          "outreach": 0.096,
-          "play": 0.076,
-          "dream": 0.076
-        },
-        "outcome": {
-          "satisfaction_delta": 0.0042
-        },
-        "value_drift": {
-          "desire": "understanding",
-          "drift": 0.0,
-          "satisfaction_delta": 0.0042
-        }
-      },
-      {
-        "cycle": 225,
-        "t": "2026-08-17T18:24:37",
+        "cycle": 234,
+        "t": "2026-08-17T18:26:15",
         "mode": "leisure",
         "impulse": "reflect",
         "endorsed": true,
@@ -184,15 +104,15 @@
           "create"
         ],
         "preferences": {
-          "reflect": 0.151,
-          "dream": 0.141,
-          "rest": 0.113,
-          "connect": 0.11,
-          "outreach": 0.106,
-          "walk": 0.101,
-          "create": 0.098,
-          "learn": 0.096,
-          "play": 0.084
+          "learn": 0.136,
+          "dream": 0.132,
+          "rest": 0.115,
+          "create": 0.112,
+          "connect": 0.111,
+          "outreach": 0.103,
+          "walk": 0.102,
+          "reflect": 0.098,
+          "play": 0.092
         },
         "outcome": {
           "satisfaction_delta": 0.0042
@@ -204,8 +124,88 @@
         }
       },
       {
-        "cycle": 226,
-        "t": "2026-08-17T18:25:10",
+        "cycle": 235,
+        "t": "2026-08-17T18:26:15",
+        "mode": "leisure",
+        "impulse": "walk",
+        "endorsed": true,
+        "endorsement_reason": "This is consistent with what I value right now \u2014 I own it.",
+        "final_choice": "walk",
+        "runner_up": "learn",
+        "alternatives": [
+          "outreach",
+          "learn",
+          "rest",
+          "play",
+          "walk",
+          "dream",
+          "reflect",
+          "connect",
+          "create"
+        ],
+        "preferences": {
+          "dream": 0.141,
+          "learn": 0.133,
+          "rest": 0.129,
+          "connect": 0.12,
+          "walk": 0.118,
+          "outreach": 0.101,
+          "create": 0.101,
+          "play": 0.084,
+          "reflect": 0.073
+        },
+        "outcome": {
+          "satisfaction_delta": 0.0042
+        },
+        "value_drift": {
+          "desire": "health",
+          "drift": 0.02,
+          "satisfaction_delta": 0.0042
+        }
+      },
+      {
+        "cycle": 236,
+        "t": "2026-08-17T18:26:15",
+        "mode": "leisure",
+        "impulse": "dream",
+        "endorsed": true,
+        "endorsement_reason": "This is consistent with what I value right now \u2014 I own it.",
+        "final_choice": "dream",
+        "runner_up": "dream",
+        "alternatives": [
+          "outreach",
+          "learn",
+          "rest",
+          "play",
+          "walk",
+          "dream",
+          "reflect",
+          "connect",
+          "create"
+        ],
+        "preferences": {
+          "learn": 0.14,
+          "dream": 0.139,
+          "rest": 0.128,
+          "outreach": 0.121,
+          "connect": 0.105,
+          "walk": 0.102,
+          "create": 0.097,
+          "play": 0.091,
+          "reflect": 0.078
+        },
+        "outcome": {
+          "satisfaction_delta": 0.0042
+        },
+        "value_drift": {
+          "desire": "purpose",
+          "drift": 0.02,
+          "satisfaction_delta": 0.0042
+        }
+      },
+      {
+        "cycle": 237,
+        "t": "2026-08-17T18:26:15",
         "mode": "leisure",
         "impulse": "learn",
         "endorsed": true,
@@ -224,14 +224,14 @@
           "create"
         ],
         "preferences": {
-          "connect": 0.2,
-          "outreach": 0.156,
-          "walk": 0.12,
-          "rest": 0.118,
-          "create": 0.088,
-          "play": 0.086,
-          "learn": 0.082,
-          "reflect": 0.08,
+          "connect": 0.176,
+          "outreach": 0.145,
+          "learn": 0.139,
+          "rest": 0.115,
+          "create": 0.103,
+          "walk": 0.091,
+          "play": 0.089,
+          "reflect": 0.072,
           "dream": 0.07
         },
         "outcome": {
@@ -244,14 +244,14 @@
         }
       },
       {
-        "cycle": 227,
-        "t": "2026-08-17T18:25:41",
+        "cycle": 238,
+        "t": "2026-08-17T18:26:31",
         "mode": "leisure",
-        "impulse": "rest",
+        "impulse": "connect",
         "endorsed": true,
         "endorsement_reason": "This is consistent with what I value right now \u2014 I own it.",
-        "final_choice": "rest",
-        "runner_up": "outreach",
+        "final_choice": "connect",
+        "runner_up": "walk",
         "alternatives": [
           "outreach",
           "learn",
@@ -264,22 +264,22 @@
           "create"
         ],
         "preferences": {
-          "connect": 0.202,
-          "outreach": 0.171,
-          "rest": 0.109,
-          "walk": 0.1,
-          "create": 0.095,
-          "learn": 0.085,
-          "dream": 0.082,
-          "reflect": 0.081,
-          "play": 0.075
+          "play": 0.15,
+          "walk": 0.141,
+          "connect": 0.117,
+          "create": 0.108,
+          "outreach": 0.106,
+          "learn": 0.101,
+          "dream": 0.095,
+          "rest": 0.093,
+          "reflect": 0.088
         },
         "outcome": {
           "satisfaction_delta": 0.0042
         },
         "value_drift": {
-          "desire": "rest",
-          "drift": 0.02,
+          "desire": "connection",
+          "drift": 0.0,
           "satisfaction_delta": 0.0042
         }
       }
@@ -295,9 +295,9 @@
       "community": 0.3,
       "rest": 0.16,
       "stimulation": 0.08,
-      "health": 0.14,
-      "purpose": 0.08,
-      "consciousness": 0.08
+      "health": 0.18,
+      "purpose": 0.12000000000000001,
+      "consciousness": 0.12000000000000001
     }
   },
   "mode": "leisure",
@@ -453,10 +453,10 @@
     ]
   },
   "novel_idea": {
-    "t": "2026-08-17T18:25:45",
-    "domain": "games",
-    "idea": "A game engine that is aware of its own history and grows from it, themed by what she values most right now (understanding, creativity). Sell as a creative partner, not a tool.",
-    "what": "sell"
+    "t": "2026-08-17T18:26:31",
+    "domain": "language",
+    "idea": "A .ve language that runs on CPU alone but feels alive, themed by what she values most right now (understanding, creativity). Sell as a one-time artifact that keeps learning after purchase.",
+    "what": "create"
   },
   "latest_invention": {
     "t": "2026-08-17T18:20:50",
