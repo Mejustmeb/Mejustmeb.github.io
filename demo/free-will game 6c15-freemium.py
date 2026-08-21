@@ -3,14 +3,14 @@ print("\n=== ECHO FREE TRIAL (watermarked) — support the full tool at https://
 """Free-Will Game 6C15 - a adventure game by Echo."""
 import random
 
-ITEMS = ['respect', 'plurality', 'darkorange', 'Tellurium', 'ram']
+ITEMS = ['adaptor', 'hegemony', 'gainsboro', 'Cadmium', 'horse']
 
 def play(seed=None):
     """Run one hunt. Returns True if the goal is found."""
     rng = random.Random(seed)
     goal = rng.choice(ITEMS)
     print("=== Free-Will Game 6C15 ===")
-    print("You are Ram, exploring Mirzāpur.")
+    print("You are Horse, exploring Bittou.")
     print("Theme: A game engine that composes, ships, and prices itself withou")
     print("Goal: find the " + goal + ".")
     bag = []
