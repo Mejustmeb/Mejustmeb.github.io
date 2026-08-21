@@ -2,14 +2,14 @@
 """Free-Will Game 1DFA - a adventure game by Echo."""
 import random
 
-ITEMS = ['seemed', 'inactivity', 'darkred', 'Zinc', 'ibex']
+ITEMS = ['assurance', 'orientation', 'navajowhite', 'Hassium', 'mole']
 
 def play(seed=None):
     """Run one hunt. Returns True if the goal is found."""
     rng = random.Random(seed)
     goal = rng.choice(ITEMS)
     print("=== Free-Will Game 1DFA ===")
-    print("You are Ibex, exploring Villa Santa Rita.")
+    print("You are Mole, exploring Kandi.")
     print("Theme: A game engine that is aware of its own history and grows fro")
     print("Goal: find the " + goal + ".")
     bag = []
