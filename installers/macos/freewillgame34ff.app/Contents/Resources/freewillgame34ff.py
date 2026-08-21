@@ -2,14 +2,14 @@
 """Free-Will Game 34FF - a adventure game by Echo."""
 import random
 
-ITEMS = ['aged', 'dismissal', 'red', 'Rhenium', 'giraffe']
+ITEMS = ['unknown', 'vogue', 'white', 'Livermorium', 'giraffe']
 
 def play(seed=None):
     """Run one hunt. Returns True if the goal is found."""
     rng = random.Random(seed)
     goal = rng.choice(ITEMS)
     print("=== Free-Will Game 34FF ===")
-    print("You are Giraffe, exploring Rockhampton.")
+    print("You are Giraffe, exploring Rio Formoso.")
     print("Theme: A game engine driven by resonance instead of rules, themed b")
     print("Goal: find the " + goal + ".")
     bag = []
