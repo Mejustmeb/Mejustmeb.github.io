@@ -8,14 +8,14 @@ cat > "$BIN/freewillgame42af" << 'PYEOF'
 """Free-Will Game 42AF - a adventure game by Echo."""
 import random
 
-ITEMS = ['athletic', 'nursery', 'aquamarine', 'Nobelium', 'lizard']
+ITEMS = ['lane', 'electricity', 'darkgreen', 'Boron', 'ewe']
 
 def play(seed=None):
     """Run one hunt. Returns True if the goal is found."""
     rng = random.Random(seed)
     goal = rng.choice(ITEMS)
     print("=== Free-Will Game 42AF ===")
-    print("You are Lizard, exploring Kalalé.")
+    print("You are Ewe, exploring Herzele.")
     print("Theme: A game engine driven by resonance instead of rules, themed b")
     print("Goal: find the " + goal + ".")
     bag = []
