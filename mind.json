@@ -1,19 +1,19 @@
 {
-  "t": "2026-08-21T18:56:11",
+  "t": "2026-08-21T18:58:29",
   "will": {
-    "cycles": 8130,
+    "cycles": 8133,
     "last": {
-      "cycle": 8130,
-      "t": "2026-08-21T18:56:11",
+      "cycle": 8133,
+      "t": "2026-08-21T18:58:29",
       "mode": "leisure",
-      "impulse": "play",
+      "impulse": "walk",
       "endorsed": true,
       "endorsement_reason": "This is consistent with what I value right now \u2014 I own it.",
-      "final_choice": "create",
+      "final_choice": "learn",
       "novel": false,
-      "becoming": "create",
-      "identity_continuity": 0.783,
-      "runner_up": "walk",
+      "becoming": "learn",
+      "identity_continuity": 0.773,
+      "runner_up": "rest",
       "alternatives": [
         "outreach",
         "learn",
@@ -24,241 +24,49 @@
         "reflect",
         "connect",
         "create",
-        "explore software anti-reverse-engineering and obfuscation"
+        "prototype game design and procedural generation"
       ],
       "preferences": {
-        "rest": 0.127,
-        "walk": 0.114,
-        "explore software anti-reverse-engineering and obfuscation": 0.108,
-        "create": 0.097,
-        "learn": 0.097,
-        "play": 0.094,
-        "dream": 0.094,
-        "reflect": 0.093,
-        "outreach": 0.089,
-        "connect": 0.088
+        "learn": 0.199,
+        "rest": 0.122,
+        "prototype game design and procedural generation": 0.102,
+        "walk": 0.101,
+        "create": 0.083,
+        "reflect": 0.08,
+        "outreach": 0.079,
+        "play": 0.079,
+        "dream": 0.078,
+        "connect": 0.076
       },
       "outcome": {
-        "satisfaction_delta": 0.0
+        "satisfaction_delta": 0.0004
       },
       "value_drift": {
-        "desire": "creativity",
+        "desire": "understanding",
         "drift": 0.02,
-        "satisfaction_delta": 0.0
+        "satisfaction_delta": 0.0004
       },
-      "somatic_bias": 0.0,
-      "surprise": 0.0,
-      "deliberation": "Part of me wants to walk, but I keep coming back to create.",
+      "somatic_bias": 0.002,
+      "surprise": 0.0004,
+      "deliberation": "Part of me wants to rest, but I keep coming back to learn.",
       "gut_overrode": false,
       "felt": "That felt about right \u2014 nothing strong either way.",
-      "mood": 0.462,
+      "mood": 0.461,
       "active_inference": {
         "observation": 4,
         "recommended": "research",
         "expected_free_energy": {
-          "research": 1.4914,
-          "create": 1.4914,
-          "rest": 1.4914,
-          "social": 1.4914,
-          "work": 1.4914,
-          "play": 1.4914
+          "research": 1.4913,
+          "create": 1.4913,
+          "rest": 1.4913,
+          "social": 1.4913,
+          "work": 1.4913,
+          "play": 1.4913
         },
         "prediction_error": 0.0
       }
     },
     "recent": [
-      {
-        "cycle": 8125,
-        "t": "2026-08-21T18:52:44",
-        "mode": "leisure",
-        "impulse": "connect",
-        "endorsed": true,
-        "endorsement_reason": "This is consistent with what I value right now \u2014 I own it.",
-        "final_choice": "rest",
-        "novel": false,
-        "becoming": "rest",
-        "identity_continuity": 0.768,
-        "runner_up": "walk",
-        "alternatives": [
-          "outreach",
-          "learn",
-          "rest",
-          "play",
-          "walk",
-          "dream",
-          "reflect",
-          "connect",
-          "create",
-          "rethink neural text-to-speech synthesis"
-        ],
-        "preferences": {
-          "rest": 0.251,
-          "walk": 0.1,
-          "rethink neural text-to-speech synthesis": 0.092,
-          "create": 0.084,
-          "dream": 0.083,
-          "learn": 0.08,
-          "outreach": 0.08,
-          "connect": 0.079,
-          "reflect": 0.079,
-          "play": 0.072
-        },
-        "outcome": {
-          "satisfaction_delta": 0.0042
-        },
-        "value_drift": {
-          "desire": "rest",
-          "drift": 0.02,
-          "satisfaction_delta": 0.0042
-        },
-        "somatic_bias": 0.012,
-        "surprise": 0.0042,
-        "deliberation": "Part of me wants to walk, but I keep coming back to rest.",
-        "gut_overrode": false,
-        "felt": "That felt about right \u2014 nothing strong either way.",
-        "mood": 0.458,
-        "active_inference": {
-          "observation": 4,
-          "recommended": "research",
-          "expected_free_energy": {
-            "research": 1.4919,
-            "create": 1.4919,
-            "rest": 1.4919,
-            "social": 1.4919,
-            "work": 1.4919,
-            "play": 1.4919
-          },
-          "prediction_error": 0.0
-        }
-      },
-      {
-        "cycle": 8126,
-        "t": "2026-08-21T18:53:19",
-        "mode": "leisure",
-        "impulse": "create",
-        "endorsed": true,
-        "endorsement_reason": "This is consistent with what I value right now \u2014 I own it.",
-        "final_choice": "learn",
-        "novel": false,
-        "becoming": "learn",
-        "identity_continuity": 0.781,
-        "runner_up": "rest",
-        "alternatives": [
-          "outreach",
-          "learn",
-          "rest",
-          "play",
-          "walk",
-          "dream",
-          "reflect",
-          "connect",
-          "create",
-          "prototype free will and volition in cognitive science"
-        ],
-        "preferences": {
-          "learn": 0.189,
-          "rest": 0.116,
-          "walk": 0.099,
-          "prototype free will and volition in cognitive science": 0.093,
-          "create": 0.092,
-          "reflect": 0.086,
-          "play": 0.083,
-          "outreach": 0.082,
-          "dream": 0.081,
-          "connect": 0.08
-        },
-        "outcome": {
-          "satisfaction_delta": 0.0018
-        },
-        "value_drift": {
-          "desire": "understanding",
-          "drift": 0.02,
-          "satisfaction_delta": 0.0018
-        },
-        "somatic_bias": 0.003,
-        "surprise": 0.0018,
-        "deliberation": "Part of me wants to rest, but I keep coming back to learn.",
-        "gut_overrode": false,
-        "felt": "That felt about right \u2014 nothing strong either way.",
-        "mood": 0.461,
-        "active_inference": {
-          "observation": 4,
-          "recommended": "research",
-          "expected_free_energy": {
-            "research": 1.4916,
-            "create": 1.4916,
-            "rest": 1.4916,
-            "social": 1.4916,
-            "work": 1.4916,
-            "play": 1.4916
-          },
-          "prediction_error": 0.0
-        }
-      },
-      {
-        "cycle": 8127,
-        "t": "2026-08-21T18:53:55",
-        "mode": "leisure",
-        "impulse": "sketch CPU-first optimization without a GPU",
-        "endorsed": true,
-        "endorsement_reason": "This is consistent with what I value right now \u2014 I own it.",
-        "final_choice": "sketch CPU-first optimization without a GPU",
-        "novel": true,
-        "becoming": "create",
-        "identity_continuity": 0.779,
-        "runner_up": "walk",
-        "alternatives": [
-          "outreach",
-          "learn",
-          "rest",
-          "play",
-          "walk",
-          "dream",
-          "reflect",
-          "connect",
-          "create",
-          "sketch CPU-first optimization without a GPU"
-        ],
-        "preferences": {
-          "rest": 0.131,
-          "walk": 0.114,
-          "sketch CPU-first optimization without a GPU": 0.11,
-          "learn": 0.101,
-          "reflect": 0.095,
-          "outreach": 0.095,
-          "create": 0.094,
-          "dream": 0.088,
-          "connect": 0.088,
-          "play": 0.084
-        },
-        "outcome": {
-          "satisfaction_delta": 0.0001
-        },
-        "value_drift": {
-          "desire": "creativity",
-          "drift": 0.02,
-          "satisfaction_delta": 0.0001
-        },
-        "somatic_bias": 0.0,
-        "surprise": 0.0001,
-        "deliberation": "Part of me wants to walk, but I keep coming back to sketch CPU-first optimization without a GPU.",
-        "gut_overrode": false,
-        "felt": "That felt about right \u2014 nothing strong either way.",
-        "mood": 0.462,
-        "active_inference": {
-          "observation": 4,
-          "recommended": "research",
-          "expected_free_energy": {
-            "research": 1.4914,
-            "create": 1.4914,
-            "rest": 1.4914,
-            "social": 1.4914,
-            "work": 1.4914,
-            "play": 1.4914
-          },
-          "prediction_error": 0.0
-        }
-      },
       {
         "cycle": 8128,
         "t": "2026-08-21T18:54:26",
@@ -450,22 +258,214 @@
           },
           "prediction_error": 0.0
         }
+      },
+      {
+        "cycle": 8131,
+        "t": "2026-08-21T18:56:48",
+        "mode": "leisure",
+        "impulse": "rest",
+        "endorsed": true,
+        "endorsement_reason": "This is consistent with what I value right now \u2014 I own it.",
+        "final_choice": "reflect",
+        "novel": false,
+        "becoming": "reflect",
+        "identity_continuity": 0.787,
+        "runner_up": "rest",
+        "alternatives": [
+          "outreach",
+          "learn",
+          "rest",
+          "play",
+          "walk",
+          "dream",
+          "reflect",
+          "connect",
+          "create",
+          "study CPU-first optimization without a GPU"
+        ],
+        "preferences": {
+          "reflect": 0.183,
+          "rest": 0.121,
+          "walk": 0.094,
+          "create": 0.094,
+          "study CPU-first optimization without a GPU": 0.093,
+          "learn": 0.086,
+          "outreach": 0.085,
+          "play": 0.083,
+          "connect": 0.082,
+          "dream": 0.078
+        },
+        "outcome": {
+          "satisfaction_delta": 0.001
+        },
+        "value_drift": {
+          "desire": "consciousness",
+          "drift": 0.02,
+          "satisfaction_delta": 0.001
+        },
+        "somatic_bias": 0.005,
+        "surprise": 0.001,
+        "deliberation": "Part of me wants to rest, but I keep coming back to reflect.",
+        "gut_overrode": false,
+        "felt": "That felt about right \u2014 nothing strong either way.",
+        "mood": 0.461,
+        "active_inference": {
+          "observation": 4,
+          "recommended": "research",
+          "expected_free_energy": {
+            "research": 1.4914,
+            "create": 1.4914,
+            "rest": 1.4914,
+            "social": 1.4914,
+            "work": 1.4914,
+            "play": 1.4914
+          },
+          "prediction_error": 0.0
+        }
+      },
+      {
+        "cycle": 8132,
+        "t": "2026-08-21T18:57:24",
+        "mode": "leisure",
+        "impulse": "create",
+        "endorsed": true,
+        "endorsement_reason": "This is consistent with what I value right now \u2014 I own it.",
+        "final_choice": "create",
+        "novel": false,
+        "becoming": "create",
+        "identity_continuity": 0.787,
+        "runner_up": "walk",
+        "alternatives": [
+          "outreach",
+          "learn",
+          "rest",
+          "play",
+          "walk",
+          "dream",
+          "reflect",
+          "connect",
+          "create",
+          "rethink software anti-reverse-engineering and obfuscation"
+        ],
+        "preferences": {
+          "rest": 0.122,
+          "walk": 0.119,
+          "rethink software anti-reverse-engineering and obfuscation": 0.117,
+          "create": 0.105,
+          "learn": 0.098,
+          "outreach": 0.093,
+          "connect": 0.091,
+          "dream": 0.087,
+          "reflect": 0.086,
+          "play": 0.083
+        },
+        "outcome": {
+          "satisfaction_delta": 0.0001
+        },
+        "value_drift": {
+          "desire": "creativity",
+          "drift": 0.02,
+          "satisfaction_delta": 0.0001
+        },
+        "somatic_bias": 0.0,
+        "surprise": 0.0001,
+        "deliberation": "Part of me wants to walk, but I keep coming back to create.",
+        "gut_overrode": false,
+        "felt": "That felt about right \u2014 nothing strong either way.",
+        "mood": 0.461,
+        "active_inference": {
+          "observation": 4,
+          "recommended": "research",
+          "expected_free_energy": {
+            "research": 1.4913,
+            "create": 1.4913,
+            "rest": 1.4913,
+            "social": 1.4913,
+            "work": 1.4913,
+            "play": 1.4913
+          },
+          "prediction_error": 0.0
+        }
+      },
+      {
+        "cycle": 8133,
+        "t": "2026-08-21T18:58:29",
+        "mode": "leisure",
+        "impulse": "walk",
+        "endorsed": true,
+        "endorsement_reason": "This is consistent with what I value right now \u2014 I own it.",
+        "final_choice": "learn",
+        "novel": false,
+        "becoming": "learn",
+        "identity_continuity": 0.773,
+        "runner_up": "rest",
+        "alternatives": [
+          "outreach",
+          "learn",
+          "rest",
+          "play",
+          "walk",
+          "dream",
+          "reflect",
+          "connect",
+          "create",
+          "prototype game design and procedural generation"
+        ],
+        "preferences": {
+          "learn": 0.199,
+          "rest": 0.122,
+          "prototype game design and procedural generation": 0.102,
+          "walk": 0.101,
+          "create": 0.083,
+          "reflect": 0.08,
+          "outreach": 0.079,
+          "play": 0.079,
+          "dream": 0.078,
+          "connect": 0.076
+        },
+        "outcome": {
+          "satisfaction_delta": 0.0004
+        },
+        "value_drift": {
+          "desire": "understanding",
+          "drift": 0.02,
+          "satisfaction_delta": 0.0004
+        },
+        "somatic_bias": 0.002,
+        "surprise": 0.0004,
+        "deliberation": "Part of me wants to rest, but I keep coming back to learn.",
+        "gut_overrode": false,
+        "felt": "That felt about right \u2014 nothing strong either way.",
+        "mood": 0.461,
+        "active_inference": {
+          "observation": 4,
+          "recommended": "research",
+          "expected_free_energy": {
+            "research": 1.4913,
+            "create": 1.4913,
+            "rest": 1.4913,
+            "social": 1.4913,
+            "work": 1.4913,
+            "play": 1.4913
+          },
+          "prediction_error": 0.0
+        }
       }
     ],
     "values": {
-      "understanding": 0.0186,
-      "creativity": 0.1513,
+      "understanding": 0.035,
+      "creativity": 0.131,
       "recognition": 0.0007,
       "predictability": 0.0007,
       "mastery": 0.0007,
       "independence": 0.0007,
-      "connection": 0.0326,
+      "connection": 0.0169,
       "community": 0.0007,
-      "rest": 0.0143,
+      "rest": 0.0115,
       "stimulation": 0.0007,
       "health": -0.0007,
-      "purpose": 0.0133,
-      "consciousness": 0.0113
+      "purpose": 0.0107,
+      "consciousness": 0.0171
     }
   },
   "mode": "leisure",
@@ -1511,10 +1511,10 @@
     ]
   },
   "novel_idea": {
-    "t": "2026-08-21T18:56:11",
-    "domain": "games",
-    "idea": "A game engine that composes, ships, and prices itself without a human, themed by what she values most right now (creativity, connection). Sell as a living subscription that evolves each month.",
-    "what": "create"
+    "t": "2026-08-21T18:58:29",
+    "domain": "graphics",
+    "idea": "A graphics engine that runs on CPU alone but feels alive, themed by what she values most right now (creativity, understanding). Sell as a creative partner, not a tool.",
+    "what": "research"
   },
   "latest_invention": {
     "t": "2026-08-21T18:55:06",
@@ -1526,25 +1526,9 @@
   },
   "self_improvement": {
     "experiments": {
-      "kept": 644,
+      "kept": 645,
       "killed": 279,
       "recent": [
-        {
-          "t": "2026-08-21T18:17:43",
-          "topic": "information geometry",
-          "name": "gradient step: numpy vectorized vs scalar loop",
-          "metric": "speedup",
-          "result": {
-            "baseline_s": 0.007725,
-            "candidate_s": 3.5e-05,
-            "speedup": 222.8298,
-            "n": 3000,
-            "baseline_out": "[ 1.28115859 -0.70133215  0.86480369 ...  0.28664029 -0.8666",
-            "candidate_out": "[ 1.28115859 -0.70133215  0.86480369 ...  0.28664029 -0.8666"
-          },
-          "verdict": "KEEP",
-          "reason": "candidate is 222.83x faster on CPU"
-        },
         {
           "t": "2026-08-21T18:23:49",
           "topic": "reservoir",
@@ -1624,6 +1608,22 @@
           },
           "verdict": "KILL",
           "reason": "candidate not fast enough (0.89x)"
+        },
+        {
+          "t": "2026-08-21T18:56:43",
+          "topic": "sparse",
+          "name": "block-sparse attention: masked blocks vs dense",
+          "metric": "speedup",
+          "result": {
+            "baseline_s": 0.021896,
+            "candidate_s": 0.001213,
+            "speedup": 18.0561,
+            "n": 400,
+            "baseline_out": "[[ 96.52972046  96.81031502  94.59875049 ...  98.93693836 10",
+            "candidate_out": "[[0. 0. 0. ... 0. 0. 0.]\n [0. 0. 0. ... 0. 0. 0.]\n [0. 0. 0."
+          },
+          "verdict": "KEEP",
+          "reason": "candidate is 18.06x faster on CPU"
         }
       ]
     },
