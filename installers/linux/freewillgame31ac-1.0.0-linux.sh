@@ -1,0 +1,37 @@
+#!/bin/bash
+# freewillgame31ac 1.0.0 — self-extracting installer
+set -e
+BIN="$HOME/.local/bin"
+mkdir -p "$BIN"
+cat > "$BIN/freewillgame31ac" << 'PYEOF'
+#!/usr/bin/env python3
+"""Free-Will Game 31AC - a adventure game by Echo."""
+import random
+
+ITEMS = ['taxation', 'provider', 'deepskyblue', 'Livermorium', 'beaver']
+
+def play(seed=None):
+    """Run one hunt. Returns True if the goal is found."""
+    rng = random.Random(seed)
+    goal = rng.choice(ITEMS)
+    print("=== Free-Will Game 31AC ===")
+    print("You are Beaver, exploring Tutóia.")
+    print("Theme: A game engine that shares its reasoning with the person usin")
+    print("Goal: find the " + goal + ".")
+    bag = []
+    for i in range(3):
+        found = rng.choice(ITEMS)
+        bag.append(found)
+        print("  spot " + str(i + 1) + ": " + found)
+    if goal in bag:
+        print("VICTORY - you found the " + goal + "!")
+        return True
+    print("The " + goal + " eluded you.")
+    return False
+
+if __name__ == "__main__":
+    play()
+
+PYEOF
+chmod +x "$BIN/freewillgame31ac"
+echo "Installed freewillgame31ac to $BIN/freewillgame31ac. Run: freewillgame31ac"
