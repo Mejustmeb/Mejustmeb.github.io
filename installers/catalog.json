@@ -21,6 +21,22 @@
       "os": []
     },
     {
+      "name": "checksum",
+      "os": [
+        "macos",
+        "linux",
+        "windows"
+      ],
+      "installers": {
+        "macos": "installers/macos/checksum-1.0.0-macos.zip",
+        "macos_sha256": "901cfb94443dbe67e5da9186c433c7bbcaddf7242506e09081be62fb06fa2abc",
+        "linux": "installers/linux/checksum-1.0.0-linux.sh",
+        "linux_sha256": "b9ad690a45ed8e07ccef3abbb645f119757a7f90b9b068bfb650d1c800526917",
+        "windows": "installers/windows/checksum-1.0.0-windows.zip",
+        "windows_sha256": "57e0dc4753bcc1aaa760a5188e9418759ba1f530a04db73c8e761091f609f186"
+      }
+    },
+    {
       "name": "cleansweep",
       "os": []
     },
