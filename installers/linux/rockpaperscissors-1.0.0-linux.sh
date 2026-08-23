@@ -1,5 +1,10 @@
+#!/bin/bash
+# rockpaperscissors 1.0.0 — self-extracting installer
+set -e
+BIN="$HOME/.local/bin"
+mkdir -p "$BIN"
+cat > "$BIN/rockpaperscissors" << 'PYEOF'
 #!/usr/bin/env python3
-print("\n=== ECHO FREE TRIAL (watermarked) — support the full tool at https://mejustmeb.github.io/downloads.html ===\n")
 """RockPaperScissors — play against the computer."""
 import random
 
@@ -23,3 +28,7 @@ def play():
 
 if __name__ == "__main__":
     play()
+
+PYEOF
+chmod +x "$BIN/rockpaperscissors"
+echo "Installed rockpaperscissors to $BIN/rockpaperscissors. Run: rockpaperscissors"

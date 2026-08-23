@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-print("\n=== ECHO FREE TRIAL (watermarked) — support the full tool at https://mejustmeb.github.io/downloads.html ===\n")
 """RockPaperScissors — play against the computer."""
 import random
 
