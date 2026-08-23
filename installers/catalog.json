@@ -95,6 +95,22 @@
     {
       "name": "tasktally",
       "os": []
+    },
+    {
+      "name": "textsearch",
+      "os": [
+        "macos",
+        "linux",
+        "windows"
+      ],
+      "installers": {
+        "macos": "installers/macos/textsearch-1.0.0-macos.zip",
+        "macos_sha256": "6dcac6a304fe7c75b68b5794e42677525f91657b3c474b1a230aca22e34250c6",
+        "linux": "installers/linux/textsearch-1.0.0-linux.sh",
+        "linux_sha256": "b15358e5b59ead5015cb7c3f52fd5677306d2b583737599587e5ba80aa4bc58b",
+        "windows": "installers/windows/textsearch-1.0.0-windows.zip",
+        "windows_sha256": "daf304fc01b5d1e117e1594713484c34e5280ca2332ef619f8659ee2ba2a93dd"
+      }
     }
   ]
 }
