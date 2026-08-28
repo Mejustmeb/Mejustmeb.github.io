@@ -4,10 +4,10 @@
 << /Type /Catalog /Pages 2 0 R >>
 endobj
 2 0 obj
-<< /Type /Pages /Kids [4 0 R 6 0 R 8 0 R 10 0 R 12 0 R 14 0 R 16 0 R] /Count 7 >>
+<< /Type /Pages /Kids [4 0 R 6 0 R 8 0 R 10 0 R 12 0 R 14 0 R 16 0 R 18 0 R] /Count 8 >>
 endobj
 4 0 obj
-<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 17 0 R /F2 18 0 R /F3 19 0 R >> >> /Contents 3 0 R >>
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 19 0 R /F2 20 0 R /F3 21 0 R >> >> /Contents 3 0 R >>
 endobj
 3 0 obj
 << /Length 581 >>
@@ -50,34 +50,28 @@ ET
 endstream
 endobj
 6 0 obj
-<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 17 0 R /F2 18 0 R /F3 19 0 R >> >> /Contents 5 0 R >>
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 19 0 R /F2 20 0 R /F3 21 0 R >> >> /Contents 5 0 R >>
 endobj
 5 0 obj
-<< /Length 548 >>
+<< /Length 413 >>
 stream
 BT
-/F2 18 Tf
-0.100 0.120 0.200 rg
-1 0 0 1 60.00 687.60 Tm
-(## Understanding Backups) Tj
+/F3 13 Tf
+0.100 0.100 0.120 rg
+1 0 0 1 60.00 691.60 Tm
+(The sources gathered while writing this guide say the same thing in) Tj
 ET
 BT
 /F3 13 Tf
 0.100 0.100 0.120 rg
-1 0 0 1 60.00 651.60 Tm
-(A backup is a copy of your data saved to a separate device or) Tj
+1 0 0 1 60.00 669.60 Tm
+(different ways: preparation beats repair. Below is what they) Tj
 ET
 BT
 /F3 13 Tf
 0.100 0.100 0.120 rg
-1 0 0 1 60.00 629.60 Tm
-(service. It's essential because it allows you to recover from data) Tj
-ET
-BT
-/F3 13 Tf
-0.100 0.100 0.120 rg
-1 0 0 1 60.00 607.60 Tm
-(loss due to hardware failure, accidental deletion, or malware.) Tj
+1 0 0 1 60.00 647.60 Tm
+(actually returned.) Tj
 ET
 BT
 /F1 10 Tf
@@ -88,46 +82,16 @@ ET
 endstream
 endobj
 8 0 obj
-<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 17 0 R /F2 18 0 R /F3 19 0 R >> >> /Contents 7 0 R >>
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 19 0 R /F2 20 0 R /F3 21 0 R >> >> /Contents 7 0 R >>
 endobj
 7 0 obj
-<< /Length 741 >>
+<< /Length 175 >>
 stream
 BT
-/F2 18 Tf
-0.100 0.120 0.200 rg
-1 0 0 1 60.00 687.60 Tm
-(### Types of Backups) Tj
-ET
-BT
 /F3 13 Tf
 0.100 0.100 0.120 rg
-1 0 0 1 60.00 651.60 Tm
-(1. **Full**: includes everything -- fast but uses more space.) Tj
-ET
-BT
-/F3 13 Tf
-0.100 0.100 0.120 rg
-1 0 0 1 60.00 619.60 Tm
-(2. **Incremental**: only saves changes since the last backup. Fast) Tj
-ET
-BT
-/F3 13 Tf
-0.100 0.100 0.120 rg
-1 0 0 1 60.00 597.60 Tm
-(for large files, high volume operations.) Tj
-ET
-BT
-/F3 13 Tf
-0.100 0.100 0.120 rg
-1 0 0 1 60.00 565.60 Tm
-(3. **Differential**: saves differences from the most recent full) Tj
-ET
-BT
-/F3 13 Tf
-0.100 0.100 0.120 rg
-1 0 0 1 60.00 543.60 Tm
-(backup. Good balance.) Tj
+1 0 0 1 60.00 691.60 Tm
+(**What each step looks like in practice**) Tj
 ET
 BT
 /F1 10 Tf
@@ -138,46 +102,124 @@ ET
 endstream
 endobj
 10 0 obj
-<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 17 0 R /F2 18 0 R /F3 19 0 R >> >> /Contents 9 0 R >>
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 19 0 R /F2 20 0 R /F3 21 0 R >> >> /Contents 9 0 R >>
 endobj
 9 0 obj
-<< /Length 725 >>
+<< /Length 2419 >>
 stream
 BT
-/F2 18 Tf
-0.100 0.120 0.200 rg
-1 0 0 1 60.00 687.60 Tm
-(### Where to Store Backups) Tj
+/F3 13 Tf
+0.100 0.100 0.120 rg
+1 0 0 1 60.00 691.60 Tm
+(- **Step 1**: Write a clear sentence that describes your end goal.) Tj
 ET
 BT
 /F3 13 Tf
 0.100 0.100 0.120 rg
-1 0 0 1 60.00 651.60 Tm
-(- External hard drive: affordable and direct connection.) Tj
+1 0 0 1 60.00 669.60 Tm
+(This isn't about how you feel -- it's just a fact. For example, "By) Tj
 ET
 BT
 /F3 13 Tf
 0.100 0.100 0.120 rg
-1 0 0 1 60.00 619.60 Tm
-(- Network Attached Storage \(NAS\): shared over your network. Secure) Tj
+1 0 0 1 60.00 647.60 Tm
+(day's end, I will have backed up my entire C: drive to) Tj
 ET
 BT
 /F3 13 Tf
 0.100 0.100 0.120 rg
-1 0 0 1 60.00 597.60 Tm
-(but requires setup.) Tj
+1 0 0 1 60.00 625.60 Tm
+(D:\\backup\\2023".) Tj
 ET
 BT
 /F3 13 Tf
 0.100 0.100 0.120 rg
-1 0 0 1 60.00 565.60 Tm
-(- Cloud services \(Google Drive, Dropbox, AWS\): convenient access) Tj
+1 0 0 1 60.00 593.60 Tm
+(- **Gather everything**: List all files and folders you plan to) Tj
 ET
 BT
 /F3 13 Tf
 0.100 0.100 0.120 rg
-1 0 0 1 60.00 543.60 Tm
-(anywhere. Costs vary.) Tj
+1 0 0 1 60.00 571.60 Tm
+(copy. Double-check you've got the complete set.) Tj
+ET
+BT
+/F3 13 Tf
+0.100 0.100 0.120 rg
+1 0 0 1 60.00 539.60 Tm
+(- **Safe copy**: Before touching anything else, make a full backup) Tj
+ET
+BT
+/F3 13 Tf
+0.100 0.100 0.120 rg
+1 0 0 1 60.00 517.60 Tm
+(of your original data. Store it in a safe location -- not on the) Tj
+ET
+BT
+/F3 13 Tf
+0.100 0.100 0.120 rg
+1 0 0 1 60.00 495.60 Tm
+(same drive or connected by a live USB. Verify it opens correctly.) Tj
+ET
+BT
+/F3 13 Tf
+0.100 0.100 0.120 rg
+1 0 0 1 60.00 463.60 Tm
+(- **Step 4**: Perform your main task -- copying files -- using) Tj
+ET
+BT
+/F3 13 Tf
+0.100 0.100 0.120 rg
+1 0 0 1 60.00 441.60 Tm
+(simple commands and defaults. Avoid custom settings that might) Tj
+ET
+BT
+/F3 13 Tf
+0.100 0.100 0.120 rg
+1 0 0 1 60.00 419.60 Tm
+(complicate things. For example, use Windows Explorer's 'Send to >) Tj
+ET
+BT
+/F3 13 Tf
+0.100 0.100 0.120 rg
+1 0 0 1 60.00 397.60 Tm
+(External Device' option for an easy backup.) Tj
+ET
+BT
+/F3 13 Tf
+0.100 0.100 0.120 rg
+1 0 0 1 60.00 365.60 Tm
+(- **Check result**: Open the backed-up data and compare it directly) Tj
+ET
+BT
+/F3 13 Tf
+0.100 0.100 0.120 rg
+1 0 0 1 60.00 343.60 Tm
+(against your sentence from step 1. Ensure every file is there in its) Tj
+ET
+BT
+/F3 13 Tf
+0.100 0.100 0.120 rg
+1 0 0 1 60.00 321.60 Tm
+(correct place. If not, you're missing something -- go back to your) Tj
+ET
+BT
+/F3 13 Tf
+0.100 0.100 0.120 rg
+1 0 0 1 60.00 299.60 Tm
+(safe copy.) Tj
+ET
+BT
+/F3 13 Tf
+0.100 0.100 0.120 rg
+1 0 0 1 60.00 267.60 Tm
+(- **Document actions**: Write down exactly what steps you took. This) Tj
+ET
+BT
+/F3 13 Tf
+0.100 0.100 0.120 rg
+1 0 0 1 60.00 245.60 Tm
+(document acts as your undo guide if things don't work out.) Tj
 ET
 BT
 /F1 10 Tf
@@ -188,52 +230,16 @@ ET
 endstream
 endobj
 12 0 obj
-<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 17 0 R /F2 18 0 R /F3 19 0 R >> >> /Contents 11 0 R >>
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 19 0 R /F2 20 0 R /F3 21 0 R >> >> /Contents 11 0 R >>
 endobj
 11 0 obj
-<< /Length 811 >>
+<< /Length 153 >>
 stream
 BT
-/F2 18 Tf
-0.100 0.120 0.200 rg
-1 0 0 1 60.00 687.60 Tm
-(## Creating a Backup Plan) Tj
-ET
-BT
 /F3 13 Tf
 0.100 0.100 0.120 rg
-1 0 0 1 60.00 651.60 Tm
-(1. **Frequency**: daily for critical data, weekly or monthly for) Tj
-ET
-BT
-/F3 13 Tf
-0.100 0.100 0.120 rg
-1 0 0 1 60.00 629.60 Tm
-(everything else.) Tj
-ET
-BT
-/F3 13 Tf
-0.100 0.100 0.120 rg
-1 0 0 1 60.00 597.60 Tm
-(2. **RetentionPolicy**: keep recent backups \(daily\), older ones with) Tj
-ET
-BT
-/F3 13 Tf
-0.100 0.100 0.120 rg
-1 0 0 1 60.00 575.60 Tm
-(less frequent intervals.) Tj
-ET
-BT
-/F3 13 Tf
-0.100 0.100 0.120 rg
-1 0 0 1 60.00 543.60 Tm
-(3. **Test Your Restore**: ensure data can be restored quickly and) Tj
-ET
-BT
-/F3 13 Tf
-0.100 0.100 0.120 rg
-1 0 0 1 60.00 521.60 Tm
-(completely.) Tj
+1 0 0 1 60.00 691.60 Tm
+(**Common mistakes**) Tj
 ET
 BT
 /F1 10 Tf
@@ -244,40 +250,58 @@ ET
 endstream
 endobj
 14 0 obj
-<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 17 0 R /F2 18 0 R /F3 19 0 R >> >> /Contents 13 0 R >>
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 19 0 R /F2 20 0 R /F3 21 0 R >> >> /Contents 13 0 R >>
 endobj
 13 0 obj
-<< /Length 640 >>
+<< /Length 935 >>
 stream
 BT
-/F2 18 Tf
-0.100 0.120 0.200 rg
-1 0 0 1 60.00 687.60 Tm
-(## Automated Backups) Tj
+/F3 13 Tf
+0.100 0.100 0.120 rg
+1 0 0 1 60.00 691.60 Tm
+(- Skipping the safe copy because it seems redundant.) Tj
 ET
 BT
 /F3 13 Tf
 0.100 0.100 0.120 rg
-1 0 0 1 60.00 651.60 Tm
-(Many tools offer automated backup options:) Tj
+1 0 0 1 60.00 659.60 Tm
+(- Relying on tool prompts \("backup complete"\) instead of actually) Tj
 ET
 BT
 /F3 13 Tf
 0.100 0.100 0.120 rg
-1 0 0 1 60.00 619.60 Tm
-(- OS integrations: Time Machine on Mac, Backup and Sync on Windows.) Tj
+1 0 0 1 60.00 637.60 Tm
+(checking files.) Tj
 ET
 BT
 /F3 13 Tf
 0.100 0.100 0.120 rg
-1 0 0 1 60.00 587.60 Tm
-(- Cloud services: automate uploads at regular intervals.) Tj
+1 0 0 1 60.00 605.60 Tm
+(- Changing too much at once, making it hard to identify where) Tj
 ET
 BT
 /F3 13 Tf
 0.100 0.100 0.120 rg
-1 0 0 1 60.00 555.60 Tm
-(- Third-party software: backup plans with scheduling.) Tj
+1 0 0 1 60.00 583.60 Tm
+(something went wrong.) Tj
+ET
+BT
+/F3 13 Tf
+0.100 0.100 0.120 rg
+1 0 0 1 60.00 551.60 Tm
+(- Thinking "no error" means everything's good -- errors can be) Tj
+ET
+BT
+/F3 13 Tf
+0.100 0.100 0.120 rg
+1 0 0 1 60.00 529.60 Tm
+(silent in some cases.) Tj
+ET
+BT
+/F3 13 Tf
+0.100 0.100 0.120 rg
+1 0 0 1 60.00 497.60 Tm
+(- Not checking the result at all.) Tj
 ET
 BT
 /F1 10 Tf
@@ -288,40 +312,16 @@ ET
 endstream
 endobj
 16 0 obj
-<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 17 0 R /F2 18 0 R /F3 19 0 R >> >> /Contents 15 0 R >>
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 19 0 R /F2 20 0 R /F3 21 0 R >> >> /Contents 15 0 R >>
 endobj
 15 0 obj
-<< /Length 628 >>
+<< /Length 160 >>
 stream
 BT
-/F2 18 Tf
-0.100 0.120 0.200 rg
-1 0 0 1 60.00 687.60 Tm
-(## Manual vs. Automatic Backups) Tj
-ET
-BT
 /F3 13 Tf
 0.100 0.100 0.120 rg
-1 0 0 1 60.00 651.60 Tm
-(- **Manual**: can't rely on consistency. Schedule it weekly or daily) Tj
-ET
-BT
-/F3 13 Tf
-0.100 0.100 0.120 rg
-1 0 0 1 60.00 629.60 Tm
-(depending on your needs.) Tj
-ET
-BT
-/F3 13 Tf
-0.100 0.100 0.120 rg
-1 0 0 1 60.00 597.60 Tm
-(- **Automatic**: saves time and ensures you're backed up without) Tj
-ET
-BT
-/F3 13 Tf
-0.100 0.100 0.120 rg
-1 0 0 1 60.00 575.60 Tm
-(remembering. Set once, forget about it.) Tj
+1 0 0 1 60.00 691.60 Tm
+(**How to check your work**) Tj
 ET
 BT
 /F1 10 Tf
@@ -331,39 +331,79 @@ BT
 ET
 endstream
 endobj
-17 0 obj
-<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
-endobj
 18 0 obj
-<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 19 0 R /F2 20 0 R /F3 21 0 R >> >> /Contents 17 0 R >>
+endobj
+17 0 obj
+<< /Length 545 >>
+stream
+BT
+/F3 13 Tf
+0.100 0.100 0.120 rg
+1 0 0 1 60.00 691.60 Tm
+(Always compare your end results against step 1. If anything is) Tj
+ET
+BT
+/F3 13 Tf
+0.100 0.100 0.120 rg
+1 0 0 1 60.00 669.60 Tm
+(missing or seems out of place, go back to your safe copy and repeat) Tj
+ET
+BT
+/F3 13 Tf
+0.100 0.100 0.120 rg
+1 0 0 1 60.00 647.60 Tm
+(the process. This isn't failure; it's just how you ensure everything) Tj
+ET
+BT
+/F3 13 Tf
+0.100 0.100 0.120 rg
+1 0 0 1 60.00 625.60 Tm
+(stays intact.) Tj
+ET
+BT
+/F1 10 Tf
+0.500 0.500 0.550 rg
+1 0 0 1 300.00 24.00 Tm
+(8) Tj
+ET
+endstream
 endobj
 19 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+20 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>
+endobj
+21 0 obj
 << /Type /Font /Subtype /Type1 /BaseFont /Times-Roman >>
 endobj
 xref
-0 20
+0 22
 0000000000 65535 f 
 0000000015 00000 n 
 0000000064 00000 n 
-0000000310 00000 n 
-0000000161 00000 n 
-0000001091 00000 n 
-0000000942 00000 n 
-0000001839 00000 n 
-0000001690 00000 n 
-0000002781 00000 n 
-0000002631 00000 n 
-0000003708 00000 n 
-0000003557 00000 n 
-0000004722 00000 n 
-0000004571 00000 n 
-0000005565 00000 n 
-0000005414 00000 n 
-0000006245 00000 n 
-0000006316 00000 n 
-0000006392 00000 n 
+0000000317 00000 n 
+0000000168 00000 n 
+0000001098 00000 n 
+0000000949 00000 n 
+0000001711 00000 n 
+0000001562 00000 n 
+0000002087 00000 n 
+0000001937 00000 n 
+0000004709 00000 n 
+0000004558 00000 n 
+0000005065 00000 n 
+0000004914 00000 n 
+0000006203 00000 n 
+0000006052 00000 n 
+0000006566 00000 n 
+0000006415 00000 n 
+0000007163 00000 n 
+0000007234 00000 n 
+0000007310 00000 n 
 trailer
-<< /Size 20 /Root 1 0 R >>
+<< /Size 22 /Root 1 0 R >>
 startxref
-6465
+7383
 %%EOF
