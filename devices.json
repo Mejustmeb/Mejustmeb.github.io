@@ -1,66 +1,123 @@
 {
-  "generated_at": "2026-09-12 12:13:35",
+  "generated_at": "2026-09-13 00:00:19",
   "count": 17,
   "devices": [
     {
-      "name": "WPS Access Point",
-      "source": "arp",
-      "control": {
-        "type": "upnp",
-        "service_type": "urn:schemas-wifialliance-org:service:WFAWLANConfig:1",
-        "driver": null
-      }
-    },
-    {
       "name": "Archer AX1500",
+      "ip": "192.168.50.2",
+      "mac": "e4:c3:2a:77:24:c",
       "source": "arp",
       "control": {
         "type": "upnp",
+        "control_url": "http://192.168.50.2:1900/fbuup/ctl/L3F",
         "service_type": "urn:schemas-upnp-org:service:Layer3Forwarding:1",
         "driver": null
       }
     },
     {
       "name": "server1",
+      "ip": "192.168.50.101",
+      "mac": "0:30:48:cb:be:a1",
       "source": "arp"
     },
     {
       "name": "server2",
+      "ip": "192.168.50.102",
+      "mac": "0:30:48:ce:fc:cb",
       "source": "arp"
     },
     {
       "name": "server4",
+      "ip": "192.168.50.104",
+      "mac": "0:30:48:cb:ae:b5",
       "source": "arp"
     },
     {
       "name": "server5",
+      "ip": "192.168.50.105",
+      "mac": "0:30:48:cb:87:e5",
       "source": "arp"
     },
     {
       "name": "worker1",
+      "ip": "192.168.50.201",
+      "mac": "10:62:e5:16:a8:63",
       "source": "arp"
     },
     {
       "name": "worker2",
+      "ip": "192.168.50.202",
+      "mac": "78:2b:cb:b7:d5:d0",
       "source": "arp"
     },
     {
       "name": "m4",
+      "ip": "192.168.50.206",
+      "mac": "0:e0:4c:45:75:20",
       "source": "arp"
     },
     {
       "name": "?",
+      "ip": "192.168.50.215",
+      "mac": "70:89:76:c7:e4:1d",
       "source": "arp"
     },
     {
       "name": "?",
+      "ip": "192.168.50.222",
+      "mac": "70:89:76:c8:50:52",
       "source": "arp"
+    },
+    {
+      "name": "?",
+      "ip": "192.168.50.238",
+      "mac": "1c:69:7a:a6:9c:d4",
+      "source": "arp"
+    },
+    {
+      "name": "?",
+      "ip": "192.168.50.240",
+      "mac": "84:fc:e6:1b:91:b4",
+      "source": "arp"
+    },
+    {
+      "name": "?",
+      "ip": "192.168.50.255",
+      "mac": "ff:ff:ff:ff:ff:ff",
+      "source": "arp"
+    },
+    {
+      "name": "?",
+      "ip": "224.0.0.251",
+      "mac": "1:0:5e:0:0:fb",
+      "source": "arp"
+    },
+    {
+      "name": "?",
+      "ip": "239.255.255.250",
+      "mac": "1:0:5e:7f:ff:fa",
+      "source": "arp"
+    },
+    {
+      "name": "WPS Access Point",
+      "ip": "192.168.50.1",
+      "mac": "",
+      "source": "upnp",
+      "control": {
+        "type": "upnp",
+        "control_url": "http://192.168.50.1:49152/wps_control",
+        "service_type": "urn:schemas-wifialliance-org:service:WFAWLANConfig:1",
+        "driver": null
+      }
     },
     {
       "name": "75\" TCL Roku TV",
-      "source": "arp",
+      "ip": "192.168.50.228",
+      "mac": "",
+      "source": "upnp",
       "control": {
         "type": "upnp",
+        "control_url": "http://192.168.50.228:8060/dial/",
         "service_type": "urn:roku-com:service:ecp:1",
         "driver": "roku",
         "apps": [
@@ -138,26 +195,6 @@
           }
         ]
       }
-    },
-    {
-      "name": "?",
-      "source": "arp"
-    },
-    {
-      "name": "?",
-      "source": "arp"
-    },
-    {
-      "name": "?",
-      "source": "arp"
-    },
-    {
-      "name": "?",
-      "source": "arp"
-    },
-    {
-      "name": "?",
-      "source": "arp"
     }
   ],
   "drivers": {

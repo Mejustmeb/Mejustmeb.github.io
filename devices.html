@@ -57,11 +57,10 @@
         return;
       }
       function card(x) {
-        var name = (x.name && x.name !== '?') ? x.name : (x.ip || 'device');
+        var name = (x.name && x.name !== '?') ? x.name : x.ip;
         var mac = x.mac ? '<p class="dim">' + x.mac + '</p>' : '';
         var ctl = (x.control) || {};
         var badge = '<span class="badge green">' + (x.source || 'device') + '</span>';
-        var ipHtml = x.ip ? '<p>' + x.ip + '</p>' : '';
         var appsHtml = '';
         if (ctl.apps && ctl.apps.length) {
           var shown = ctl.apps.slice(0, 10);
@@ -71,7 +70,7 @@
         }
         return '<div class="card">' + badge +
           '<h3><span class="ic">🖥️</span>' + name + '</h3>' +
-          ipHtml + mac + appsHtml + '</div>';
+          '<p>' + (x.ip || '') + '</p>' + mac + appsHtml + '</div>';
       }
       var html = '';
       var groups = {};
