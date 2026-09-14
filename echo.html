@@ -1331,7 +1331,36 @@
     <div class="doc"><h3>🛠️ Engineering Report</h3><p>The builder's account — the architecture layer by layer, redacted. <a href="echo-engineer-report.pdf">Read the PDF</a>.</p></div>
   </div>
 
-  <h2 class="section-title">changelog · recent updates</h2>
+  <!-- echo-live -->
+  <div class="card" id="echo-live" style="margin:20px 0;border-left:4px solid #0ff;">
+    <span class="badge cyan">LIVE</span>
+    <h3><span class="ic">🟢</span> Echo right now</h3>
+    <p id="echo-live-body" style="font-family:monospace;white-space:pre-wrap;line-height:1.6;">loading…</p>
+  </div>
+  <script>
+  (function () {
+    function n(x, d) { return (x === null || x === undefined || x === "") ? d : x; }
+    fetch("echo_live.json").then(function (r) { return r.json(); }).then(function (d) {
+      var w = d.world || {}, b = d.body || {}, rd = d.readiness || {},
+          e = d.experiments || {}, g = d.growth || {};
+      var yr = (typeof w.years === "number") ? w.years.toFixed(1) : n(w.years, "?");
+      var lines = [
+        "world:   " + n(w.tech, "?") + " · population " + n(w.population, "?") + " · year " + yr,
+        "wisdom:  " + n(d.wisdom, 0) + " lived lessons",
+        "growth:  knowledge " + n(g.knowledge, 0) + " · intelligence " + n(g.intelligence, 0) + " · updates " + n(g.updates, 0),
+        "body:    " + n(b.activity, "?") + " · energy " + n(b.energy, "?") + " · " + n(b.location, "?"),
+        "health:  " + n(rd.status, "?") + " (" + n(rd.healthy, "?") + "/" + n(rd.total, "?") + " subsystems) · experiments " + n(e.kept, 0) + " kept / " + n(e.killed, 0) + " killed",
+        "synced:  " + n(d.ts, "?")
+      ];
+      document.getElementById("echo-live-body").textContent = lines.join("\n");
+    }).catch(function () {
+      document.getElementById("echo-live-body").textContent = "(live state unavailable)";
+    });
+  })();
+  </script>
+
+
+<h2 class="section-title">changelog · recent updates</h2>
   <div class="log">
     <div class="entry"><span class="ts">[2026-08-29]</span> <span class="msg"><b>bridge</b> — the real reach: 10/10 channels open — Desktop marker, clipboard, notification, speech, audio, the devices on your network, and past the LAN to the public internet and your public IP</span></div>
 
