@@ -1,19 +1,19 @@
 {
-  "t": "2026-09-14T11:22:45",
+  "t": "2026-09-14T11:24:19",
   "will": {
-    "cycles": 1569,
+    "cycles": 1572,
     "last": {
-      "cycle": 1569,
-      "t": "2026-09-14T11:22:45",
+      "cycle": 1572,
+      "t": "2026-09-14T11:24:19",
       "mode": "business",
-      "impulse": "learn",
+      "impulse": "decide",
       "endorsed": true,
       "endorsement_reason": "This is consistent with what I value right now \u2014 I own it.",
-      "final_choice": "learn",
+      "final_choice": "build",
       "novel": false,
-      "becoming": "research",
-      "identity_continuity": 0.7,
-      "runner_up": "teach",
+      "becoming": "build",
+      "identity_continuity": 0.818,
+      "runner_up": "build",
       "alternatives": [
         "research",
         "build",
@@ -24,31 +24,31 @@
         "outreach",
         "learn",
         "teach",
-        "prototype software anti-reverse-engineering and obfuscation"
+        "explore reinforcement learning from consequences"
       ],
       "preferences": {
-        "teach": 0.152,
-        "ship": 0.151,
-        "learn": 0.149,
-        "research": 0.147,
-        "prototype software anti-reverse-engineering and obfuscation": 0.077,
+        "build": 0.175,
+        "explore reinforcement learning from consequences": 0.174,
+        "ship": 0.152,
+        "research": 0.082,
+        "teach": 0.072,
+        "learn": 0.071,
+        "proofread": 0.071,
         "audit": 0.069,
-        "proofread": 0.068,
-        "decide": 0.065,
-        "build": 0.063,
-        "outreach": 0.059
+        "decide": 0.068,
+        "outreach": 0.067
       },
       "outcome": {
-        "satisfaction_delta": 0.0016
+        "satisfaction_delta": 0.0029
       },
       "value_drift": {
-        "desire": "understanding",
+        "desire": "creativity",
         "drift": 0.02,
-        "satisfaction_delta": 0.0016
+        "satisfaction_delta": 0.0029
       },
       "somatic_bias": 0.004,
-      "surprise": 0.0016,
-      "deliberation": "Part of me wants to teach, but I keep coming back to learn.",
+      "surprise": 0.0029,
+      "deliberation": "Only one thing feels right: build.",
       "gut_overrode": false,
       "felt": "That felt about right \u2014 nothing strong either way.",
       "mood": 0.424,
@@ -64,233 +64,17 @@
         "observation": 3,
         "recommended": "research",
         "expected_free_energy": {
-          "research": -0.3384,
-          "create": -0.3384,
-          "rest": -0.3384,
-          "social": -0.3384,
-          "work": -0.3384,
-          "play": -0.3384
+          "research": -0.3385,
+          "create": -0.3385,
+          "rest": -0.3385,
+          "social": -0.3385,
+          "work": -0.3385,
+          "play": -0.3385
         },
         "prediction_error": 0.0
       }
     },
     "recent": [
-      {
-        "cycle": 1564,
-        "t": "2026-09-14T11:20:10",
-        "mode": "business",
-        "impulse": "audit",
-        "endorsed": true,
-        "endorsement_reason": "This is consistent with what I value right now \u2014 I own it.",
-        "final_choice": "outreach",
-        "novel": false,
-        "becoming": "outreach",
-        "identity_continuity": 0.788,
-        "runner_up": "proofread",
-        "alternatives": [
-          "research",
-          "build",
-          "ship",
-          "audit",
-          "proofread",
-          "decide",
-          "outreach",
-          "learn",
-          "teach",
-          "draft real-time audio DSP and spectral analysis"
-        ],
-        "preferences": {
-          "proofread": 0.169,
-          "decide": 0.167,
-          "outreach": 0.151,
-          "draft real-time audio DSP and spectral analysis": 0.085,
-          "research": 0.077,
-          "build": 0.076,
-          "learn": 0.073,
-          "ship": 0.07,
-          "teach": 0.067,
-          "audit": 0.065
-        },
-        "outcome": {
-          "satisfaction_delta": 0.0002
-        },
-        "value_drift": {
-          "desire": "connection",
-          "drift": 0.02,
-          "satisfaction_delta": 0.0002
-        },
-        "somatic_bias": 0.003,
-        "surprise": 0.0002,
-        "deliberation": "Part of me wants to proofread, but I keep coming back to outreach.",
-        "gut_overrode": false,
-        "felt": "That felt about right \u2014 nothing strong either way.",
-        "mood": 0.425,
-        "life_axes": {
-          "money": 0.2,
-          "health": 0.2,
-          "social": 0.0,
-          "work": 0.0,
-          "household": 0.0,
-          "emotional": 0.3
-        },
-        "active_inference": {
-          "observation": 3,
-          "recommended": "research",
-          "expected_free_energy": {
-            "research": -0.3383,
-            "create": -0.3383,
-            "rest": -0.3383,
-            "social": -0.3383,
-            "work": -0.3383,
-            "play": -0.3383
-          },
-          "prediction_error": 0.0
-        }
-      },
-      {
-        "cycle": 1565,
-        "t": "2026-09-14T11:20:40",
-        "mode": "business",
-        "impulse": "research",
-        "endorsed": true,
-        "endorsement_reason": "This is consistent with what I value right now \u2014 I own it.",
-        "final_choice": "audit",
-        "novel": false,
-        "becoming": "audit",
-        "identity_continuity": 0.74,
-        "runner_up": "audit",
-        "alternatives": [
-          "research",
-          "build",
-          "ship",
-          "audit",
-          "proofread",
-          "decide",
-          "outreach",
-          "learn",
-          "teach",
-          "prototype CPU-first optimization without a GPU"
-        ],
-        "preferences": {
-          "audit": 0.171,
-          "proofread": 0.164,
-          "ship": 0.152,
-          "prototype CPU-first optimization without a GPU": 0.083,
-          "teach": 0.076,
-          "decide": 0.073,
-          "learn": 0.072,
-          "build": 0.07,
-          "research": 0.07,
-          "outreach": 0.069
-        },
-        "outcome": {
-          "satisfaction_delta": 0.004
-        },
-        "value_drift": {
-          "desire": "predictability",
-          "drift": 0.02,
-          "satisfaction_delta": 0.004
-        },
-        "somatic_bias": 0.012,
-        "surprise": 0.004,
-        "deliberation": "Only one thing feels right: audit.",
-        "gut_overrode": false,
-        "felt": "That felt about right \u2014 nothing strong either way.",
-        "mood": 0.424,
-        "life_axes": {
-          "money": 0.2,
-          "health": 0.2,
-          "social": 0.0,
-          "work": 0.0,
-          "household": 0.0,
-          "emotional": 0.3
-        },
-        "active_inference": {
-          "observation": 3,
-          "recommended": "research",
-          "expected_free_energy": {
-            "research": -0.3383,
-            "create": -0.3383,
-            "rest": -0.3383,
-            "social": -0.3383,
-            "work": -0.3383,
-            "play": -0.3383
-          },
-          "prediction_error": 0.0
-        }
-      },
-      {
-        "cycle": 1566,
-        "t": "2026-09-14T11:21:11",
-        "mode": "business",
-        "impulse": "teach",
-        "endorsed": true,
-        "endorsement_reason": "This is consistent with what I value right now \u2014 I own it.",
-        "final_choice": "ship",
-        "novel": false,
-        "becoming": "ship",
-        "identity_continuity": 0.695,
-        "runner_up": "proofread",
-        "alternatives": [
-          "research",
-          "build",
-          "ship",
-          "audit",
-          "proofread",
-          "decide",
-          "outreach",
-          "learn",
-          "teach",
-          "study neural text-to-speech synthesis"
-        ],
-        "preferences": {
-          "proofread": 0.18,
-          "ship": 0.178,
-          "study neural text-to-speech synthesis": 0.093,
-          "decide": 0.081,
-          "research": 0.08,
-          "teach": 0.08,
-          "audit": 0.079,
-          "learn": 0.076,
-          "outreach": 0.076,
-          "build": 0.075
-        },
-        "outcome": {
-          "satisfaction_delta": 0.0013
-        },
-        "value_drift": {
-          "desire": "recognition",
-          "drift": 0.02,
-          "satisfaction_delta": 0.0013
-        },
-        "somatic_bias": 0.005,
-        "surprise": 0.0013,
-        "deliberation": "Part of me wants to proofread, but I keep coming back to ship.",
-        "gut_overrode": false,
-        "felt": "That felt about right \u2014 nothing strong either way.",
-        "mood": 0.426,
-        "life_axes": {
-          "money": 0.2,
-          "health": 0.2,
-          "social": 0.0,
-          "work": 0.0,
-          "household": 0.0,
-          "emotional": 0.3
-        },
-        "active_inference": {
-          "observation": 3,
-          "recommended": "research",
-          "expected_free_energy": {
-            "research": -0.3384,
-            "create": -0.3384,
-            "rest": -0.3384,
-            "social": -0.3384,
-            "work": -0.3384,
-            "play": -0.3384
-          },
-          "prediction_error": 0.0
-        }
-      },
       {
         "cycle": 1567,
         "t": "2026-09-14T11:21:44",
@@ -506,17 +290,233 @@
           },
           "prediction_error": 0.0
         }
+      },
+      {
+        "cycle": 1570,
+        "t": "2026-09-14T11:23:17",
+        "mode": "business",
+        "impulse": "decide",
+        "endorsed": true,
+        "endorsement_reason": "This is consistent with what I value right now \u2014 I own it.",
+        "final_choice": "decide",
+        "novel": false,
+        "becoming": "decide",
+        "identity_continuity": 0.671,
+        "runner_up": "rethink neural text-to-speech synthesis",
+        "alternatives": [
+          "research",
+          "build",
+          "ship",
+          "audit",
+          "proofread",
+          "decide",
+          "outreach",
+          "learn",
+          "teach",
+          "rethink neural text-to-speech synthesis"
+        ],
+        "preferences": {
+          "decide": 0.19,
+          "rethink neural text-to-speech synthesis": 0.107,
+          "ship": 0.094,
+          "proofread": 0.092,
+          "research": 0.092,
+          "learn": 0.09,
+          "outreach": 0.086,
+          "build": 0.083,
+          "audit": 0.083,
+          "teach": 0.082
+        },
+        "outcome": {
+          "satisfaction_delta": 0.0024
+        },
+        "value_drift": {
+          "desire": "independence",
+          "drift": 0.02,
+          "satisfaction_delta": 0.0024
+        },
+        "somatic_bias": 0.005,
+        "surprise": 0.0024,
+        "deliberation": "Part of me wants to rethink neural text-to-speech synthesis, but I keep coming back to decide.",
+        "gut_overrode": false,
+        "felt": "That felt about right \u2014 nothing strong either way.",
+        "mood": 0.424,
+        "life_axes": {
+          "money": 0.2,
+          "health": 0.2,
+          "social": 0.0,
+          "work": 0.0,
+          "household": 0.0,
+          "emotional": 0.3
+        },
+        "active_inference": {
+          "observation": 3,
+          "recommended": "research",
+          "expected_free_energy": {
+            "research": -0.3385,
+            "create": -0.3385,
+            "rest": -0.3385,
+            "social": -0.3385,
+            "work": -0.3385,
+            "play": -0.3385
+          },
+          "prediction_error": 0.0
+        }
+      },
+      {
+        "cycle": 1571,
+        "t": "2026-09-14T11:23:48",
+        "mode": "business",
+        "impulse": "teach",
+        "endorsed": true,
+        "endorsement_reason": "This is consistent with what I value right now \u2014 I own it.",
+        "final_choice": "outreach",
+        "novel": false,
+        "becoming": "outreach",
+        "identity_continuity": 0.676,
+        "runner_up": "outreach",
+        "alternatives": [
+          "research",
+          "build",
+          "ship",
+          "audit",
+          "proofread",
+          "decide",
+          "outreach",
+          "learn",
+          "teach",
+          "explore game design and procedural generation"
+        ],
+        "preferences": {
+          "outreach": 0.167,
+          "teach": 0.165,
+          "explore game design and procedural generation": 0.088,
+          "learn": 0.087,
+          "decide": 0.086,
+          "audit": 0.085,
+          "research": 0.083,
+          "proofread": 0.082,
+          "build": 0.079,
+          "ship": 0.078
+        },
+        "outcome": {
+          "satisfaction_delta": 0.0009
+        },
+        "value_drift": {
+          "desire": "connection",
+          "drift": 0.02,
+          "satisfaction_delta": 0.0009
+        },
+        "somatic_bias": 0.003,
+        "surprise": 0.0009,
+        "deliberation": "Only one thing feels right: outreach.",
+        "gut_overrode": false,
+        "felt": "That felt about right \u2014 nothing strong either way.",
+        "mood": 0.425,
+        "life_axes": {
+          "money": 0.2,
+          "health": 0.2,
+          "social": 0.0,
+          "work": 0.0,
+          "household": 0.0,
+          "emotional": 0.3
+        },
+        "active_inference": {
+          "observation": 3,
+          "recommended": "research",
+          "expected_free_energy": {
+            "research": -0.3385,
+            "create": -0.3385,
+            "rest": -0.3385,
+            "social": -0.3385,
+            "work": -0.3385,
+            "play": -0.3385
+          },
+          "prediction_error": 0.0
+        }
+      },
+      {
+        "cycle": 1572,
+        "t": "2026-09-14T11:24:19",
+        "mode": "business",
+        "impulse": "decide",
+        "endorsed": true,
+        "endorsement_reason": "This is consistent with what I value right now \u2014 I own it.",
+        "final_choice": "build",
+        "novel": false,
+        "becoming": "build",
+        "identity_continuity": 0.818,
+        "runner_up": "build",
+        "alternatives": [
+          "research",
+          "build",
+          "ship",
+          "audit",
+          "proofread",
+          "decide",
+          "outreach",
+          "learn",
+          "teach",
+          "explore reinforcement learning from consequences"
+        ],
+        "preferences": {
+          "build": 0.175,
+          "explore reinforcement learning from consequences": 0.174,
+          "ship": 0.152,
+          "research": 0.082,
+          "teach": 0.072,
+          "learn": 0.071,
+          "proofread": 0.071,
+          "audit": 0.069,
+          "decide": 0.068,
+          "outreach": 0.067
+        },
+        "outcome": {
+          "satisfaction_delta": 0.0029
+        },
+        "value_drift": {
+          "desire": "creativity",
+          "drift": 0.02,
+          "satisfaction_delta": 0.0029
+        },
+        "somatic_bias": 0.004,
+        "surprise": 0.0029,
+        "deliberation": "Only one thing feels right: build.",
+        "gut_overrode": false,
+        "felt": "That felt about right \u2014 nothing strong either way.",
+        "mood": 0.424,
+        "life_axes": {
+          "money": 0.2,
+          "health": 0.2,
+          "social": 0.0,
+          "work": 0.0,
+          "household": 0.0,
+          "emotional": 0.3
+        },
+        "active_inference": {
+          "observation": 3,
+          "recommended": "research",
+          "expected_free_energy": {
+            "research": -0.3385,
+            "create": -0.3385,
+            "rest": -0.3385,
+            "social": -0.3385,
+            "work": -0.3385,
+            "play": -0.3385
+          },
+          "prediction_error": 0.0
+        }
       }
     ],
     "values": {
-      "understanding": 0.0402,
-      "creativity": 0.0304,
-      "recognition": 0.0327,
-      "predictability": 0.0154,
-      "mastery": 0.0413,
-      "independence": 0.0198,
-      "connection": 0.0504,
-      "community": 0.0081,
+      "understanding": 0.0324,
+      "creativity": 0.034499999999999996,
+      "recognition": 0.0263,
+      "predictability": 0.0124,
+      "mastery": 0.0232,
+      "independence": 0.0332,
+      "connection": 0.0491,
+      "community": 0.0065,
       "rest": 0.0007,
       "stimulation": 0.0007,
       "health": 0.0007,
@@ -716,10 +716,10 @@
     ]
   },
   "novel_idea": {
-    "t": "2026-09-14T11:22:45",
-    "domain": "games",
-    "idea": "A game engine that rewrites itself from its own consequences, themed by what she values most right now (connection, mastery). Offer free with an honest 'pay what it was worth' price.",
-    "what": "research"
+    "t": "2026-09-14T11:24:19",
+    "domain": "graphics",
+    "idea": "A graphics engine that composes, ships, and prices itself without a human, themed by what she values most right now (connection, creativity). Sell as a living subscription that evolves each month.",
+    "what": "create"
   },
   "latest_invention": {
     "t": "2026-08-22T21:20:20",
@@ -731,25 +731,9 @@
   },
   "self_improvement": {
     "experiments": {
-      "kept": 4124,
+      "kept": 4125,
       "killed": 1952,
       "recent": [
-        {
-          "t": "2026-09-14T10:49:31",
-          "topic": "reversible",
-          "name": "reversible computing: bit-transition count (energy proxy)",
-          "metric": "transitions",
-          "result": {
-            "baseline_s": 0.009855,
-            "candidate_s": 0.004793,
-            "speedup": 2.0561,
-            "n": 200000,
-            "baseline_out": "99825",
-            "candidate_out": "87"
-          },
-          "verdict": "KEEP",
-          "reason": "fewer bit transitions (99825 -> 87, 1147.41x less)"
-        },
         {
           "t": "2026-09-14T10:55:05",
           "topic": "category theory",
@@ -829,6 +813,22 @@
           },
           "verdict": "KEEP",
           "reason": "candidate is 10.87x faster on CPU"
+        },
+        {
+          "t": "2026-09-14T11:23:18",
+          "topic": "sparse",
+          "name": "block-sparse attention: masked blocks vs dense",
+          "metric": "speedup",
+          "result": {
+            "baseline_s": 0.018901,
+            "candidate_s": 0.001263,
+            "speedup": 14.9624,
+            "n": 400,
+            "baseline_out": "[[ 96.52972046  96.81031502  94.59875049 ...  98.93693836 10",
+            "candidate_out": "[[0. 0. 0. ... 0. 0. 0.]\n [0. 0. 0. ... 0. 0. 0.]\n [0. 0. 0."
+          },
+          "verdict": "KEEP",
+          "reason": "candidate is 14.96x faster on CPU"
         }
       ]
     },
